@@ -65,7 +65,7 @@ function paworks_scripts() {
     // Google Fonts
     wp_enqueue_style(
         'paworks-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap',
         array(),
         null
     );
