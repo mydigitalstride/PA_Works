@@ -145,6 +145,7 @@ function paworks_include_acf_fields() {
         'advocacy-page',
         'fellowship-page',
         'events-page',
+        'page-builder',
     );
 
     foreach ( $field_files as $file ) {
@@ -158,11 +159,31 @@ add_action( 'init', 'paworks_include_acf_fields' );
 
 /**
  * Helper: Get flexible content section template
+ *
+ * Checks for the template in this order:
+ *  1. {context}-{layout}.php  (exact match for page-specific context)
+ *  2. When context is 'shared', falls back through all page contexts
+ *     so the universal Page Builder reuses existing section templates.
  */
 function paworks_get_section( $layout_name, $page_context = 'home' ) {
-    $template = PAWORKS_DIR . '/inc/template-parts/sections/' . $page_context . '-' . $layout_name . '.php';
-    if ( file_exists( $template ) ) {
-        include $template;
+    $base = PAWORKS_DIR . '/inc/template-parts/sections/';
+
+    if ( $page_context !== 'shared' ) {
+        $template = $base . $page_context . '-' . $layout_name . '.php';
+        if ( file_exists( $template ) ) {
+            include $template;
+        }
+        return;
+    }
+
+    // Shared / Page Builder: search all contexts in priority order
+    $contexts = array( 'home', 'about', 'advocacy', 'fellowship', 'events' );
+    foreach ( $contexts as $ctx ) {
+        $template = $base . $ctx . '-' . $layout_name . '.php';
+        if ( file_exists( $template ) ) {
+            include $template;
+            return;
+        }
     }
 }
 
@@ -198,6 +219,7 @@ function paworks_disable_gutenberg( $use_block_editor, $post ) {
             'page-templates/template-advocacy.php',
             'page-templates/template-fellowship.php',
             'page-templates/template-events.php',
+            'page-templates/template-page-builder.php',
         );
         if ( in_array( get_page_template_slug( $post->ID ), $our_templates, true ) ) {
             return false;
