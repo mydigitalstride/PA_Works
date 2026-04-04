@@ -1,0 +1,159 @@
+[
+    {
+        "key": "group_about_page",
+        "title": "About Us Page Builder",
+        "fields": [
+            {
+                "key": "field_about_sections",
+                "label": "Page Sections",
+                "name": "about_sections",
+                "type": "flexible_content",
+                "button_label": "Add Section",
+                "layouts": {
+                    "layout_about_hero": {
+                        "key": "layout_about_hero",
+                        "name": "hero_section",
+                        "label": "Hero Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {"key":"field_about_hero_bg_image","label":"Background Image","name":"background_image","type":"image","return_format":"array","preview_size":"medium","instructions":"Recommended size: 1920x800px."},
+                            {"key":"field_about_hero_subheader","label":"Sub Header","name":"sub_header","type":"text"},
+                            {"key":"field_about_hero_header","label":"Header","name":"header","type":"text"},
+                            {"key":"field_about_hero_body","label":"Body Text","name":"body_text","type":"textarea","rows":3,"new_lines":"br"},
+                            {"key":"field_about_hero_btn_text","label":"Button Text","name":"button_text","type":"text"},
+                            {"key":"field_about_hero_btn_url","label":"Button URL","name":"button_url","type":"url"},
+                            {"key":"field_about_hero_btn_target","label":"Open in New Tab","name":"button_target","type":"true_false","default_value":0,"ui":1}
+                        ]
+                    },
+                    "layout_about_mission": {
+                        "key": "layout_about_mission",
+                        "name": "mission_section",
+                        "label": "Our Mission Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {"key":"field_about_mission_subheader","label":"Sub Header","name":"sub_header","type":"text","instructions":"Small label text above heading (e.g., \"WHO WE ARE\")."},
+                            {"key":"field_about_mission_header","label":"Header","name":"header","type":"text","default_value":"OUR MISSION"},
+                            {"key":"field_about_mission_body","label":"Body Text","name":"body_text","type":"wysiwyg","tabs":"all","toolbar":"full","media_upload":0,"instructions":"Main mission statement / description text on the left side."},
+                            {
+                                "key":"field_about_mission_info_boxes","label":"Info Boxes","name":"info_boxes","type":"repeater","layout":"block","min":0,"max":4,"button_label":"Add Info Box",
+                                "instructions":"Colored info boxes displayed on the right side (e.g., Federal Level, State Level).",
+                                "sub_fields": [
+                                    {"key":"field_about_mission_box_header","label":"Box Header","name":"box_header","type":"text"},
+                                    {
+                                        "key":"field_about_mission_box_items","label":"Bullet Points","name":"items","type":"repeater","layout":"table","min":1,"max":10,"button_label":"Add Point",
+                                        "sub_fields":[{"key":"field_about_mission_box_item_text","label":"Text","name":"text","type":"textarea","rows":2}]
+                                    },
+                                    {"key":"field_about_mission_box_color","label":"Box Style","name":"box_style","type":"select","choices":{"yellow":"Yellow / Gold","blue":"Blue / Teal","navy":"Navy","orange":"Orange"},"default_value":"yellow"}
+                                ]
+                            }
+                        ]
+                    },
+                    "layout_about_team": {
+                        "key": "layout_about_team",
+                        "name": "team_section",
+                        "label": "Our Team Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {"key":"field_about_team_header","label":"Header","name":"header","type":"text","default_value":"OUR TEAM IS HERE TO HELP"},
+                            {"key":"field_about_team_bg_image","label":"Background Image","name":"background_image","type":"image","return_format":"array","preview_size":"medium","instructions":"Optional full-bleed background image. The gradient will overlay it."},
+                            {"key":"field_about_team_overlay_image","label":"Overlay / Watermark Image","name":"overlay_image","type":"image","return_format":"array","preview_size":"medium","instructions":"Decorative overlay image (e.g., PA state shape). Displayed at low opacity over the gradient."},
+                            {
+                                "key":"field_about_team_members","label":"Team Members","name":"members","type":"repeater","layout":"block","min":1,"max":12,"button_label":"Add Team Member",
+                                "sub_fields":[
+                                    {"key":"field_about_team_photo","label":"Photo","name":"photo","type":"image","return_format":"array","preview_size":"thumbnail","instructions":"Headshot photo. Recommended: square, min 400x400px."},
+                                    {"key":"field_about_team_name","label":"Name","name":"name","type":"text"},
+                                    {"key":"field_about_team_title","label":"Title / Credentials","name":"title","type":"text","instructions":"e.g., \"Ed.D.\", \"MPAP\""},
+                                    {"key":"field_about_team_role","label":"Role","name":"role","type":"text"}
+                                ]
+                            },
+                            {"key":"field_about_team_btn_text","label":"Button Text","name":"button_text","type":"text","default_value":"Contact Us Today!"},
+                            {"key":"field_about_team_btn_url","label":"Button URL","name":"button_url","type":"url"}
+                        ]
+                    },
+                    "layout_about_board": {
+                        "key": "layout_about_board",
+                        "name": "board_section",
+                        "label": "Board of Directors Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {"key":"field_about_board_subheader","label":"Sub Header","name":"sub_header","type":"text","instructions":"e.g., \"LEADERSHIP\""},
+                            {"key":"field_about_board_header","label":"Header","name":"header","type":"text","default_value":"BOARD OF DIRECTORS"},
+                            {
+                                "key":"field_about_board_members","label":"Board Members","name":"members","type":"repeater","layout":"block","min":1,"max":30,"button_label":"Add Board Member",
+                                "sub_fields":[
+                                    {"key":"field_about_board_photo","label":"Photo","name":"photo","type":"image","return_format":"array","preview_size":"thumbnail","instructions":"Board member headshot or organization logo."},
+                                    {"key":"field_about_board_name","label":"Name","name":"name","type":"text"},
+                                    {"key":"field_about_board_position","label":"Position / Title","name":"position","type":"text","instructions":"e.g., \"CEO\", \"Director\""},
+                                    {"key":"field_about_board_org","label":"Organization","name":"organization","type":"text"},
+                                    {"key":"field_about_board_highlighted","label":"Highlighted","name":"highlighted","type":"true_false","default_value":0,"ui":1,"instructions":"Enable to visually highlight this member (different background color)."}
+                                ]
+                            }
+                        ]
+                    },
+                    "layout_about_whatwedo": {
+                        "key": "layout_about_whatwedo",
+                        "name": "whatwedo_section",
+                        "label": "What We Do Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {"key":"field_about_wwd_header","label":"Header","name":"header","type":"text","default_value":"WHAT WE DO"},
+                            {"key":"field_about_wwd_btn_text","label":"Button Text","name":"button_text","type":"text","default_value":"Explore Our Focus Areas"},
+                            {"key":"field_about_wwd_btn_url","label":"Button URL","name":"button_url","type":"url"},
+                            {
+                                "key":"field_about_wwd_items","label":"Focus Area Items","name":"items","type":"repeater","layout":"block","min":1,"max":8,"button_label":"Add Focus Area",
+                                "sub_fields":[
+                                    {"key":"field_about_wwd_item_text","label":"Focus Area Text","name":"text","type":"text"},
+                                    {"key":"field_about_wwd_item_description","label":"Description","name":"description","type":"textarea","rows":3,"instructions":"Shown when this accordion item is expanded."}
+                                ]
+                            },
+                            {"key":"field_about_wwd_description","label":"Description","name":"description","type":"textarea","rows":2},
+                            {"key":"field_about_wwd_bg_image","label":"Background Image","name":"background_image","type":"image","return_format":"array","preview_size":"medium","instructions":"Optional background image/pattern. Overlays the gradient at 12% opacity."}
+                        ]
+                    },
+                    "layout_about_workforce_system": {
+                        "key": "layout_about_workforce_system",
+                        "name": "workforce_system_section",
+                        "label": "PA's Local Workforce System",
+                        "display": "block",
+                        "sub_fields": [
+                            {"key":"field_about_wfs_subheader","label":"Sub Header","name":"sub_header","type":"text","instructions":"e.g., \"THE SYSTEM\""},
+                            {"key":"field_about_wfs_header","label":"Header","name":"header","type":"text","default_value":"PA'S LOCAL WORKFORCE SYSTEM"},
+                            {"key":"field_about_wfs_map_image","label":"Map / Hero Image","name":"map_image","type":"image","return_format":"array","preview_size":"medium","instructions":"Large map or infographic image displayed prominently."},
+                            {"key":"field_about_wfs_body","label":"Body Content","name":"body_content","type":"wysiwyg","tabs":"all","toolbar":"full","media_upload":1,"instructions":"Full content area for describing the workforce system."}
+                        ]
+                    },
+                    "layout_about_impact": {
+                        "key": "layout_about_impact",
+                        "name": "impact_section",
+                        "label": "Our Impact Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {"key":"field_about_impact_subheader","label":"Sub Header","name":"sub_header","type":"text","instructions":"e.g., \"YOUR TAX $ AT WORK\""},
+                            {"key":"field_about_impact_header","label":"Section Header","name":"header","type":"text","default_value":"OUR IMPACT"},
+                            {"key":"field_about_impact_logo","label":"Impact Logo/Image","name":"impact_logo","type":"image","return_format":"array","preview_size":"medium"},
+                            {"key":"field_about_impact_facts_label","label":"Impact Facts Label","name":"facts_label","type":"text","default_value":"IMPACT FACTS"},
+                            {"key":"field_about_impact_big_stat","label":"Big Stat Text","name":"big_stat_text","type":"text"},
+                            {"key":"field_about_impact_big_stat_sub","label":"Big Stat Subtitle","name":"big_stat_subtitle","type":"text"},
+                            {"key":"field_about_impact_source","label":"Source Citation","name":"source","type":"text"},
+                            {
+                                "key":"field_about_impact_stats","label":"Impact Stats","name":"stats","type":"repeater","layout":"block","min":1,"max":6,"button_label":"Add Stat",
+                                "sub_fields":[
+                                    {"key":"field_about_impact_stat_icon","label":"Icon","name":"icon","type":"image","return_format":"array","preview_size":"thumbnail"},
+                                    {"key":"field_about_impact_stat_number","label":"Number","name":"number","type":"text"},
+                                    {"key":"field_about_impact_stat_label","label":"Label","name":"label","type":"text"}
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "location": [[{"param":"page_template","operator":"==","value":"page-templates/template-about.php"}]],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "active": true
+    }
+]
