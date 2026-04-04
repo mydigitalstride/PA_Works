@@ -35,38 +35,6 @@ add_action( 'acf/init', function() {
                 'preview_size'  => 'medium',
                 'instructions'  => 'Upload the site logo. Recommended: SVG or PNG with transparent background.',
             ),
-            // Navigation Items
-            array(
-                'key'        => 'field_header_nav_items',
-                'label'      => 'Navigation Items',
-                'name'       => 'header_nav_items',
-                'type'       => 'repeater',
-                'layout'     => 'table',
-                'min'        => 1,
-                'max'        => 8,
-                'sub_fields' => array(
-                    array(
-                        'key'   => 'field_header_nav_label',
-                        'label' => 'Label',
-                        'name'  => 'label',
-                        'type'  => 'text',
-                    ),
-                    array(
-                        'key'   => 'field_header_nav_url',
-                        'label' => 'URL',
-                        'name'  => 'url',
-                        'type'  => 'url',
-                    ),
-                    array(
-                        'key'           => 'field_header_nav_highlight',
-                        'label'         => 'Highlight Active',
-                        'name'          => 'highlight',
-                        'type'          => 'true_false',
-                        'default_value' => 0,
-                        'ui'            => 1,
-                    ),
-                ),
-            ),
             // Sign In Button
             array(
                 'key'   => 'field_header_signin_text',

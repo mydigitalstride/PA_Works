@@ -42,10 +42,9 @@ if ( $announcement_enabled ) :
 
 <?php
 // Header
-$header_logo       = get_field( 'header_logo', 'option' );
-$nav_items         = get_field( 'header_nav_items', 'option' );
-$signin_text       = get_field( 'header_signin_text', 'option' );
-$signin_url        = get_field( 'header_signin_url', 'option' );
+$header_logo = get_field( 'header_logo', 'option' );
+$signin_text = get_field( 'header_signin_text', 'option' );
+$signin_url  = get_field( 'header_signin_url', 'option' );
 ?>
 <header class="pw-header" role="banner">
     <div class="pw-header__inner">
@@ -53,7 +52,7 @@ $signin_url        = get_field( 'header_signin_url', 'option' );
             <?php if ( $header_logo ) : ?>
                 <img src="<?php echo esc_url( $header_logo['url'] ); ?>" alt="<?php echo esc_attr( $header_logo['alt'] ?: get_bloginfo( 'name' ) ); ?>">
             <?php else : ?>
-                <span style="font-family: var(--pw-font-heading); font-size: 1.25rem; font-weight: 800; color: var(--pw-navy);">
+                <span style="font-family: var(--pw-font-heading); font-size: 1.25rem; font-weight: 800; color: var(--pw-white);">
                     <?php bloginfo( 'name' ); ?>
                 </span>
             <?php endif; ?>
@@ -65,14 +64,16 @@ $signin_url        = get_field( 'header_signin_url', 'option' );
             <span></span>
         </button>
 
-        <nav class="pw-header__nav" role="navigation">
-            <?php if ( $nav_items ) : ?>
-                <?php foreach ( $nav_items as $item ) : ?>
-                    <a href="<?php echo esc_url( $item['url'] ); ?>"<?php echo $item['highlight'] ? ' class="active"' : ''; ?>>
-                        <?php echo esc_html( $item['label'] ); ?>
-                    </a>
-                <?php endforeach; ?>
-            <?php endif; ?>
+        <nav class="pw-header__nav" role="navigation" aria-label="Primary Navigation">
+            <?php
+            wp_nav_menu( array(
+                'theme_location' => 'primary',
+                'container'      => false,
+                'menu_class'     => 'menu',
+                'depth'          => 3,
+                'fallback_cb'    => false,
+            ) );
+            ?>
 
             <?php if ( $signin_text && $signin_url ) : ?>
                 <a href="<?php echo esc_url( $signin_url ); ?>" class="pw-header__signin">
