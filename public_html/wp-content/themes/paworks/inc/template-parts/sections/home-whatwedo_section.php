@@ -48,7 +48,7 @@ $bg_style = $bg_image ? '--pw-bg-image: url(' . esc_url( $bg_image['url'] ) . ')
                                 <span class="pw-whatwedo__accordion-icon" aria-hidden="true">+</span>
                             </button>
                             <?php if ( ! empty( $item['description'] ) ) : ?>
-                                <div class="pw-whatwedo__accordion-body" id="<?php echo esc_attr( $item_id ); ?>" hidden>
+                                <div class="pw-whatwedo__accordion-body" id="<?php echo esc_attr( $item_id ); ?>" role="region">
                                     <?php echo esc_html( $item['description'] ); ?>
                                 </div>
                             <?php endif; ?>
