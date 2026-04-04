@@ -9,16 +9,23 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-$header           = get_sub_field( 'header' );
-$impact_logo      = get_sub_field( 'impact_logo' );
-$facts_label      = get_sub_field( 'facts_label' );
-$big_stat_text    = get_sub_field( 'big_stat_text' );
-$big_stat_sub     = get_sub_field( 'big_stat_subtitle' );
-$source           = get_sub_field( 'source' );
-$stats            = get_sub_field( 'stats' );
+$header        = get_sub_field( 'header' );
+$impact_logo   = get_sub_field( 'impact_logo' );
+$facts_label   = get_sub_field( 'facts_label' );
+$big_stat_text = get_sub_field( 'big_stat_text' );
+$big_stat_sub  = get_sub_field( 'big_stat_subtitle' );
+$source        = get_sub_field( 'source' );
+$stats         = get_sub_field( 'stats' );
+$bg_image      = get_sub_field( 'background_image' );
+$bg_position   = get_sub_field( 'bg_image_position' ) ?: 'center';
 ?>
 
 <section class="pw-impact pw-section">
+
+    <?php if ( $bg_image ) : ?>
+        <div class="pw-section-bg" aria-hidden="true" style="background-image: url('<?php echo esc_url( $bg_image['url'] ); ?>'); background-position: <?php echo esc_attr( $bg_position ); ?>;"></div>
+    <?php endif; ?>
+
     <div class="pw-impact__inner">
         <div class="pw-impact__left">
             <?php if ( $header ) : ?>

@@ -52,31 +52,28 @@
 
     /**
      * What We Do — Accordion
+     * All items start closed (max-height: 0 in CSS).
+     * Clicking a trigger toggles the is-open class; siblings are always closed first.
      */
     document.querySelectorAll('[data-accordion]').forEach(function(item) {
         const trigger = item.querySelector('.pw-whatwedo__accordion-trigger');
-        const body    = item.querySelector('.pw-whatwedo__accordion-body');
 
         if (!trigger) return;
 
         trigger.addEventListener('click', function() {
             const isOpen = item.classList.contains('is-open');
 
-            // Close all siblings first
-            const siblings = item.parentElement.querySelectorAll('[data-accordion]');
-            siblings.forEach(function(sib) {
+            // Always close every sibling
+            item.parentElement.querySelectorAll('[data-accordion]').forEach(function(sib) {
                 sib.classList.remove('is-open');
                 const sibTrigger = sib.querySelector('.pw-whatwedo__accordion-trigger');
-                const sibBody    = sib.querySelector('.pw-whatwedo__accordion-body');
                 if (sibTrigger) sibTrigger.setAttribute('aria-expanded', 'false');
-                if (sibBody)    sibBody.hidden = true;
             });
 
-            // Toggle clicked item
+            // Open this one only if it was previously closed
             if (!isOpen) {
                 item.classList.add('is-open');
                 trigger.setAttribute('aria-expanded', 'true');
-                if (body) body.hidden = false;
             }
         });
     });

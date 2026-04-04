@@ -94,6 +94,8 @@ add_action( 'acf/init', function() {
                             array( 'key' => 'field_pb_about_btn_text', 'label' => 'Button Text', 'name' => 'button_text', 'type' => 'text' ),
                             array( 'key' => 'field_pb_about_btn_url',  'label' => 'Button URL',  'name' => 'button_url',  'type' => 'url' ),
                             array( 'key' => 'field_pb_about_image',    'label' => 'Image',       'name' => 'image',       'type' => 'image',   'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Displayed to the right of the text.' ),
+                            array( 'key' => 'field_pb_about_bg_image', 'label' => 'Background Image', 'name' => 'background_image', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Optional background image for this section.' ),
+                            array( 'key' => 'field_pb_about_bg_pos',   'label' => 'Background Image Position', 'name' => 'bg_image_position', 'type' => 'select', 'choices' => array( 'left center' => 'Left', 'center center' => 'Center', 'right center' => 'Right' ), 'default_value' => 'center center', 'allow_null' => 0 ),
                         ),
                     ),
 
@@ -124,7 +126,8 @@ add_action( 'acf/init', function() {
                                 ),
                             ),
                             array( 'key' => 'field_pb_wwd_desc',     'label' => 'Footer Description', 'name' => 'description',       'type' => 'textarea', 'rows' => 2, 'instructions' => 'Optional note below the accordion items.' ),
-                            array( 'key' => 'field_pb_wwd_bg_image', 'label' => 'Background Image',   'name' => 'background_image',  'type' => 'image',    'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Optional texture overlaid at 12% opacity over the gradient.' ),
+                            array( 'key' => 'field_pb_wwd_bg_image', 'label' => 'Background Image',          'name' => 'background_image',  'type' => 'image',  'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Optional texture overlaid at 12% opacity over the gradient.' ),
+                            array( 'key' => 'field_pb_wwd_bg_pos',   'label' => 'Background Image Position', 'name' => 'bg_image_position',         'type' => 'select', 'choices' => array( 'left center' => 'Left', 'center center' => 'Center', 'right center' => 'Right' ), 'default_value' => 'center center', 'allow_null' => 0 ),
                         ),
                     ),
 
@@ -142,7 +145,9 @@ add_action( 'acf/init', function() {
                             array( 'key' => 'field_pb_impact_facts_label',   'label' => 'Impact Facts Label', 'name' => 'facts_label',     'type' => 'text',  'default_value' => 'IMPACT FACTS' ),
                             array( 'key' => 'field_pb_impact_big_stat',      'label' => 'Big Stat Text',      'name' => 'big_stat_text',   'type' => 'text',  'instructions' => 'e.g. "$1.89 TOTAL ECONOMIC IMPACT"' ),
                             array( 'key' => 'field_pb_impact_big_stat_sub',  'label' => 'Big Stat Subtitle',  'name' => 'big_stat_subtitle','type' => 'text', 'instructions' => 'e.g. "For Every $1.00 in WIOA Expenditures"' ),
-                            array( 'key' => 'field_pb_impact_source',        'label' => 'Source Citation',    'name' => 'source',          'type' => 'text' ),
+                            array( 'key' => 'field_pb_impact_source',   'label' => 'Source Citation',          'name' => 'source',          'type' => 'text' ),
+                            array( 'key' => 'field_pb_impact_bg_image', 'label' => 'Background Image',          'name' => 'background_image', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Optional background image for this section.' ),
+                            array( 'key' => 'field_pb_impact_bg_pos',   'label' => 'Background Image Position', 'name' => 'bg_image_position', 'type' => 'select', 'choices' => array( 'left center' => 'Left', 'center center' => 'Center', 'right center' => 'Right' ), 'default_value' => 'center center', 'allow_null' => 0 ),
                             array(
                                 'key'          => 'field_pb_impact_stats',
                                 'label'        => 'Impact Stats',
@@ -171,8 +176,9 @@ add_action( 'acf/init', function() {
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_team_header',        'label' => 'Header',                  'name' => 'header',        'type' => 'text',  'default_value' => 'OUR TEAM IS HERE TO HELP' ),
-                            array( 'key' => 'field_pb_team_bg_image',      'label' => 'Background Image',        'name' => 'background_image', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Optional full-bleed bg. Gradient overlays it.' ),
-                            array( 'key' => 'field_pb_team_overlay_image', 'label' => 'Overlay / Watermark Image','name' => 'overlay_image', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Decorative image (e.g. PA state shape) shown at low opacity.' ),
+                            array( 'key' => 'field_pb_team_bg_image',      'label' => 'Background Image',           'name' => 'background_image', 'type' => 'image',  'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Optional full-bleed bg. Gradient overlays it.' ),
+                            array( 'key' => 'field_pb_team_bg_pos',        'label' => 'Background Image Position', 'name' => 'bg_image_position', 'type' => 'select', 'choices' => array( 'left center' => 'Left', 'center center' => 'Center', 'right center' => 'Right' ), 'default_value' => 'center center', 'allow_null' => 0 ),
+                            array( 'key' => 'field_pb_team_overlay_image', 'label' => 'Overlay / Watermark Image', 'name' => 'overlay_image', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Decorative image (e.g. PA state shape) shown at low opacity.' ),
                             array(
                                 'key'          => 'field_pb_team_members',
                                 'label'        => 'Team Members',

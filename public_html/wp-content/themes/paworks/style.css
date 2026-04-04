@@ -728,8 +728,21 @@ h4 { font-size: 1.25rem; }
 /* ==========================================================================
    About Section
    ========================================================================== */
+/* Shared background image div — used in any section with a bg image */
+.pw-section-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
 .pw-about {
     padding: var(--pw-section-padding);
+    position: relative;
+    overflow: hidden;
 }
 
 .pw-about__inner {
@@ -740,6 +753,8 @@ h4 { font-size: 1.25rem; }
     max-width: var(--pw-container-width);
     margin: 0 auto;
     padding: var(--pw-container-padding);
+    position: relative;
+    z-index: 1;
 }
 
 .pw-about__title {
@@ -794,16 +809,8 @@ h4 { font-size: 1.25rem; }
     overflow: hidden;
 }
 
-/* Optional bg image overlays the gradient at low opacity */
-.pw-whatwedo--has-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: var(--pw-bg-image);
-    background-size: cover;
-    background-position: center;
+.pw-whatwedo .pw-section-bg {
     opacity: 0.12;
-    z-index: 1;
 }
 
 .pw-whatwedo__inner {
@@ -834,8 +841,8 @@ h4 { font-size: 1.25rem; }
 .pw-whatwedo__accordion-item {
     border-radius: var(--pw-radius-md);
     overflow: hidden;
-    transition: background 0.25s ease, box-shadow 0.25s ease;
     background: rgba(255,255,255,0.90);
+    transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .pw-whatwedo__accordion-item:hover,
@@ -879,16 +886,20 @@ h4 { font-size: 1.25rem; }
     transform: rotate(45deg);
 }
 
+/* Body — closed by default, smooth expand via max-height */
 .pw-whatwedo__accordion-body {
-    padding: 0 20px 16px;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
     font-size: 0.9rem;
     line-height: 1.7;
     color: rgba(255,255,255,0.92);
+    transition: max-height 0.35s ease, padding 0.35s ease;
 }
 
-/* Remove hidden attr visually when open via JS */
-.pw-whatwedo__accordion-body:not([hidden]) {
-    display: block;
+.pw-whatwedo__accordion-item.is-open .pw-whatwedo__accordion-body {
+    max-height: 600px;
+    padding: 0 20px 18px;
 }
 
 .pw-whatwedo__description {
@@ -911,6 +922,8 @@ h4 { font-size: 1.25rem; }
 .pw-impact {
     padding: var(--pw-section-padding);
     background-color: var(--pw-off-white);
+    position: relative;
+    overflow: hidden;
 }
 
 .pw-impact__inner {
@@ -920,6 +933,8 @@ h4 { font-size: 1.25rem; }
     max-width: var(--pw-container-width);
     margin: 0 auto;
     padding: var(--pw-container-padding);
+    position: relative;
+    z-index: 1;
 }
 
 .pw-impact__left {
@@ -1034,15 +1049,8 @@ h4 { font-size: 1.25rem; }
 }
 
 /* Full-bleed bg image overlays the gradient at low opacity */
-.pw-team--has-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: var(--pw-bg-image);
-    background-size: cover;
-    background-position: center;
+.pw-team .pw-section-bg {
     opacity: 0.15;
-    z-index: 0;
 }
 
 /* Decorative overlay / watermark image */

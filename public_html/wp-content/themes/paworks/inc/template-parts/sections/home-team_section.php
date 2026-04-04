@@ -11,16 +11,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $header        = get_sub_field( 'header' );
 $bg_image      = get_sub_field( 'background_image' );
+$bg_position   = get_sub_field( 'bg_image_position' ) ?: 'center';
 $overlay_image = get_sub_field( 'overlay_image' );
 $members       = get_sub_field( 'members' );
 $btn_text      = get_sub_field( 'button_text' );
 $btn_url       = get_sub_field( 'button_url' );
-
-// Full background image sets a CSS var; gradient stays as base
-$bg_style = $bg_image ? '--pw-bg-image: url(' . esc_url( $bg_image['url'] ) . ');' : '';
 ?>
 
-<section class="pw-team<?php echo $bg_image ? ' pw-team--has-bg' : ''; ?>" style="<?php echo esc_attr( $bg_style ); ?>">
+<section class="pw-team">
+
+    <?php if ( $bg_image ) : ?>
+        <div class="pw-section-bg" aria-hidden="true" style="background-image: url('<?php echo esc_url( $bg_image['url'] ); ?>'); background-position: <?php echo esc_attr( $bg_position ); ?>;"></div>
+    <?php endif; ?>
 
     <?php if ( $overlay_image ) : ?>
         <div class="pw-team__overlay" aria-hidden="true">

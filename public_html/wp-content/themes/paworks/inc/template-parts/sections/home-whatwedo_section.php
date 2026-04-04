@@ -9,18 +9,21 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-$header      = get_sub_field( 'header' );
-$btn_text    = get_sub_field( 'button_text' );
-$btn_url     = get_sub_field( 'button_url' );
-$items       = get_sub_field( 'items' );
-$description = get_sub_field( 'description' );
-$bg_image    = get_sub_field( 'background_image' );
-
-// Use CSS custom property so the gradient stays as base and image overlays it
-$bg_style = $bg_image ? '--pw-bg-image: url(' . esc_url( $bg_image['url'] ) . ');' : '';
+$header       = get_sub_field( 'header' );
+$btn_text     = get_sub_field( 'button_text' );
+$btn_url      = get_sub_field( 'button_url' );
+$items        = get_sub_field( 'items' );
+$description  = get_sub_field( 'description' );
+$bg_image     = get_sub_field( 'background_image' );
+$bg_position  = get_sub_field( 'bg_image_position' ) ?: 'center';
 ?>
 
-<section class="pw-whatwedo<?php echo $bg_image ? ' pw-whatwedo--has-bg' : ''; ?>" style="<?php echo esc_attr( $bg_style ); ?>">
+<section class="pw-whatwedo">
+
+    <?php if ( $bg_image ) : ?>
+        <div class="pw-section-bg" aria-hidden="true" style="background-image: url('<?php echo esc_url( $bg_image['url'] ); ?>'); background-position: <?php echo esc_attr( $bg_position ); ?>;"></div>
+    <?php endif; ?>
+
     <div class="pw-whatwedo__inner">
         <div class="pw-whatwedo__left">
             <?php if ( $header ) : ?>
@@ -48,7 +51,7 @@ $bg_style = $bg_image ? '--pw-bg-image: url(' . esc_url( $bg_image['url'] ) . ')
                                 <span class="pw-whatwedo__accordion-icon" aria-hidden="true">+</span>
                             </button>
                             <?php if ( ! empty( $item['description'] ) ) : ?>
-                                <div class="pw-whatwedo__accordion-body" id="<?php echo esc_attr( $item_id ); ?>" hidden>
+                                <div class="pw-whatwedo__accordion-body" id="<?php echo esc_attr( $item_id ); ?>" role="region">
                                     <?php echo esc_html( $item['description'] ); ?>
                                 </div>
                             <?php endif; ?>
