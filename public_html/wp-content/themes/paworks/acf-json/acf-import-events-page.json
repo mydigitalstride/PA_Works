@@ -1,0 +1,75 @@
+[
+    {
+        "key": "group_events_page",
+        "title": "Events Page Builder",
+        "fields": [
+            {
+                "key": "field_events_sections",
+                "label": "Page Sections",
+                "name": "events_sections",
+                "type": "flexible_content",
+                "button_label": "Add Section",
+                "layouts": {
+                    "layout_events_hero": {
+                        "key": "layout_events_hero",
+                        "name": "hero_section",
+                        "label": "Hero Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {"key":"field_events_hero_bg_image","label":"Background Image","name":"background_image","type":"image","return_format":"array","preview_size":"medium"},
+                            {"key":"field_events_hero_subheader","label":"Sub Header","name":"sub_header","type":"text"},
+                            {"key":"field_events_hero_header","label":"Header","name":"header","type":"text"},
+                            {"key":"field_events_hero_body","label":"Body Text","name":"body_text","type":"textarea","rows":3,"new_lines":"br"},
+                            {"key":"field_events_hero_btn_text","label":"Button Text","name":"button_text","type":"text"},
+                            {"key":"field_events_hero_btn_url","label":"Button URL","name":"button_url","type":"url"},
+                            {"key":"field_events_hero_btn_target","label":"Open in New Tab","name":"button_target","type":"true_false","default_value":0,"ui":1}
+                        ]
+                    },
+                    "layout_events_upcoming": {
+                        "key": "layout_events_upcoming",
+                        "name": "upcoming_events_section",
+                        "label": "Upcoming Events Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {"key":"field_events_upcoming_subheader","label":"Sub Header","name":"sub_header","type":"text","instructions":"e.g., \"WHAT'S HAPPENING\""},
+                            {"key":"field_events_upcoming_header","label":"Header","name":"header","type":"text","default_value":"UPCOMING EVENTS"},
+                            {"key":"field_events_upcoming_calendar_shortcode","label":"Calendar Shortcode","name":"calendar_shortcode","type":"text","instructions":"If using a calendar plugin, paste its shortcode here (e.g., [events_calendar]). Leave blank to use the manual events list below."},
+                            {
+                                "key":"field_events_upcoming_events","label":"Manual Events List","name":"events_list","type":"repeater","layout":"block","min":0,"max":20,"button_label":"Add Event",
+                                "instructions":"Only used if Calendar Shortcode is empty.",
+                                "sub_fields":[
+                                    {"key":"field_events_event_title","label":"Event Title","name":"title","type":"text"},
+                                    {"key":"field_events_event_date","label":"Date","name":"date","type":"date_picker","display_format":"F j, Y","return_format":"F j, Y"},
+                                    {"key":"field_events_event_time","label":"Time","name":"time","type":"text","instructions":"e.g., \"11:00 AM - 12:30 PM EST\""},
+                                    {"key":"field_events_event_description","label":"Description","name":"description","type":"textarea","rows":3},
+                                    {"key":"field_events_event_presenter","label":"Presenter / Host","name":"presenter","type":"text"},
+                                    {"key":"field_events_event_register_url","label":"Register URL","name":"register_url","type":"url"},
+                                    {"key":"field_events_event_featured","label":"Featured Event","name":"featured","type":"true_false","default_value":0,"ui":1,"instructions":"Featured events get a larger, highlighted display."}
+                                ]
+                            }
+                        ]
+                    },
+                    "layout_events_cta": {
+                        "key": "layout_events_cta",
+                        "name": "cta_section",
+                        "label": "Call to Action",
+                        "display": "block",
+                        "sub_fields": [
+                            {"key":"field_events_cta_subheader","label":"Sub Header","name":"sub_header","type":"text"},
+                            {"key":"field_events_cta_header","label":"Header","name":"header","type":"text"},
+                            {"key":"field_events_cta_btn_text","label":"Button Text","name":"button_text","type":"text","default_value":"Sign up for Membership"},
+                            {"key":"field_events_cta_btn_url","label":"Button URL","name":"button_url","type":"url"}
+                        ]
+                    }
+                }
+            }
+        ],
+        "location": [[{"param":"page_template","operator":"==","value":"page-templates/template-events.php"}]],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "active": true
+    }
+]
