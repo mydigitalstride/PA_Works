@@ -1,0 +1,413 @@
+[
+    {
+        "key": "group_home_page",
+        "title": "Home Page Builder",
+        "fields": [
+            {
+                "key": "field_home_sections",
+                "label": "Page Sections",
+                "name": "home_sections",
+                "type": "flexible_content",
+                "button_label": "Add Section",
+                "layouts": {
+                    "layout_home_hero": {
+                        "key": "layout_home_hero",
+                        "name": "hero_section",
+                        "label": "Hero Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_home_hero_bg_image",
+                                "label": "Background Image",
+                                "name": "background_image",
+                                "type": "image",
+                                "return_format": "array",
+                                "preview_size": "medium",
+                                "instructions": "Recommended size: 1920x800px."
+                            },
+                            {
+                                "key": "field_home_hero_subheader",
+                                "label": "Sub Header",
+                                "name": "sub_header",
+                                "type": "text",
+                                "instructions": "Small text above the main heading."
+                            },
+                            {
+                                "key": "field_home_hero_header",
+                                "label": "Header",
+                                "name": "header",
+                                "type": "text"
+                            },
+                            {
+                                "key": "field_home_hero_body",
+                                "label": "Body Text",
+                                "name": "body_text",
+                                "type": "textarea",
+                                "rows": 3,
+                                "new_lines": "br"
+                            },
+                            {
+                                "key": "field_home_hero_btn_text",
+                                "label": "Button Text",
+                                "name": "button_text",
+                                "type": "text",
+                                "default_value": "Become a PWDA Member"
+                            },
+                            {
+                                "key": "field_home_hero_btn_url",
+                                "label": "Button URL",
+                                "name": "button_url",
+                                "type": "url"
+                            },
+                            {
+                                "key": "field_home_hero_btn_target",
+                                "label": "Open in New Tab",
+                                "name": "button_target",
+                                "type": "true_false",
+                                "default_value": 0,
+                                "ui": 1
+                            }
+                        ]
+                    },
+                    "layout_home_cards": {
+                        "key": "layout_home_cards",
+                        "name": "cards_section",
+                        "label": "Cards Section (Events/News)",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_home_cards_items",
+                                "label": "Cards",
+                                "name": "cards",
+                                "type": "repeater",
+                                "layout": "block",
+                                "min": 1,
+                                "max": 4,
+                                "button_label": "Add Card",
+                                "sub_fields": [
+                                    {
+                                        "key": "field_home_card_label",
+                                        "label": "Label",
+                                        "name": "label",
+                                        "type": "text",
+                                        "instructions": "e.g., EVENTS, NEWS"
+                                    },
+                                    {
+                                        "key": "field_home_card_image",
+                                        "label": "Image",
+                                        "name": "image",
+                                        "type": "image",
+                                        "return_format": "array",
+                                        "preview_size": "medium"
+                                    },
+                                    {
+                                        "key": "field_home_card_title",
+                                        "label": "Title",
+                                        "name": "title",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "field_home_card_body",
+                                        "label": "Body Text",
+                                        "name": "body",
+                                        "type": "textarea",
+                                        "rows": 3
+                                    },
+                                    {
+                                        "key": "field_home_card_link_text",
+                                        "label": "Link Text",
+                                        "name": "link_text",
+                                        "type": "text",
+                                        "default_value": "Learn More"
+                                    },
+                                    {
+                                        "key": "field_home_card_link_url",
+                                        "label": "Link URL",
+                                        "name": "link_url",
+                                        "type": "url"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "layout_home_about": {
+                        "key": "layout_home_about",
+                        "name": "about_section",
+                        "label": "About Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_home_about_header",
+                                "label": "Header",
+                                "name": "header",
+                                "type": "text",
+                                "default_value": "ABOUT PA WORKS"
+                            },
+                            {
+                                "key": "field_home_about_body",
+                                "label": "Body Text",
+                                "name": "body_text",
+                                "type": "wysiwyg",
+                                "tabs": "all",
+                                "toolbar": "basic",
+                                "media_upload": 0
+                            },
+                            {
+                                "key": "field_home_about_btn_text",
+                                "label": "Button Text",
+                                "name": "button_text",
+                                "type": "text",
+                                "default_value": "Learn More About PA Works"
+                            },
+                            {
+                                "key": "field_home_about_btn_url",
+                                "label": "Button URL",
+                                "name": "button_url",
+                                "type": "url"
+                            },
+                            {
+                                "key": "field_home_about_image",
+                                "label": "Image",
+                                "name": "image",
+                                "type": "image",
+                                "return_format": "array",
+                                "preview_size": "medium",
+                                "instructions": "Image displayed to the right of the text."
+                            }
+                        ]
+                    },
+                    "layout_home_whatwedo": {
+                        "key": "layout_home_whatwedo",
+                        "name": "whatwedo_section",
+                        "label": "What We Do Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_home_wwd_header",
+                                "label": "Header",
+                                "name": "header",
+                                "type": "text",
+                                "default_value": "WHAT WE DO"
+                            },
+                            {
+                                "key": "field_home_wwd_btn_text",
+                                "label": "Button Text",
+                                "name": "button_text",
+                                "type": "text",
+                                "default_value": "Explore Our Focus Areas"
+                            },
+                            {
+                                "key": "field_home_wwd_btn_url",
+                                "label": "Button URL",
+                                "name": "button_url",
+                                "type": "url"
+                            },
+                            {
+                                "key": "field_home_wwd_items",
+                                "label": "Focus Area Items",
+                                "name": "items",
+                                "type": "repeater",
+                                "layout": "table",
+                                "min": 1,
+                                "max": 8,
+                                "button_label": "Add Focus Area",
+                                "sub_fields": [
+                                    {
+                                        "key": "field_home_wwd_item_text",
+                                        "label": "Focus Area Text",
+                                        "name": "text",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "key": "field_home_wwd_description",
+                                "label": "Description",
+                                "name": "description",
+                                "type": "textarea",
+                                "rows": 2
+                            },
+                            {
+                                "key": "field_home_wwd_bg_image",
+                                "label": "Background Image",
+                                "name": "background_image",
+                                "type": "image",
+                                "return_format": "array",
+                                "preview_size": "medium"
+                            }
+                        ]
+                    },
+                    "layout_home_impact": {
+                        "key": "layout_home_impact",
+                        "name": "impact_section",
+                        "label": "Our Impact Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_home_impact_header",
+                                "label": "Section Header",
+                                "name": "header",
+                                "type": "text",
+                                "default_value": "OUR IMPACT"
+                            },
+                            {
+                                "key": "field_home_impact_logo",
+                                "label": "Impact Logo/Image",
+                                "name": "impact_logo",
+                                "type": "image",
+                                "return_format": "array",
+                                "preview_size": "medium"
+                            },
+                            {
+                                "key": "field_home_impact_facts_label",
+                                "label": "Impact Facts Label",
+                                "name": "facts_label",
+                                "type": "text",
+                                "default_value": "IMPACT FACTS"
+                            },
+                            {
+                                "key": "field_home_impact_big_stat",
+                                "label": "Big Stat Text",
+                                "name": "big_stat_text",
+                                "type": "text"
+                            },
+                            {
+                                "key": "field_home_impact_big_stat_sub",
+                                "label": "Big Stat Subtitle",
+                                "name": "big_stat_subtitle",
+                                "type": "text"
+                            },
+                            {
+                                "key": "field_home_impact_source",
+                                "label": "Source Citation",
+                                "name": "source",
+                                "type": "text"
+                            },
+                            {
+                                "key": "field_home_impact_stats",
+                                "label": "Impact Stats",
+                                "name": "stats",
+                                "type": "repeater",
+                                "layout": "block",
+                                "min": 1,
+                                "max": 6,
+                                "button_label": "Add Stat",
+                                "sub_fields": [
+                                    {
+                                        "key": "field_home_impact_stat_icon",
+                                        "label": "Icon",
+                                        "name": "icon",
+                                        "type": "image",
+                                        "return_format": "array",
+                                        "preview_size": "thumbnail"
+                                    },
+                                    {
+                                        "key": "field_home_impact_stat_number",
+                                        "label": "Number",
+                                        "name": "number",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "field_home_impact_stat_label",
+                                        "label": "Label",
+                                        "name": "label",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "layout_home_team": {
+                        "key": "layout_home_team",
+                        "name": "team_section",
+                        "label": "Our Team Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_home_team_header",
+                                "label": "Header",
+                                "name": "header",
+                                "type": "text",
+                                "default_value": "OUR TEAM IS HERE TO HELP"
+                            },
+                            {
+                                "key": "field_home_team_bg_image",
+                                "label": "Background Image",
+                                "name": "background_image",
+                                "type": "image",
+                                "return_format": "array",
+                                "preview_size": "medium"
+                            },
+                            {
+                                "key": "field_home_team_members",
+                                "label": "Team Members",
+                                "name": "members",
+                                "type": "repeater",
+                                "layout": "block",
+                                "min": 1,
+                                "max": 12,
+                                "button_label": "Add Team Member",
+                                "sub_fields": [
+                                    {
+                                        "key": "field_home_team_member_photo",
+                                        "label": "Photo",
+                                        "name": "photo",
+                                        "type": "image",
+                                        "return_format": "array",
+                                        "preview_size": "thumbnail"
+                                    },
+                                    {
+                                        "key": "field_home_team_member_name",
+                                        "label": "Name",
+                                        "name": "name",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "field_home_team_member_title",
+                                        "label": "Title / Credentials",
+                                        "name": "title",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "field_home_team_member_role",
+                                        "label": "Role",
+                                        "name": "role",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "key": "field_home_team_btn_text",
+                                "label": "Button Text",
+                                "name": "button_text",
+                                "type": "text",
+                                "default_value": "Contact Us Today!"
+                            },
+                            {
+                                "key": "field_home_team_btn_url",
+                                "label": "Button URL",
+                                "name": "button_url",
+                                "type": "url"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/template-home.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "active": true
+    }
+]
