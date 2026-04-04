@@ -788,10 +788,22 @@ h4 { font-size: 1.25rem; }
    ========================================================================== */
 .pw-whatwedo {
     padding: var(--pw-section-padding);
-    background: linear-gradient(135deg, var(--pw-navy) 0%, var(--pw-dark-blue) 50%, var(--pw-blue) 100%);
+    background: var(--pw-gradient-navy-lightblue);
     color: var(--pw-white);
     position: relative;
     overflow: hidden;
+}
+
+/* Optional bg image overlays the gradient at low opacity */
+.pw-whatwedo--has-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--pw-bg-image);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.12;
+    z-index: 1;
 }
 
 .pw-whatwedo__inner {
@@ -812,25 +824,71 @@ h4 { font-size: 1.25rem; }
     margin-bottom: 28px;
 }
 
-.pw-whatwedo__items {
+/* Accordion */
+.pw-whatwedo__accordion {
     display: flex;
     flex-direction: column;
+    gap: 8px;
+}
+
+.pw-whatwedo__accordion-item {
+    border-radius: var(--pw-radius-md);
+    overflow: hidden;
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+    background: rgba(255,255,255,0.90);
+}
+
+.pw-whatwedo__accordion-item:hover,
+.pw-whatwedo__accordion-item.is-open {
+    background: var(--pw-gradient-navy-lightblue);
+    box-shadow: var(--pw-shadow-md);
+}
+
+.pw-whatwedo__accordion-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 16px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--pw-font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--pw-navy);
+    text-align: left;
+    transition: color 0.25s ease;
     gap: 12px;
 }
 
-.pw-whatwedo__item {
-    background: rgba(255,255,255,0.12);
-    padding: 16px 24px;
-    border-radius: var(--pw-radius-md);
-    font-size: 0.95rem;
-    font-weight: 500;
-    border-left: 3px solid var(--pw-yellow);
-    backdrop-filter: blur(4px);
-    transition: background 0.3s ease;
+.pw-whatwedo__accordion-item:hover .pw-whatwedo__accordion-trigger,
+.pw-whatwedo__accordion-item.is-open .pw-whatwedo__accordion-trigger {
+    color: var(--pw-white);
 }
 
-.pw-whatwedo__item:hover {
-    background: rgba(255,255,255,0.2);
+.pw-whatwedo__accordion-icon {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    line-height: 1;
+    font-weight: 400;
+    transition: transform 0.25s ease;
+}
+
+.pw-whatwedo__accordion-item.is-open .pw-whatwedo__accordion-icon {
+    transform: rotate(45deg);
+}
+
+.pw-whatwedo__accordion-body {
+    padding: 0 20px 16px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.92);
+}
+
+/* Remove hidden attr visually when open via JS */
+.pw-whatwedo__accordion-body:not([hidden]) {
+    display: block;
 }
 
 .pw-whatwedo__description {
@@ -876,7 +934,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-impact__logo {
-    max-width: 200px;
+    max-width: 300px;
     margin-bottom: 8px;
 }
 
@@ -914,7 +972,7 @@ h4 { font-size: 1.25rem; }
     display: flex;
     align-items: center;
     gap: 16px;
-    background: var(--pw-white);
+    background: var(--pw-light-blue);
     padding: 20px 24px;
     border-radius: var(--pw-radius-md);
     box-shadow: var(--pw-shadow-sm);
@@ -927,9 +985,9 @@ h4 { font-size: 1.25rem; }
 
 .pw-impact__stat-icon {
     flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    color: var(--pw-blue);
+    width: 56px;
+    height: 56px;
+    color: var(--pw-white);
 }
 
 .pw-impact__stat-icon img,
@@ -937,13 +995,14 @@ h4 { font-size: 1.25rem; }
     width: 100%;
     height: 100%;
     object-fit: contain;
+    filter: brightness(0) invert(1);
 }
 
 .pw-impact__stat-number {
     font-family: var(--pw-font-heading);
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 800;
-    color: var(--pw-navy);
+    color: var(--pw-white);
     line-height: 1;
 }
 
@@ -953,7 +1012,7 @@ h4 { font-size: 1.25rem; }
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--pw-dark-gray);
+    color: var(--pw-white);
 }
 
 @media (max-width: 768px) {
@@ -969,17 +1028,39 @@ h4 { font-size: 1.25rem; }
 .pw-team {
     position: relative;
     padding: var(--pw-section-padding);
-    background-size: cover;
-    background-position: center;
     overflow: hidden;
+    /* Gradient is the base background */
+    background: var(--pw-gradient-lightblue-navy);
 }
 
-.pw-team::before {
+/* Full-bleed bg image overlays the gradient at low opacity */
+.pw-team--has-bg::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(184,216,235,0.92) 0%, rgba(232,241,248,0.92) 100%);
+    background-image: var(--pw-bg-image);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+/* Decorative overlay / watermark image */
+.pw-team__overlay {
+    position: absolute;
+    bottom: -5%;
+    right: -2%;
+    width: 38%;
+    max-width: 420px;
+    pointer-events: none;
     z-index: 1;
+    opacity: 0.18;
+}
+
+.pw-team__overlay img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .pw-team__inner {
@@ -993,6 +1074,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-team__title {
     font-size: 2.25rem;
+    color: var(--pw-white);
     margin-bottom: 48px;
 }
 
@@ -1007,33 +1089,51 @@ h4 { font-size: 1.25rem; }
     text-align: center;
 }
 
-.pw-team__photo {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
+/* Card: square photo flush with name/role panel */
+.pw-team__member-card {
+    border-radius: var(--pw-radius-md);
     overflow: hidden;
-    margin: 0 auto 16px;
-    box-shadow: var(--pw-shadow-md);
-    border: 4px solid var(--pw-white);
+    box-shadow: var(--pw-shadow-lg);
+    display: flex;
+    flex-direction: column;
+}
+
+.pw-team__photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
 .pw-team__photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+}
+
+.pw-team__member-info {
+    background: var(--pw-navy);
+    padding: 16px 14px;
+    text-align: center;
 }
 
 .pw-team__name {
     font-family: var(--pw-font-heading);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 700;
-    color: var(--pw-navy);
+    color: var(--pw-white);
     margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.pw-team__credentials {
+    font-weight: 400;
 }
 
 .pw-team__role {
     font-size: 0.8rem;
-    color: var(--pw-dark-gray);
+    color: rgba(255,255,255,0.85);
     line-height: 1.4;
 }
 

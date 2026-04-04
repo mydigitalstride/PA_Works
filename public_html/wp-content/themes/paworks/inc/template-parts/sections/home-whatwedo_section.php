@@ -16,10 +16,11 @@ $items       = get_sub_field( 'items' );
 $description = get_sub_field( 'description' );
 $bg_image    = get_sub_field( 'background_image' );
 
-$bg_style = $bg_image ? 'background-image: url(' . esc_url( $bg_image['url'] ) . ');' : '';
+// Use CSS custom property so the gradient stays as base and image overlays it
+$bg_style = $bg_image ? '--pw-bg-image: url(' . esc_url( $bg_image['url'] ) . ');' : '';
 ?>
 
-<section class="pw-whatwedo" style="<?php echo esc_attr( $bg_style ); ?>">
+<section class="pw-whatwedo<?php echo $bg_image ? ' pw-whatwedo--has-bg' : ''; ?>" style="<?php echo esc_attr( $bg_style ); ?>">
     <div class="pw-whatwedo__inner">
         <div class="pw-whatwedo__left">
             <?php if ( $header ) : ?>
@@ -35,10 +36,22 @@ $bg_style = $bg_image ? 'background-image: url(' . esc_url( $bg_image['url'] ) .
 
         <div class="pw-whatwedo__right">
             <?php if ( $items ) : ?>
-                <div class="pw-whatwedo__items">
-                    <?php foreach ( $items as $item ) : ?>
-                        <div class="pw-whatwedo__item">
-                            <?php echo esc_html( $item['text'] ); ?>
+                <div class="pw-whatwedo__accordion">
+                    <?php foreach ( $items as $index => $item ) :
+                        $item_id = 'wwd-item-' . $index;
+                    ?>
+                        <div class="pw-whatwedo__accordion-item" data-accordion>
+                            <button class="pw-whatwedo__accordion-trigger"
+                                    aria-expanded="false"
+                                    aria-controls="<?php echo esc_attr( $item_id ); ?>">
+                                <span><?php echo esc_html( $item['text'] ); ?></span>
+                                <span class="pw-whatwedo__accordion-icon" aria-hidden="true">+</span>
+                            </button>
+                            <?php if ( ! empty( $item['description'] ) ) : ?>
+                                <div class="pw-whatwedo__accordion-body" id="<?php echo esc_attr( $item_id ); ?>" hidden>
+                                    <?php echo esc_html( $item['description'] ); ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 </div>
