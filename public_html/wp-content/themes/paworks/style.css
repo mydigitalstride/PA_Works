@@ -31,6 +31,17 @@ Text Domain: paworks
     --pw-orange: #E8913A;
     --pw-teal: #2A9D8F;
 
+    /* Extended Accent */
+    --pw-light-pink: #F0A0B8;
+
+    /* Gradients */
+    --pw-gradient-navy-lightblue: linear-gradient(135deg, var(--pw-navy) 0%, var(--pw-light-blue) 100%);
+    --pw-gradient-navy-gold: linear-gradient(135deg, var(--pw-navy) 0%, var(--pw-gold) 100%);
+    --pw-gradient-lightblue-teal: linear-gradient(135deg, var(--pw-light-blue) 0%, var(--pw-teal) 100%);
+    --pw-gradient-navy-pink: linear-gradient(135deg, var(--pw-navy) 0%, var(--pw-light-pink) 100%);
+    --pw-gradient-lightblue-navy: linear-gradient(135deg, var(--pw-light-blue) 0%, var(--pw-navy) 100%);
+    --pw-gradient-gold-pink: linear-gradient(135deg, var(--pw-gold) 0%, var(--pw-light-pink) 100%);
+
     /* Neutrals */
     --pw-white: #FFFFFF;
     --pw-off-white: #F5F7FA;
@@ -41,8 +52,8 @@ Text Domain: paworks
     --pw-black: #111827;
 
     /* Typography */
-    --pw-font-heading: 'Montserrat', sans-serif;
-    --pw-font-body: 'Open Sans', sans-serif;
+    --pw-font-heading: 'Poppins', sans-serif;
+    --pw-font-body: 'Source Sans 3', 'Source Sans Pro', sans-serif;
 
     /* Spacing */
     --pw-section-padding: 80px 0;
@@ -236,7 +247,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-header__nav a:hover,
 .pw-header__nav a.active {
-    color: var(--pw-gold);
+    color: var(--pw-light-blue);
 }
 
 /* WordPress wp_nav_menu() structure */
@@ -268,7 +279,7 @@ h4 { font-size: 1.25rem; }
 .pw-header__nav .menu > li > a:hover,
 .pw-header__nav .menu > li.current-menu-item > a,
 .pw-header__nav .menu > li.current-menu-ancestor > a {
-    color: var(--pw-gold);
+    color: var(--pw-light-blue);
 }
 
 /* Dropdown arrow indicator */
@@ -343,7 +354,7 @@ h4 { font-size: 1.25rem; }
     }
     .pw-header__nav .sub-menu li a:hover {
         background: transparent;
-        color: var(--pw-gold);
+        color: var(--pw-light-blue);
     }
 }
 
