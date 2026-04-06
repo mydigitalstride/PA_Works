@@ -294,6 +294,15 @@ add_action( 'acf/init', function() {
                                 'instructions' => 'Short description text below the focus area items.',
                             ),
                             array(
+                                'key'           => 'field_home_wwd_overlay_image',
+                                'label'         => 'Overlay / Watermark Image',
+                                'name'          => 'overlay_image',
+                                'type'          => 'image',
+                                'return_format' => 'array',
+                                'preview_size'  => 'medium',
+                                'instructions'  => 'Decorative overlay image (e.g. PA state shape, geometric pattern). Displayed at low opacity.',
+                            ),
+                            array(
                                 'key'           => 'field_home_wwd_bg_image',
                                 'label'         => 'Background Image',
                                 'name'          => 'background_image',

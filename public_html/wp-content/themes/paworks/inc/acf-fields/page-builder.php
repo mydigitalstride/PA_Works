@@ -126,6 +126,7 @@ add_action( 'acf/init', function() {
                                 ),
                             ),
                             array( 'key' => 'field_pb_wwd_desc',     'label' => 'Footer Description', 'name' => 'description',       'type' => 'textarea', 'rows' => 2, 'instructions' => 'Optional note below the accordion items.' ),
+                            array( 'key' => 'field_pb_wwd_overlay_image', 'label' => 'Overlay / Watermark Image', 'name' => 'overlay_image', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Decorative overlay image shown at low opacity.' ),
                             array( 'key' => 'field_pb_wwd_bg_image', 'label' => 'Background Image',          'name' => 'background_image',  'type' => 'image',  'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Optional texture overlaid at 12% opacity over the gradient.' ),
                             array( 'key' => 'field_pb_wwd_bg_pos',   'label' => 'Background Image Position', 'name' => 'bg_image_position',         'type' => 'select', 'choices' => array( 'left center' => 'Left', 'center center' => 'Center', 'right center' => 'Right' ), 'default_value' => 'center center', 'allow_null' => 0 ),
                         ),
