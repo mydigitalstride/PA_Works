@@ -561,7 +561,7 @@ h4 { font-size: 1.25rem; }
     position: relative;
     min-height: 680px;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     padding: 60px 0 140px;
     background-size: cover;
     background-position: center;
@@ -816,6 +816,23 @@ h4 { font-size: 1.25rem; }
     opacity: 0.35;
 }
 
+/* Decorative overlay / watermark image */
+.pw-whatwedo__overlay {
+    position: absolute;
+    bottom: -5%;
+    right: -2%;
+    width: 100vw;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.08;
+}
+
+.pw-whatwedo__overlay img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .pw-whatwedo__inner {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
@@ -958,10 +975,10 @@ h4 { font-size: 1.25rem; }
 
 .pw-impact__facts-label {
     font-family: var(--pw-font-heading);
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: 800;
     color: var(--pw-navy);
-    margin-bottom: 24px;
+    margin-bottom: 0;
 }
 
 .pw-impact__big-stat {
@@ -984,6 +1001,7 @@ h4 { font-size: 1.25rem; }
     display: flex;
     flex-direction: column;
     gap: 20px;
+    justify-self: end;
 }
 
 .pw-impact__stat {
@@ -1043,6 +1061,12 @@ h4 { font-size: 1.25rem; }
     line-height: 1.4;
 }
 
+@media (min-width: 769px) {
+    .pw-impact__stats {
+        max-width: 30vw;
+    }
+}
+
 @media (max-width: 768px) {
     .pw-impact__inner {
         grid-template-columns: 1fr;
@@ -1071,11 +1095,10 @@ h4 { font-size: 1.25rem; }
     position: absolute;
     bottom: -5%;
     right: -2%;
-    width: 38%;
-    max-width: 420px;
+    width: 100vw;
     pointer-events: none;
     z-index: 1;
-    opacity: 0.18;
+    opacity: 0.08;
 }
 
 .pw-team__overlay img {

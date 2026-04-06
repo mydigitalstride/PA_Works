@@ -14,14 +14,21 @@ $btn_text     = get_sub_field( 'button_text' );
 $btn_url      = get_sub_field( 'button_url' );
 $items        = get_sub_field( 'items' );
 $description  = get_sub_field( 'description' );
-$bg_image     = get_sub_field( 'background_image' );
-$bg_position  = get_sub_field( 'bg_image_position' ) ?: 'center';
+$bg_image      = get_sub_field( 'background_image' );
+$bg_position   = get_sub_field( 'bg_image_position' ) ?: 'center';
+$overlay_image = get_sub_field( 'overlay_image' );
 ?>
 
 <section class="pw-whatwedo">
 
     <?php if ( $bg_image ) : ?>
         <div class="pw-section-bg" aria-hidden="true" style="background-image: url('<?php echo esc_url( $bg_image['url'] ); ?>'); background-position: <?php echo esc_attr( $bg_position ); ?>;"></div>
+    <?php endif; ?>
+
+    <?php if ( $overlay_image ) : ?>
+        <div class="pw-whatwedo__overlay" aria-hidden="true">
+            <img src="<?php echo esc_url( $overlay_image['url'] ); ?>" alt="">
+        </div>
     <?php endif; ?>
 
     <div class="pw-whatwedo__inner">
