@@ -559,10 +559,10 @@ h4 { font-size: 1.25rem; }
    ========================================================================== */
 .pw-hero {
     position: relative;
-    min-height: 480px;
+    min-height: 680px;
     display: flex;
     align-items: flex-end;
-    padding: 60px 0;
+    padding: 60px 0 140px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -619,8 +619,8 @@ h4 { font-size: 1.25rem; }
 
 @media (max-width: 768px) {
     .pw-hero {
-        min-height: 380px;
-        padding: 40px 0;
+        min-height: 480px;
+        padding: 40px 0 100px;
     }
 
     .pw-hero__title {
@@ -632,8 +632,11 @@ h4 { font-size: 1.25rem; }
    Cards Section (Events/News)
    ========================================================================== */
 .pw-cards {
-    padding: var(--pw-section-padding);
-    background-color: var(--pw-off-white);
+    padding: 0 0 var(--pw-section-padding);
+    background: transparent;
+    position: relative;
+    z-index: 2;
+    margin-top: -80px;
 }
 
 .pw-cards__grid {
@@ -810,7 +813,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-whatwedo .pw-section-bg {
-    opacity: 0.12;
+    opacity: 0.35;
 }
 
 .pw-whatwedo__inner {
@@ -949,7 +952,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-impact__logo {
-    max-width: 300px;
+    max-width: 375px;
     margin-bottom: 8px;
 }
 
@@ -1013,12 +1016,20 @@ h4 { font-size: 1.25rem; }
     filter: brightness(0) invert(1);
 }
 
+.pw-impact__stat-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
 .pw-impact__stat-number {
     font-family: var(--pw-font-heading);
     font-size: 3rem;
     font-weight: 800;
     color: var(--pw-white);
     line-height: 1;
+    flex-shrink: 0;
 }
 
 .pw-impact__stat-label {
@@ -1028,6 +1039,8 @@ h4 { font-size: 1.25rem; }
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--pw-white);
+    max-width: 160px;
+    line-height: 1.4;
 }
 
 @media (max-width: 768px) {
@@ -1050,7 +1063,7 @@ h4 { font-size: 1.25rem; }
 
 /* Full-bleed bg image overlays the gradient at low opacity */
 .pw-team .pw-section-bg {
-    opacity: 0.15;
+    opacity: 0.35;
 }
 
 /* Decorative overlay / watermark image */

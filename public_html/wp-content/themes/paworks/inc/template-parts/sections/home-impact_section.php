@@ -66,7 +66,7 @@ $bg_position   = get_sub_field( 'bg_image_position' ) ?: 'center';
                             </div>
                         <?php endif; ?>
 
-                        <div>
+                        <div class="pw-impact__stat-content">
                             <?php if ( ! empty( $stat['number'] ) ) : ?>
                                 <div class="pw-impact__stat-number"><?php echo esc_html( $stat['number'] ); ?></div>
                             <?php endif; ?>
