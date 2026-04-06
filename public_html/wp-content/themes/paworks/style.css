@@ -27,7 +27,7 @@ Text Domain: paworks
 
     /* Accent Colors */
     --pw-yellow: #F0C75E;
-    --pw-gold: #D4A843;
+    --pw-gold: #f9ad32;
     --pw-orange: #E8913A;
     --pw-teal: #2A9D8F;
 
@@ -160,47 +160,48 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-btn--primary {
-    background-color: var(--pw-yellow);
+    background-color: var(--pw-gold);
     color: var(--pw-navy);
 }
 
 .pw-btn--primary:hover {
-    background-color: var(--pw-gold);
-    color: var(--pw-navy);
+    background-color: var(--pw-navy);
+    color: var(--pw-white);
     transform: translateY(-2px);
     box-shadow: var(--pw-shadow-md);
 }
 
 .pw-btn--secondary {
-    background-color: var(--pw-navy);
-    color: var(--pw-white);
+    background-color: var(--pw-gold);
+    color: var(--pw-navy);
 }
 
 .pw-btn--secondary:hover {
-    background-color: var(--pw-dark-blue);
+    background-color: var(--pw-navy);
     color: var(--pw-white);
     transform: translateY(-2px);
     box-shadow: var(--pw-shadow-md);
 }
 
 .pw-btn--outline {
-    background-color: transparent;
+    background-color: var(--pw-gold);
     color: var(--pw-navy);
-    border: 2px solid var(--pw-navy);
+    border: 2px solid var(--pw-gold);
 }
 
 .pw-btn--outline:hover {
     background-color: var(--pw-navy);
     color: var(--pw-white);
+    border-color: var(--pw-navy);
 }
 
 .pw-btn--orange {
-    background-color: var(--pw-orange);
-    color: var(--pw-white);
+    background-color: var(--pw-gold);
+    color: var(--pw-navy);
 }
 
 .pw-btn--orange:hover {
-    background-color: #d07a2e;
+    background-color: var(--pw-navy);
     color: var(--pw-white);
     transform: translateY(-2px);
 }
@@ -771,7 +772,7 @@ h4 { font-size: 1.25rem; }
     display: block;
     width: 60px;
     height: 3px;
-    background-color: var(--pw-yellow);
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
 
@@ -1230,7 +1231,7 @@ h4 { font-size: 1.25rem; }
     display: block;
     width: 60px;
     height: 3px;
-    background-color: var(--pw-yellow);
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
 
@@ -1339,7 +1340,7 @@ h4 { font-size: 1.25rem; }
     display: block;
     width: 60px;
     height: 3px;
-    background-color: var(--pw-yellow);
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
 
@@ -1426,7 +1427,7 @@ h4 { font-size: 1.25rem; }
     display: block;
     width: 60px;
     height: 3px;
-    background-color: var(--pw-yellow);
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
 
@@ -1473,7 +1474,7 @@ h4 { font-size: 1.25rem; }
     display: block;
     width: 60px;
     height: 3px;
-    background-color: var(--pw-yellow);
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
 
@@ -1617,7 +1618,7 @@ h4 { font-size: 1.25rem; }
     display: block;
     width: 60px;
     height: 3px;
-    background-color: var(--pw-yellow);
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
 
@@ -1736,7 +1737,7 @@ h4 { font-size: 1.25rem; }
     display: block;
     width: 60px;
     height: 3px;
-    background-color: var(--pw-yellow);
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
 
@@ -1872,7 +1873,7 @@ h4 { font-size: 1.25rem; }
     display: block;
     width: 60px;
     height: 3px;
-    background-color: var(--pw-yellow);
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
 
@@ -1909,7 +1910,7 @@ h4 { font-size: 1.25rem; }
     display: block;
     width: 60px;
     height: 3px;
-    background-color: var(--pw-yellow);
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
 
