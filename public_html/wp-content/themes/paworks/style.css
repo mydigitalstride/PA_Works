@@ -310,7 +310,7 @@ h4 { font-size: 1.25rem; }
     display: block;
     padding: 10px 20px;
     font-family: var(--pw-font-heading);
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--pw-charcoal);
     text-decoration: none;
@@ -362,7 +362,7 @@ h4 { font-size: 1.25rem; }
     background-color: var(--pw-light-blue);
     color: var(--pw-white) !important;
     border-radius: var(--pw-radius-xl);
-    font-size: 0.85rem;
+    font-size: 1rem;
 }
 
 .pw-header__signin:hover {
@@ -447,7 +447,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-footer__contact a:hover {
-    color: var(--pw-yellow);
+    color: var(--pw-gold);
 }
 
 .pw-footer__right {
@@ -476,7 +476,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-footer__social a:hover {
-    background-color: var(--pw-yellow);
+    background-color: var(--pw-gold);
     color: var(--pw-navy);
 }
 
@@ -498,7 +498,7 @@ h4 { font-size: 1.25rem; }
     border: none;
     color: var(--pw-white);
     padding: 8px 12px;
-    font-size: 0.85rem;
+    font-size: 1rem;
     outline: none;
 }
 
@@ -507,7 +507,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-footer__search button {
-    background: var(--pw-yellow);
+    background: var(--pw-gold);
     border: none;
     padding: 8px 12px;
     cursor: pointer;
@@ -531,7 +531,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-footer__bottom a:hover {
-    color: var(--pw-yellow);
+    color: var(--pw-gold);
 }
 
 @media (max-width: 768px) {
@@ -588,11 +588,11 @@ h4 { font-size: 1.25rem; }
 
 .pw-hero__subheader {
     font-family: var(--pw-font-heading);
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--pw-yellow);
+    color: var(--pw-white);
     margin-bottom: 12px;
 }
 
@@ -667,12 +667,12 @@ h4 { font-size: 1.25rem; }
     display: flex;
     flex-direction: column;
     justify-content: center;
-    backkground-color: var(--pw-light-blue);
+    background-color: var(--pw-sky);
 }
 
 .pw-card__label {
     font-family: var(--pw-font-heading);
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -689,7 +689,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-card__body {
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: var(--pw-dark-gray);
     margin-bottom: 16px;
     line-height: 1.5;
@@ -698,7 +698,7 @@ h4 { font-size: 1.25rem; }
 .pw-card__link {
     font-family: var(--pw-font-heading);
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: var(--pw-orange);
     text-decoration: underline;
 }
@@ -922,7 +922,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-whatwedo__description {
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: rgba(255,255,255,0.8);
     margin-top: 16px;
     font-style: italic;
@@ -1007,7 +1007,7 @@ h4 { font-size: 1.25rem; }
     display: flex;
     align-items: center;
     gap: 16px;
-    background: var(--pw-light-blue);
+    background: var(--pw-sky);
     padding: 20px 24px;
     border-radius: var(--pw-radius-md);
     box-shadow: var(--pw-shadow-sm);
@@ -1051,7 +1051,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-impact__stat-label {
     font-family: var(--pw-font-heading);
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1187,7 +1187,7 @@ h4 { font-size: 1.25rem; }
     background-color: var(--pw-navy);
     color: var(--pw-white);
     padding: 12px 24px;
-    font-size: 0.85rem;
+    font-size: 1rem;
 }
 
 .pw-announcement__inner {
@@ -1199,7 +1199,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-announcement a {
-    color: var(--pw-yellow);
+    color: var(--pw-gold);
 }
 
 /* ==========================================================================
@@ -1264,7 +1264,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-mission__box--yellow {
     background: linear-gradient(135deg, #FFF8E1 0%, #FFF3CD 100%);
-    border-left-color: var(--pw-yellow);
+    border-left-color: var(--pw-gold);
 }
 
 .pw-mission__box--blue {
@@ -1284,7 +1284,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-mission__box-header {
     font-family: var(--pw-font-heading);
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1302,7 +1302,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-mission__box-list li {
-    font-size: 0.85rem;
+    font-size: 1rem;
     line-height: 1.5;
     color: var(--pw-dark-gray);
     padding-left: 20px;
@@ -1532,7 +1532,7 @@ h4 { font-size: 1.25rem; }
     font-family: var(--pw-font-heading);
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--pw-yellow);
+    color: var(--pw-gold);
     min-width: 32px;
 }
 
@@ -1716,7 +1716,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-fellowship-intro__quote cite {
     font-style: normal;
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--pw-dark-gray);
 }
@@ -1830,7 +1830,7 @@ h4 { font-size: 1.25rem; }
     font-size: 1.25rem;
     margin-bottom: 20px;
     padding-bottom: 12px;
-    border-bottom: 2px solid var(--pw-yellow);
+    border-bottom: 2px solid var(--pw-gold);
 }
 
 .pw-expectations__list {
@@ -1956,7 +1956,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-event-card__presenter {
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: var(--pw-gray);
     margin-bottom: 12px;
     font-style: italic;
