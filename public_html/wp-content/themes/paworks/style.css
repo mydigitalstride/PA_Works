@@ -18,21 +18,18 @@ Text Domain: paworks
    ========================================================================== */
 :root {
     /* Primary Colors */
-    --pw-navy: #1B3A5C;
-    --pw-dark-blue: #2C4F6E;
-    --pw-blue: #3A6B8C;
-    --pw-light-blue: #5B9BD5;
-    --pw-sky: #B8D8EB;
-    --pw-pale-blue: #E8F1F8;
+    --pw-navy: #252b5d;
+    --pw-blue: #2b3279;
+    --pw-light-blue: #407ec9;
+    --pw-sky: #9bd3dd;
 
     /* Accent Colors */
-    --pw-yellow: #F0C75E;
     --pw-gold: #f9ad32;
     --pw-orange: #E8913A;
     --pw-teal: #2A9D8F;
 
     /* Extended Accent */
-    --pw-light-pink: #F0A0B8;
+    --pw-light-pink: #ff8da1;
 
     /* Gradients */
     --pw-gradient-navy-lightblue: linear-gradient(135deg, var(--pw-navy) 0%, var(--pw-light-blue) 100%);
@@ -418,7 +415,7 @@ h4 { font-size: 1.25rem; }
    Footer
    ========================================================================== */
 .pw-footer {
-    background: linear-gradient(135deg, var(--pw-navy) 0%, var(--pw-dark-blue) 100%);
+    background: var(--pw-navy);
     color: var(--pw-white);
     padding: 48px 0 32px;
 }
@@ -670,6 +667,7 @@ h4 { font-size: 1.25rem; }
     display: flex;
     flex-direction: column;
     justify-content: center;
+    backkground-color: var(--pw-light-blue);
 }
 
 .pw-card__label {
@@ -771,7 +769,7 @@ h4 { font-size: 1.25rem; }
     content: '';
     display: block;
     width: 60px;
-    height: 3px;
+    height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
@@ -1024,7 +1022,7 @@ h4 { font-size: 1.25rem; }
     flex-shrink: 0;
     width: 56px;
     height: 56px;
-    color: var(--pw-white);
+    color: var(--pw-navy);
 }
 
 .pw-impact__stat-icon img,
@@ -1046,7 +1044,7 @@ h4 { font-size: 1.25rem; }
     font-family: var(--pw-font-heading);
     font-size: 3rem;
     font-weight: 800;
-    color: var(--pw-white);
+    color: var(--pw-navy);
     line-height: 1;
     flex-shrink: 0;
 }
@@ -1057,7 +1055,7 @@ h4 { font-size: 1.25rem; }
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--pw-white);
+    color: var(--pw-navy);
     max-width: 160px;
     line-height: 1.4;
 }
@@ -1165,7 +1163,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-team__name {
     font-family: var(--pw-font-heading);
-    font-size: 0.9rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--pw-white);
     margin-bottom: 4px;
@@ -1177,7 +1175,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-team__role {
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: rgba(255,255,255,0.85);
     line-height: 1.4;
 }
@@ -1230,7 +1228,7 @@ h4 { font-size: 1.25rem; }
     content: '';
     display: block;
     width: 60px;
-    height: 3px;
+    height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
@@ -1339,7 +1337,7 @@ h4 { font-size: 1.25rem; }
     content: '';
     display: block;
     width: 60px;
-    height: 3px;
+    height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
@@ -1426,7 +1424,7 @@ h4 { font-size: 1.25rem; }
     content: '';
     display: block;
     width: 60px;
-    height: 3px;
+    height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
@@ -1473,7 +1471,7 @@ h4 { font-size: 1.25rem; }
     content: '';
     display: block;
     width: 60px;
-    height: 3px;
+    height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
@@ -1497,7 +1495,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-strategies__list-box {
-    background: linear-gradient(135deg, var(--pw-navy) 0%, var(--pw-dark-blue) 100%);
+    background: linear-gradient(135deg, var(--pw-navy) 0%, var(--pw-blue) 100%);
     border-radius: var(--pw-radius-lg);
     padding: 32px;
     color: var(--pw-white);
@@ -1561,7 +1559,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-cta--blue {
-    background: linear-gradient(135deg, var(--pw-sky) 0%, var(--pw-pale-blue) 100%);
+    background: linear-gradient(135deg, var(--pw-sky) 0%, var(--pw-blue) 100%);
 }
 
 .pw-cta--navy {
@@ -1617,7 +1615,7 @@ h4 { font-size: 1.25rem; }
     content: '';
     display: block;
     width: 60px;
-    height: 3px;
+    height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
@@ -1703,7 +1701,7 @@ h4 { font-size: 1.25rem; }
 .pw-fellowship-intro__quote {
     margin-top: 48px;
     padding: 32px;
-    background: var(--pw-pale-blue);
+    background: var(--pw-sky);
     border-left: 4px solid var(--pw-light-blue);
     border-radius: var(--pw-radius-md);
     font-style: italic;
@@ -1736,7 +1734,7 @@ h4 { font-size: 1.25rem; }
     content: '';
     display: block;
     width: 60px;
-    height: 3px;
+    height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
@@ -1872,7 +1870,7 @@ h4 { font-size: 1.25rem; }
     content: '';
     display: block;
     width: 60px;
-    height: 3px;
+    height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
@@ -1909,7 +1907,7 @@ h4 { font-size: 1.25rem; }
     content: '';
     display: block;
     width: 60px;
-    height: 3px;
+    height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
 }
@@ -1933,7 +1931,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-event-card--featured {
-    background: linear-gradient(135deg, var(--pw-pale-blue) 0%, var(--pw-sky) 100%);
+    background: linear-gradient(135deg, var(--pw-blue) 0%, var(--pw-sky) 100%);
     border-left-color: var(--pw-navy);
     padding: 40px;
 }
