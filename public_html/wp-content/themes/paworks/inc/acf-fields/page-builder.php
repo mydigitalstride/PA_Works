@@ -100,15 +100,17 @@ add_action( 'acf/init', function() {
                     ),
 
                     // =================================================================
-                    // What We Do Section (Accordion)
+                    // Accordion Section (What We Do)
                     // =================================================================
                     'layout_pb_whatwedo' => array(
                         'key'        => 'layout_pb_whatwedo',
                         'name'       => 'whatwedo_section',
-                        'label'      => 'What We Do Section',
+                        'label'      => 'Accordion Section',
                         'display'    => 'block',
                         'sub_fields' => array(
+                            array( 'key' => 'field_pb_wwd_subheader', 'label' => 'Sub Header', 'name' => 'sub_header', 'type' => 'text', 'instructions' => 'Small label above the heading.' ),
                             array( 'key' => 'field_pb_wwd_header',   'label' => 'Header',           'name' => 'header',      'type' => 'text', 'default_value' => 'WHAT WE DO' ),
+                            array( 'key' => 'field_pb_wwd_body',     'label' => 'Body Text',        'name' => 'body_text',   'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'basic', 'media_upload' => 0, 'instructions' => 'Text displayed below the heading on the left side.' ),
                             array( 'key' => 'field_pb_wwd_btn_text', 'label' => 'Button Text',      'name' => 'button_text', 'type' => 'text', 'default_value' => 'Explore Our Focus Areas' ),
                             array( 'key' => 'field_pb_wwd_btn_url',  'label' => 'Button URL',       'name' => 'button_url',  'type' => 'url' ),
                             array(
@@ -522,6 +524,49 @@ add_action( 'acf/init', function() {
                                     array( 'key' => 'field_pb_event_featured', 'label' => 'Featured Event', 'name' => 'featured',     'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Featured events get a larger, highlighted display.' ),
                                 ),
                             ),
+                        ),
+                    ),
+
+                    // =================================================================
+                    // Logo Carousel Section
+                    // =================================================================
+                    'layout_pb_logo_carousel' => array(
+                        'key'        => 'layout_pb_logo_carousel',
+                        'name'       => 'logo_carousel_section',
+                        'label'      => 'Logo Carousel Section',
+                        'display'    => 'block',
+                        'sub_fields' => array(
+                            array( 'key' => 'field_pb_lc_header', 'label' => 'Header', 'name' => 'header', 'type' => 'text', 'instructions' => 'Optional heading above the carousel.' ),
+                            array(
+                                'key'          => 'field_pb_lc_logos',
+                                'label'        => 'Logos',
+                                'name'         => 'logos',
+                                'type'         => 'repeater',
+                                'layout'       => 'block',
+                                'min'          => 1,
+                                'max'          => 20,
+                                'button_label' => 'Add Logo',
+                                'sub_fields'   => array(
+                                    array( 'key' => 'field_pb_lc_image',        'label' => 'Logo / Photo', 'name' => 'image',        'type' => 'image', 'return_format' => 'array', 'preview_size' => 'thumbnail', 'instructions' => 'Organization logo or headshot.' ),
+                                    array( 'key' => 'field_pb_lc_organization', 'label' => 'Organization', 'name' => 'organization', 'type' => 'text' ),
+                                    array( 'key' => 'field_pb_lc_name',         'label' => 'Name',         'name' => 'name',         'type' => 'text' ),
+                                    array( 'key' => 'field_pb_lc_title',        'label' => 'Title',        'name' => 'title',        'type' => 'text' ),
+                                ),
+                            ),
+                        ),
+                    ),
+
+                    // =================================================================
+                    // Quote Section
+                    // =================================================================
+                    'layout_pb_quote' => array(
+                        'key'        => 'layout_pb_quote',
+                        'name'       => 'quote_section',
+                        'label'      => 'Quote Section',
+                        'display'    => 'block',
+                        'sub_fields' => array(
+                            array( 'key' => 'field_pb_quote_text', 'label' => 'Quote Text', 'name' => 'quote_text', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'The quote content (quotation marks are added automatically).' ),
+                            array( 'key' => 'field_pb_quote_name', 'label' => 'Quote Name', 'name' => 'quote_name', 'type' => 'text', 'instructions' => 'Attribution name displayed below the quote in bold.' ),
                         ),
                     ),
 

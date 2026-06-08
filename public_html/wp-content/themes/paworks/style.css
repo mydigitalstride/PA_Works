@@ -844,10 +844,31 @@ h4 { font-size: 1.25rem; }
     z-index: 2;
 }
 
+.pw-whatwedo__subheader {
+    font-family: var(--pw-font-heading);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 8px;
+}
+
 .pw-whatwedo__title {
     font-size: 2.25rem;
     color: var(--pw-white);
     margin-bottom: 28px;
+}
+
+.pw-whatwedo__body {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 28px;
+}
+
+.pw-whatwedo__body p {
+    margin-bottom: 16px;
 }
 
 /* Accordion */
@@ -1256,6 +1277,7 @@ h4 { font-size: 1.25rem; }
     gap: 24px;
 }
 
+/* Legacy box styles (kept for backward compatibility) */
 .pw-mission__box {
     padding: 28px;
     border-radius: var(--pw-radius-md);
@@ -1316,6 +1338,52 @@ h4 { font-size: 1.25rem; }
     color: var(--pw-navy);
     font-weight: 700;
     font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   Bullet Cards (Mission Section)
+   ========================================================================== */
+.pw-bullet-card {
+    background: linear-gradient(135deg, var(--pw-sky) 0%, rgba(155, 211, 221, 0.4) 100%);
+    border-radius: var(--pw-radius-xl);
+    padding: 32px 36px;
+}
+
+.pw-bullet-card__header {
+    font-family: var(--pw-font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--pw-navy);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.pw-bullet-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.pw-bullet-card__list li {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--pw-charcoal);
+    padding-left: 28px;
+    position: relative;
+}
+
+.pw-bullet-card__list li::before {
+    content: '\25B6';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: var(--pw-light-blue);
+    font-size: 0.7rem;
 }
 
 @media (max-width: 768px) {
@@ -1967,6 +2035,178 @@ h4 { font-size: 1.25rem; }
     line-height: 1.6;
     color: var(--pw-dark-gray);
     margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   Logo Carousel Section
+   ========================================================================== */
+.pw-logo-carousel__title {
+    font-size: 2.25rem;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+}
+
+.pw-logo-carousel__title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 6px;
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
+    margin: 16px auto 0;
+}
+
+.pw-logo-carousel__track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 0 16px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--pw-sky) transparent;
+}
+
+.pw-logo-carousel__track::-webkit-scrollbar {
+    height: 6px;
+}
+
+.pw-logo-carousel__track::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.pw-logo-carousel__track::-webkit-scrollbar-thumb {
+    background: var(--pw-sky);
+    border-radius: 3px;
+}
+
+.pw-logo-carousel__card {
+    flex: 0 0 260px;
+    scroll-snap-align: start;
+}
+
+.pw-logo-carousel__card-inner {
+    background: linear-gradient(135deg, rgba(155, 211, 221, 0.3) 0%, rgba(155, 211, 221, 0.5) 100%);
+    border-radius: var(--pw-radius-xl);
+    padding: 28px 24px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.pw-logo-carousel__card-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--pw-light-blue) 0%, var(--pw-sky) 100%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    border-radius: var(--pw-radius-xl);
+    z-index: 0;
+}
+
+.pw-logo-carousel__card-inner:hover::before {
+    opacity: 1;
+}
+
+.pw-logo-carousel__card-inner:hover {
+    box-shadow: var(--pw-shadow-md);
+}
+
+.pw-logo-carousel__image {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 14px;
+    border: 2px solid var(--pw-white);
+    box-shadow: var(--pw-shadow-sm);
+    position: relative;
+    z-index: 1;
+}
+
+.pw-logo-carousel__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pw-logo-carousel__org {
+    font-family: var(--pw-font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--pw-navy);
+    margin-bottom: 10px;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+}
+
+.pw-logo-carousel__name {
+    font-size: 0.9rem;
+    color: var(--pw-charcoal);
+    margin-bottom: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.pw-logo-carousel__role {
+    font-size: 0.85rem;
+    color: var(--pw-dark-gray);
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   Quote Section
+   ========================================================================== */
+.pw-quote {
+    position: relative;
+    overflow: hidden;
+}
+
+.pw-quote::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, rgba(155, 211, 221, 0.2) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.pw-quote__block {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    border: none;
+    padding: 0;
+}
+
+.pw-quote__text {
+    font-family: var(--pw-font-heading);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.8;
+    color: var(--pw-navy);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.pw-quote__name {
+    font-family: var(--pw-font-heading);
+    font-style: normal;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--pw-navy);
+    display: block;
 }
 
 /* ==========================================================================

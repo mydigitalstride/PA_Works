@@ -79,6 +79,40 @@
     });
 
     /**
+     * Logo Carousel — drag-to-scroll
+     */
+    document.querySelectorAll('.pw-logo-carousel__track').forEach(function(track) {
+        var isDown = false;
+        var startX;
+        var scrollLeft;
+
+        track.addEventListener('mousedown', function(e) {
+            isDown = true;
+            track.style.cursor = 'grabbing';
+            startX = e.pageX - track.offsetLeft;
+            scrollLeft = track.scrollLeft;
+        });
+
+        track.addEventListener('mouseleave', function() {
+            isDown = false;
+            track.style.cursor = '';
+        });
+
+        track.addEventListener('mouseup', function() {
+            isDown = false;
+            track.style.cursor = '';
+        });
+
+        track.addEventListener('mousemove', function(e) {
+            if (!isDown) return;
+            e.preventDefault();
+            var x = e.pageX - track.offsetLeft;
+            var walk = (x - startX) * 1.5;
+            track.scrollLeft = scrollLeft - walk;
+        });
+    });
+
+    /**
      * Smooth scroll for anchor links
      */
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
