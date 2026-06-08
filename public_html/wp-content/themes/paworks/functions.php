@@ -166,10 +166,13 @@ add_action( 'init', 'paworks_include_acf_fields' );
 function paworks_acfe_layout_thumbnails( $thumbnails, $field, $layout ) {
     $thumb_dir = PAWORKS_URI . '/assets/images/layout-thumbnails/';
     $name      = $layout['name'];
-    $file      = PAWORKS_DIR . '/assets/images/layout-thumbnails/' . $name . '.svg';
+    $base      = PAWORKS_DIR . '/assets/images/layout-thumbnails/' . $name;
 
-    if ( file_exists( $file ) ) {
-        $thumbnails = $thumb_dir . $name . '.svg';
+    foreach ( array( '.png', '.jpg', '.svg' ) as $ext ) {
+        if ( file_exists( $base . $ext ) ) {
+            $thumbnails = $thumb_dir . $name . $ext;
+            break;
+        }
     }
 
     return $thumbnails;
