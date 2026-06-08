@@ -158,6 +158,25 @@ function paworks_include_acf_fields() {
 add_action( 'init', 'paworks_include_acf_fields' );
 
 /**
+ * ACF Extended: Layout Thumbnails
+ *
+ * Registers thumbnail images for Flexible Content layouts so the
+ * ACFE modal picker shows a visual preview of each section type.
+ */
+function paworks_acfe_layout_thumbnails( $thumbnails, $field, $layout ) {
+    $thumb_dir = PAWORKS_URI . '/assets/images/layout-thumbnails/';
+    $name      = $layout['name'];
+    $file      = PAWORKS_DIR . '/assets/images/layout-thumbnails/' . $name . '.svg';
+
+    if ( file_exists( $file ) ) {
+        $thumbnails = $thumb_dir . $name . '.svg';
+    }
+
+    return $thumbnails;
+}
+add_filter( 'acfe/flexible/thumbnail', 'paworks_acfe_layout_thumbnails', 10, 3 );
+
+/**
  * Helper: Get flexible content section template
  *
  * Checks for the template in this order:

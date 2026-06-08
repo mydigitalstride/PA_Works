@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+  <rect width="300" height="200" fill="white"/>
+  <rect x="15" y="15" width="100" height="8" rx="2" fill="#252b5d"/>
+  <rect x="15" y="30" width="180" height="5" rx="2" fill="#9CA3AF"/>
+  <rect x="15" y="41" width="160" height="5" rx="2" fill="#9CA3AF"/>
+  <!-- Key-value pairs -->
+  <rect x="15" y="60" width="40" height="5" rx="2" fill="#252b5d"/>
+  <rect x="65" y="60" width="80" height="5" rx="2" fill="#9CA3AF"/>
+  <rect x="15" y="73" width="45" height="5" rx="2" fill="#252b5d"/>
+  <rect x="65" y="73" width="90" height="5" rx="2" fill="#9CA3AF"/>
+  <rect x="15" y="86" width="35" height="5" rx="2" fill="#252b5d"/>
+  <rect x="65" y="86" width="70" height="5" rx="2" fill="#9CA3AF"/>
+  <!-- Timeline dots -->
+  <line x1="30" y1="115" x2="270" y2="115" stroke="#E5E7EB" stroke-width="3"/>
+  <circle cx="50" cy="115" r="8" fill="#407ec9"/>
+  <circle cx="120" cy="115" r="8" fill="#407ec9"/>
+  <circle cx="190" cy="115" r="8" fill="#407ec9"/>
+  <circle cx="260" cy="115" r="8" fill="#E5E7EB" stroke="#407ec9" stroke-width="2"/>
+  <rect x="30" y="130" width="40" height="4" rx="2" fill="#9CA3AF"/>
+  <rect x="100" y="130" width="40" height="4" rx="2" fill="#9CA3AF"/>
+  <rect x="170" y="130" width="40" height="4" rx="2" fill="#9CA3AF"/>
+  <rect x="240" y="130" width="40" height="4" rx="2" fill="#9CA3AF"/>
+</svg>
