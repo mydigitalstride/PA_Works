@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+  <rect width="300" height="200" fill="white"/>
+  <rect x="90" y="10" width="120" height="8" rx="2" fill="#252b5d"/>
+  <!-- Large video rectangle -->
+  <rect x="25" y="28" width="250" height="120" rx="6" fill="#E5E7EB"/>
+  <!-- Play triangle -->
+  <polygon points="140,75 140,100 165,87" fill="#407ec9" opacity="0.8"/>
+  <!-- Text below -->
+  <rect x="60" y="160" width="180" height="6" rx="2" fill="#252b5d"/>
+  <rect x="80" y="174" width="140" height="5" rx="2" fill="#9CA3AF"/>
+</svg>

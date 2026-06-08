@@ -2,7 +2,7 @@
 /**
  * About Page Section: Our Mission
  *
- * Two-column layout: body text on left, info boxes on right.
+ * Two-column layout: body text on left, bullet cards on right.
  *
  * @package PAWorks
  */
@@ -39,13 +39,13 @@ $info_boxes = get_sub_field( 'info_boxes' );
                     <?php foreach ( $info_boxes as $box ) :
                         $style = ! empty( $box['box_style'] ) ? $box['box_style'] : 'yellow';
                     ?>
-                        <div class="pw-mission__box pw-mission__box--<?php echo esc_attr( $style ); ?>">
+                        <div class="pw-bullet-card">
                             <?php if ( ! empty( $box['box_header'] ) ) : ?>
-                                <h3 class="pw-mission__box-header"><?php echo esc_html( $box['box_header'] ); ?></h3>
+                                <h3 class="pw-bullet-card__header"><?php echo esc_html( $box['box_header'] ); ?></h3>
                             <?php endif; ?>
 
                             <?php if ( ! empty( $box['items'] ) ) : ?>
-                                <ul class="pw-mission__box-list">
+                                <ul class="pw-bullet-card__list">
                                     <?php foreach ( $box['items'] as $item ) : ?>
                                         <li><?php echo esc_html( $item['text'] ); ?></li>
                                     <?php endforeach; ?>
