@@ -178,6 +178,16 @@ h2 { font-size: 2.25rem; text-transform: uppercase; text-align: left; }
 h3 { font-size: 1.5rem; }
 h4 { font-size: 1.25rem; }
 
+h1::after,
+h2::after {
+    content: '';
+    display: block;
+    width: 13rem;
+    height: 6px;
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
+    margin-top: 16px;
+}
+
 /* ==========================================================================
    Layout
    ========================================================================== */
@@ -822,7 +832,7 @@ h4 { font-size: 1.25rem; }
 .pw-about__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -1302,7 +1312,7 @@ h4 { font-size: 1.25rem; }
 .pw-mission__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -1458,7 +1468,7 @@ h4 { font-size: 1.25rem; }
 .pw-board__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -1545,7 +1555,7 @@ h4 { font-size: 1.25rem; }
 .pw-workforce-system__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -1592,7 +1602,7 @@ h4 { font-size: 1.25rem; }
 .pw-strategies__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -1867,7 +1877,7 @@ h4 { font-size: 1.25rem; }
 .pw-wioa__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -2045,7 +2055,7 @@ h4 { font-size: 1.25rem; }
 .pw-program__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -2212,7 +2222,7 @@ h4 { font-size: 1.25rem; }
 .pw-meet-fellows__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -2249,7 +2259,7 @@ h4 { font-size: 1.25rem; }
 .pw-upcoming-events__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -2325,7 +2335,7 @@ h4 { font-size: 1.25rem; }
 .pw-logo-carousel__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin: 16px auto 0;
