@@ -1826,6 +1826,12 @@ h2::after {
     color: var(--pw-white);
 }
 
+.pw-cta--blue .pw-cta__subheader,
+.pw-cta--navy .pw-cta__subheader,
+.pw-cta--sky .pw-cta__subheader {
+    color: var(--pw-off-white);
+}
+
 .pw-cta--yellow {
     background: linear-gradient(135deg, #FFF8E1 0%, #FFF3CD 100%);
 }
