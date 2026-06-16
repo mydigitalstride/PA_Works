@@ -2275,23 +2275,13 @@ h4 { font-size: 1.25rem; }
    Quote Section
    ========================================================================== */
 .pw-quote {
+    background-color: rgba(64, 126, 201, 0.08);
     position: relative;
     overflow: hidden;
 }
 
-.pw-quote::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
-    background: linear-gradient(to bottom, rgba(155, 211, 221, 0.2) 0%, transparent 100%);
-    pointer-events: none;
-}
-
 .pw-quote__block {
-    max-width: 900px;
+    max-width: 860px;
     margin: 0 auto;
     text-align: center;
     border: none;
@@ -2300,9 +2290,9 @@ h4 { font-size: 1.25rem; }
 
 .pw-quote__text {
     font-family: var(--pw-font-heading);
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.8;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.85;
     color: var(--pw-navy);
     font-style: italic;
     margin-bottom: 20px;
@@ -2311,10 +2301,21 @@ h4 { font-size: 1.25rem; }
 .pw-quote__name {
     font-family: var(--pw-font-heading);
     font-style: normal;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 700;
-    color: var(--pw-navy);
+    color: var(--pw-light-blue);
     display: block;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.pw-quote__role {
+    font-family: var(--pw-font-body);
+    font-style: normal;
+    font-size: 0.875rem;
+    color: var(--pw-dark-gray);
+    display: block;
+    margin-top: 4px;
 }
 
 /* ==========================================================================

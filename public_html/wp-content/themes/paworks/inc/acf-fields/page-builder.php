@@ -583,7 +583,8 @@ add_action( 'acf/init', function() {
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_quote_text', 'label' => 'Quote Text', 'name' => 'quote_text', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'The quote content (quotation marks are added automatically).' ),
-                            array( 'key' => 'field_pb_quote_name', 'label' => 'Quote Name', 'name' => 'quote_name', 'type' => 'text', 'instructions' => 'Attribution name displayed below the quote in bold.' ),
+                            array( 'key' => 'field_pb_quote_name', 'label' => 'Attribution Name', 'name' => 'quote_name', 'type' => 'text', 'instructions' => 'Name shown below the quote.' ),
+                            array( 'key' => 'field_pb_quote_role', 'label' => 'Attribution Role / Organization', 'name' => 'quote_role', 'type' => 'text', 'instructions' => 'Optional title or organization shown under the name.' ),
                         ),
                     ),
 
