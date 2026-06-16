@@ -1782,7 +1782,7 @@ h2::after {
 }
 
 .pw-strategies__accordion-inner {
-    padding: 0 1rem 14px;
+    padding: 1.5rem 2rem;
     font-size: 1rem;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.92);
