@@ -1900,10 +1900,29 @@ h4 { font-size: 1.25rem; }
 /* ==========================================================================
    Program Details Section (Fellowship)
    ========================================================================== */
+.pw-program {
+    position: relative;
+    overflow: hidden;
+}
+
+.pw-program--has-bg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.pw-program__bg-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.92);
+    z-index: 0;
+}
+
 .pw-program__title {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     margin-bottom: 24px;
     position: relative;
+    color: var(--pw-navy);
 }
 
 .pw-program__title::after {
@@ -1913,10 +1932,11 @@ h4 { font-size: 1.25rem; }
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
+    margin-bottom: 8px;
 }
 
 .pw-program__body {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.8;
     color: var(--pw-dark-gray);
     margin-bottom: 32px;
@@ -1927,75 +1947,91 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-program__details {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
 }
 
 .pw-program__details-header {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    font-family: var(--pw-font-heading);
+    font-weight: 700;
     margin-bottom: 16px;
-    color: var(--pw-orange);
+    color: var(--pw-navy);
 }
 
 .pw-program__details-list {
     display: grid;
-    gap: 8px;
+    gap: 6px;
+    padding-left: 8px;
 }
 
 .pw-program__detail {
     display: flex;
     gap: 8px;
+    align-items: baseline;
 }
 
 .pw-program__detail dt {
     font-weight: 700;
-    color: var(--pw-orange);
-    min-width: 120px;
+    color: var(--pw-charcoal);
+    min-width: 130px;
+    flex-shrink: 0;
 }
 
 .pw-program__detail dd {
     color: var(--pw-dark-gray);
+    font-size: 0.95rem;
 }
 
 .pw-program__schedule {
-    margin-top: 32px;
+    margin-top: 8px;
+    margin-bottom: 40px;
 }
 
 .pw-program__schedule-header {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    font-family: var(--pw-font-heading);
+    font-weight: 700;
     margin-bottom: 16px;
+    color: var(--pw-navy);
 }
 
 .pw-program__schedule-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0;
+    padding-left: 8px;
 }
 
 .pw-program__schedule-item {
     display: flex;
     gap: 16px;
-    padding: 12px 0;
+    align-items: baseline;
+    padding: 10px 0;
     border-bottom: 1px solid var(--pw-light-gray);
 }
 
 .pw-program__schedule-date {
     font-weight: 700;
-    color: var(--pw-navy);
-    min-width: 160px;
+    color: var(--pw-charcoal);
+    min-width: 130px;
+    flex-shrink: 0;
+    font-size: 0.95rem;
 }
 
 .pw-program__schedule-desc {
     color: var(--pw-dark-gray);
+    font-size: 0.95rem;
 }
 
 /* ==========================================================================
    Expectations Section (Fellowship)
    ========================================================================== */
 .pw-expectations__block {
-    margin-bottom: 40px;
-    padding: 32px;
-    background: var(--pw-off-white);
-    border-radius: var(--pw-radius-md);
+    margin-bottom: 32px;
+    padding: 40px 48px;
+    background: rgba(155, 211, 221, 0.25);
+    border-radius: var(--pw-radius-xl);
+    border: 1px solid rgba(155, 211, 221, 0.4);
 }
 
 .pw-expectations__block:last-child {
@@ -2003,10 +2039,13 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-expectations__header {
-    font-size: 1.25rem;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--pw-gold);
+    font-size: 1.35rem;
+    font-family: var(--pw-font-heading);
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--pw-navy);
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .pw-expectations__list {
@@ -2014,23 +2053,34 @@ h4 { font-size: 1.25rem; }
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
 .pw-expectations__list li {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--pw-dark-gray);
-    padding-left: 24px;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--pw-charcoal);
+    padding-left: 32px;
     position: relative;
 }
 
+.pw-expectations__list li p {
+    margin: 0;
+}
+
 .pw-expectations__list li::before {
-    content: '▸';
+    content: '▶';
     position: absolute;
     left: 0;
-    color: var(--pw-blue);
-    font-size: 1rem;
+    top: 2px;
+    color: var(--pw-light-blue);
+    font-size: 0.7rem;
+}
+
+@media (max-width: 768px) {
+    .pw-expectations__block {
+        padding: 28px 24px;
+    }
 }
 
 /* ==========================================================================

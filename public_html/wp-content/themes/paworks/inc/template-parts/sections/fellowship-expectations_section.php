@@ -28,7 +28,15 @@ if ( ! $content_lists ) {
                 <?php if ( ! empty( $list['items'] ) ) : ?>
                     <ul class="pw-expectations__list">
                         <?php foreach ( $list['items'] as $item ) : ?>
-                            <li><?php echo wp_kses_post( $item['text'] ); ?></li>
+                            <li>
+                                <?php
+                                $text = $item['text'];
+                                // Support both plain textarea and wysiwyg values
+                                echo ( strpos( $text, '<' ) !== false )
+                                    ? wp_kses_post( $text )
+                                    : esc_html( $text );
+                                ?>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>
