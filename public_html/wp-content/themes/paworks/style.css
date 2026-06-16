@@ -145,7 +145,7 @@ h4 { font-size: 1.25rem; }
     display: inline-block;
     padding: 14px 32px;
     font-family: var(--pw-font-heading);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -236,7 +236,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-header__nav a {
     font-family: var(--pw-font-heading);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--pw-off-white);
     text-decoration: none;
@@ -264,7 +264,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-header__nav .menu > li > a {
     font-family: var(--pw-font-heading);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--pw-white);
     text-decoration: none;
@@ -439,7 +439,7 @@ h4 { font-size: 1.25rem; }
     display: flex;
     flex-direction: column;
     gap: 8px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .pw-footer__contact a {
@@ -672,7 +672,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-card__label {
     font-family: var(--pw-font-heading);
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -846,7 +846,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-whatwedo__subheader {
     font-family: var(--pw-font-heading);
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -931,7 +931,7 @@ h4 { font-size: 1.25rem; }
     max-height: 0;
     overflow: hidden;
     padding: 0 20px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.7;
     color: rgba(255,255,255,0.92);
     transition: max-height 0.35s ease, padding 0.35s ease;
@@ -1012,7 +1012,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-impact__source {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     color: var(--pw-gray);
     margin-top: 8px;
 }
@@ -1072,7 +1072,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-impact__stat-label {
     font-family: var(--pw-font-heading);
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1228,7 +1228,7 @@ h4 { font-size: 1.25rem; }
    ========================================================================== */
 .pw-section-label {
     font-family: var(--pw-font-heading);
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -1458,7 +1458,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-board__org {
     font-family: var(--pw-font-heading);
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -1468,14 +1468,14 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-board__name {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--pw-charcoal);
     margin-bottom: 4px;
 }
 
 .pw-board__position {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     color: var(--pw-gray);
 }
 
@@ -1630,7 +1630,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-strategies__text {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.4;
 }
 
@@ -1719,7 +1719,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-strategies__accordion-inner {
     padding: 0 1rem 14px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.92);
 }
@@ -1768,7 +1768,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-cta__subheader {
     font-family: var(--pw-font-heading);
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -1854,7 +1854,7 @@ h4 { font-size: 1.25rem; }
 .pw-wioa__links-list li a {
     display: flex;
     align-items: center;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--pw-blue);
     transition: color 0.3s ease;
@@ -1951,7 +1951,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-program__body {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.8;
     color: var(--pw-dark-gray);
     margin-bottom: 32px;
@@ -2192,7 +2192,7 @@ h4 { font-size: 1.25rem; }
     gap: 12px;
     align-items: center;
     margin-bottom: 12px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--pw-dark-gray);
 }
 
@@ -2204,7 +2204,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-event-card__description {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.6;
     color: var(--pw-dark-gray);
     margin-bottom: 20px;
@@ -2310,7 +2310,7 @@ h4 { font-size: 1.25rem; }
 
 .pw-logo-carousel__org {
     font-family: var(--pw-font-heading);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -2322,7 +2322,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-logo-carousel__name {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--pw-charcoal);
     margin-bottom: 2px;
     position: relative;
@@ -2330,7 +2330,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-logo-carousel__role {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--pw-dark-gray);
     position: relative;
     z-index: 1;
@@ -2377,7 +2377,7 @@ h4 { font-size: 1.25rem; }
 .pw-quote__role {
     font-family: var(--pw-font-body);
     font-style: normal;
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     color: var(--pw-dark-gray);
     display: block;
     margin-top: 4px;
