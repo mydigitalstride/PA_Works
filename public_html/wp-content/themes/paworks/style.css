@@ -117,6 +117,8 @@ a:hover {
 .pw-strategies__body ul,
 .pw-program__body ul,
 .pw-cta__body ul,
+.pw-fellowship-intro__body ul,
+.pw-wioa__body ul,
 .entry-content ul {
     list-style: none;
     padding-left: 0;
@@ -127,18 +129,23 @@ a:hover {
 .pw-strategies__body ul li,
 .pw-program__body ul li,
 .pw-cta__body ul li,
+.pw-fellowship-intro__body ul li,
+.pw-wioa__body ul li,
 .entry-content ul li {
     position: relative;
     padding-left: 28px;
     margin-bottom: 10px;
     font-size: 1rem;
     line-height: 1.65;
+    list-style: none;
 }
 
 .pw-whatwedo__body ul li::before,
 .pw-strategies__body ul li::before,
 .pw-program__body ul li::before,
 .pw-cta__body ul li::before,
+.pw-fellowship-intro__body ul li::before,
+.pw-wioa__body ul li::before,
 .entry-content ul li::before {
     content: '▶';
     position: absolute;
@@ -148,6 +155,17 @@ a:hover {
     font-size: 0.6rem;
 }
 
+/* Kill browser ::marker so it doesn't double-render */
+.pw-whatwedo__body ul li::marker,
+.pw-strategies__body ul li::marker,
+.pw-program__body ul li::marker,
+.pw-cta__body ul li::marker,
+.pw-fellowship-intro__body ul li::marker,
+.pw-wioa__body ul li::marker,
+.entry-content ul li::marker {
+    content: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--pw-font-heading);
     font-weight: 700;
@@ -155,10 +173,20 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--pw-navy);
 }
 
-h1 { font-size: 3rem; text-transform: capitalize; text-align: left; }
-h2 { font-size: 2.25rem; text-transform: capitalize; text-align: left; }
+h1 { font-size: 3rem; text-transform: uppercase; text-align: left; }
+h2 { font-size: 2.25rem; text-transform: uppercase; text-align: left; }
 h3 { font-size: 1.5rem; }
 h4 { font-size: 1.25rem; }
+
+h1::after,
+h2::after {
+    content: '';
+    display: block;
+    width: 13rem;
+    height: 6px;
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
+    margin-top: 16px;
+}
 
 /* ==========================================================================
    Layout
@@ -804,7 +832,7 @@ h4 { font-size: 1.25rem; }
 .pw-about__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -1284,7 +1312,7 @@ h4 { font-size: 1.25rem; }
 .pw-mission__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -1440,7 +1468,7 @@ h4 { font-size: 1.25rem; }
 .pw-board__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -1527,7 +1555,7 @@ h4 { font-size: 1.25rem; }
 .pw-workforce-system__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -1574,7 +1602,7 @@ h4 { font-size: 1.25rem; }
 .pw-strategies__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -1754,7 +1782,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-strategies__accordion-inner {
-    padding: 0 1rem 14px;
+    padding: 1.5rem 2rem;
     font-size: 1rem;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.92);
@@ -1798,6 +1826,12 @@ h4 { font-size: 1.25rem; }
     color: var(--pw-white);
 }
 
+.pw-cta--blue .pw-cta__subheader,
+.pw-cta--navy .pw-cta__subheader,
+.pw-cta--sky .pw-cta__subheader {
+    color: var(--pw-off-white);
+}
+
 .pw-cta--yellow {
     background: linear-gradient(135deg, #FFF8E1 0%, #FFF3CD 100%);
 }
@@ -1819,18 +1853,12 @@ h4 { font-size: 1.25rem; }
 .pw-cta__header {
     font-size: 2rem;
     margin-bottom: 24px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .pw-cta__body {
     font-size: 1rem;
     color: var(--pw-dark-gray);
     margin-bottom: 24px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 /* ==========================================================================
@@ -1849,7 +1877,7 @@ h4 { font-size: 1.25rem; }
 .pw-wioa__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -1877,11 +1905,13 @@ h4 { font-size: 1.25rem; }
     border-radius: var(--pw-radius-lg);
     overflow: hidden;
     box-shadow: var(--pw-shadow-md);
+    background: linear-gradient(135deg, #407ec9 0%, #9bd3dd 100%);
 }
 
 .pw-wioa__image {
     width: 100%;
     line-height: 0;
+    padding: 1.5rem;
 }
 
 .pw-wioa__image img {
@@ -1889,11 +1919,11 @@ h4 { font-size: 1.25rem; }
     height: 220px;
     object-fit: cover;
     display: block;
+    border-radius: var(--pw-radius-lg);
 }
 
 .pw-wioa__links {
-    background: linear-gradient(135deg, #6ccde7 0%, #0b3259 100%);
-    padding: 32px 28px;
+    padding: 1.5rem;
 }
 
 .pw-wioa__links-header {
@@ -2025,7 +2055,7 @@ h4 { font-size: 1.25rem; }
 .pw-program__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -2192,7 +2222,7 @@ h4 { font-size: 1.25rem; }
 .pw-meet-fellows__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -2229,7 +2259,7 @@ h4 { font-size: 1.25rem; }
 .pw-upcoming-events__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
@@ -2305,7 +2335,7 @@ h4 { font-size: 1.25rem; }
 .pw-logo-carousel__title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 13rem;
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin: 16px auto 0;
