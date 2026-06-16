@@ -1571,13 +1571,9 @@ h4 { font-size: 1.25rem; }
     overflow: hidden;
 }
 
-.pw-strategies__list-box--has-bg {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+/* gradient base always shows; image overlay handled by the overlay div */
 
-/* Gradient overlay on top of background image at 95% opacity so image shows at 5% */
+/* Image overlay at 5% opacity sits on top of the gradient base */
 .pw-strategies__list-box-overlay {
     display: none;
 }
@@ -1586,7 +1582,10 @@ h4 { font-size: 1.25rem; }
     display: block;
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(37, 43, 93, 0.95) 0%, rgba(64, 126, 201, 0.95) 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.05;
     border-radius: var(--pw-radius-lg);
     z-index: 0;
 }

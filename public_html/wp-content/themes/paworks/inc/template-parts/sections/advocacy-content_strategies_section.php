@@ -27,9 +27,10 @@ if ( ! empty( $section_bg['url'] ) ) {
     $section_style = ' style="position:relative;"';
 }
 
-$list_box_style = '';
+$list_box_style    = '';
+$list_overlay_style = '';
 if ( ! empty( $list_bg_image['url'] ) ) {
-    $list_box_style = ' style="background-image: url(\'' . esc_url( $list_bg_image['url'] ) . '\');"';
+    $list_overlay_style = ' style="background-image: url(\'' . esc_url( $list_bg_image['url'] ) . '\');"';
 }
 ?>
 
@@ -87,8 +88,8 @@ if ( ! empty( $list_bg_image['url'] ) ) {
             </div>
 
             <?php if ( $strategies ) : ?>
-                <div class="pw-strategies__list-box<?php echo ! empty( $list_bg_image['url'] ) ? ' pw-strategies__list-box--has-bg' : ''; ?>"<?php echo $list_box_style; ?>>
-                    <div class="pw-strategies__list-box-overlay"></div>
+                <div class="pw-strategies__list-box<?php echo ! empty( $list_bg_image['url'] ) ? ' pw-strategies__list-box--has-bg' : ''; ?>">
+                    <div class="pw-strategies__list-box-overlay"<?php echo $list_overlay_style; ?>></div>
                     <div class="pw-strategies__list-box-inner">
                         <?php if ( $list_header ) : ?>
                             <h3 class="pw-strategies__list-header"><?php echo esc_html( $list_header ); ?></h3>
