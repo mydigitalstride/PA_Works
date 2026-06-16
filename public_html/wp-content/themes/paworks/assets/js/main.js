@@ -56,7 +56,7 @@
      * Clicking a trigger toggles the is-open class; siblings are always closed first.
      */
     document.querySelectorAll('[data-accordion]').forEach(function(item) {
-        const trigger = item.querySelector('.pw-whatwedo__accordion-trigger');
+        const trigger = item.querySelector('.pw-whatwedo__accordion-trigger, .pw-strategies__accordion-trigger');
 
         if (!trigger) return;
 
@@ -66,7 +66,7 @@
             // Always close every sibling
             item.parentElement.querySelectorAll('[data-accordion]').forEach(function(sib) {
                 sib.classList.remove('is-open');
-                const sibTrigger = sib.querySelector('.pw-whatwedo__accordion-trigger');
+                const sibTrigger = sib.querySelector('.pw-whatwedo__accordion-trigger, .pw-strategies__accordion-trigger');
                 if (sibTrigger) sibTrigger.setAttribute('aria-expanded', 'false');
             });
 

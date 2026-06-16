@@ -120,6 +120,35 @@ add_action( 'acf/init', function() {
                                 'toolbar'    => 'basic',
                                 'media_upload' => 0,
                             ),
+                            // Accordion items below body text
+                            array(
+                                'key'          => 'field_adv_cs_accordion',
+                                'label'        => 'Accordion Items',
+                                'name'         => 'accordion_items',
+                                'type'         => 'repeater',
+                                'layout'       => 'block',
+                                'min'          => 0,
+                                'max'          => 10,
+                                'button_label' => 'Add Accordion Item',
+                                'instructions' => 'Optional expandable items displayed below the body text.',
+                                'sub_fields'   => array(
+                                    array(
+                                        'key'   => 'field_adv_cs_accordion_title',
+                                        'label' => 'Title',
+                                        'name'  => 'title',
+                                        'type'  => 'text',
+                                    ),
+                                    array(
+                                        'key'        => 'field_adv_cs_accordion_content',
+                                        'label'      => 'Content',
+                                        'name'       => 'content',
+                                        'type'       => 'wysiwyg',
+                                        'tabs'       => 'all',
+                                        'toolbar'    => 'basic',
+                                        'media_upload' => 0,
+                                    ),
+                                ),
+                            ),
                             array(
                                 'key'   => 'field_adv_cs_btn_text',
                                 'label' => 'Button Text',
@@ -132,6 +161,16 @@ add_action( 'acf/init', function() {
                                 'name'  => 'button_url',
                                 'type'  => 'url',
                             ),
+                            // Section background (5% opacity overlay)
+                            array(
+                                'key'           => 'field_adv_cs_section_bg',
+                                'label'         => 'Section Background Image',
+                                'name'          => 'section_bg_image',
+                                'type'          => 'image',
+                                'return_format' => 'array',
+                                'preview_size'  => 'medium',
+                                'instructions'  => 'Optional. Displays at 5% opacity behind the entire section.',
+                            ),
                             // Right column — strategies list
                             array(
                                 'key'   => 'field_adv_cs_list_header',
@@ -139,6 +178,15 @@ add_action( 'acf/init', function() {
                                 'name'  => 'list_header',
                                 'type'  => 'text',
                                 'instructions' => 'e.g., "TOP 10 STRATEGIES TO GET PENNSYLVANIANS BACK TO WORK"',
+                            ),
+                            array(
+                                'key'           => 'field_adv_cs_list_bg_image',
+                                'label'         => 'Strategies List Background Image',
+                                'name'          => 'list_bg_image',
+                                'type'          => 'image',
+                                'return_format' => 'array',
+                                'preview_size'  => 'medium',
+                                'instructions'  => 'Optional. Displays behind the strategies list with a gradient overlay at 5% opacity.',
                             ),
                             array(
                                 'key'          => 'field_adv_cs_strategies',
