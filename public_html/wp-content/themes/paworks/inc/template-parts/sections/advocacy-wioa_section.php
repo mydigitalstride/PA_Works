@@ -2,7 +2,7 @@
 /**
  * Advocacy Page Section: WIOA / Legislation
  *
- * Two-column layout: body text + image on left, quick links on right.
+ * Two-column layout: body text on left, image + quick links card on right.
  *
  * @package PAWorks
  */
@@ -34,31 +34,35 @@ $quick_links   = get_sub_field( 'quick_links' );
                 <?php if ( $body_content ) : ?>
                     <div class="pw-wioa__body"><?php echo wp_kses_post( $body_content ); ?></div>
                 <?php endif; ?>
-
-                <?php if ( $image ) : ?>
-                    <div class="pw-wioa__image">
-                        <img src="<?php echo esc_url( $image['url'] ); ?>"
-                             alt="<?php echo esc_attr( $image['alt'] ); ?>">
-                    </div>
-                <?php endif; ?>
             </div>
 
-            <?php if ( $quick_links ) : ?>
-                <div class="pw-wioa__links">
-                    <?php if ( $links_header ) : ?>
-                        <h3 class="pw-wioa__links-header"><?php echo esc_html( $links_header ); ?></h3>
+            <?php if ( $image || $quick_links ) : ?>
+                <div class="pw-wioa__sidebar">
+                    <?php if ( $image ) : ?>
+                        <div class="pw-wioa__image">
+                            <img src="<?php echo esc_url( $image['url'] ); ?>"
+                                 alt="<?php echo esc_attr( $image['alt'] ); ?>">
+                        </div>
                     <?php endif; ?>
 
-                    <ul class="pw-wioa__links-list">
-                        <?php foreach ( $quick_links as $link ) : ?>
-                            <li>
-                                <a href="<?php echo esc_url( $link['url'] ); ?>" target="_blank" rel="noopener noreferrer">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px;"><path d="M8 5v14l11-7z"/></svg>
-                                    <?php echo esc_html( $link['text'] ); ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
+                    <?php if ( $quick_links ) : ?>
+                        <div class="pw-wioa__links">
+                            <?php if ( $links_header ) : ?>
+                                <h3 class="pw-wioa__links-header"><?php echo esc_html( $links_header ); ?></h3>
+                            <?php endif; ?>
+
+                            <ul class="pw-wioa__links-list">
+                                <?php foreach ( $quick_links as $link ) : ?>
+                                    <li>
+                                        <a href="<?php echo esc_url( $link['url'] ); ?>" target="_blank" rel="noopener noreferrer">
+                                            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                                            <?php echo esc_html( $link['text'] ); ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
         </div>
