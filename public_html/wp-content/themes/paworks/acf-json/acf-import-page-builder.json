@@ -1801,6 +1801,7 @@
                                 },
                                 "choices": {
                                     "light": "Light (Off-White)",
+                                    "sky": "Sky Blue (#9bd3dd)",
                                     "blue": "Blue Gradient",
                                     "navy": "Navy",
                                     "yellow": "Yellow Accent"
