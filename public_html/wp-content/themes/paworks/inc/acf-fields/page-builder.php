@@ -401,8 +401,9 @@ add_action( 'acf/init', function() {
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_intro_header',       'label' => 'Header',           'name' => 'header',       'type' => 'text' ),
                             array( 'key' => 'field_pb_intro_body',         'label' => 'Body Content',     'name' => 'body_content', 'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'full', 'media_upload' => 0 ),
-                            array( 'key' => 'field_pb_intro_btn_text',     'label' => 'Button Text',      'name' => 'button_text',  'type' => 'text', 'default_value' => 'Apply for the Fellowship' ),
-                            array( 'key' => 'field_pb_intro_btn_url',      'label' => 'Button URL',       'name' => 'button_url',   'type' => 'url' ),
+                            array( 'key' => 'field_pb_intro_btn_text',     'label' => 'Button Text',      'name' => 'button_text',   'type' => 'text', 'default_value' => 'Apply for the Fellowship' ),
+                            array( 'key' => 'field_pb_intro_btn_url',      'label' => 'Button URL',       'name' => 'button_url',    'type' => 'url' ),
+                            array( 'key' => 'field_pb_intro_btn_align',    'label' => 'Button Alignment', 'name' => 'button_align',  'type' => 'select', 'choices' => array( 'left' => 'Left', 'center' => 'Center' ), 'default_value' => 'left' ),
                             array( 'key' => 'field_pb_intro_quote',        'label' => 'Testimonial Quote','name' => 'quote',        'type' => 'textarea', 'rows' => 4, 'instructions' => 'Featured testimonial displayed prominently.' ),
                             array( 'key' => 'field_pb_intro_quote_author', 'label' => 'Quote Author',     'name' => 'quote_author', 'type' => 'text' ),
                         ),

@@ -155,8 +155,8 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--pw-navy);
 }
 
-h1 { font-size: 3rem; text-transform: capitalize; }
-h2 { font-size: 2.25rem; text-transform: capitalize; }
+h1 { font-size: 3rem; text-transform: capitalize; text-align: left; }
+h2 { font-size: 2.25rem; text-transform: capitalize; text-align: left; }
 h3 { font-size: 1.5rem; }
 h4 { font-size: 1.25rem; }
 
@@ -1950,6 +1950,14 @@ h4 { font-size: 1.25rem; }
 .pw-fellowship-intro__title {
     font-size: 2.25rem;
     margin-bottom: 24px;
+}
+
+.pw-fellowship-intro__btn-wrap {
+    margin-top: 24px;
+}
+
+.pw-fellowship-intro__btn-wrap--center {
+    text-align: center;
 }
 
 .pw-fellowship-intro__body {

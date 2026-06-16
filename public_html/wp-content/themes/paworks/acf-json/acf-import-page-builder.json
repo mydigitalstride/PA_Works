@@ -2402,6 +2402,32 @@
                                 "placeholder": ""
                             },
                             {
+                                "key": "field_pb_intro_btn_align",
+                                "label": "Button Alignment",
+                                "name": "button_align",
+                                "aria-label": "",
+                                "type": "select",
+                                "instructions": "",
+                                "required": false,
+                                "conditional_logic": false,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "choices": {
+                                    "left": "Left",
+                                    "center": "Center"
+                                },
+                                "default_value": "left",
+                                "multiple": 0,
+                                "allow_null": 0,
+                                "ui": 0,
+                                "return_format": "value",
+                                "ajax": 0,
+                                "placeholder": ""
+                            },
+                            {
                                 "key": "field_pb_intro_quote",
                                 "label": "Testimonial Quote",
                                 "name": "quote",
