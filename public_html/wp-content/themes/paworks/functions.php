@@ -158,6 +158,18 @@ function paworks_include_acf_fields() {
 add_action( 'init', 'paworks_include_acf_fields' );
 
 /**
+ * ACF Extended: PHP save path
+ *
+ * Points ACFE to the theme's /acfe-php directory so it can save PHP exports
+ * there (fixes the "Save path not found in theme: /acfe-php" warning).
+ * Load hooks are intentionally omitted to prevent auto-creating duplicate
+ * field groups from ACFE-managed JSON files.
+ */
+add_filter( 'acfe/settings/php_save', function( $path ) {
+    return get_stylesheet_directory() . '/acfe-php';
+} );
+
+/**
  * ACF Extended: Layout Thumbnails
  *
  * Registers thumbnail images for Flexible Content layouts so the

@@ -420,6 +420,8 @@ add_action( 'acf/init', function() {
                             array( 'key' => 'field_pb_prog_subheader',        'label' => 'Sub Header',       'name' => 'sub_header',      'type' => 'text', 'instructions' => 'e.g. "FELLOWSHIP PROGRAM"' ),
                             array( 'key' => 'field_pb_prog_header',           'label' => 'Header',           'name' => 'header',          'type' => 'text' ),
                             array( 'key' => 'field_pb_prog_body',             'label' => 'Body Content',     'name' => 'body_content',    'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'full', 'media_upload' => 0 ),
+                            array( 'key' => 'field_pb_prog_bg_image',         'label' => 'Background Image', 'name' => 'background_image','type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Optional. Displays as a watermark behind the section content.' ),
+                            array( 'key' => 'field_pb_prog_details_header',   'label' => 'Details Sub-Heading', 'name' => 'details_header', 'type' => 'text', 'default_value' => 'Program Details', 'instructions' => 'Heading shown above the key-value details list.' ),
                             array(
                                 'key'          => 'field_pb_prog_details',
                                 'label'        => 'Program Details',
@@ -484,7 +486,7 @@ add_action( 'acf/init', function() {
                                         'max'          => 15,
                                         'button_label' => 'Add Item',
                                         'sub_fields'   => array(
-                                            array( 'key' => 'field_pb_exp_item_text', 'label' => 'Text', 'name' => 'text', 'type' => 'textarea', 'rows' => 2 ),
+                                            array( 'key' => 'field_pb_exp_item_text', 'label' => 'Text', 'name' => 'text', 'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'basic', 'media_upload' => 0, 'instructions' => 'Bold the first few words for a label effect, e.g. <strong>Exclusive Training:</strong> Fellows receive...' ),
                                         ),
                                     ),
                                 ),
@@ -583,7 +585,8 @@ add_action( 'acf/init', function() {
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_quote_text', 'label' => 'Quote Text', 'name' => 'quote_text', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'The quote content (quotation marks are added automatically).' ),
-                            array( 'key' => 'field_pb_quote_name', 'label' => 'Quote Name', 'name' => 'quote_name', 'type' => 'text', 'instructions' => 'Attribution name displayed below the quote in bold.' ),
+                            array( 'key' => 'field_pb_quote_name', 'label' => 'Attribution Name', 'name' => 'quote_name', 'type' => 'text', 'instructions' => 'Name shown below the quote.' ),
+                            array( 'key' => 'field_pb_quote_role', 'label' => 'Attribution Role / Organization', 'name' => 'quote_role', 'type' => 'text', 'instructions' => 'Optional title or organization shown under the name.' ),
                         ),
                     ),
 

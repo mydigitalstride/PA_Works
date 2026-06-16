@@ -881,13 +881,13 @@ h4 { font-size: 1.25rem; }
 .pw-whatwedo__accordion-item {
     border-radius: var(--pw-radius-md);
     overflow: hidden;
-    background: rgba(255,255,255,0.90);
+    background: var(--pw-sky);
     transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .pw-whatwedo__accordion-item:hover,
 .pw-whatwedo__accordion-item.is-open {
-    background: var(--pw-gradient-navy-lightblue);
+    background: linear-gradient(135deg, #6ccde7 0%, #0b3259 100%);
     box-shadow: var(--pw-shadow-md);
 }
 
@@ -1563,7 +1563,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-strategies__list-box {
-    background: linear-gradient(135deg, var(--pw-navy) 0%, var(--pw-blue) 100%);
+    background: linear-gradient(135deg, #6ccde7 0%, #0b3259 100%);
     border-radius: var(--pw-radius-lg);
     padding: 32px;
     color: var(--pw-white);
@@ -1571,13 +1571,9 @@ h4 { font-size: 1.25rem; }
     overflow: hidden;
 }
 
-.pw-strategies__list-box--has-bg {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+/* gradient base always shows; image overlay handled by the overlay div */
 
-/* Gradient overlay on top of background image at 95% opacity so image shows at 5% */
+/* Image overlay at 5% opacity sits on top of the gradient base */
 .pw-strategies__list-box-overlay {
     display: none;
 }
@@ -1586,7 +1582,10 @@ h4 { font-size: 1.25rem; }
     display: block;
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(37, 43, 93, 0.95) 0%, rgba(64, 126, 201, 0.95) 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.05;
     border-radius: var(--pw-radius-lg);
     z-index: 0;
 }
@@ -1651,11 +1650,22 @@ h4 { font-size: 1.25rem; }
 /* Strategies Accordion */
 .pw-strategies__accordion {
     margin-bottom: 24px;
-    border-top: 1px solid var(--pw-light-gray);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .pw-strategies__accordion-item {
-    border-bottom: 1px solid var(--pw-light-gray);
+    border-radius: var(--pw-radius-md);
+    overflow: hidden;
+    background: var(--pw-sky);
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pw-strategies__accordion-item:hover,
+.pw-strategies__accordion-item.is-open {
+    background: linear-gradient(135deg, #6ccde7 0%, #0b3259 100%);
+    box-shadow: var(--pw-shadow-md);
 }
 
 .pw-strategies__accordion-trigger {
@@ -1665,25 +1675,27 @@ h4 { font-size: 1.25rem; }
     width: 100%;
     background: none;
     border: none;
-    padding: 16px 0;
+    padding: 14px 18px;
     font-family: var(--pw-font-heading);
     font-size: 0.95rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--pw-navy);
     cursor: pointer;
     text-align: left;
     gap: 12px;
+    transition: color 0.25s ease;
 }
 
-.pw-strategies__accordion-trigger:hover {
-    color: var(--pw-light-blue);
+.pw-strategies__accordion-item:hover .pw-strategies__accordion-trigger,
+.pw-strategies__accordion-item.is-open .pw-strategies__accordion-trigger {
+    color: var(--pw-white);
 }
 
 .pw-strategies__accordion-icon {
     display: inline-block;
     flex-shrink: 0;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     border-right: 2px solid currentColor;
     border-bottom: 2px solid currentColor;
     transform: rotate(45deg);
@@ -1707,9 +1719,13 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-strategies__accordion-inner {
-    padding: 0 0 16px;
+    padding: 0 18px 14px;
     font-size: 0.9rem;
     line-height: 1.7;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.pw-strategies__accordion-item:not(.is-open) .pw-strategies__accordion-inner {
     color: var(--pw-dark-gray);
 }
 
@@ -1900,10 +1916,29 @@ h4 { font-size: 1.25rem; }
 /* ==========================================================================
    Program Details Section (Fellowship)
    ========================================================================== */
+.pw-program {
+    position: relative;
+    overflow: hidden;
+}
+
+.pw-program--has-bg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.pw-program__bg-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.92);
+    z-index: 0;
+}
+
 .pw-program__title {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     margin-bottom: 24px;
     position: relative;
+    color: var(--pw-navy);
 }
 
 .pw-program__title::after {
@@ -1913,10 +1948,11 @@ h4 { font-size: 1.25rem; }
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
+    margin-bottom: 8px;
 }
 
 .pw-program__body {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.8;
     color: var(--pw-dark-gray);
     margin-bottom: 32px;
@@ -1927,75 +1963,91 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-program__details {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
 }
 
 .pw-program__details-header {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    font-family: var(--pw-font-heading);
+    font-weight: 700;
     margin-bottom: 16px;
-    color: var(--pw-orange);
+    color: var(--pw-navy);
 }
 
 .pw-program__details-list {
     display: grid;
-    gap: 8px;
+    gap: 6px;
+    padding-left: 8px;
 }
 
 .pw-program__detail {
     display: flex;
     gap: 8px;
+    align-items: baseline;
 }
 
 .pw-program__detail dt {
     font-weight: 700;
-    color: var(--pw-orange);
-    min-width: 120px;
+    color: var(--pw-charcoal);
+    min-width: 130px;
+    flex-shrink: 0;
 }
 
 .pw-program__detail dd {
     color: var(--pw-dark-gray);
+    font-size: 0.95rem;
 }
 
 .pw-program__schedule {
-    margin-top: 32px;
+    margin-top: 8px;
+    margin-bottom: 40px;
 }
 
 .pw-program__schedule-header {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    font-family: var(--pw-font-heading);
+    font-weight: 700;
     margin-bottom: 16px;
+    color: var(--pw-navy);
 }
 
 .pw-program__schedule-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0;
+    padding-left: 8px;
 }
 
 .pw-program__schedule-item {
     display: flex;
     gap: 16px;
-    padding: 12px 0;
+    align-items: baseline;
+    padding: 10px 0;
     border-bottom: 1px solid var(--pw-light-gray);
 }
 
 .pw-program__schedule-date {
     font-weight: 700;
-    color: var(--pw-navy);
-    min-width: 160px;
+    color: var(--pw-charcoal);
+    min-width: 130px;
+    flex-shrink: 0;
+    font-size: 0.95rem;
 }
 
 .pw-program__schedule-desc {
     color: var(--pw-dark-gray);
+    font-size: 0.95rem;
 }
 
 /* ==========================================================================
    Expectations Section (Fellowship)
    ========================================================================== */
 .pw-expectations__block {
-    margin-bottom: 40px;
-    padding: 32px;
-    background: var(--pw-off-white);
-    border-radius: var(--pw-radius-md);
+    margin-bottom: 32px;
+    padding: 40px 48px;
+    background: rgba(155, 211, 221, 0.25);
+    border-radius: var(--pw-radius-xl);
+    border: 1px solid rgba(155, 211, 221, 0.4);
 }
 
 .pw-expectations__block:last-child {
@@ -2003,10 +2055,13 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-expectations__header {
-    font-size: 1.25rem;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--pw-gold);
+    font-size: 1.35rem;
+    font-family: var(--pw-font-heading);
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--pw-navy);
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .pw-expectations__list {
@@ -2014,23 +2069,34 @@ h4 { font-size: 1.25rem; }
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
 .pw-expectations__list li {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--pw-dark-gray);
-    padding-left: 24px;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--pw-charcoal);
+    padding-left: 32px;
     position: relative;
 }
 
+.pw-expectations__list li p {
+    margin: 0;
+}
+
 .pw-expectations__list li::before {
-    content: '▸';
+    content: '▶';
     position: absolute;
     left: 0;
-    color: var(--pw-blue);
-    font-size: 1rem;
+    top: 2px;
+    color: var(--pw-light-blue);
+    font-size: 0.7rem;
+}
+
+@media (max-width: 768px) {
+    .pw-expectations__block {
+        padding: 28px 24px;
+    }
 }
 
 /* ==========================================================================
@@ -2275,23 +2341,13 @@ h4 { font-size: 1.25rem; }
    Quote Section
    ========================================================================== */
 .pw-quote {
+    background-color: rgba(64, 126, 201, 0.08);
     position: relative;
     overflow: hidden;
 }
 
-.pw-quote::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
-    background: linear-gradient(to bottom, rgba(155, 211, 221, 0.2) 0%, transparent 100%);
-    pointer-events: none;
-}
-
 .pw-quote__block {
-    max-width: 900px;
+    max-width: 860px;
     margin: 0 auto;
     text-align: center;
     border: none;
@@ -2300,9 +2356,9 @@ h4 { font-size: 1.25rem; }
 
 .pw-quote__text {
     font-family: var(--pw-font-heading);
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.8;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.85;
     color: var(--pw-navy);
     font-style: italic;
     margin-bottom: 20px;
@@ -2311,10 +2367,21 @@ h4 { font-size: 1.25rem; }
 .pw-quote__name {
     font-family: var(--pw-font-heading);
     font-style: normal;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 700;
-    color: var(--pw-navy);
+    color: var(--pw-light-blue);
     display: block;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.pw-quote__role {
+    font-family: var(--pw-font-body);
+    font-style: normal;
+    font-size: 0.875rem;
+    color: var(--pw-dark-gray);
+    display: block;
+    margin-top: 4px;
 }
 
 /* ==========================================================================
