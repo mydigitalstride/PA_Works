@@ -1853,18 +1853,12 @@ h2::after {
 .pw-cta__header {
     font-size: 2rem;
     margin-bottom: 24px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .pw-cta__body {
     font-size: 1rem;
     color: var(--pw-dark-gray);
     margin-bottom: 24px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 /* ==========================================================================
