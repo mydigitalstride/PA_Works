@@ -13,6 +13,7 @@ $header       = get_sub_field( 'header' );
 $body_content = get_sub_field( 'body_content' );
 $btn_text     = get_sub_field( 'button_text' );
 $btn_url      = get_sub_field( 'button_url' );
+$btn_align    = get_sub_field( 'button_align' ) ?: 'left';
 $quote        = get_sub_field( 'quote' );
 $quote_author = get_sub_field( 'quote_author' );
 ?>
@@ -28,9 +29,11 @@ $quote_author = get_sub_field( 'quote_author' );
         <?php endif; ?>
 
         <?php if ( $btn_text && $btn_url ) : ?>
-            <a href="<?php echo esc_url( $btn_url ); ?>" class="pw-btn pw-btn--secondary">
-                <?php echo esc_html( $btn_text ); ?>
-            </a>
+            <div class="pw-fellowship-intro__btn-wrap<?php echo $btn_align === 'center' ? ' pw-fellowship-intro__btn-wrap--center' : ''; ?>">
+                <a href="<?php echo esc_url( $btn_url ); ?>" class="pw-btn pw-btn--secondary">
+                    <?php echo esc_html( $btn_text ); ?>
+                </a>
+            </div>
         <?php endif; ?>
 
         <?php if ( $quote ) : ?>

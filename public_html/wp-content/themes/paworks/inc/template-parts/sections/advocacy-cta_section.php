@@ -18,6 +18,9 @@ $bg_style   = get_sub_field( 'bg_style' );
 
 $section_classes = 'pw-cta pw-section';
 switch ( $bg_style ) {
+    case 'sky':
+        $section_classes .= ' pw-cta--sky';
+        break;
     case 'blue':
         $section_classes .= ' pw-cta--blue';
         break;
