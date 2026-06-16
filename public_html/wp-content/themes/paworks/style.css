@@ -1619,7 +1619,6 @@ h4 { font-size: 1.25rem; }
     align-items: baseline;
     gap: 16px;
     padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .pw-strategies__number {
@@ -1719,7 +1718,7 @@ h4 { font-size: 1.25rem; }
 }
 
 .pw-strategies__accordion-inner {
-    padding: 0 18px 14px;
+    padding: 0 1rem 14px;
     font-size: 0.9rem;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.92);
