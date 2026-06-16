@@ -1911,6 +1911,7 @@ h2::after {
     border-radius: var(--pw-radius-lg);
     overflow: hidden;
     box-shadow: var(--pw-shadow-md);
+    background: linear-gradient(135deg, #407ec9 0%, #9bd3dd 100%);
 }
 
 .pw-wioa__image {
@@ -1928,7 +1929,6 @@ h2::after {
 }
 
 .pw-wioa__links {
-    background: linear-gradient(135deg, #6ccde7 0%, #0b3259 100%);
     padding: 1.5rem;
 }
 
