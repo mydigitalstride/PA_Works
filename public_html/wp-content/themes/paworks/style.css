@@ -1900,6 +1900,7 @@ h4 { font-size: 1.25rem; }
 .pw-wioa__image {
     width: 100%;
     line-height: 0;
+    padding: 1.5rem;
 }
 
 .pw-wioa__image img {
@@ -1907,11 +1908,12 @@ h4 { font-size: 1.25rem; }
     height: 220px;
     object-fit: cover;
     display: block;
+    border-radius: var(--pw-radius-lg);
 }
 
 .pw-wioa__links {
     background: linear-gradient(135deg, #6ccde7 0%, #0b3259 100%);
-    padding: 32px 28px;
+    padding: 1.5rem;
 }
 
 .pw-wioa__links-header {
