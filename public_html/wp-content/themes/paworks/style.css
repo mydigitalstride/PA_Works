@@ -2673,19 +2673,15 @@ h2::after {
    Quote Section
    ========================================================================== */
 .pw-quote {
-    background-color: rgba(64, 126, 201, 0.08);
     position: relative;
     overflow: hidden;
 }
 
 .pw-quote__block {
     position: relative;
-    max-width: 860px;
     margin: 0 auto;
     text-align: center;
     background: var(--pw-white);
-    border: 1px solid rgba(64, 126, 201, 0.2);
-    border-radius: var(--pw-radius-lg);
     padding: 40px 48px;
 }
 
