@@ -210,6 +210,57 @@ add_action( 'acf/init', function() {
                     ),
 
                     // =================================================================
+                    // LAYOUT: Two Column Engage Section
+                    // =================================================================
+                    'layout_engage' => array(
+                        'key'        => 'layout_adv_engage',
+                        'name'       => 'engage_section',
+                        'label'      => 'Two Column Engage Section (Dual Title + WYSIWYG)',
+                        'display'    => 'block',
+                        'sub_fields' => array(
+                            array( 'key' => 'field_adv_engage_left_header',  'label' => 'Left Header',  'name' => 'left_header',  'type' => 'text',    'default_value' => 'HOW TO ENGAGE' ),
+                            array( 'key' => 'field_adv_engage_left_content', 'label' => 'Left Content', 'name' => 'left_content', 'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'basic', 'media_upload' => 0 ),
+                            array(
+                                'key'          => 'field_adv_engage_left_buttons',
+                                'label'        => 'Left Buttons',
+                                'name'         => 'left_buttons',
+                                'type'         => 'repeater',
+                                'layout'       => 'table',
+                                'min'          => 0,
+                                'max'          => 5,
+                                'button_label' => 'Add Button',
+                                'instructions' => 'Optional buttons displayed below the left content.',
+                                'sub_fields'   => array(
+                                    array( 'key' => 'field_adv_engage_left_btn_text',  'label' => 'Button Text',  'name' => 'button_text',  'type' => 'text' ),
+                                    array( 'key' => 'field_adv_engage_left_btn_url',   'label' => 'Button URL',   'name' => 'button_url',   'type' => 'url' ),
+                                    array( 'key' => 'field_adv_engage_left_btn_style', 'label' => 'Button Style', 'name' => 'button_style', 'type' => 'select', 'choices' => array( 'pw-btn--primary' => 'Primary (Gold)', 'pw-btn--outline' => 'Outline' ), 'default_value' => 'pw-btn--primary', 'allow_null' => 0 ),
+                                ),
+                            ),
+                            array( 'key' => 'field_adv_engage_right_header',  'label' => 'Right Header',  'name' => 'right_header',  'type' => 'text',    'default_value' => 'WHY IT MATTERS' ),
+                            array( 'key' => 'field_adv_engage_right_content', 'label' => 'Right Content', 'name' => 'right_content', 'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'basic', 'media_upload' => 0 ),
+                            array(
+                                'key'          => 'field_adv_engage_right_buttons',
+                                'label'        => 'Right Buttons',
+                                'name'         => 'right_buttons',
+                                'type'         => 'repeater',
+                                'layout'       => 'table',
+                                'min'          => 0,
+                                'max'          => 5,
+                                'button_label' => 'Add Button',
+                                'instructions' => 'Optional buttons displayed below the right content.',
+                                'sub_fields'   => array(
+                                    array( 'key' => 'field_adv_engage_right_btn_text',  'label' => 'Button Text',  'name' => 'button_text',  'type' => 'text' ),
+                                    array( 'key' => 'field_adv_engage_right_btn_url',   'label' => 'Button URL',   'name' => 'button_url',   'type' => 'url' ),
+                                    array( 'key' => 'field_adv_engage_right_btn_style', 'label' => 'Button Style', 'name' => 'button_style', 'type' => 'select', 'choices' => array( 'pw-btn--primary' => 'Primary (Gold)', 'pw-btn--outline' => 'Outline' ), 'default_value' => 'pw-btn--primary', 'allow_null' => 0 ),
+                                ),
+                            ),
+                            array( 'key' => 'field_adv_engage_center_btn_text', 'label' => 'Centered Button Text', 'name' => 'center_button_text', 'type' => 'text', 'default_value' => 'Get Involved' ),
+                            array( 'key' => 'field_adv_engage_center_btn_url',  'label' => 'Centered Button URL',  'name' => 'center_button_url',  'type' => 'url' ),
+                            array( 'key' => 'field_adv_engage_section_bg',     'label' => 'Section Background Image', 'name' => 'section_bg_image', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Optional. Displays at 5% opacity behind the entire section.' ),
+                        ),
+                    ),
+
+                    // =================================================================
                     // LAYOUT: CTA / Membership Section
                     // =================================================================
                     'layout_cta' => array(

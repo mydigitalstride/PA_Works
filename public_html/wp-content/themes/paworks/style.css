@@ -125,6 +125,7 @@ a:hover {
 .pw-cta__body ul,
 .pw-fellowship-intro__body ul,
 .pw-wioa__body ul,
+.pw-engage__content ul,
 .entry-content ul {
     list-style: none;
     padding-left: 0;
@@ -137,6 +138,7 @@ a:hover {
 .pw-cta__body ul li,
 .pw-fellowship-intro__body ul li,
 .pw-wioa__body ul li,
+.pw-engage__content ul li,
 .entry-content ul li {
     position: relative;
     padding-left: 28px;
@@ -152,6 +154,7 @@ a:hover {
 .pw-cta__body ul li::before,
 .pw-fellowship-intro__body ul li::before,
 .pw-wioa__body ul li::before,
+.pw-engage__content ul li::before,
 .entry-content ul li::before {
     content: '▶';
     position: absolute;
@@ -168,6 +171,7 @@ a:hover {
 .pw-cta__body ul li::marker,
 .pw-fellowship-intro__body ul li::marker,
 .pw-wioa__body ul li::marker,
+.pw-engage__content ul li::marker,
 .entry-content ul li::marker {
     content: none;
 }
@@ -1837,6 +1841,87 @@ h2::after {
 @media (max-width: 768px) {
     .pw-strategies__grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   Two Column Engage Section
+   ========================================================================== */
+.pw-engage {
+    position: relative;
+    background-color: #eef2fb;
+}
+
+.pw-engage__section-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.pw-engage__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.pw-engage__title {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.pw-engage__title::after {
+    content: '';
+    display: block;
+    width: 10rem;
+    height: 4px;
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
+    margin-top: 14px;
+}
+
+.pw-engage__content {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--pw-dark-gray);
+}
+
+.pw-engage__content p {
+    margin-bottom: 16px;
+}
+
+.pw-engage__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.pw-engage__center-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+@media (max-width: 768px) {
+    .pw-engage__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .pw-engage__title::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .pw-engage__buttons {
+        justify-content: center;
     }
 }
 
