@@ -1804,7 +1804,8 @@
                                     "sky": "Sky Blue (#9bd3dd)",
                                     "blue": "Blue Gradient",
                                     "navy": "Navy",
-                                    "yellow": "Yellow Accent"
+                                    "yellow": "Yellow Accent",
+                                    "transparent": "Transparent"
                                 },
                                 "default_value": "light",
                                 "multiple": 0,

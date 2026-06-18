@@ -85,7 +85,7 @@
                             {"key":"field_adv_cta_body","label":"Body Text","name":"body_text","type":"textarea","rows":2,"new_lines":"br"},
                             {"key":"field_adv_cta_btn_text","label":"Button Text","name":"button_text","type":"text","default_value":"Join Now"},
                             {"key":"field_adv_cta_btn_url","label":"Button URL","name":"button_url","type":"url"},
-                            {"key":"field_adv_cta_bg_color","label":"Background Style","name":"bg_style","type":"select","choices":{"light":"Light (Off-White)","blue":"Blue Gradient","navy":"Navy","yellow":"Yellow Accent"},"default_value":"light"}
+                            {"key":"field_adv_cta_bg_color","label":"Background Style","name":"bg_style","type":"select","choices":{"light":"Light (Off-White)","sky":"Sky Blue (#9bd3dd)","blue":"Blue Gradient","navy":"Navy","yellow":"Yellow Accent","transparent":"Transparent"},"default_value":"light"}
                         ]
                     },
                     "layout_adv_wioa": {

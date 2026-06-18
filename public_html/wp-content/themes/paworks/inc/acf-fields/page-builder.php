@@ -307,7 +307,7 @@ add_action( 'acf/init', function() {
                             array( 'key' => 'field_pb_cta_body',      'label' => 'Body Text',       'name' => 'body_text',   'type' => 'textarea', 'rows' => 2, 'new_lines' => 'br' ),
                             array( 'key' => 'field_pb_cta_btn_text',  'label' => 'Button Text',     'name' => 'button_text', 'type' => 'text' ),
                             array( 'key' => 'field_pb_cta_btn_url',   'label' => 'Button URL',      'name' => 'button_url',  'type' => 'url' ),
-                            array( 'key' => 'field_pb_cta_bg_style',  'label' => 'Background Style','name' => 'bg_style',    'type' => 'select', 'choices' => array( 'light' => 'Light (Off-White)', 'sky' => 'Sky Blue (#9bd3dd)', 'blue' => 'Blue Gradient', 'navy' => 'Navy', 'yellow' => 'Yellow Accent' ), 'default_value' => 'light' ),
+                            array( 'key' => 'field_pb_cta_bg_style',  'label' => 'Background Style','name' => 'bg_style',    'type' => 'select', 'choices' => array( 'light' => 'Light (Off-White)', 'sky' => 'Sky Blue (#9bd3dd)', 'blue' => 'Blue Gradient', 'navy' => 'Navy', 'yellow' => 'Yellow Accent', 'transparent' => 'Transparent' ), 'default_value' => 'light' ),
                         ),
                     ),
 

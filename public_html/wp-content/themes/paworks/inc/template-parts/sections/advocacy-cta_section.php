@@ -30,6 +30,9 @@ switch ( $bg_style ) {
     case 'yellow':
         $section_classes .= ' pw-cta--yellow';
         break;
+    case 'transparent':
+        $section_classes .= ' pw-cta--transparent';
+        break;
     default:
         $section_classes .= ' pw-cta--light';
         break;

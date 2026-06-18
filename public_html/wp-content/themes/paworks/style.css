@@ -1849,7 +1849,7 @@ h2::after {
    ========================================================================== */
 .pw-engage {
     position: relative;
-    background-color: #eef2fb;
+    background-color: transparent;
 }
 
 .pw-engage__section-bg {
@@ -1961,6 +1961,10 @@ h2::after {
 
 .pw-cta--sky {
     background-color: #9bd3dd;
+}
+
+.pw-cta--transparent {
+    background: transparent;
 }
 
 .pw-cta__subheader {
