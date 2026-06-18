@@ -56,6 +56,15 @@
                 "instructions": "Upload a light/white version of the logo for the dark footer background."
             },
             {
+                "key": "field_footer_background_image",
+                "label": "Footer Background Image",
+                "name": "footer_background_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "instructions": "Optional image displayed on the right side of the footer background."
+            },
+            {
                 "key": "field_footer_email",
                 "label": "Email Address",
                 "name": "footer_email",

@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $footer_logo        = get_field( 'footer_logo', 'option' );
+$footer_bg_image    = get_field( 'footer_background_image', 'option' );
 $footer_email       = get_field( 'footer_email', 'option' );
 $footer_address     = get_field( 'footer_address', 'option' );
 $footer_instagram   = get_field( 'footer_instagram', 'option' );
@@ -27,6 +28,11 @@ $copyright_text = str_replace( '[year]', date( 'Y' ), $footer_copyright ?: 'All 
 </main><!-- #main-content -->
 
 <footer class="pw-footer" role="contentinfo">
+    <?php if ( $footer_bg_image ) : ?>
+        <div class="pw-footer__bg-image">
+            <img src="<?php echo esc_url( $footer_bg_image['url'] ); ?>" alt="<?php echo esc_attr( $footer_bg_image['alt'] ?: '' ); ?>">
+        </div>
+    <?php endif; ?>
     <div class="pw-footer__inner">
         <div class="pw-footer__left">
             <?php if ( $footer_logo ) : ?>
