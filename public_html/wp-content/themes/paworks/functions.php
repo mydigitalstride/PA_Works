@@ -125,6 +125,14 @@ function paworks_acf_options_pages() {
             'menu_title'    => 'Announcement Bar',
             'parent_slug'   => 'paworks-settings',
         ) );
+
+        // Blog Archive sub-page
+        acf_add_options_sub_page( array(
+            'page_title'    => 'Blog Archive Settings',
+            'menu_title'    => 'Blog Archive',
+            'menu_slug'     => 'paworks-settings-blog',
+            'parent_slug'   => 'paworks-settings',
+        ) );
     }
 }
 add_action( 'acf/init', 'paworks_acf_options_pages' );

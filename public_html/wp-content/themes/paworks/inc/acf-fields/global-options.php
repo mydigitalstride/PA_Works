@@ -230,4 +230,67 @@ add_action( 'acf/init', function() {
         'menu_order' => 0,
     ) );
 
+    // =========================================================================
+    // BLOG ARCHIVE SETTINGS
+    // =========================================================================
+    acf_add_local_field_group( array(
+        'key'      => 'group_blog_settings',
+        'title'    => 'Blog Archive Settings',
+        'fields'   => array(
+            array(
+                'key'           => 'field_blog_hero_bg_image',
+                'label'         => 'Hero Background Image',
+                'name'          => 'blog_hero_bg_image',
+                'type'          => 'image',
+                'return_format' => 'array',
+                'preview_size'  => 'medium',
+            ),
+            array(
+                'key'           => 'field_blog_hero_subheader',
+                'label'         => 'Hero Sub Header',
+                'name'          => 'blog_hero_subheader',
+                'type'          => 'text',
+                'default_value' => "WHAT'S HAPPENING IN PA?",
+            ),
+            array(
+                'key'           => 'field_blog_hero_title',
+                'label'         => 'Hero Title',
+                'name'          => 'blog_hero_title',
+                'type'          => 'text',
+                'default_value' => 'News',
+            ),
+            array(
+                'key'           => 'field_blog_hero_body',
+                'label'         => 'Hero Body Text',
+                'name'          => 'blog_hero_body',
+                'type'          => 'textarea',
+                'rows'          => 3,
+                'default_value' => 'Become a PWDA member to be alerted and updated with all the Pennsylvania Workforce Development Association events and news.',
+            ),
+            array(
+                'key'           => 'field_blog_hero_btn_text',
+                'label'         => 'Hero Button Text',
+                'name'          => 'blog_hero_btn_text',
+                'type'          => 'text',
+                'default_value' => 'Partner with PWDA',
+            ),
+            array(
+                'key'           => 'field_blog_hero_btn_url',
+                'label'         => 'Hero Button URL',
+                'name'          => 'blog_hero_btn_url',
+                'type'          => 'url',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param'    => 'options_page',
+                    'operator' => '==',
+                    'value'    => 'paworks-settings-blog',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+    ) );
+
 } );
