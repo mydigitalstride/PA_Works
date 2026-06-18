@@ -56,6 +56,12 @@ Text Domain: paworks
     --pw-section-padding: 80px 0;
     --pw-container-width: 1200px;
     --pw-container-padding: 0 24px;
+}
+
+@media (min-width: 769px) {
+    :root {
+        --pw-container-width: 85vw;
+    }
 
     /* Border Radius */
     --pw-radius-sm: 4px;
@@ -119,6 +125,7 @@ a:hover {
 .pw-cta__body ul,
 .pw-fellowship-intro__body ul,
 .pw-wioa__body ul,
+.pw-engage__content ul,
 .entry-content ul {
     list-style: none;
     padding-left: 0;
@@ -131,6 +138,7 @@ a:hover {
 .pw-cta__body ul li,
 .pw-fellowship-intro__body ul li,
 .pw-wioa__body ul li,
+.pw-engage__content ul li,
 .entry-content ul li {
     position: relative;
     padding-left: 28px;
@@ -146,6 +154,7 @@ a:hover {
 .pw-cta__body ul li::before,
 .pw-fellowship-intro__body ul li::before,
 .pw-wioa__body ul li::before,
+.pw-engage__content ul li::before,
 .entry-content ul li::before {
     content: '▶';
     position: absolute;
@@ -162,6 +171,7 @@ a:hover {
 .pw-cta__body ul li::marker,
 .pw-fellowship-intro__body ul li::marker,
 .pw-wioa__body ul li::marker,
+.pw-engage__content ul li::marker,
 .entry-content ul li::marker {
     content: none;
 }
@@ -479,9 +489,34 @@ h2::after {
    Footer
    ========================================================================== */
 .pw-footer {
-    background: var(--pw-navy);
+    position: relative;
+    background: #0c335a;
     color: var(--pw-white);
     padding: 48px 0 32px;
+    overflow: hidden;
+}
+
+.pw-footer__bg-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.pw-footer__bg-image img {
+    height: 100%;
+    width: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.pw-footer__inner,
+.pw-footer__bottom {
+    position: relative;
+    z-index: 2;
 }
 
 .pw-footer__inner {
@@ -552,7 +587,8 @@ h2::after {
 .pw-footer__search {
     display: flex;
     align-items: center;
-    border: 1px solid rgba(255,255,255,0.3);
+    background: var(--pw-white);
+    border: none;
     border-radius: var(--pw-radius-sm);
     overflow: hidden;
 }
@@ -560,22 +596,24 @@ h2::after {
 .pw-footer__search input {
     background: transparent;
     border: none;
-    color: var(--pw-white);
+    color: var(--pw-navy);
     padding: 8px 12px;
     font-size: 1rem;
     outline: none;
 }
 
 .pw-footer__search input::placeholder {
-    color: rgba(255,255,255,0.5);
+    color: var(--pw-dark-gray);
 }
 
 .pw-footer__search button {
-    background: var(--pw-gold);
+    background: var(--pw-white);
     border: none;
     padding: 8px 12px;
     cursor: pointer;
-    color: var(--pw-navy);
+    color: var(--pw-light-blue);
+    display: flex;
+    align-items: center;
 }
 
 .pw-footer__bottom {
@@ -599,6 +637,10 @@ h2::after {
 }
 
 @media (max-width: 768px) {
+    .pw-footer__bg-image {
+        display: none;
+    }
+
     .pw-footer__inner {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1803,6 +1845,87 @@ h2::after {
 }
 
 /* ==========================================================================
+   Two Column Engage Section
+   ========================================================================== */
+.pw-engage {
+    position: relative;
+    background-color: #eef2fb;
+}
+
+.pw-engage__section-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.pw-engage__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.pw-engage__title {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.pw-engage__title::after {
+    content: '';
+    display: block;
+    width: 10rem;
+    height: 4px;
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
+    margin-top: 14px;
+}
+
+.pw-engage__content {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--pw-dark-gray);
+}
+
+.pw-engage__content p {
+    margin-bottom: 16px;
+}
+
+.pw-engage__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.pw-engage__center-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+@media (max-width: 768px) {
+    .pw-engage__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .pw-engage__title::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .pw-engage__buttons {
+        justify-content: center;
+    }
+}
+
+/* ==========================================================================
    CTA Section (Advocacy Page)
    ========================================================================== */
 .pw-cta {
@@ -2204,6 +2327,19 @@ h2::after {
     font-size: 0.7rem;
 }
 
+/* Kill browser markers (including default circle bullets on nested
+   lists pasted into the WYSIWYG text field) so only the custom
+   arrow shows, at any nesting depth. */
+.pw-expectations__list li::marker {
+    content: none;
+}
+
+.pw-expectations__list ul {
+    list-style: none;
+    padding-left: 20px;
+    margin: 8px 0 0;
+}
+
 @media (max-width: 768px) {
     .pw-expectations__block {
         padding: 28px 24px;
@@ -2458,11 +2594,33 @@ h2::after {
 }
 
 .pw-quote__block {
+    position: relative;
     max-width: 860px;
     margin: 0 auto;
     text-align: center;
-    border: none;
-    padding: 0;
+    background: var(--pw-white);
+    border: 1px solid rgba(64, 126, 201, 0.2);
+    border-radius: var(--pw-radius-lg);
+    padding: 40px 48px;
+}
+
+.pw-quote__avatar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--pw-white);
+    box-shadow: var(--pw-shadow-md);
+}
+
+.pw-quote__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .pw-quote__text {
@@ -2493,6 +2651,18 @@ h2::after {
     color: var(--pw-dark-gray);
     display: block;
     margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+    .pw-quote__block {
+        padding: 32px 24px;
+    }
+
+    .pw-quote__avatar {
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 /* ==========================================================================

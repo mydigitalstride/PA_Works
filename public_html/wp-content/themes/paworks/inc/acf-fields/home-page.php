@@ -646,6 +646,15 @@ add_action( 'acf/init', function() {
                                 'type'  => 'text',
                                 'instructions' => 'Attribution name displayed below the quote in bold.',
                             ),
+                            array(
+                                'key'           => 'field_home_quote_avatar',
+                                'label'         => 'Avatar Image',
+                                'name'          => 'quote_avatar',
+                                'type'          => 'image',
+                                'return_format' => 'array',
+                                'preview_size'  => 'thumbnail',
+                                'instructions'  => 'Optional circular photo/icon shown overlapping the top-left corner of the quote box.',
+                            ),
                         ),
                     ),
 

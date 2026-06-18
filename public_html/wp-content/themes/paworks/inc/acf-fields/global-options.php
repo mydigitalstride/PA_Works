@@ -79,6 +79,16 @@ add_action( 'acf/init', function() {
                 'preview_size'  => 'medium',
                 'instructions'  => 'Upload a light/white version of the logo for the dark footer background.',
             ),
+            // Background Image
+            array(
+                'key'           => 'field_footer_background_image',
+                'label'         => 'Footer Background Image',
+                'name'          => 'footer_background_image',
+                'type'          => 'image',
+                'return_format' => 'array',
+                'preview_size'  => 'medium',
+                'instructions'  => 'Optional image displayed on the right side of the footer background.',
+            ),
             // Email
             array(
                 'key'           => 'field_footer_email',
