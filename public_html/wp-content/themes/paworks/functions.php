@@ -109,6 +109,7 @@ function paworks_acf_options_pages() {
         acf_add_options_sub_page( array(
             'page_title'    => 'Header Settings',
             'menu_title'    => 'Header',
+            'menu_slug'     => 'paworks-settings-header',
             'parent_slug'   => 'paworks-settings',
         ) );
 
@@ -116,6 +117,7 @@ function paworks_acf_options_pages() {
         acf_add_options_sub_page( array(
             'page_title'    => 'Footer Settings',
             'menu_title'    => 'Footer',
+            'menu_slug'     => 'paworks-settings-footer',
             'parent_slug'   => 'paworks-settings',
         ) );
 
@@ -123,6 +125,7 @@ function paworks_acf_options_pages() {
         acf_add_options_sub_page( array(
             'page_title'    => 'Announcement Bar',
             'menu_title'    => 'Announcement Bar',
+            'menu_slug'     => 'paworks-settings-announcement-bar',
             'parent_slug'   => 'paworks-settings',
         ) );
 
@@ -130,6 +133,7 @@ function paworks_acf_options_pages() {
         acf_add_options_sub_page( array(
             'page_title'    => 'News Archive Settings',
             'menu_title'    => 'News Archive',
+            'menu_slug'     => 'paworks-settings-news-archive',
             'parent_slug'   => 'paworks-settings',
         ) );
     }
