@@ -1238,10 +1238,15 @@ h2::after {
    ========================================================================== */
 .pw-team {
     position: relative;
-    padding: var(--pw-section-padding);
+    padding: 2rem;
     overflow: hidden;
     /* Gradient is the base background */
     background: var(--pw-gradient-lightblue-navy);
+    width: 80vw;
+    border-radius: 30px;
+    align-self: center;
+    justify-self: anchor-center;
+    margin: 40px;
 }
 
 /* Full-bleed bg image overlays the gradient at low opacity */
@@ -1323,7 +1328,7 @@ h2::after {
 
 .pw-team__name {
     font-family: var(--pw-font-heading);
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--pw-white);
     margin-bottom: 4px;
