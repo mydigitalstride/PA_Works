@@ -181,6 +181,69 @@ function paworks_include_acf_fields() {
 add_action( 'init', 'paworks_include_acf_fields', 1 );
 
 /**
+ * Remove stale DB-synced copies of our local field groups.
+ *
+ * ACF lets a field group be "synced" from PHP/Local JSON into real
+ * acf-field-group / acf-field posts via the admin UI. Once that happens,
+ * ACF treats the DB copy as authoritative for that key forever — PHP
+ * edits (new layouts, new fields) stop appearing because they're never
+ * read again. This trashes any DB copy whose post_name matches one of
+ * our theme's local field-group keys, so ACF falls back to the live PHP
+ * registration. Runs once per set of local keys (tracked via an option
+ * storing a hash) so editing the PHP files keeps things in sync without
+ * any manual wp-admin steps.
+ */
+function paworks_purge_synced_acf_field_groups() {
+    if ( ! function_exists( 'acf_get_local_field_groups' ) ) {
+        return;
+    }
+
+    $local_groups = acf_get_local_field_groups();
+    $local_keys   = wp_list_pluck( $local_groups, 'key' );
+    sort( $local_keys );
+
+    $hash = md5( implode( ',', $local_keys ) );
+    if ( get_option( 'paworks_acf_sync_purge_hash' ) === $hash ) {
+        return;
+    }
+
+    foreach ( $local_keys as $key ) {
+        $group_post = get_page_by_path( $key, OBJECT, 'acf-field-group' );
+        if ( ! $group_post ) {
+            continue;
+        }
+
+        paworks_delete_acf_field_posts_recursive( $group_post->ID );
+        wp_delete_post( $group_post->ID, true );
+    }
+
+    update_option( 'paworks_acf_sync_purge_hash', $hash );
+}
+// Hooked on 'acf/init' (not 'init') at a late priority so it runs after
+// every local field group above has actually registered itself.
+add_action( 'acf/init', 'paworks_purge_synced_acf_field_groups', 999 );
+
+/**
+ * Recursively delete all acf-field posts nested under a given parent post
+ * (field-group post or another field post). ACF nests sub-fields by
+ * post_parent chains, so this walks every depth level.
+ */
+function paworks_delete_acf_field_posts_recursive( $parent_id ) {
+    $child_ids = get_posts( array(
+        'post_parent'    => $parent_id,
+        'post_type'      => 'acf-field',
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+        'post_status'    => 'any',
+    ) );
+
+    foreach ( $child_ids as $child_id ) {
+        paworks_delete_acf_field_posts_recursive( $child_id );
+        wp_delete_post( $child_id, true );
+    }
+}
+
+/**
  * ACF Extended: PHP save path
  *
  * Points ACFE to the theme's /acfe-php directory so it can save PHP exports
