@@ -1394,10 +1394,9 @@ h2::after {
 }
 
 .pw-mission__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 48px;
-    align-items: start;
 }
 
 .pw-mission__text {
@@ -1412,8 +1411,14 @@ h2::after {
 
 .pw-mission__boxes {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 24px;
+}
+
+.pw-mission__boxes .pw-bullet-card {
+    flex: 1 1 0;
+    min-width: 280px;
 }
 
 /* Legacy box styles (kept for backward compatibility) */
