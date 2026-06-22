@@ -669,7 +669,7 @@ add_action( 'acf/init', function() {
                                 'type'         => 'repeater',
                                 'layout'       => 'block',
                                 'min'          => 1,
-                                'max'          => 30,
+                                'max'          => 60,
                                 'button_label' => 'Add Sponsor',
                                 'sub_fields'   => array(
                                     array(

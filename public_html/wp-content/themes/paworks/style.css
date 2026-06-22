@@ -2659,7 +2659,7 @@ h2::after {
     display: flex;
     gap: 24px;
     width: max-content;
-    animation: pw-sponsors-scroll 40s linear infinite;
+    animation: pw-sponsors-scroll 48s linear infinite;
 }
 
 .pw-sponsors__track:hover {
