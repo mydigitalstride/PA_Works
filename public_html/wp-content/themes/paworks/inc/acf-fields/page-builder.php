@@ -65,7 +65,7 @@ add_action( 'acf/init', function() {
                             array( 'key' => 'field_pb_hero_bg_image',   'label' => 'Background Image',  'name' => 'background_image', 'type' => 'image',    'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Recommended: 1920×800px.' ),
                             array( 'key' => 'field_pb_hero_subheader',  'label' => 'Sub Header',        'name' => 'sub_header',       'type' => 'text',     'instructions' => 'Small label above the heading.' ),
                             array( 'key' => 'field_pb_hero_header',     'label' => 'Header',            'name' => 'header',           'type' => 'text' ),
-                            array( 'key' => 'field_pb_hero_body',       'label' => 'Body Text',         'name' => 'body_text',        'type' => 'textarea', 'rows' => 3, 'new_lines' => 'br' ),
+                            array( 'key' => 'field_pb_hero_body',       'label' => 'Body Text',         'name' => 'body_text',        'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'basic', 'media_upload' => 0 ),
                             array( 'key' => 'field_pb_hero_btn_text',   'label' => 'Button Text',       'name' => 'button_text',      'type' => 'text' ),
                             array( 'key' => 'field_pb_hero_btn_url',    'label' => 'Button URL',        'name' => 'button_url',       'type' => 'url' ),
                             array( 'key' => 'field_pb_hero_btn_target', 'label' => 'Open in New Tab',   'name' => 'button_target',    'type' => 'true_false', 'default_value' => 0, 'ui' => 1 ),
