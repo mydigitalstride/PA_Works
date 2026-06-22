@@ -910,11 +910,16 @@ h2::after {
    What We Do Section
    ========================================================================== */
 .pw-whatwedo {
-    padding: var(--pw-section-padding);
+    padding: 2rem;
     background: var(--pw-gradient-navy-lightblue);
     color: var(--pw-white);
     position: relative;
     overflow: hidden;
+    width: 80vw;
+    border-radius: 30px;
+    align-self: center;
+    justify-self: anchor-center;
+    margin: 40px;
 }
 
 .pw-whatwedo .pw-section-bg {
@@ -987,7 +992,7 @@ h2::after {
 .pw-whatwedo__accordion-item {
     border-radius: var(--pw-radius-md);
     overflow: hidden;
-    background: var(--pw-sky);
+    background: #d7dbda;
     transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -1233,10 +1238,15 @@ h2::after {
    ========================================================================== */
 .pw-team {
     position: relative;
-    padding: var(--pw-section-padding);
+    padding: 2rem;
     overflow: hidden;
     /* Gradient is the base background */
     background: var(--pw-gradient-lightblue-navy);
+    width: 80vw;
+    border-radius: 30px;
+    align-self: center;
+    justify-self: anchor-center;
+    margin: 40px;
 }
 
 /* Full-bleed bg image overlays the gradient at low opacity */
@@ -1318,7 +1328,7 @@ h2::after {
 
 .pw-team__name {
     font-family: var(--pw-font-heading);
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--pw-white);
     margin-bottom: 4px;
@@ -1389,10 +1399,9 @@ h2::after {
 }
 
 .pw-mission__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 48px;
-    align-items: start;
 }
 
 .pw-mission__text {
@@ -1407,8 +1416,14 @@ h2::after {
 
 .pw-mission__boxes {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 24px;
+}
+
+.pw-mission__boxes .pw-bullet-card {
+    flex: 1 1 0;
+    min-width: 280px;
 }
 
 /* Legacy box styles (kept for backward compatibility) */
