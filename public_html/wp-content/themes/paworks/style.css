@@ -53,7 +53,7 @@ Text Domain: paworks
     --pw-font-body: 'Source Sans 3', 'Source Sans Pro', sans-serif;
 
     /* Spacing */
-    --pw-section-padding: 80px 0;
+    --pw-section-padding: 40px 0;
     --pw-container-width: 1200px;
     --pw-container-padding: 0 24px;
 
@@ -2623,6 +2623,120 @@ h2::after {
     color: var(--pw-dark-gray);
     position: relative;
     z-index: 1;
+}
+
+/* ==========================================================================
+   Sponsors Carousel Section
+   ========================================================================== */
+.pw-sponsors__title {
+    font-size: 2.25rem;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.pw-sponsors__title::after {
+    content: '';
+    display: block;
+    width: 13rem;
+    height: 6px;
+    background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
+    margin-top: 16px;
+}
+
+.pw-sponsors__body {
+    font-size: 0.95rem;
+    color: var(--pw-dark-gray);
+    max-width: 700px;
+    margin-bottom: 40px;
+}
+
+.pw-sponsors__carousel {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.pw-sponsors__track {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    animation: pw-sponsors-scroll 40s linear infinite;
+}
+
+.pw-sponsors__track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes pw-sponsors-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.pw-sponsors__card {
+    flex: 0 0 200px;
+    height: 200px;
+    perspective: 1200px;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.pw-sponsors__card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+}
+
+.pw-sponsors__card:hover .pw-sponsors__card-inner,
+.pw-sponsors__card:focus-visible .pw-sponsors__card-inner {
+    transform: rotateY(180deg);
+}
+
+.pw-sponsors__card-front,
+.pw-sponsors__card-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: var(--pw-radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.pw-sponsors__card-front {
+    background: var(--pw-sky);
+}
+
+.pw-sponsors__card-front img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.pw-sponsors__card-back {
+    background: var(--pw-gradient-lightblue-navy);
+    transform: rotateY(180deg);
+    text-align: center;
+}
+
+.pw-sponsors__card-back span {
+    font-family: var(--pw-font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--pw-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pw-sponsors__track {
+        animation: none;
+    }
 }
 
 /* ==========================================================================

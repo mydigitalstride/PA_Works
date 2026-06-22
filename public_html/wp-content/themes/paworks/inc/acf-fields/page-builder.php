@@ -628,6 +628,36 @@ add_action( 'acf/init', function() {
                     ),
 
                     // =================================================================
+                    // Sponsors Carousel Section
+                    // =================================================================
+                    'layout_pb_sponsors' => array(
+                        'key'        => 'layout_pb_sponsors',
+                        'name'       => 'sponsors_section',
+                        'label'      => 'Sponsors Carousel (Flip Cards)',
+                        'display'    => 'block',
+                        'sub_fields' => array(
+                            array( 'key' => 'field_pb_sponsors_subheader', 'label' => 'Sub Header', 'name' => 'sub_header', 'type' => 'text', 'default_value' => 'OUR SPONSORS', 'instructions' => 'Small label above the heading.' ),
+                            array( 'key' => 'field_pb_sponsors_header',    'label' => 'Header',     'name' => 'header',     'type' => 'text', 'default_value' => 'THANK FOR THE SUPPORT OF:' ),
+                            array( 'key' => 'field_pb_sponsors_body',      'label' => 'Body Text',  'name' => 'body_text',  'type' => 'textarea', 'rows' => 2, 'instructions' => 'Text displayed above the carousel.' ),
+                            array(
+                                'key'          => 'field_pb_sponsors_items',
+                                'label'        => 'Sponsors',
+                                'name'         => 'sponsors',
+                                'type'         => 'repeater',
+                                'layout'       => 'block',
+                                'min'          => 1,
+                                'max'          => 30,
+                                'button_label' => 'Add Sponsor',
+                                'sub_fields'   => array(
+                                    array( 'key' => 'field_pb_sponsor_logo',    'label' => 'Logo',         'name' => 'logo',    'type' => 'image', 'return_format' => 'array', 'preview_size' => 'thumbnail' ),
+                                    array( 'key' => 'field_pb_sponsor_company', 'label' => 'Company Name', 'name' => 'company', 'type' => 'text' ),
+                                    array( 'key' => 'field_pb_sponsor_url',     'label' => 'URL',          'name' => 'url',     'type' => 'url', 'instructions' => 'Opens in a new tab when the card is clicked.' ),
+                                ),
+                            ),
+                        ),
+                    ),
+
+                    // =================================================================
                     // Quote Section
                     // =================================================================
                     'layout_pb_quote' => array(
