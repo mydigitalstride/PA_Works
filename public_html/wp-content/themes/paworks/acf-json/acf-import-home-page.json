@@ -320,6 +320,14 @@
                                         "label": "Label",
                                         "name": "label",
                                         "type": "text"
+                                    },
+                                    {
+                                        "key": "field_home_impact_stat_description",
+                                        "label": "Accordion Description",
+                                        "name": "description",
+                                        "type": "textarea",
+                                        "rows": 2,
+                                        "instructions": "Optional text revealed when this stat is expanded."
                                     }
                                 ]
                             }

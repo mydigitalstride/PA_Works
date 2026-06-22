@@ -57,24 +57,36 @@ $bg_position   = get_sub_field( 'bg_image_position' ) ?: 'center';
 
         <?php if ( $stats ) : ?>
             <div class="pw-impact__stats">
-                <?php foreach ( $stats as $stat ) : ?>
-                    <div class="pw-impact__stat">
-                        <?php if ( ! empty( $stat['icon'] ) ) : ?>
-                            <div class="pw-impact__stat-icon">
-                                <img src="<?php echo esc_url( $stat['icon']['url'] ); ?>"
-                                     alt="<?php echo esc_attr( $stat['icon']['alt'] ); ?>">
+                <?php foreach ( $stats as $index => $stat ) :
+                    $stat_id = 'impact-stat-' . $index;
+                ?>
+                    <div class="pw-impact__stat" data-accordion>
+                        <button class="pw-impact__stat-trigger"
+                                aria-expanded="false"
+                                aria-controls="<?php echo esc_attr( $stat_id ); ?>">
+                            <?php if ( ! empty( $stat['icon'] ) ) : ?>
+                                <div class="pw-impact__stat-icon">
+                                    <img src="<?php echo esc_url( $stat['icon']['url'] ); ?>"
+                                         alt="<?php echo esc_attr( $stat['icon']['alt'] ); ?>">
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="pw-impact__stat-content">
+                                <?php if ( ! empty( $stat['number'] ) ) : ?>
+                                    <div class="pw-impact__stat-number"><?php echo esc_html( $stat['number'] ); ?></div>
+                                <?php endif; ?>
+
+                                <?php if ( ! empty( $stat['label'] ) ) : ?>
+                                    <div class="pw-impact__stat-label"><?php echo esc_html( $stat['label'] ); ?></div>
+                                <?php endif; ?>
+                            </div>
+                        </button>
+
+                        <?php if ( ! empty( $stat['description'] ) ) : ?>
+                            <div class="pw-impact__stat-body" id="<?php echo esc_attr( $stat_id ); ?>" role="region">
+                                <?php echo esc_html( $stat['description'] ); ?>
                             </div>
                         <?php endif; ?>
-
-                        <div class="pw-impact__stat-content">
-                            <?php if ( ! empty( $stat['number'] ) ) : ?>
-                                <div class="pw-impact__stat-number"><?php echo esc_html( $stat['number'] ); ?></div>
-                            <?php endif; ?>
-
-                            <?php if ( ! empty( $stat['label'] ) ) : ?>
-                                <div class="pw-impact__stat-label"><?php echo esc_html( $stat['label'] ); ?></div>
-                            <?php endif; ?>
-                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>

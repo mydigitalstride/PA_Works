@@ -51,12 +51,12 @@
     }
 
     /**
-     * What We Do — Accordion
+     * What We Do / Impact — Accordion
      * All items start closed (max-height: 0 in CSS).
      * Clicking a trigger toggles the is-open class; siblings are always closed first.
      */
     document.querySelectorAll('[data-accordion]').forEach(function(item) {
-        const trigger = item.querySelector('.pw-whatwedo__accordion-trigger, .pw-strategies__accordion-trigger');
+        const trigger = item.querySelector('.pw-whatwedo__accordion-trigger, .pw-strategies__accordion-trigger, .pw-impact__stat-trigger');
 
         if (!trigger) return;
 

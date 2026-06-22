@@ -140,7 +140,8 @@
                                 "sub_fields":[
                                     {"key":"field_about_impact_stat_icon","label":"Icon","name":"icon","type":"image","return_format":"array","preview_size":"thumbnail"},
                                     {"key":"field_about_impact_stat_number","label":"Number","name":"number","type":"text"},
-                                    {"key":"field_about_impact_stat_label","label":"Label","name":"label","type":"text"}
+                                    {"key":"field_about_impact_stat_label","label":"Label","name":"label","type":"text"},
+                                    {"key":"field_about_impact_stat_description","label":"Accordion Description","name":"description","type":"textarea","rows":2,"instructions":"Optional text revealed when this stat is expanded."}
                                 ]
                             }
                         ]
