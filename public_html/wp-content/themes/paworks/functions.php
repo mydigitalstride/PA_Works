@@ -137,6 +137,19 @@ function paworks_acf_options_pages() {
 add_action( 'acf/init', 'paworks_acf_options_pages' );
 
 /**
+ * Disable ACF Local JSON loading.
+ *
+ * Every field group in this theme is defined in PHP under
+ * inc/acf-fields/. The acf-json/ folder contains stale exports that
+ * silently override the PHP definitions whenever a group shares the
+ * same key (ACF always lets Local JSON win over PHP-registered
+ * groups), which is why layout/field changes made in PHP have
+ * stopped showing up in the admin. PHP is the single source of
+ * truth, so JSON loading is disabled entirely.
+ */
+add_filter( 'acf/settings/load_json', '__return_empty_array' );
+
+/**
  * Include ACF Field Registrations
  * Loaded on init so the acf/init hooks inside each file can fire.
  */
