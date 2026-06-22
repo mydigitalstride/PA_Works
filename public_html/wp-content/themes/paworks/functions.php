@@ -125,6 +125,13 @@ function paworks_acf_options_pages() {
             'menu_title'    => 'Announcement Bar',
             'parent_slug'   => 'paworks-settings',
         ) );
+
+        // News Archive sub-page
+        acf_add_options_sub_page( array(
+            'page_title'    => 'News Archive Settings',
+            'menu_title'    => 'News Archive',
+            'parent_slug'   => 'paworks-settings',
+        ) );
     }
 }
 add_action( 'acf/init', 'paworks_acf_options_pages' );
@@ -155,7 +162,10 @@ function paworks_include_acf_fields() {
         }
     }
 }
-add_action( 'init', 'paworks_include_acf_fields' );
+// Priority 1 so these run before ACF's own 'init' (priority 5) fires the
+// 'acf/init' action — otherwise the add_action( 'acf/init', ... ) calls
+// inside these files register too late and never execute.
+add_action( 'init', 'paworks_include_acf_fields', 1 );
 
 /**
  * ACF Extended: PHP save path

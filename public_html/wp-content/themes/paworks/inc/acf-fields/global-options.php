@@ -230,4 +230,101 @@ add_action( 'acf/init', function() {
         'menu_order' => 0,
     ) );
 
+    // =========================================================================
+    // NEWS ARCHIVE SETTINGS
+    // =========================================================================
+    acf_add_local_field_group( array(
+        'key'      => 'group_news_archive_settings',
+        'title'    => 'News Archive Settings',
+        'fields'   => array(
+            array(
+                'key'   => 'field_news_archive_tab_header',
+                'label' => 'Header',
+                'name'  => '',
+                'type'  => 'tab',
+            ),
+            array(
+                'key'           => 'field_news_archive_background_image',
+                'label'         => 'Background Image',
+                'name'          => 'news_archive_background_image',
+                'type'          => 'image',
+                'return_format' => 'array',
+                'preview_size'  => 'medium',
+            ),
+            array(
+                'key'           => 'field_news_archive_sub_header',
+                'label'         => 'Sub Header',
+                'name'          => 'news_archive_sub_header',
+                'type'          => 'text',
+                'default_value' => "WHAT'S HAPPENING IN PA?",
+            ),
+            array(
+                'key'           => 'field_news_archive_header',
+                'label'         => 'Header',
+                'name'          => 'news_archive_header',
+                'type'          => 'text',
+                'default_value' => 'NEWS',
+            ),
+            array(
+                'key'   => 'field_news_archive_body_text',
+                'label' => 'Body Text',
+                'name'  => 'news_archive_body_text',
+                'type'  => 'textarea',
+                'rows'  => 3,
+            ),
+            array(
+                'key'           => 'field_news_archive_button_text',
+                'label'         => 'Button Text',
+                'name'          => 'news_archive_button_text',
+                'type'          => 'text',
+                'default_value' => 'Partner with PWDA',
+            ),
+            array(
+                'key'   => 'field_news_archive_button_url',
+                'label' => 'Button URL',
+                'name'  => 'news_archive_button_url',
+                'type'  => 'url',
+            ),
+            array(
+                'key'           => 'field_news_archive_button_target',
+                'label'         => 'Open Button Link in New Tab',
+                'name'          => 'news_archive_button_target',
+                'type'          => 'true_false',
+                'ui'            => 1,
+                'default_value' => 0,
+            ),
+            array(
+                'key'   => 'field_news_archive_tab_mailing_list',
+                'label' => 'Mailing List CTA',
+                'name'  => '',
+                'type'  => 'tab',
+            ),
+            array(
+                'key'           => 'field_news_archive_mailing_list_text',
+                'label'         => 'Button Text',
+                'name'          => 'news_archive_mailing_list_text',
+                'type'          => 'text',
+                'default_value' => 'Stay Informed',
+                'instructions'  => 'Button shown at the bottom of the News archive, below pagination.',
+            ),
+            array(
+                'key'   => 'field_news_archive_mailing_list_url',
+                'label' => 'Button URL',
+                'name'  => 'news_archive_mailing_list_url',
+                'type'  => 'url',
+                'instructions' => 'Link to your mailing list signup form.',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param'    => 'options_page',
+                    'operator' => '==',
+                    'value'    => 'paworks-settings-news-archive',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+    ) );
+
 } );
