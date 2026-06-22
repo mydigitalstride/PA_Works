@@ -27,16 +27,26 @@ if ( ! $content_lists ) {
 
                 <?php if ( ! empty( $list['items'] ) ) : ?>
                     <ul class="pw-expectations__list">
-                        <?php foreach ( $list['items'] as $item ) : ?>
-                            <li>
-                                <?php
-                                $text = $item['text'];
-                                // Support both plain textarea and wysiwyg values
-                                echo ( strpos( $text, '<' ) !== false )
-                                    ? wp_kses_post( $text )
-                                    : esc_html( $text );
+                        <?php foreach ( $list['items'] as $item ) :
+                            $text = trim( $item['text'] );
+
+                            // If an editor pasted/typed an entire <ul>/<ol> into one
+                            // item's WYSIWYG field, unwrap it so its <li> children
+                            // become direct children of pw-expectations__list instead
+                            // of nesting a list inside this item's own <li>.
+                            if ( preg_match( '/^<(ul|ol)[^>]*>(.*)<\/\1>$/is', $text, $matches ) ) :
+                                echo wp_kses_post( $matches[2] );
+                            else :
                                 ?>
-                            </li>
+                                <li>
+                                    <?php
+                                    // Support both plain textarea and wysiwyg values
+                                    echo ( strpos( $text, '<' ) !== false )
+                                        ? wp_kses_post( $text )
+                                        : esc_html( $text );
+                                    ?>
+                                </li>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>
