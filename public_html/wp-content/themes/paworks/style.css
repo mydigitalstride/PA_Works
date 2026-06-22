@@ -198,6 +198,10 @@ h2::after {
     margin-top: 16px;
 }
 
+.pw-hero__title::after {
+    display: none;
+}
+
 /* ==========================================================================
    Layout
    ========================================================================== */
@@ -1798,6 +1802,11 @@ h2::after {
 }
 
 /* Strategies Accordion */
+.pw-strategies__accordion-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+}
+
 .pw-strategies__accordion {
     margin-bottom: 24px;
     display: flex;

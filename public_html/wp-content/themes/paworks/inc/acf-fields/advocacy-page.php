@@ -120,6 +120,14 @@ add_action( 'acf/init', function() {
                                 'toolbar'    => 'basic',
                                 'media_upload' => 0,
                             ),
+                            // Title displayed above the accordion (e.g., "CURRENT POLICY PRIORITIES")
+                            array(
+                                'key'   => 'field_adv_cs_accordion_header',
+                                'label' => 'Accordion Title',
+                                'name'  => 'accordion_header',
+                                'type'  => 'text',
+                                'instructions' => 'e.g., "CURRENT POLICY PRIORITIES". Displayed above the accordion items.',
+                            ),
                             // Accordion items below body text
                             array(
                                 'key'          => 'field_adv_cs_accordion',
