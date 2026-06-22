@@ -288,7 +288,7 @@ h2::after {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: var(--pw-navy);
+    background-color: #0c335a;
     box-shadow: var(--pw-shadow-sm);
 }
 
@@ -927,7 +927,7 @@ h2::after {
 }
 
 .pw-whatwedo .pw-section-bg {
-    opacity: 0.35;
+    opacity: 0.05;
 }
 
 /* Decorative overlay / watermark image */
@@ -2851,7 +2851,6 @@ h2::after {
     list-style: none;
     margin: 0;
     padding: 0;
-    max-width: 800px;
 }
 
 .pw-archive__post {
