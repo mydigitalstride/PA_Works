@@ -29,6 +29,14 @@ add_action( 'acf/init', function() {
                 'name'         => 'page_sections',
                 'type'         => 'flexible_content',
                 'button_label' => 'Add Section',
+                'acfe_flexible_layouts_thumbnails' => true,
+                'acfe_flexible_modal'              => array(
+                    'acfe_flexible_modal_enabled'    => true,
+                    'acfe_flexible_modal_title'      => 'Select a Section',
+                    'acfe_flexible_modal_size'       => 'xlarge',
+                    'acfe_flexible_modal_col'        => '4',
+                    'acfe_flexible_modal_categories'  => false,
+                ),
                 'layouts'      => array(
 
                     // =================================================================
