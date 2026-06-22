@@ -29,6 +29,28 @@ add_action( 'acf/init', function() {
                 'name'         => 'page_sections',
                 'type'         => 'flexible_content',
                 'button_label' => 'Add Section',
+                'acfe_flexible_advanced'            => true,
+                'acfe_flexible_stylised_button'     => true,
+                'acfe_flexible_layouts_templates'   => true,
+                'acfe_flexible_layouts_previews'    => true,
+                'acfe_flexible_layouts_thumbnails'  => true,
+                'acfe_flexible_modal_edit'          => array(
+                    'acfe_flexible_modal_edit_enabled' => true,
+                    'acfe_flexible_modal_edit_size'    => 'large',
+                ),
+                'acfe_flexible_modal'               => array(
+                    'acfe_flexible_modal_enabled'    => true,
+                    'acfe_flexible_modal_title'      => false,
+                    'acfe_flexible_modal_size'       => 'xlarge',
+                    'acfe_flexible_modal_col'        => '4',
+                    'acfe_flexible_modal_categories' => false,
+                ),
+                'acfe_flexible_modal_settings'       => array(
+                    'acfe_flexible_modal_settings_enabled'     => true,
+                    'acfe_flexible_modal_settings_size'        => 'large',
+                    'acfe_flexible_modal_settings_close'       => true,
+                    'acfe_flexible_modal_settings_close_label' => '',
+                ),
                 'layouts'      => array(
 
                     // =================================================================
