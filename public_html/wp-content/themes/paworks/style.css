@@ -198,6 +198,10 @@ h2::after {
     margin-top: 16px;
 }
 
+.pw-hero__title::after {
+    display: none;
+}
+
 /* ==========================================================================
    Layout
    ========================================================================== */
@@ -1798,6 +1802,11 @@ h2::after {
 }
 
 /* Strategies Accordion */
+.pw-strategies__accordion-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+}
+
 .pw-strategies__accordion {
     margin-bottom: 24px;
     display: flex;
@@ -2100,7 +2109,7 @@ h2::after {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--pw-white);
+    color: var(--pw-blue);
     margin-bottom: 20px;
 }
 
@@ -2118,7 +2127,7 @@ h2::after {
     gap: 10px;
     font-size: 1rem;
     font-weight: 500;
-    color: var(--pw-white);
+    color: var(--pw-blue);
     transition: opacity 0.2s ease;
 }
 
@@ -2674,7 +2683,7 @@ h2::after {
     display: flex;
     gap: 24px;
     width: max-content;
-    animation: pw-sponsors-scroll 48s linear infinite;
+    animation: pw-sponsors-scroll 67.2s linear infinite;
 }
 
 .pw-sponsors__track:hover {

@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $sub_header      = get_sub_field( 'sub_header' );
 $header          = get_sub_field( 'header' );
 $body_text       = get_sub_field( 'body_text' );
+$accordion_header = get_sub_field( 'accordion_header' );
 $accordion_items = get_sub_field( 'accordion_items' );
 $btn_text        = get_sub_field( 'button_text' );
 $btn_url         = get_sub_field( 'button_url' );
@@ -56,6 +57,9 @@ if ( ! empty( $list_bg_image['url'] ) ) {
                 <?php endif; ?>
 
                 <?php if ( ! empty( $accordion_items ) ) : ?>
+                    <?php if ( $accordion_header ) : ?>
+                        <h3 class="pw-strategies__accordion-title"><?php echo esc_html( $accordion_header ); ?></h3>
+                    <?php endif; ?>
                     <div class="pw-strategies__accordion">
                         <?php foreach ( $accordion_items as $index => $item ) : ?>
                             <div class="pw-strategies__accordion-item" data-accordion>
