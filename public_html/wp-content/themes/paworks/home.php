@@ -13,7 +13,11 @@
 
 get_header();
 
-$bg_image   = get_field( 'news_archive_background_image', 'option' );
+$posts_page_id  = get_option( 'page_for_posts' );
+$featured_image = $posts_page_id ? get_the_post_thumbnail_url( $posts_page_id, 'full' ) : false;
+$bg_image       = get_field( 'news_archive_background_image', 'option' );
+$bg_url         = $featured_image ? $featured_image : ( $bg_image['url'] ?? '' );
+
 $sub_header = get_field( 'news_archive_sub_header', 'option' );
 $header     = get_field( 'news_archive_header', 'option' );
 $body_text  = get_field( 'news_archive_body_text', 'option' );
@@ -24,7 +28,7 @@ $btn_target = get_field( 'news_archive_button_target', 'option' );
 $mailing_text = get_field( 'news_archive_mailing_list_text', 'option' );
 $mailing_url  = get_field( 'news_archive_mailing_list_url', 'option' );
 
-$bg_style     = $bg_image ? 'background-image: url(' . esc_url( $bg_image['url'] ) . ');' : '';
+$bg_style     = $bg_url ? 'background-image: url(' . esc_url( $bg_url ) . ');' : '';
 $target_attr  = $btn_target ? ' target="_blank" rel="noopener noreferrer"' : '';
 ?>
 

@@ -309,6 +309,18 @@ function paworks_get_section( $layout_name, $page_context = 'home' ) {
 }
 
 /**
+ * Helper: Resolve the Contact page URL
+ *
+ * Looks up the published page with slug "contact" so ACF default
+ * values can link to it without hardcoding a page ID. Falls back to
+ * /contact/ if no such page exists yet.
+ */
+function paworks_get_contact_page_url() {
+    $page = get_page_by_path( 'contact' );
+    return $page ? get_permalink( $page ) : home_url( '/contact/' );
+}
+
+/**
  * Helper: Get button markup from ACF group
  */
 function paworks_get_button( $button_data, $class = 'pw-btn pw-btn--primary' ) {

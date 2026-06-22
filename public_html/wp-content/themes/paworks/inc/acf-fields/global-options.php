@@ -250,6 +250,7 @@ add_action( 'acf/init', function() {
                 'type'          => 'image',
                 'return_format' => 'array',
                 'preview_size'  => 'medium',
+                'instructions'  => 'Fallback only. The News page\'s Featured Image is used as the header background when set.',
             ),
             array(
                 'key'           => 'field_news_archive_sub_header',
@@ -266,11 +267,12 @@ add_action( 'acf/init', function() {
                 'default_value' => 'NEWS',
             ),
             array(
-                'key'   => 'field_news_archive_body_text',
-                'label' => 'Body Text',
-                'name'  => 'news_archive_body_text',
-                'type'  => 'textarea',
-                'rows'  => 3,
+                'key'           => 'field_news_archive_body_text',
+                'label'         => 'Body Text',
+                'name'          => 'news_archive_body_text',
+                'type'          => 'textarea',
+                'rows'          => 3,
+                'default_value' => 'Become a PWDA member to be alerted and updated with all the Pennsylvania Workforce Development Association events and news.',
             ),
             array(
                 'key'           => 'field_news_archive_button_text',
@@ -280,10 +282,11 @@ add_action( 'acf/init', function() {
                 'default_value' => 'Partner with PWDA',
             ),
             array(
-                'key'   => 'field_news_archive_button_url',
-                'label' => 'Button URL',
-                'name'  => 'news_archive_button_url',
-                'type'  => 'url',
+                'key'           => 'field_news_archive_button_url',
+                'label'         => 'Button URL',
+                'name'          => 'news_archive_button_url',
+                'type'          => 'url',
+                'default_value' => paworks_get_contact_page_url(),
             ),
             array(
                 'key'           => 'field_news_archive_button_target',
