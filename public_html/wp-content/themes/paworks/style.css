@@ -126,6 +126,7 @@ a:hover {
 .pw-fellowship-intro__body ul,
 .pw-wioa__body ul,
 .pw-engage__content ul,
+.pw-hero__body ul,
 .entry-content ul {
     list-style: none;
     padding-left: 0;
@@ -139,6 +140,7 @@ a:hover {
 .pw-fellowship-intro__body ul li,
 .pw-wioa__body ul li,
 .pw-engage__content ul li,
+.pw-hero__body ul li,
 .entry-content ul li {
     position: relative;
     padding-left: 28px;
@@ -155,6 +157,7 @@ a:hover {
 .pw-fellowship-intro__body ul li::before,
 .pw-wioa__body ul li::before,
 .pw-engage__content ul li::before,
+.pw-hero__body ul li::before,
 .entry-content ul li::before {
     content: '▶';
     position: absolute;
@@ -172,6 +175,7 @@ a:hover {
 .pw-fellowship-intro__body ul li::marker,
 .pw-wioa__body ul li::marker,
 .pw-engage__content ul li::marker,
+.pw-hero__body ul li::marker,
 .entry-content ul li::marker {
     content: none;
 }
@@ -711,6 +715,7 @@ h2::after {
     color: var(--pw-white);
     margin-bottom: 16px;
     line-height: 1.15;
+    max-width: 60vw;
 }
 
 .pw-hero__body {
@@ -776,24 +781,24 @@ h2::after {
     padding: 24px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: var(--pw-sky);
 }
 
 .pw-card__label {
     font-family: var(--pw-font-heading);
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: var(--pw-light-blue);
+    color: var(--pw-navy);
     margin-bottom: 12px;
 }
 
 .pw-card__title {
     font-family: var(--pw-font-heading);
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--pw-navy);
     margin-bottom: 8px;
 }
@@ -807,9 +812,9 @@ h2::after {
 
 .pw-card__link {
     font-family: var(--pw-font-heading);
-    font-weight: 700;
+    font-weight: 500;
     font-size: 1rem;
-    color: var(--pw-orange);
+    color: var(--pw-navy);
     text-decoration: underline;
 }
 

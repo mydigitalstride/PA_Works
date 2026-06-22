@@ -33,7 +33,7 @@ $target_attr  = $btn_target ? ' target="_blank" rel="noopener noreferrer"' : '';
         <?php endif; ?>
 
         <?php if ( $body_text ) : ?>
-            <p class="pw-hero__body"><?php echo wp_kses_post( $body_text ); ?></p>
+            <div class="pw-hero__body"><?php echo wp_kses_post( $body_text ); ?></div>
         <?php endif; ?>
 
         <?php if ( $btn_text && $btn_url ) : ?>
