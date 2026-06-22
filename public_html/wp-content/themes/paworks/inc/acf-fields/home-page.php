@@ -431,6 +431,14 @@ add_action( 'acf/init', function() {
                                         'type'  => 'text',
                                         'instructions' => 'Description of the stat (e.g., "WORKFORCE DEVELOPMENT BOARDS").',
                                     ),
+                                    array(
+                                        'key'   => 'field_home_impact_stat_description',
+                                        'label' => 'Accordion Description',
+                                        'name'  => 'description',
+                                        'type'  => 'textarea',
+                                        'rows'  => 2,
+                                        'instructions' => 'Optional text revealed when this stat is expanded.',
+                                    ),
                                 ),
                             ),
                             array(
