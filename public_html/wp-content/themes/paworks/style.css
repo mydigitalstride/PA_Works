@@ -1635,12 +1635,14 @@ h2::after {
     margin-bottom: 40px;
     border-radius: var(--pw-radius-lg);
     overflow: hidden;
-    box-shadow: var(--pw-shadow-md);
+    box-shadow: none;
+    text-align: left;
 }
 
 .pw-workforce-system__map img {
-    width: 100%;
-    height: auto;
+    display: block;
+    height: 60vh;
+    object-fit: contain;
 }
 
 .pw-workforce-system__body {

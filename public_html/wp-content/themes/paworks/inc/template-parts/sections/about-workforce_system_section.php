@@ -25,16 +25,16 @@ $body_content = get_sub_field( 'body_content' );
             <h2 class="pw-workforce-system__title"><?php echo esc_html( $header ); ?></h2>
         <?php endif; ?>
 
+        <?php if ( $body_content ) : ?>
+            <div class="pw-workforce-system__body">
+                <?php echo wp_kses_post( $body_content ); ?>
+            </div>
+        <?php endif; ?>
+
         <?php if ( $map_image ) : ?>
             <div class="pw-workforce-system__map">
                 <img src="<?php echo esc_url( $map_image['url'] ); ?>"
                      alt="<?php echo esc_attr( $map_image['alt'] ); ?>">
-            </div>
-        <?php endif; ?>
-
-        <?php if ( $body_content ) : ?>
-            <div class="pw-workforce-system__body">
-                <?php echo wp_kses_post( $body_content ); ?>
             </div>
         <?php endif; ?>
     </div>
