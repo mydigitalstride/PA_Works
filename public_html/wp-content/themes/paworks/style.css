@@ -2821,6 +2821,112 @@ h2::after {
 }
 
 /* ==========================================================================
+   News Archive
+   ========================================================================== */
+.pw-archive__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 800px;
+}
+
+.pw-archive__post {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(27,58,92,0.12);
+}
+
+.pw-archive__post:first-child {
+    padding-top: 0;
+}
+
+.pw-archive__title {
+    display: block;
+    font-family: var(--pw-font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-decoration: none;
+    background: var(--pw-gradient-navy-lightblue);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--pw-navy);
+}
+
+.pw-archive__post:visited .pw-archive__title,
+.pw-archive__title:visited {
+    background: none;
+    -webkit-text-fill-color: var(--pw-gold);
+    color: var(--pw-gold);
+}
+
+.pw-archive__date {
+    display: block;
+    font-family: var(--pw-font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--pw-dark-gray);
+    margin-bottom: 12px;
+}
+
+.pw-archive__excerpt {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--pw-dark-gray);
+    margin: 0;
+}
+
+.pw-archive .pagination,
+.pw-archive .navigation.pagination {
+    margin-top: 40px;
+}
+
+.pw-archive .pagination .nav-links,
+.pw-archive .navigation.pagination .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.pw-archive .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: var(--pw-radius-sm, 6px);
+    font-family: var(--pw-font-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--pw-navy);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pw-archive .page-numbers:hover {
+    background-color: var(--pw-sky);
+}
+
+.pw-archive .page-numbers.current {
+    background-color: var(--pw-gold);
+    color: var(--pw-white);
+}
+
+.pw-archive .page-numbers.dots {
+    background: none;
+}
+
+.pw-archive__mailing-cta {
+    margin-top: 48px;
+    text-align: center;
+}
+
+/* ==========================================================================
    Utility Classes
    ========================================================================== */
 .pw-text-center { text-align: center; }
