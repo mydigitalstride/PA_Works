@@ -2109,7 +2109,7 @@ h2::after {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--pw-white);
+    color: var(--pw-blue);
     margin-bottom: 20px;
 }
 
@@ -2127,7 +2127,7 @@ h2::after {
     gap: 10px;
     font-size: 1rem;
     font-weight: 500;
-    color: var(--pw-white);
+    color: var(--pw-blue);
     transition: opacity 0.2s ease;
 }
 
