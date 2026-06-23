@@ -804,8 +804,6 @@ h2::after {
    Cards Section (Events/News)
    ========================================================================== */
 .pw-cards {
-    padding: var(--pw-section-padding);
-    padding-top: 0;
     background: transparent;
     position: relative;
     z-index: 2;
