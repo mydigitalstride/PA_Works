@@ -723,7 +723,7 @@ h2::after {
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 28px;
-    max-width: 500px;
+    max-width: 50vw;
 }
 
 .pw-hero .pw-btn {
@@ -1411,6 +1411,10 @@ h2::after {
     display: flex;
     flex-direction: column;
     gap: 48px;
+}
+
+.pw-mission__grid:not(:has(.pw-bullet-card__header)) {
+    gap: 0;
 }
 
 .pw-mission__text {
