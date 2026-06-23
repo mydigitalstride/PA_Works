@@ -667,6 +667,10 @@ h2::after {
         text-align: center;
     }
 
+    .pw-footer__logo {
+        justify-self: center;
+    }
+
     .pw-footer__right {
         text-align: center;
         align-items: center;
@@ -1091,6 +1095,7 @@ h2::after {
 @media (max-width: 768px) {
     .pw-whatwedo {
         width: 90vw;
+        padding: 1.5rem;
     }
 
     .pw-whatwedo__inner {
