@@ -35,17 +35,22 @@
             }
         });
 
-        // Tap to expand/collapse sub-menus on mobile (collapsed by default)
+        // Tap-to-expand sub-menus on mobile (collapsed by default).
+        // A dedicated toggle button handles expand/collapse so the parent
+        // link itself stays clickable and navigates normally.
         const navParents = headerNav.querySelectorAll('.menu-item-has-children');
         navParents.forEach(function(item) {
             const link = item.querySelector(':scope > a');
             if (!link) return;
 
-            link.addEventListener('click', function(e) {
-                if (!window.matchMedia('(max-width: 768px)').matches) {
-                    return;
-                }
-                e.preventDefault();
+            const toggle = document.createElement('button');
+            toggle.type = 'button';
+            toggle.className = 'pw-header__submenu-toggle';
+            toggle.setAttribute('aria-label', 'Toggle submenu');
+            toggle.innerHTML = '<span aria-hidden="true">&#9662;</span>';
+            link.insertAdjacentElement('afterend', toggle);
+
+            toggle.addEventListener('click', function() {
                 const isOpen = item.classList.contains('is-open');
                 navParents.forEach(function(sib) {
                     sib.classList.remove('is-open');
