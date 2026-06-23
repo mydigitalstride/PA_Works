@@ -1722,6 +1722,12 @@ h2::after {
     object-fit: contain;
 }
 
+@media (max-width: 768px) {
+    .pw-workforce-system__map img {
+        height: auto;
+    }
+}
+
 .pw-workforce-system__body {
     font-size: 1rem;
     line-height: 1.8;
