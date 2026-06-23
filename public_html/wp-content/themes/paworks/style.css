@@ -1328,6 +1328,17 @@ h2::after {
     margin-bottom: 48px;
 }
 
+@media (max-width: 768px) {
+    .pw-team {
+        width: 95vw;
+        padding: 1.5rem;
+    }
+
+    .pw-team__title {
+        text-align: center;
+    }
+}
+
 .pw-team__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -2730,7 +2741,7 @@ h2::after {
     display: flex;
     gap: 24px;
     width: max-content;
-    animation: pw-sponsors-scroll 67.2s linear infinite;
+    animation: pw-sponsors-scroll 100.8s linear infinite;
 }
 
 .pw-sponsors__track:hover {
