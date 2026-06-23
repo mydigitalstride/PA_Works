@@ -2058,6 +2058,10 @@ h2::after {
     color: var(--pw-dark-gray);
 }
 
+.pw-engage__content li span {
+    text-align: left;
+}
+
 .pw-engage__content p {
     margin-bottom: 16px;
 }
@@ -2201,7 +2205,7 @@ h2::after {
 .pw-wioa__image {
     width: 100%;
     line-height: 0;
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 .pw-wioa__image img {
