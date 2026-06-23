@@ -78,6 +78,7 @@ Text Domain: paworks
 @media (max-width: 768px) {
     :root {
         --pw-container-padding: 0;
+        --pw-section-padding: 40px 5vw;
     }
 }
 
@@ -785,6 +786,12 @@ h2::after {
     max-width: var(--pw-container-width);
     margin: 0 auto;
     padding: var(--pw-container-padding);
+}
+
+@media (max-width: 768px) {
+    .pw-cards__grid {
+        width: 95vw;
+    }
 }
 
 .pw-card {
