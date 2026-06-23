@@ -58,7 +58,7 @@ $signin_url  = get_field( 'header_signin_url', 'option' );
             <?php endif; ?>
         </a>
 
-        <button class="pw-header__toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('is-open')">
+        <button class="pw-header__toggle" aria-label="Toggle navigation">
             <span></span>
             <span></span>
             <span></span>

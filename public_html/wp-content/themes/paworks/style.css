@@ -75,6 +75,12 @@ Text Domain: paworks
     }
 }
 
+@media (max-width: 768px) {
+    :root {
+        --pw-container-padding: 0;
+    }
+}
+
 /* ==========================================================================
    Reset & Base
    ========================================================================== */
@@ -204,6 +210,13 @@ h2::after {
 
 .pw-hero__title::after {
     display: none;
+}
+
+@media (max-width: 768px) {
+    h1::after,
+    h2::after {
+        justify-self: center;
+    }
 }
 
 /* ==========================================================================
@@ -738,6 +751,11 @@ h2::after {
 
     .pw-hero__title {
         font-size: 2rem;
+        max-width: 85vw;
+    }
+
+    .pw-hero__body {
+        max-width: 85vw;
     }
 }
 
@@ -1070,6 +1088,10 @@ h2::after {
 }
 
 @media (max-width: 768px) {
+    .pw-whatwedo {
+        width: 90vw;
+    }
+
     .pw-whatwedo__inner {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -1239,6 +1261,8 @@ h2::after {
     .pw-impact__inner {
         grid-template-columns: 1fr;
         gap: 40px;
+        margin: 0 auto;
+        padding: 0 24px;
     }
 }
 
@@ -1551,6 +1575,11 @@ h2::after {
 @media (max-width: 768px) {
     .pw-mission__grid {
         grid-template-columns: 1fr;
+    }
+
+    .pw-mission__title {
+        max-width: 90vw;
+        justify-self: center;
     }
 }
 
