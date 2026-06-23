@@ -434,12 +434,15 @@ h2::after {
         padding: 10px 0;
     }
     .pw-header__nav .sub-menu {
-        display: block;
+        display: none;
         position: static;
         background: rgba(255,255,255,0.1);
         box-shadow: none;
         border-radius: 0;
         padding: 0 0 0 16px;
+    }
+    .pw-header__nav .menu-item-has-children.is-open > .sub-menu {
+        display: block;
     }
     .pw-header__nav .sub-menu li a {
         color: var(--pw-white);
@@ -494,7 +497,7 @@ h2::after {
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--pw-navy);
+        background: #0c335a;
         flex-direction: column;
         padding: 24px;
         box-shadow: var(--pw-shadow-md);
