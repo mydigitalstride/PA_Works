@@ -434,12 +434,15 @@ h2::after {
         padding: 10px 0;
     }
     .pw-header__nav .sub-menu {
-        display: block;
+        display: none;
         position: static;
         background: rgba(255,255,255,0.1);
         box-shadow: none;
         border-radius: 0;
         padding: 0 0 0 16px;
+    }
+    .pw-header__nav .menu-item-has-children.is-open > .sub-menu {
+        display: block;
     }
     .pw-header__nav .sub-menu li a {
         color: var(--pw-white);
@@ -494,7 +497,7 @@ h2::after {
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--pw-navy);
+        background: #0c335a;
         flex-direction: column;
         padding: 24px;
         box-shadow: var(--pw-shadow-md);
@@ -667,6 +670,10 @@ h2::after {
         text-align: center;
     }
 
+    .pw-footer__logo {
+        justify-self: center;
+    }
+
     .pw-footer__right {
         text-align: center;
         align-items: center;
@@ -763,7 +770,8 @@ h2::after {
    Cards Section (Events/News)
    ========================================================================== */
 .pw-cards {
-    padding: 0 0 var(--pw-section-padding);
+    padding: var(--pw-section-padding);
+    padding-top: 0;
     background: transparent;
     position: relative;
     z-index: 2;
@@ -1090,6 +1098,7 @@ h2::after {
 @media (max-width: 768px) {
     .pw-whatwedo {
         width: 90vw;
+        padding: 1.5rem;
     }
 
     .pw-whatwedo__inner {
@@ -1317,6 +1326,17 @@ h2::after {
     font-size: 2.25rem;
     color: var(--pw-white);
     margin-bottom: 48px;
+}
+
+@media (max-width: 768px) {
+    .pw-team {
+        width: 95vw;
+        padding: 1.5rem;
+    }
+
+    .pw-team__title {
+        text-align: center;
+    }
 }
 
 .pw-team__grid {
@@ -1700,6 +1720,12 @@ h2::after {
     display: block;
     height: 60vh;
     object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .pw-workforce-system__map img {
+        height: auto;
+    }
 }
 
 .pw-workforce-system__body {
@@ -2721,7 +2747,7 @@ h2::after {
     display: flex;
     gap: 24px;
     width: max-content;
-    animation: pw-sponsors-scroll 67.2s linear infinite;
+    animation: pw-sponsors-scroll 100.8s linear infinite;
 }
 
 .pw-sponsors__track:hover {

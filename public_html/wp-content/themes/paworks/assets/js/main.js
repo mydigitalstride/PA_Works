@@ -34,6 +34,27 @@
                 headerToggle.classList.remove('is-active');
             }
         });
+
+        // Tap to expand/collapse sub-menus on mobile (collapsed by default)
+        const navParents = headerNav.querySelectorAll('.menu-item-has-children');
+        navParents.forEach(function(item) {
+            const link = item.querySelector(':scope > a');
+            if (!link) return;
+
+            link.addEventListener('click', function(e) {
+                if (!window.matchMedia('(max-width: 768px)').matches) {
+                    return;
+                }
+                e.preventDefault();
+                const isOpen = item.classList.contains('is-open');
+                navParents.forEach(function(sib) {
+                    sib.classList.remove('is-open');
+                });
+                if (!isOpen) {
+                    item.classList.add('is-open');
+                }
+            });
+        });
     }
 
     /**
