@@ -217,10 +217,14 @@
         .pw-page-head {
             position: relative;
             color: var(--pw-white);
-            padding: 80px 24px;
+            min-height: 680px;
+            display: flex;
+            align-items: center;
+            padding: 60px 0 140px;
             background-image: url('http://digitalstrideg3.sg-host.com/wp-content/uploads/2026/06/istock-2229125295-s3cdn-scaled.webp');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             overflow: hidden;
         }
 
@@ -235,8 +239,10 @@
         .pw-page-head__inner {
             position: relative;
             z-index: 2;
+            width: 100%;
             max-width: var(--pw-container-width);
             margin: 0 auto;
+            padding: 0 24px;
         }
 
         .pw-page-head h1 {
@@ -316,6 +322,7 @@
 
         /* Form */
         #mn-content .mn-contact-form {
+            min-height: 100%;
             background: var(--pw-off-white);
             border: 1px solid var(--pw-light-gray);
             border-radius: var(--pw-radius-lg);
