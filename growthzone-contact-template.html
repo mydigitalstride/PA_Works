@@ -323,7 +323,31 @@
             box-shadow: var(--pw-shadow-sm);
         }
 
-        #mn-content .mn-label { display: block; width: 100%; margin-bottom: 18px; }
+        /* Two-column form layout with tight spacing */
+        #mn-content form {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 24px;
+            row-gap: 12px;
+            align-items: flex-start;
+        }
+
+        #mn-content .mn-label {
+            display: block;
+            flex: 1 1 calc(50% - 12px);
+            min-width: 240px;
+            margin-bottom: 0;
+        }
+
+        /* Full-width rows: section headers, reCAPTCHA, validation blocks */
+        #mn-content form > div,
+        #mn-content form > .mn-section-head,
+        #mn-content form > .mn-block,
+        #mn-content form > h2,
+        #mn-content form > h3 { flex: 1 1 100%; }
+
+        /* Textarea fields span the full width */
+        #mn-content .mn-label:has(textarea) { flex: 1 1 100%; }
 
         #mn-content .mn-field-label,
         #mn-content .mn-field-name {
