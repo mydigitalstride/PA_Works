@@ -215,12 +215,26 @@
            Page-title band (uses #GROWTHZONE_HEADING#)
            ============================================================ */
         .pw-page-head {
-            background: var(--pw-gradient-lightblue-navy);
+            position: relative;
             color: var(--pw-white);
-            padding: 56px 24px;
+            padding: 80px 24px;
+            background-image: url('http://digitalstrideg3.sg-host.com/wp-content/uploads/2026/06/Hand-shake-contact-form.png');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .pw-page-head::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(12, 44, 84, 0.92) 0%, rgba(12, 44, 84, 0.70) 55%, rgba(12, 44, 84, 0.45) 100%);
+            z-index: 1;
         }
 
         .pw-page-head__inner {
+            position: relative;
+            z-index: 2;
             max-width: var(--pw-container-width);
             margin: 0 auto;
         }
