@@ -86,6 +86,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         img { max-width: 100%; height: auto; }
@@ -277,7 +278,7 @@
 
         .pw-page-head__body {
             color: rgba(255, 255, 255, 0.9);
-            font-size: 1.125rem;
+            font-size: 1rem;
             line-height: 1.6;
             margin: 20px 0 0;
             max-width: 560px;
@@ -297,7 +298,11 @@
         /* ============================================================
            GrowthZone module content (.mn-*)
            ============================================================ */
-        #mn-content { font-family: var(--pw-font-body); color: var(--pw-charcoal); }
+        #mn-content { font-family: var(--pw-font-body); color: var(--pw-charcoal); max-width: 100%; }
+
+        #mn-content img,
+        #mn-content table,
+        #mn-content iframe { max-width: 100%; height: auto; }
 
         #mn-content .mn-container { width: 100%; margin: 0 auto; }
 
@@ -579,6 +584,8 @@
 
             #mn-content .mn-row { gap: 24px; }
             #mn-content .mn-col-1-2 { flex: 1 1 100%; }
+            #mn-content form { column-gap: 0; }
+            #mn-content .mn-label { flex: 1 1 100%; min-width: 0; }
 
             .pw-footer__inner { grid-template-columns: 1fr; }
             .pw-footer__right { text-align: left; align-items: flex-start; }
