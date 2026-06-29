@@ -419,13 +419,6 @@ add_action( 'acf/init', function() {
                                         'instructions'  => 'Small icon image (e.g., 48x48px SVG or PNG).',
                                     ),
                                     array(
-                                        'key'   => 'field_home_impact_stat_number',
-                                        'label' => 'Number',
-                                        'name'  => 'number',
-                                        'type'  => 'text',
-                                        'instructions' => 'The stat number (e.g., "22", "60+", "2000+").',
-                                    ),
-                                    array(
                                         'key'   => 'field_home_impact_stat_label',
                                         'label' => 'Label',
                                         'name'  => 'label',
@@ -434,11 +427,11 @@ add_action( 'acf/init', function() {
                                     ),
                                     array(
                                         'key'   => 'field_home_impact_stat_description',
-                                        'label' => 'Accordion Description',
+                                        'label' => 'Body Text',
                                         'name'  => 'description',
                                         'type'  => 'textarea',
-                                        'rows'  => 2,
-                                        'instructions' => 'Optional text revealed when this stat is expanded.',
+                                        'rows'  => 4,
+                                        'instructions' => 'Text revealed when this stat is clicked/expanded.',
                                     ),
                                 ),
                             ),

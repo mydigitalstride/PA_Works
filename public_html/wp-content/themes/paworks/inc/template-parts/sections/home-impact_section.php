@@ -72,10 +72,6 @@ $bg_position   = get_sub_field( 'bg_image_position' ) ?: 'center';
                             <?php endif; ?>
 
                             <div class="pw-impact__stat-content">
-                                <?php if ( ! empty( $stat['number'] ) ) : ?>
-                                    <div class="pw-impact__stat-number"><?php echo esc_html( $stat['number'] ); ?></div>
-                                <?php endif; ?>
-
                                 <?php if ( ! empty( $stat['label'] ) ) : ?>
                                     <div class="pw-impact__stat-label"><?php echo esc_html( $stat['label'] ); ?></div>
                                 <?php endif; ?>
@@ -84,7 +80,7 @@ $bg_position   = get_sub_field( 'bg_image_position' ) ?: 'center';
 
                         <?php if ( ! empty( $stat['description'] ) ) : ?>
                             <div class="pw-impact__stat-body" id="<?php echo esc_attr( $stat_id ); ?>" role="region">
-                                <?php echo esc_html( $stat['description'] ); ?>
+                                <?php echo nl2br( esc_html( $stat['description'] ) ); ?>
                             </div>
                         <?php endif; ?>
                     </div>

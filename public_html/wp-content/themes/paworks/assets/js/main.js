@@ -92,7 +92,7 @@
             // Always close every sibling
             item.parentElement.querySelectorAll('[data-accordion]').forEach(function(sib) {
                 sib.classList.remove('is-open');
-                const sibTrigger = sib.querySelector('.pw-whatwedo__accordion-trigger, .pw-strategies__accordion-trigger');
+                const sibTrigger = sib.querySelector('.pw-whatwedo__accordion-trigger, .pw-strategies__accordion-trigger, .pw-impact__stat-trigger');
                 if (sibTrigger) sibTrigger.setAttribute('aria-expanded', 'false');
             });
 

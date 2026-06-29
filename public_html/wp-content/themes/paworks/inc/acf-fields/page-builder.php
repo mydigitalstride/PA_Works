@@ -184,8 +184,8 @@ add_action( 'acf/init', function() {
                                 'button_label' => 'Add Stat',
                                 'sub_fields'   => array(
                                     array( 'key' => 'field_pb_stat_icon',   'label' => 'Icon',   'name' => 'icon',   'type' => 'image', 'return_format' => 'array', 'preview_size' => 'thumbnail' ),
-                                    array( 'key' => 'field_pb_stat_number', 'label' => 'Number', 'name' => 'number', 'type' => 'text',  'instructions' => 'e.g. "22", "60+", "2000+"' ),
                                     array( 'key' => 'field_pb_stat_label',  'label' => 'Label',  'name' => 'label',  'type' => 'text',  'instructions' => 'e.g. "WORKFORCE DEVELOPMENT BOARDS"' ),
+                                    array( 'key' => 'field_pb_stat_description', 'label' => 'Body Text', 'name' => 'description', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'Text revealed when this stat is clicked/expanded.' ),
                                 ),
                             ),
                         ),

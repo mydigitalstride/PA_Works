@@ -533,12 +533,6 @@ add_action( 'acf/init', function() {
                                         'preview_size'  => 'thumbnail',
                                     ),
                                     array(
-                                        'key'   => 'field_about_impact_stat_number',
-                                        'label' => 'Number',
-                                        'name'  => 'number',
-                                        'type'  => 'text',
-                                    ),
-                                    array(
                                         'key'   => 'field_about_impact_stat_label',
                                         'label' => 'Label',
                                         'name'  => 'label',
@@ -546,11 +540,11 @@ add_action( 'acf/init', function() {
                                     ),
                                     array(
                                         'key'   => 'field_about_impact_stat_description',
-                                        'label' => 'Accordion Description',
+                                        'label' => 'Body Text',
                                         'name'  => 'description',
                                         'type'  => 'textarea',
-                                        'rows'  => 2,
-                                        'instructions' => 'Optional text revealed when this stat is expanded.',
+                                        'rows'  => 4,
+                                        'instructions' => 'Text revealed when this stat is clicked/expanded.',
                                     ),
                                 ),
                             ),
