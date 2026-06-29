@@ -1883,14 +1883,17 @@ h2::after {
     counter-reset: strategy;
     display: flex;
     flex-direction: column;
-    gap: 12px;
 }
 
 .pw-strategies__list li {
     display: flex;
     align-items: baseline;
     gap: 16px;
-    padding: 8px 0;
+    padding: 0 0 4px 0;
+}
+
+.pw-strategies__list li:last-child {
+    padding: 0;
 }
 
 .pw-strategies__number {
