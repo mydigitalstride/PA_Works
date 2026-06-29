@@ -344,6 +344,158 @@
         .pw-calendar-shell table td.gz-today { background: rgba(64, 126, 201, 0.08); }
 
         /* ============================================================
+           GrowthZone events module — LIST & GRID card views
+           --------------------------------------------------------
+           Real GrowthZone markup uses .gz-* (Bootstrap) classes. Every
+           rule is prefixed with .pw-calendar-shell so it outranks the
+           GrowthZone core CSS that loads later in the <head>. The shell
+           sets light text for the navy background, so cards must reset to
+           dark text for contrast.
+           ============================================================ */
+
+        /* Toolbar / search / results (sit on the navy shell — keep light) */
+        .pw-calendar-shell .gz-pagetitle,
+        .pw-calendar-shell .gz-subtitle { color: var(--pw-white); font-family: var(--pw-font-heading); }
+        .pw-calendar-shell .gz-subtitle { font-weight: 700; }
+
+        .pw-calendar-shell .form-control,
+        .pw-calendar-shell .gz-search-keyword,
+        .pw-calendar-shell .custom-select { color: var(--pw-charcoal); }
+
+        .pw-calendar-shell .gz-search-btn {
+            background: var(--pw-gold);
+            color: var(--pw-navy);
+            border: none;
+            font-family: var(--pw-font-heading);
+            font-weight: 700;
+        }
+        .pw-calendar-shell .gz-search-btn:hover { background: var(--pw-navy); color: var(--pw-white); }
+
+        .pw-calendar-shell .gz-view-btn { color: rgba(255, 255, 255, 0.7); }
+        .pw-calendar-shell .gz-view-btn:hover,
+        .pw-calendar-shell .gz-view-btn.active { color: var(--pw-gold); }
+
+        .pw-calendar-shell .gz-search-pill {
+            background: var(--pw-white);
+            color: var(--pw-navy) !important;
+            font-weight: 600;
+        }
+
+        /* Card shell */
+        .pw-calendar-shell .gz-events-card {
+            background: var(--pw-white);
+            border: 1px solid var(--pw-light-gray);
+            border-radius: var(--pw-radius-md);
+            overflow: hidden;
+            color: var(--pw-charcoal);
+            box-shadow: var(--pw-shadow-sm);
+        }
+
+        /* Reset the white text the shell passes down into cards */
+        .pw-calendar-shell .gz-events-card,
+        .pw-calendar-shell .gz-events-card p,
+        .pw-calendar-shell .gz-events-card h5,
+        .pw-calendar-shell .gz-events-card-body { color: var(--pw-charcoal); }
+
+        /* Date header: navy weekday strip + dark date text on white */
+        .pw-calendar-shell .gz-events-card .card-header { background: var(--pw-white); border: none; }
+        .pw-calendar-shell .gz-card-wkday-wrap { background: var(--pw-header-navy); }
+        .pw-calendar-shell .gz-card-wkday { color: var(--pw-white); font-family: var(--pw-font-heading); font-weight: 700; }
+        .pw-calendar-shell .gz-card-month span { color: var(--pw-dark-gray); }
+        .pw-calendar-shell .gz-card-dday span {
+            color: var(--pw-navy);
+            font-family: var(--pw-font-heading);
+            font-weight: 700;
+        }
+
+        /* Event image */
+        .pw-calendar-shell .gz-card-head-img img { display: block; }
+
+        /* Title / time / description */
+        .pw-calendar-shell .gz-card-title,
+        .pw-calendar-shell .gz-event-card-title {
+            color: var(--pw-navy) !important;
+            font-family: var(--pw-font-heading);
+            font-weight: 700;
+        }
+        .pw-calendar-shell .gz-card-title:hover,
+        .pw-calendar-shell .gz-event-card-title:hover { color: var(--pw-light-blue) !important; }
+
+        .pw-calendar-shell .gz-event-card-time {
+            color: var(--pw-light-blue);
+            font-family: var(--pw-font-heading);
+            font-weight: 600;
+        }
+
+        .pw-calendar-shell .gz-description,
+        .pw-calendar-shell .gz-events-description { color: var(--pw-dark-gray); }
+
+        /* Footer + Register button */
+        .pw-calendar-shell .gz-events-card .card-footer {
+            background: var(--pw-white);
+            border-top: 1px solid var(--pw-light-gray);
+        }
+        .pw-calendar-shell .gz-register-btn {
+            background: var(--pw-gold);
+            color: var(--pw-navy) !important;
+            border: none;
+            border-radius: var(--pw-radius-sm);
+            font-family: var(--pw-font-heading);
+            font-weight: 700;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+        }
+        .pw-calendar-shell .gz-register-btn:hover {
+            background: var(--pw-navy);
+            color: var(--pw-white) !important;
+        }
+        .pw-calendar-shell .gz-register-btn.disabled {
+            background: var(--pw-light-gray);
+            color: var(--pw-dark-gray) !important;
+        }
+
+        /* ============================================================
+           GrowthZone CALENDAR view (.gz-calendar divs)
+           ============================================================ */
+        .pw-calendar-shell .gz-calendar-month .gz-heading,
+        .pw-calendar-shell .gz-calendar-month-text { color: var(--pw-white); font-family: var(--pw-font-heading); }
+
+        .pw-calendar-shell #gz-calendar {
+            background: var(--pw-white);
+            border-radius: var(--pw-radius-md);
+            padding: 16px;
+            color: var(--pw-charcoal);
+        }
+        .pw-calendar-shell .gz-week { display: flex; }
+        .pw-calendar-shell .gz-week.gz-names .gz-day {
+            background: var(--pw-light-blue);
+            color: var(--pw-white);
+            font-family: var(--pw-font-heading);
+            font-weight: 600;
+            text-align: center;
+        }
+        .pw-calendar-shell .gz-day {
+            flex: 1 1 0;
+            min-height: 96px;
+            padding: 6px 8px;
+            border: 1px solid var(--pw-light-gray);
+            color: var(--pw-charcoal);
+            font-size: 0.9rem;
+        }
+        .pw-calendar-shell .gz-names .gz-day { min-height: 0; }
+        .pw-calendar-shell .gz-event-link a,
+        .pw-calendar-shell .gz-day-link {
+            color: var(--pw-light-blue);
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .pw-calendar-shell .gz-event-link a:hover,
+        .pw-calendar-shell .gz-day-link:hover { color: var(--pw-gold); }
+
+        /* Powered-by line */
+        .pw-calendar-shell .gz-powered-by { color: rgba(255, 255, 255, 0.7); font-size: 0.8rem; }
+
+        /* ============================================================
            Featured event card
            ============================================================ */
         .pw-event-feature {
