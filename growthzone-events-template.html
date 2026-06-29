@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Events &amp; Calendar - Pennsylvania Workforce Development Association</title>
+
+    <!-- ====================================================================
+         PA Works — GrowthZone EVENTS / CALENDAR page template
+         --------------------------------------------------------------------
+         Wraps the GrowthZone events calendar module (#growthzone_content#) in
+         the current theme chrome plus an events hero, a navy "calendar shell"
+         card, a featured-event card style, and a membership CTA.
+
+         GrowthZone tokens replaced at render time:
+           #GROWTHZONE_HEADING#  -> page title (not shown here; hero is fixed)
+           #growthzone_content#  -> the events list / month calendar markup
+
+         CALENDAR GRID NOTE: GrowthZone renders its own calendar table inside
+         #growthzone_content#. The calendar rules below target BOTH the generic
+         table structure inside .pw-calendar-shell AND GrowthZone's common
+         calendar classes (.mn-*). Paste the rendered Events page HTML to me to
+         pin the exact grid classes if anything needs fine-tuning.
+         ==================================================================== -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+           Design Tokens (mirrors the WordPress theme)
+           ============================================================ */
+        :root {
+            --pw-navy: #252b5d;
+            --pw-header-navy: #0c335a;
+            --pw-blue: #2b3279;
+            --pw-light-blue: #407ec9;
+            --pw-sky: #9bd3dd;
+
+            --pw-gold: #f9ad32;
+            --pw-orange: #E8913A;
+
+            --pw-gradient-lightblue-navy: linear-gradient(135deg, var(--pw-light-blue) 0%, var(--pw-navy) 100%);
+            --pw-gradient-calendar: linear-gradient(160deg, #1d4e86 0%, #0c2c54 100%);
+
+            --pw-white: #FFFFFF;
+            --pw-off-white: #F5F7FA;
+            --pw-light-gray: #E5E7EB;
+            --pw-gray: #9CA3AF;
+            --pw-dark-gray: #4B5563;
+            --pw-charcoal: #1F2937;
+
+            --pw-font-heading: 'Poppins', sans-serif;
+            --pw-font-body: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+
+            --pw-container-width: 1200px;
+
+            --pw-radius-sm: 4px;
+            --pw-radius-md: 8px;
+            --pw-radius-lg: 16px;
+            --pw-radius-xl: 24px;
+
+            --pw-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --pw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --pw-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (min-width: 769px) {
+            :root { --pw-container-width: 85vw; }
+        }
+
+        /* ============================================================
+           Base
+           ============================================================ */
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+        body {
+            margin: 0;
+            font-family: var(--pw-font-body);
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--pw-charcoal);
+            background: var(--pw-white);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        img { max-width: 100%; height: auto; }
+        a { color: var(--pw-blue); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--pw-navy); }
+
+        .pw-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-family: var(--pw-font-heading);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: 0.3px;
+            color: var(--pw-navy);
+            background-color: var(--pw-gold);
+            border: none;
+            border-radius: var(--pw-radius-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pw-btn:hover {
+            color: var(--pw-white);
+            background-color: var(--pw-navy);
+            transform: translateY(-2px);
+            box-shadow: var(--pw-shadow-md);
+        }
+
+        /* ============================================================
+           Header / Nav
+           ============================================================ */
+        .pw-header { position: sticky; top: 0; z-index: 1000; background-color: var(--pw-header-navy); box-shadow: var(--pw-shadow-sm); }
+
+        .pw-header__inner {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 24px; max-width: var(--pw-container-width); margin: 0 auto;
+        }
+
+        .pw-header__logo img { height: 50px; width: auto; display: block; }
+
+        .pw-header__nav { display: flex; align-items: center; gap: 32px; }
+        .pw-header__nav .menu { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 4px; }
+        .pw-header__nav .menu > li { position: relative; }
+        .pw-header__nav .menu > li > a {
+            font-family: var(--pw-font-heading); font-size: 1rem; font-weight: 600;
+            color: var(--pw-white); padding: 8px 12px; display: block; white-space: nowrap; transition: color 0.3s ease;
+        }
+        .pw-header__nav .menu > li > a:hover, .pw-header__nav .menu > li.current-menu-item > a { color: var(--pw-light-blue); }
+
+        .pw-header__signin {
+            padding: 10px 24px; background-color: var(--pw-light-blue); color: var(--pw-white) !important;
+            border-radius: var(--pw-radius-xl); font-size: 1rem; font-family: var(--pw-font-heading); font-weight: 600;
+        }
+        .pw-header__signin:hover { background-color: var(--pw-gold); }
+
+        .pw-header__toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .pw-header__toggle span { display: block; width: 24px; height: 2px; background-color: var(--pw-white); margin: 6px 0; transition: all 0.3s ease; }
+
+        /* ============================================================
+           Events Hero
+           ============================================================ */
+        .pw-hero {
+            position: relative;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            padding: 56px 0;
+            background-image: url('https://www.pawork.org/wp-content/uploads/2022/06/buildings-page-header.jpg');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .pw-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(12, 44, 84, 0.92) 0%, rgba(12, 44, 84, 0.70) 55%, rgba(12, 44, 84, 0.45) 100%);
+            z-index: 1;
+        }
+
+        .pw-hero__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: var(--pw-container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .pw-hero__label {
+            font-family: var(--pw-font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--pw-white);
+            margin-bottom: 12px;
+        }
+
+        .pw-hero__title {
+            font-family: var(--pw-font-heading);
+            font-weight: 700;
+            font-size: 3rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+            color: var(--pw-white);
+            margin: 0 0 16px;
+        }
+
+        .pw-hero__body { color: rgba(255, 255, 255, 0.9); font-size: 1rem; line-height: 1.6; margin-bottom: 28px; max-width: 460px; }
+
+        /* ============================================================
+           Section heading
+           ============================================================ */
+        .pw-section { padding: 48px 0; background: var(--pw-off-white); }
+        .pw-section__inner { max-width: var(--pw-container-width); margin: 0 auto; padding: 0 24px; }
+
+        .pw-section__label {
+            font-family: var(--pw-font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--pw-light-blue);
+            margin-bottom: 8px;
+        }
+
+        .pw-section__title {
+            font-family: var(--pw-font-heading);
+            font-weight: 700;
+            font-size: 2.25rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+            color: var(--pw-navy);
+            margin: 0 0 8px;
+        }
+
+        .pw-section__title::after {
+            content: '';
+            display: block;
+            width: 8rem;
+            height: 5px;
+            margin-top: 14px;
+            background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
+        }
+
+        /* ============================================================
+           Calendar shell (navy gradient card)
+           ============================================================ */
+        .pw-calendar-shell {
+            margin-top: 32px;
+            background: var(--pw-gradient-calendar);
+            border-radius: var(--pw-radius-lg);
+            padding: 32px;
+            box-shadow: var(--pw-shadow-lg);
+            color: var(--pw-white);
+        }
+
+        /* Top control row (search + view toggle), if present in the module */
+        .pw-calendar-shell .mn-search,
+        .pw-calendar-shell .mn-event-search,
+        .pw-calendar-shell .mn-calendar-toolbar {
+            color: var(--pw-white);
+            margin-bottom: 20px;
+        }
+
+        .pw-calendar-shell input[type="text"],
+        .pw-calendar-shell input[type="search"] {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: var(--pw-radius-xl);
+            color: var(--pw-white);
+            padding: 10px 16px;
+            font-family: var(--pw-font-body);
+            font-size: 0.95rem;
+        }
+        .pw-calendar-shell input::placeholder { color: rgba(255, 255, 255, 0.7); }
+
+        .pw-calendar-shell a { color: var(--pw-white); }
+        .pw-calendar-shell a:hover { color: var(--pw-gold); }
+
+        /* The white calendar card — wraps GrowthZone's calendar table */
+        .pw-calendar-shell .mn-calendar,
+        .pw-calendar-shell .mn-events-calendar,
+        .pw-calendar-shell .gz-calendar {
+            background: var(--pw-white);
+            border-radius: var(--pw-radius-md);
+            padding: 24px;
+            color: var(--pw-charcoal);
+        }
+
+        /* Month / year title */
+        .pw-calendar-shell .mn-calendar-title,
+        .pw-calendar-shell caption {
+            font-family: var(--pw-font-heading);
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: var(--pw-light-blue);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        /* Calendar table — generic styling so it works regardless of class names */
+        .pw-calendar-shell table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        /* Weekday header row (Sun–Sat) */
+        .pw-calendar-shell table th {
+            background: var(--pw-light-blue);
+            color: var(--pw-white);
+            font-family: var(--pw-font-heading);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-align: center;
+            padding: 12px 8px;
+            border: 1px solid var(--pw-light-blue);
+        }
+
+        /* Day cells */
+        .pw-calendar-shell table td {
+            vertical-align: top;
+            height: 110px;
+            padding: 8px 10px;
+            border: 1px solid var(--pw-light-gray);
+            font-size: 0.9rem;
+            color: var(--pw-charcoal);
+            background: var(--pw-white);
+        }
+
+        /* Day number */
+        .pw-calendar-shell table td .mn-calendar-day-number,
+        .pw-calendar-shell table td .gz-day-number {
+            font-weight: 600;
+            color: var(--pw-charcoal);
+        }
+
+        /* Event links inside day cells */
+        .pw-calendar-shell table td a {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.8rem;
+            line-height: 1.3;
+            color: var(--pw-light-blue);
+            font-weight: 600;
+        }
+        .pw-calendar-shell table td a:hover { color: var(--pw-gold); }
+
+        /* Today / highlighted day */
+        .pw-calendar-shell table td.mn-today,
+        .pw-calendar-shell table td.today,
+        .pw-calendar-shell table td.gz-today { background: rgba(64, 126, 201, 0.08); }
+
+        /* ============================================================
+           Featured event card
+           ============================================================ */
+        .pw-event-feature {
+            margin-top: 28px;
+            background: var(--pw-white);
+            border-radius: var(--pw-radius-md);
+            padding: 28px 32px;
+            color: var(--pw-charcoal);
+            box-shadow: var(--pw-shadow-md);
+        }
+
+        .pw-event-feature__title {
+            font-family: var(--pw-font-heading);
+            font-weight: 700;
+            font-size: 1.4rem;
+            line-height: 1.3;
+            color: var(--pw-light-blue);
+            margin: 0 0 10px;
+        }
+
+        .pw-event-feature__meta { font-weight: 700; color: var(--pw-charcoal); margin: 0 0 8px; }
+        .pw-event-feature__presenter { margin: 0 0 14px; color: var(--pw-dark-gray); }
+        .pw-event-feature__body { margin: 0 0 20px; color: var(--pw-charcoal); }
+        .pw-event-feature .pw-btn { display: block; width: max-content; margin: 0 auto; }
+
+        /* ============================================================
+           Membership CTA
+           ============================================================ */
+        .pw-cta { background: var(--pw-off-white); padding: 8px 0 56px; text-align: center; }
+        .pw-cta .pw-btn { padding: 16px 40px; }
+
+        /* ============================================================
+           Footer
+           ============================================================ */
+        .pw-footer { position: relative; background: var(--pw-header-navy); color: var(--pw-white); padding: 48px 0 32px; flex-shrink: 0; }
+
+        .pw-footer__inner {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+            max-width: var(--pw-container-width); margin: 0 auto; padding: 0 24px;
+        }
+
+        .pw-footer__logo img { height: 60px; width: auto; margin-bottom: 20px; display: block; }
+        .pw-footer__contact { display: flex; flex-direction: column; gap: 8px; font-size: 1rem; }
+        .pw-footer__contact a { color: var(--pw-white); }
+        .pw-footer__contact a:hover { color: var(--pw-gold); }
+        .pw-footer__contact svg { display: inline-block; vertical-align: middle; margin-right: 6px; }
+
+        .pw-footer__right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+        .pw-footer__social { display: flex; gap: 12px; }
+        .pw-footer__social a {
+            display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+            background-color: rgba(255, 255, 255, 0.15); border-radius: var(--pw-radius-md);
+            color: var(--pw-white); transition: background-color 0.3s ease;
+        }
+        .pw-footer__social a:hover { background-color: var(--pw-gold); color: var(--pw-navy); }
+        .pw-footer__social a svg { width: 20px; height: 20px; }
+
+        .pw-footer__search { display: flex; align-items: center; background: var(--pw-white); border-radius: var(--pw-radius-sm); overflow: hidden; }
+        .pw-footer__search input { background: transparent; border: none; color: var(--pw-navy); padding: 8px 12px; font-size: 1rem; outline: none; }
+        .pw-footer__search input::placeholder { color: var(--pw-dark-gray); }
+        .pw-footer__search button { background: var(--pw-white); border: none; padding: 8px 12px; cursor: pointer; color: var(--pw-light-blue); display: flex; align-items: center; }
+
+        .pw-footer__bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: var(--pw-container-width); margin: 32px auto 0; padding: 16px 24px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.8rem; color: rgba(255, 255, 255, 0.7);
+        }
+        .pw-footer__bottom a { color: rgba(255, 255, 255, 0.7); }
+        .pw-footer__bottom a:hover { color: var(--pw-gold); }
+
+        /* ============================================================
+           Responsive
+           ============================================================ */
+        @media (max-width: 768px) {
+            .pw-header__toggle { display: block; }
+            .pw-header__nav {
+                display: none; position: absolute; top: 100%; left: 0; right: 0;
+                background: var(--pw-header-navy); flex-direction: column; align-items: flex-start;
+                padding: 24px; box-shadow: var(--pw-shadow-md); gap: 16px;
+            }
+            .pw-header__nav.is-open { display: flex; }
+            .pw-header__nav .menu { flex-direction: column; align-items: flex-start; width: 100%; gap: 4px; }
+
+            .pw-hero { min-height: 360px; }
+            .pw-hero__title { font-size: 2.25rem; }
+            .pw-hero__body { max-width: 100%; }
+
+            .pw-section__title { font-size: 1.75rem; }
+            .pw-calendar-shell { padding: 20px; }
+
+            /* Stack the month grid on small screens so cells stay legible */
+            .pw-calendar-shell table,
+            .pw-calendar-shell table tbody,
+            .pw-calendar-shell table tr { display: block; width: 100%; }
+            .pw-calendar-shell table thead { display: none; }
+            .pw-calendar-shell table td { height: auto; display: block; width: 100%; border-top: none; }
+            .pw-calendar-shell table tr { margin-bottom: 8px; border: 1px solid var(--pw-light-gray); }
+
+            .pw-footer__inner { grid-template-columns: 1fr; }
+            .pw-footer__right { text-align: left; align-items: flex-start; }
+            .pw-footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= Header ================= -->
+    <header class="pw-header" role="banner">
+        <div class="pw-header__inner">
+            <a href="https://www.pawork.org/" class="pw-header__logo">
+                <img src="https://www.pawork.org/wp-content/themes/pawork22/images/pwda-logo-footer.png"
+                     alt="PA Workforce Development Association">
+            </a>
+
+            <button class="pw-header__toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="pw-header__nav" role="navigation" aria-label="Primary Navigation">
+                <ul class="menu">
+                    <li><a href="https://www.pawork.org/about/">About Us</a></li>
+                    <li><a href="https://www.pawork.org/what-we-do/">What We Do</a></li>
+                    <li class="current-menu-item"><a href="https://members.pawork.org/events">Events</a></li>
+                    <li><a href="https://www.pawork.org/news/">News</a></li>
+                    <li><a href="https://members.pawork.org/contact">Contact Us</a></li>
+                </ul>
+                <a href="https://members.pawork.org/MIC/login" class="pw-header__signin">Sign in</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================= Events Hero ================= -->
+    <section class="pw-hero" role="banner">
+        <div class="pw-hero__content">
+            <p class="pw-hero__label">Upcoming</p>
+            <h1 class="pw-hero__title">Events</h1>
+            <p class="pw-hero__body">
+                Sign up for a PWDA Membership to be the first to get alerts on upcoming events,
+                as well as discounted or free entry.
+            </p>
+            <a href="https://members.pawork.org/member-application" class="pw-btn">Partner with PWDA</a>
+        </div>
+    </section>
+
+    <!-- ================= Upcoming Events + Calendar ================= -->
+    <section class="pw-section">
+        <div class="pw-section__inner">
+            <p class="pw-section__label">What's Happening</p>
+            <h2 class="pw-section__title">Upcoming Events</h2>
+
+            <!-- Navy gradient shell wraps the GrowthZone calendar module -->
+            <div class="pw-calendar-shell">
+                #growthzone_content#
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= Membership CTA ================= -->
+    <section class="pw-cta">
+        <a href="https://members.pawork.org/member-application" class="pw-btn">Sign up for Membership</a>
+    </section>
+
+    <!-- ================= Footer ================= -->
+    <footer class="pw-footer" role="contentinfo">
+        <div class="pw-footer__inner">
+            <div class="pw-footer__left">
+                <div class="pw-footer__logo">
+                    <img src="https://www.pawork.org/wp-content/themes/pawork22/images/pwda-logo-footer.png"
+                         alt="PA Workforce Development Association">
+                </div>
+                <div class="pw-footer__contact">
+                    <a href="mailto:info@pawork.org">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        info@pawork.org
+                    </a>
+                    <div>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        205 House Avenue, Suite 101, Camp Hill, PA 17011
+                    </div>
+                </div>
+            </div>
+
+            <div class="pw-footer__right">
+                <div class="pw-footer__social">
+                    <a href="https://www.instagram.com/paworkforce" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/pawork" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCCc1DLe11D4fZFyiEI2q3wg" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                </div>
+
+                <form class="pw-footer__search" role="search" method="get" action="https://www.pawork.org/">
+                    <input type="search" name="s" placeholder="Search ...">
+                    <button type="submit" aria-label="Search">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="pw-footer__bottom">
+            <span>All rights reserved. Copyright <span id="pw-year">2026</span></span>
+            <a href="https://www.pawork.org/privacy-policy/">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var toggle = document.querySelector('.pw-header__toggle');
+            var nav = document.querySelector('.pw-header__nav');
+            if (toggle && nav) {
+                toggle.addEventListener('click', function () {
+                    var open = nav.classList.toggle('is-open');
+                    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                });
+            }
+            var year = document.getElementById('pw-year');
+            if (year) { year.textContent = new Date().getFullYear(); }
+        })();
+    </script>
+
+</body>
+</html>
