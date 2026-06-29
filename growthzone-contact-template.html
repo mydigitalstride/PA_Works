@@ -384,7 +384,8 @@
 
         #mn-content .mn-field textarea { min-height: 120px; resize: vertical; }
 
-        #mn-content .mn-required:after { content: ' *'; color: var(--pw-orange); }
+        /* GrowthZone renders its own required marker, so don't add a second one. */
+        #mn-content .mn-required:after { content: none; }
 
         #mn-content .mn-label.mn-error input,
         #mn-content .mn-label.mn-error textarea,
