@@ -342,22 +342,51 @@ function paworks_get_button( $button_data, $class = 'pw-btn pw-btn--primary' ) {
 }
 
 /**
+ * Page templates that build their content entirely from ACF fields and
+ * therefore do not use the default WordPress content editor.
+ */
+function paworks_get_builder_templates() {
+    return array(
+        'page-templates/template-home.php',
+        'page-templates/template-about.php',
+        'page-templates/template-advocacy.php',
+        'page-templates/template-fellowship.php',
+        'page-templates/template-events.php',
+        'page-templates/template-page-builder.php',
+    );
+}
+
+/**
  * Disable WordPress block editor for pages using our templates
  */
 function paworks_disable_gutenberg( $use_block_editor, $post ) {
     if ( $post && get_page_template_slug( $post->ID ) ) {
-        $our_templates = array(
-            'page-templates/template-home.php',
-            'page-templates/template-about.php',
-            'page-templates/template-advocacy.php',
-            'page-templates/template-fellowship.php',
-            'page-templates/template-events.php',
-            'page-templates/template-page-builder.php',
-        );
-        if ( in_array( get_page_template_slug( $post->ID ), $our_templates, true ) ) {
+        if ( in_array( get_page_template_slug( $post->ID ), paworks_get_builder_templates(), true ) ) {
             return false;
         }
     }
     return $use_block_editor;
 }
 add_filter( 'use_block_editor_for_post', 'paworks_disable_gutenberg', 10, 2 );
+
+/**
+ * Hide the main content editor for pages built with our ACF templates.
+ *
+ * These pages get all their content from Page Builder / ACF fields, so the
+ * default WordPress editor box is unused and only adds clutter.
+ */
+function paworks_hide_content_editor( $screen ) {
+    if ( ! $screen || 'page' !== $screen->post_type || 'post' !== $screen->base ) {
+        return;
+    }
+
+    $post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0;
+    if ( ! $post_id ) {
+        return;
+    }
+
+    if ( in_array( get_page_template_slug( $post_id ), paworks_get_builder_templates(), true ) ) {
+        remove_post_type_support( 'page', 'editor' );
+    }
+}
+add_action( 'current_screen', 'paworks_hide_content_editor' );
