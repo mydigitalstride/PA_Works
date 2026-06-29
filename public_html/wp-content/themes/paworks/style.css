@@ -1302,8 +1302,9 @@ h2::after {
 }
 
 .pw-impact__stat.is-open .pw-impact__stat-body {
-    max-height: 200px;
+    max-height: 600px;
     padding: 12px 24px 20px;
+    color: var(--pw-white);
 }
 
 @media (max-width: 768px) {
