@@ -78,7 +78,7 @@ Text Domain: paworks
 @media (max-width: 768px) {
     :root {
         --pw-container-padding: 0;
-        --pw-section-padding: 40px 5vw;
+        --pw-section-padding: 2vh 5vw;
     }
 }
 
@@ -134,6 +134,8 @@ a:hover {
 .pw-wioa__body ul,
 .pw-engage__content ul,
 .pw-hero__body ul,
+.pw-about__body ul,
+.pw-card__body ul,
 .entry-content ul {
     list-style: none;
     padding-left: 0;
@@ -148,6 +150,8 @@ a:hover {
 .pw-wioa__body ul li,
 .pw-engage__content ul li,
 .pw-hero__body ul li,
+.pw-about__body ul li,
+.pw-card__body ul li,
 .entry-content ul li {
     position: relative;
     padding-left: 28px;
@@ -165,6 +169,8 @@ a:hover {
 .pw-wioa__body ul li::before,
 .pw-engage__content ul li::before,
 .pw-hero__body ul li::before,
+.pw-about__body ul li::before,
+.pw-card__body ul li::before,
 .entry-content ul li::before {
     content: '▶';
     position: absolute;
@@ -183,8 +189,43 @@ a:hover {
 .pw-wioa__body ul li::marker,
 .pw-engage__content ul li::marker,
 .pw-hero__body ul li::marker,
+.pw-about__body ul li::marker,
+.pw-card__body ul li::marker,
 .entry-content ul li::marker {
     content: none;
+}
+
+/* Ordered lists in WYSIWYG content: indent so the numbers sit
+   inside the text box instead of hanging in the (reset) padding. */
+.pw-whatwedo__body ol,
+.pw-strategies__body ol,
+.pw-program__body ol,
+.pw-cta__body ol,
+.pw-fellowship-intro__body ol,
+.pw-wioa__body ol,
+.pw-engage__content ol,
+.pw-hero__body ol,
+.pw-about__body ol,
+.pw-card__body ol,
+.entry-content ol {
+    padding-left: 1.25em;
+    margin: 0 0 16px 0;
+}
+
+.pw-whatwedo__body ol li,
+.pw-strategies__body ol li,
+.pw-program__body ol li,
+.pw-cta__body ol li,
+.pw-fellowship-intro__body ol li,
+.pw-wioa__body ol li,
+.pw-engage__content ol li,
+.pw-hero__body ol li,
+.pw-about__body ol li,
+.pw-card__body ol li,
+.entry-content ol li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 1.65;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1020,6 +1061,10 @@ h2::after {
 
     .pw-about__inner .pw-about__content {
         order: 2;
+    }
+
+    .pw-about__image img {
+        max-height: 200px;
     }
 }
 
