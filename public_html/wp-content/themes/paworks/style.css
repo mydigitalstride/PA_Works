@@ -1011,6 +1011,16 @@ h2::after {
         grid-template-columns: 1fr;
         gap: 40px;
     }
+
+    /* On mobile, always stack image on top and text below,
+       regardless of the chosen desktop layout variant. */
+    .pw-about__inner .pw-about__image {
+        order: 1;
+    }
+
+    .pw-about__inner .pw-about__content {
+        order: 2;
+    }
 }
 
 /* ==========================================================================
