@@ -78,7 +78,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_cards' => array(
                         'key'        => 'layout_pb_cards',
                         'name'       => 'cards_section',
-                        'label'      => 'Cards (Events / News Grid)',
+                        'label'      => 'Cards',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array(
@@ -108,7 +108,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_about' => array(
                         'key'        => 'layout_pb_about',
                         'name'       => 'about_section',
-                        'label'      => 'About / Intro (Text + Image)',
+                        'label'      => 'Text + Image',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_about_header',   'label' => 'Header',      'name' => 'header',      'type' => 'text',    'default_value' => 'ABOUT PA WORKS' ),
@@ -142,7 +142,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_whatwedo' => array(
                         'key'        => 'layout_pb_whatwedo',
                         'name'       => 'whatwedo_section',
-                        'label'      => 'Accordion (Expandable Items)',
+                        'label'      => 'Text/ Button + Accordion',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_wwd_subheader', 'label' => 'Sub Header', 'name' => 'sub_header', 'type' => 'text', 'instructions' => 'Small label above the heading.' ),
@@ -177,7 +177,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_impact' => array(
                         'key'        => 'layout_pb_impact',
                         'name'       => 'impact_section',
-                        'label'      => 'Our Impact (Stats + Logo)',
+                        'label'      => 'Image/Text + Icon Accordion',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_impact_header',        'label' => 'Section Header',     'name' => 'header',          'type' => 'text',  'default_value' => 'OUR IMPACT' ),
@@ -289,7 +289,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_board' => array(
                         'key'        => 'layout_pb_board',
                         'name'       => 'board_section',
-                        'label'      => 'Board of Directors (Member Grid)',
+                        'label'      => 'Member Image Grid',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_board_subheader', 'label' => 'Sub Header', 'name' => 'sub_header', 'type' => 'text', 'instructions' => 'e.g. "LEADERSHIP"' ),
@@ -354,7 +354,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_content_strategies' => array(
                         'key'        => 'layout_pb_content_strategies',
                         'name'       => 'content_strategies_section',
-                        'label'      => 'Content + Strategies (Numbered List)',
+                        'label'      => 'Text + Numbered List',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_cs_subheader',    'label' => 'Sub Header',            'name' => 'sub_header',  'type' => 'text' ),
@@ -402,7 +402,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_engage' => array(
                         'key'        => 'layout_pb_engage',
                         'name'       => 'engage_section',
-                        'label'      => 'Two Column Engage Section (Dual Title + WYSIWYG)',
+                        'label'      => 'Side-by-side Text Fields',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_engage_left_header',  'label' => 'Left Header',  'name' => 'left_header',  'type' => 'text',    'default_value' => 'HOW TO ENGAGE' ),
@@ -453,7 +453,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_wioa' => array(
                         'key'        => 'layout_pb_wioa',
                         'name'       => 'wioa_section',
-                        'label'      => 'Legislation / WIOA (Text + Links)',
+                        'label'      => 'Text + Image/Links',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_wioa_subheader',    'label' => 'Sub Header',       'name' => 'sub_header',  'type' => 'text', 'instructions' => 'e.g. "FEDERAL FRAMEWORK"' ),
@@ -484,7 +484,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_intro' => array(
                         'key'        => 'layout_pb_intro',
                         'name'       => 'intro_section',
-                        'label'      => 'Fellowship Intro (Text + Quote)',
+                        'label'      => 'Text /Button + Quote',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_intro_header',       'label' => 'Header',           'name' => 'header',       'type' => 'text' ),
@@ -503,7 +503,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_program' => array(
                         'key'        => 'layout_pb_program',
                         'name'       => 'program_section',
-                        'label'      => 'Program Details (Schedule + Info)',
+                        'label'      => 'Program Details',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_prog_subheader',        'label' => 'Sub Header',       'name' => 'sub_header',      'type' => 'text', 'instructions' => 'e.g. "FELLOWSHIP PROGRAM"' ),
@@ -550,7 +550,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_expectations' => array(
                         'key'        => 'layout_pb_expectations',
                         'name'       => 'expectations_section',
-                        'label'      => 'Expectations & Requirements (Checklists)',
+                        'label'      => 'Multiple Lists',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array(
@@ -606,7 +606,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_logo_carousel' => array(
                         'key'        => 'layout_pb_logo_carousel',
                         'name'       => 'logo_carousel_section',
-                        'label'      => 'Logo Carousel (Scrolling Cards)',
+                        'label'      => 'Scrolling Carousel',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_lc_header', 'label' => 'Header', 'name' => 'header', 'type' => 'text', 'instructions' => 'Optional heading above the carousel.' ),
