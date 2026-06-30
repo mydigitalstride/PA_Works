@@ -16,6 +16,13 @@ $btn_url     = get_sub_field( 'button_url' );
 $image       = get_sub_field( 'image' );
 $bg_image    = get_sub_field( 'background_image' );
 $bg_position = get_sub_field( 'bg_image_position' ) ?: 'center';
+$layout      = get_sub_field( 'layout' ) ?: 'default';
+
+$allowed_layouts = array( 'default', 'reversed', 'stacked', 'reversed_stacked' );
+if ( ! in_array( $layout, $allowed_layouts, true ) ) {
+    $layout = 'default';
+}
+$inner_class = 'pw-about__inner pw-about__inner--' . str_replace( '_', '-', $layout );
 ?>
 
 <section class="pw-about pw-section">
@@ -24,7 +31,7 @@ $bg_position = get_sub_field( 'bg_image_position' ) ?: 'center';
         <div class="pw-section-bg" aria-hidden="true" style="background-image: url('<?php echo esc_url( $bg_image['url'] ); ?>'); background-position: <?php echo esc_attr( $bg_position ); ?>;"></div>
     <?php endif; ?>
 
-    <div class="pw-about__inner">
+    <div class="<?php echo esc_attr( $inner_class ); ?>">
         <div class="pw-about__content">
             <?php if ( $header ) : ?>
                 <h2 class="pw-about__title"><?php echo esc_html( $header ); ?></h2>

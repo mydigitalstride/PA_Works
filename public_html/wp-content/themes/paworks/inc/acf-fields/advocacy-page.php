@@ -224,7 +224,7 @@ add_action( 'acf/init', function() {
                     'layout_engage' => array(
                         'key'        => 'layout_adv_engage',
                         'name'       => 'engage_section',
-                        'label'      => 'Two Column Engage Section (Dual Title + WYSIWYG)',
+                        'label'      => 'Side-by-side Text Fields',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_adv_engage_left_header',  'label' => 'Left Header',  'name' => 'left_header',  'type' => 'text',    'default_value' => 'HOW TO ENGAGE' ),

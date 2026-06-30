@@ -78,7 +78,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_cards' => array(
                         'key'        => 'layout_pb_cards',
                         'name'       => 'cards_section',
-                        'label'      => 'Cards (Events / News Grid)',
+                        'label'      => 'Cards',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array(
@@ -94,7 +94,7 @@ add_action( 'acf/init', function() {
                                     array( 'key' => 'field_pb_card_label',     'label' => 'Label',     'name' => 'label',     'type' => 'text',     'instructions' => 'e.g. "EVENTS", "NEWS"' ),
                                     array( 'key' => 'field_pb_card_image',     'label' => 'Image',     'name' => 'image',     'type' => 'image',    'return_format' => 'array', 'preview_size' => 'medium' ),
                                     array( 'key' => 'field_pb_card_title',     'label' => 'Title',     'name' => 'title',     'type' => 'text' ),
-                                    array( 'key' => 'field_pb_card_body',      'label' => 'Body Text', 'name' => 'body',      'type' => 'textarea', 'rows' => 3 ),
+                                    array( 'key' => 'field_pb_card_body',      'label' => 'Body Text', 'name' => 'body',      'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'basic', 'media_upload' => 0 ),
                                     array( 'key' => 'field_pb_card_link_text', 'label' => 'Link Text', 'name' => 'link_text', 'type' => 'text',     'default_value' => 'Learn More' ),
                                     array( 'key' => 'field_pb_card_link_url',  'label' => 'Link URL',  'name' => 'link_url',  'type' => 'url' ),
                                 ),
@@ -108,14 +108,29 @@ add_action( 'acf/init', function() {
                     'layout_pb_about' => array(
                         'key'        => 'layout_pb_about',
                         'name'       => 'about_section',
-                        'label'      => 'About / Intro (Text + Image)',
+                        'label'      => 'Text + Image',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_about_header',   'label' => 'Header',      'name' => 'header',      'type' => 'text',    'default_value' => 'ABOUT PA WORKS' ),
                             array( 'key' => 'field_pb_about_body',     'label' => 'Body Text',   'name' => 'body_text',   'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'basic', 'media_upload' => 0 ),
                             array( 'key' => 'field_pb_about_btn_text', 'label' => 'Button Text', 'name' => 'button_text', 'type' => 'text' ),
                             array( 'key' => 'field_pb_about_btn_url',  'label' => 'Button URL',  'name' => 'button_url',  'type' => 'url' ),
-                            array( 'key' => 'field_pb_about_image',    'label' => 'Image',       'name' => 'image',       'type' => 'image',   'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Displayed to the right of the text.' ),
+                            array(
+                                'key'           => 'field_pb_about_layout',
+                                'label'         => 'Layout',
+                                'name'          => 'layout',
+                                'type'          => 'select',
+                                'choices'       => array(
+                                    'default'          => 'Side by side — Text left / Image right',
+                                    'reversed'         => 'Side by side — Image left / Text right',
+                                    'stacked'          => 'Stacked — Text top / Image bottom',
+                                    'reversed_stacked' => 'Stacked — Image top / Text bottom',
+                                ),
+                                'default_value' => 'default',
+                                'allow_null'    => 0,
+                                'instructions'  => 'Choose how the text and image are arranged.',
+                            ),
+                            array( 'key' => 'field_pb_about_image',    'label' => 'Image',       'name' => 'image',       'type' => 'image',   'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Displayed alongside the text, positioned by the Layout setting above.' ),
                             array( 'key' => 'field_pb_about_bg_image', 'label' => 'Background Image', 'name' => 'background_image', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Optional background image for this section.' ),
                             array( 'key' => 'field_pb_about_bg_pos',   'label' => 'Background Image Position', 'name' => 'bg_image_position', 'type' => 'select', 'choices' => array( 'left center' => 'Left', 'center center' => 'Center', 'right center' => 'Right' ), 'default_value' => 'center center', 'allow_null' => 0 ),
                         ),
@@ -127,7 +142,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_whatwedo' => array(
                         'key'        => 'layout_pb_whatwedo',
                         'name'       => 'whatwedo_section',
-                        'label'      => 'Accordion (Expandable Items)',
+                        'label'      => 'Text/ Button + Accordion',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_wwd_subheader', 'label' => 'Sub Header', 'name' => 'sub_header', 'type' => 'text', 'instructions' => 'Small label above the heading.' ),
@@ -162,7 +177,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_impact' => array(
                         'key'        => 'layout_pb_impact',
                         'name'       => 'impact_section',
-                        'label'      => 'Our Impact (Stats + Logo)',
+                        'label'      => 'Image/Text + Icon Accordion',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_impact_header',        'label' => 'Section Header',     'name' => 'header',          'type' => 'text',  'default_value' => 'OUR IMPACT' ),
@@ -274,7 +289,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_board' => array(
                         'key'        => 'layout_pb_board',
                         'name'       => 'board_section',
-                        'label'      => 'Board of Directors (Member Grid)',
+                        'label'      => 'Member Image Grid',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_board_subheader', 'label' => 'Sub Header', 'name' => 'sub_header', 'type' => 'text', 'instructions' => 'e.g. "LEADERSHIP"' ),
@@ -339,7 +354,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_content_strategies' => array(
                         'key'        => 'layout_pb_content_strategies',
                         'name'       => 'content_strategies_section',
-                        'label'      => 'Content + Strategies (Numbered List)',
+                        'label'      => 'Text + Numbered List',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_cs_subheader',    'label' => 'Sub Header',            'name' => 'sub_header',  'type' => 'text' ),
@@ -387,7 +402,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_engage' => array(
                         'key'        => 'layout_pb_engage',
                         'name'       => 'engage_section',
-                        'label'      => 'Two Column Engage Section (Dual Title + WYSIWYG)',
+                        'label'      => 'Side-by-side Text Fields',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_engage_left_header',  'label' => 'Left Header',  'name' => 'left_header',  'type' => 'text',    'default_value' => 'HOW TO ENGAGE' ),
@@ -438,7 +453,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_wioa' => array(
                         'key'        => 'layout_pb_wioa',
                         'name'       => 'wioa_section',
-                        'label'      => 'Legislation / WIOA (Text + Links)',
+                        'label'      => 'Text + Image/Links',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_wioa_subheader',    'label' => 'Sub Header',       'name' => 'sub_header',  'type' => 'text', 'instructions' => 'e.g. "FEDERAL FRAMEWORK"' ),
@@ -469,7 +484,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_intro' => array(
                         'key'        => 'layout_pb_intro',
                         'name'       => 'intro_section',
-                        'label'      => 'Fellowship Intro (Text + Quote)',
+                        'label'      => 'Text /Button + Quote',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_intro_header',       'label' => 'Header',           'name' => 'header',       'type' => 'text' ),
@@ -488,7 +503,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_program' => array(
                         'key'        => 'layout_pb_program',
                         'name'       => 'program_section',
-                        'label'      => 'Program Details (Schedule + Info)',
+                        'label'      => 'Program Details',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_prog_subheader',        'label' => 'Sub Header',       'name' => 'sub_header',      'type' => 'text', 'instructions' => 'e.g. "FELLOWSHIP PROGRAM"' ),
@@ -535,7 +550,7 @@ add_action( 'acf/init', function() {
                     'layout_pb_expectations' => array(
                         'key'        => 'layout_pb_expectations',
                         'name'       => 'expectations_section',
-                        'label'      => 'Expectations & Requirements (Checklists)',
+                        'label'      => 'Multiple Lists',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array(
@@ -586,47 +601,12 @@ add_action( 'acf/init', function() {
                     ),
 
                     // =================================================================
-                    // Upcoming Events Section
-                    // =================================================================
-                    'layout_pb_upcoming_events' => array(
-                        'key'        => 'layout_pb_upcoming_events',
-                        'name'       => 'upcoming_events_section',
-                        'label'      => 'Upcoming Events (Event Cards)',
-                        'display'    => 'block',
-                        'sub_fields' => array(
-                            array( 'key' => 'field_pb_ev_subheader',   'label' => 'Sub Header',         'name' => 'sub_header',          'type' => 'text', 'instructions' => 'e.g. "WHAT\'S HAPPENING"' ),
-                            array( 'key' => 'field_pb_ev_header',      'label' => 'Header',             'name' => 'header',              'type' => 'text', 'default_value' => 'UPCOMING EVENTS' ),
-                            array( 'key' => 'field_pb_ev_shortcode',   'label' => 'Calendar Shortcode', 'name' => 'calendar_shortcode',  'type' => 'text', 'instructions' => 'Paste a calendar plugin shortcode here. Leave blank to use the manual list below.' ),
-                            array(
-                                'key'          => 'field_pb_ev_list',
-                                'label'        => 'Manual Events List',
-                                'name'         => 'events_list',
-                                'type'         => 'repeater',
-                                'layout'       => 'block',
-                                'min'          => 0,
-                                'max'          => 20,
-                                'button_label' => 'Add Event',
-                                'instructions' => 'Only used if Calendar Shortcode is empty.',
-                                'sub_fields'   => array(
-                                    array( 'key' => 'field_pb_event_title',    'label' => 'Event Title',    'name' => 'title',        'type' => 'text' ),
-                                    array( 'key' => 'field_pb_event_date',     'label' => 'Date',           'name' => 'date',         'type' => 'date_picker', 'display_format' => 'F j, Y', 'return_format' => 'F j, Y' ),
-                                    array( 'key' => 'field_pb_event_time',     'label' => 'Time',           'name' => 'time',         'type' => 'text', 'instructions' => 'e.g. "11:00 AM – 12:30 PM EST"' ),
-                                    array( 'key' => 'field_pb_event_desc',     'label' => 'Description',    'name' => 'description',  'type' => 'textarea', 'rows' => 3 ),
-                                    array( 'key' => 'field_pb_event_host',     'label' => 'Presenter/Host', 'name' => 'presenter',    'type' => 'text' ),
-                                    array( 'key' => 'field_pb_event_register', 'label' => 'Register URL',   'name' => 'register_url', 'type' => 'url' ),
-                                    array( 'key' => 'field_pb_event_featured', 'label' => 'Featured Event', 'name' => 'featured',     'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Featured events get a larger, highlighted display.' ),
-                                ),
-                            ),
-                        ),
-                    ),
-
-                    // =================================================================
                     // Logo Carousel Section
                     // =================================================================
                     'layout_pb_logo_carousel' => array(
                         'key'        => 'layout_pb_logo_carousel',
                         'name'       => 'logo_carousel_section',
-                        'label'      => 'Logo Carousel (Scrolling Cards)',
+                        'label'      => 'Scrolling Carousel',
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_lc_header', 'label' => 'Header', 'name' => 'header', 'type' => 'text', 'instructions' => 'Optional heading above the carousel.' ),

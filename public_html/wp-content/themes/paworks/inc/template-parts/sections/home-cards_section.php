@@ -29,7 +29,7 @@ if ( ! $cards ) {
                     <?php endif; ?>
 
                     <?php if ( ! empty( $card['body'] ) ) : ?>
-                        <p class="pw-card__body"><?php echo esc_html( $card['body'] ); ?></p>
+                        <div class="pw-card__body"><?php echo wp_kses_post( $card['body'] ); ?></div>
                     <?php endif; ?>
 
                     <?php if ( ! empty( $card['link_text'] ) && ! empty( $card['link_url'] ) ) : ?>
