@@ -675,6 +675,19 @@ add_action( 'acf/init', function() {
                         ),
                     ),
 
+                    // =================================================================
+                    // WYSIWYG Section (60vw Container)
+                    // =================================================================
+                    'layout_pb_wysiwyg' => array(
+                        'key'        => 'layout_pb_wysiwyg',
+                        'name'       => 'wysiwyg_section',
+                        'label'      => 'WYSIWYG (60vw Container)',
+                        'display'    => 'block',
+                        'sub_fields' => array(
+                            array( 'key' => 'field_pb_wysiwyg_body', 'label' => 'Body Text', 'name' => 'body_text', 'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'full', 'media_upload' => 0 ),
+                        ),
+                    ),
+
                 ), // end layouts
             ), // end field_pb_sections
         ), // end fields
