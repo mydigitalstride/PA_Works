@@ -709,8 +709,25 @@ add_action( 'acf/init', function() {
                         'label'      => 'WYSIWYG',
                         'display'    => 'block',
                         'sub_fields' => array(
-                            array( 'key' => 'field_pb_wysiwyg_header',  'label' => 'Header', 'name' => 'header', 'type' => 'text', 'instructions' => 'Optional heading displayed above the content.' ),
+                            array( 'key' => 'field_pb_wysiwyg_header',  'label' => 'Header', 'name' => 'header', 'type' => 'text', 'instructions' => 'Legacy single-block field, kept for existing content. Use "Blocks" below for new sections.' ),
                             array( 'key' => 'field_pb_wysiwyg_content', 'label' => 'Content', 'name' => 'content', 'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'full', 'media_upload' => 1 ),
+                            array(
+                                'key'          => 'field_pb_wysiwyg_blocks',
+                                'label'        => 'Blocks',
+                                'name'         => 'blocks',
+                                'type'         => 'repeater',
+                                'layout'       => 'block',
+                                'min'          => 0,
+                                'button_label' => 'Add Block',
+                                'instructions' => 'Stack multiple header/content/button blocks in this one section. If left empty, the legacy fields above are used.',
+                                'sub_fields'   => array(
+                                    array( 'key' => 'field_pb_wysiwyg_block_header',        'label' => 'Header',         'name' => 'header',        'type' => 'text', 'instructions' => 'Optional heading displayed above the content.' ),
+                                    array( 'key' => 'field_pb_wysiwyg_block_content',       'label' => 'Content',        'name' => 'content',       'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'full', 'media_upload' => 1 ),
+                                    array( 'key' => 'field_pb_wysiwyg_block_btn_text',      'label' => 'Button Text',    'name' => 'button_text',   'type' => 'text', 'instructions' => 'Optional. Displayed below the content.' ),
+                                    array( 'key' => 'field_pb_wysiwyg_block_btn_url',       'label' => 'Button URL',     'name' => 'button_url',    'type' => 'url' ),
+                                    array( 'key' => 'field_pb_wysiwyg_block_btn_target',    'label' => 'Open in New Tab', 'name' => 'button_target', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1 ),
+                                ),
+                            ),
                         ),
                     ),
 
