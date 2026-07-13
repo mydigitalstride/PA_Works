@@ -51,6 +51,14 @@ $info_boxes = get_sub_field( 'info_boxes' );
                                     <?php endforeach; ?>
                                 </ul>
                             <?php endif; ?>
+
+                            <?php if ( ! empty( $box['button_text'] ) && ! empty( $box['button_url'] ) ) :
+                                $box_target_attr = ! empty( $box['button_target'] ) ? ' target="_blank" rel="noopener noreferrer"' : '';
+                            ?>
+                                <a href="<?php echo esc_url( $box['button_url'] ); ?>" class="pw-btn pw-btn--outline pw-bullet-card__btn"<?php echo $box_target_attr; ?>>
+                                    <?php echo esc_html( $box['button_text'] ); ?>
+                                </a>
+                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 </div>

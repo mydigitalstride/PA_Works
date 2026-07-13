@@ -1775,6 +1775,10 @@ h2::after {
     font-size: 0.7rem;
 }
 
+.pw-bullet-card__btn {
+    margin-top: 24px;
+}
+
 @media (max-width: 768px) {
     .pw-mission__grid {
         grid-template-columns: 1fr;
