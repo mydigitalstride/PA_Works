@@ -294,11 +294,13 @@ h2::after {
 .pw-btn--primary {
     background-color: var(--pw-gold);
     color: var(--pw-navy);
+    border: 2px solid var(--pw-gold);
 }
 
 .pw-btn--primary:hover {
     background-color: var(--pw-navy);
     color: var(--pw-white);
+    border-color: var(--pw-navy);
     transform: translateY(-2px);
     box-shadow: var(--pw-shadow-md);
 }
@@ -875,6 +877,7 @@ h2::after {
 
 .pw-cards--no-negative-margin {
     margin-top: 0;
+    padding: var(--pw-section-padding);
 }
 
 .pw-cards__section-title {
@@ -940,7 +943,7 @@ h2::after {
 .pw-card__title {
     font-family: var(--pw-font-heading);
     font-size: 1.25rem;
-    font-weight: 500;
+    font-weight: 700;
     color: var(--pw-navy);
     margin-bottom: 8px;
 }
@@ -1931,6 +1934,11 @@ h2::after {
 .pw-workforce-system__body h4 {
     margin-top: 28px;
     margin-bottom: 12px;
+}
+
+.pw-workforce-system__btn {
+    margin-top: 8px;
+    margin-bottom: 32px;
 }
 
 /* ==========================================================================
@@ -3140,6 +3148,14 @@ h2::after {
 
 .pw-wysiwyg__content > :last-child {
     margin-bottom: 0;
+}
+
+.pw-wysiwyg__block + .pw-wysiwyg__block {
+    margin-top: 48px;
+}
+
+.pw-wysiwyg__btn {
+    margin-top: 24px;
 }
 
 /* ==========================================================================

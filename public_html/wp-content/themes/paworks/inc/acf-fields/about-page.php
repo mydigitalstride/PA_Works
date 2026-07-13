@@ -455,6 +455,27 @@ add_action( 'acf/init', function() {
                                 'media_upload' => 1,
                                 'instructions' => 'Full content area for describing the workforce system. Supports paragraphs, headings, links, etc.',
                             ),
+                            array(
+                                'key'        => 'field_about_wfs_btn_text',
+                                'label'      => 'Button Text',
+                                'name'       => 'button_text',
+                                'type'       => 'text',
+                                'instructions' => 'Optional. Displayed below the content.',
+                            ),
+                            array(
+                                'key'        => 'field_about_wfs_btn_url',
+                                'label'      => 'Button URL',
+                                'name'       => 'button_url',
+                                'type'       => 'url',
+                            ),
+                            array(
+                                'key'        => 'field_about_wfs_btn_target',
+                                'label'      => 'Open in New Tab',
+                                'name'       => 'button_target',
+                                'type'       => 'true_false',
+                                'default_value' => 0,
+                                'ui'         => 1,
+                            ),
                         ),
                     ),
 
