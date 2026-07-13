@@ -881,6 +881,7 @@ h2::after {
 
 .pw-cards--no-negative-margin {
     margin-top: 0;
+    padding: var(--pw-section-padding);
 }
 
 .pw-cards__section-title {
