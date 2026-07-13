@@ -81,6 +81,8 @@ add_action( 'acf/init', function() {
                         'label'      => 'Cards',
                         'display'    => 'block',
                         'sub_fields' => array(
+                            array( 'key' => 'field_pb_cards_title',           'label' => 'Section Title',        'name' => 'section_title',           'type' => 'text', 'instructions' => 'Optional heading displayed above the cards.' ),
+                            array( 'key' => 'field_pb_cards_no_neg_margin',   'label' => 'Disable Negative Margin', 'name' => 'disable_negative_margin', 'type' => 'true_false', 'instructions' => 'Enable to remove the overlap with the section above.', 'default_value' => 0, 'ui' => 1 ),
                             array(
                                 'key'          => 'field_pb_cards',
                                 'label'        => 'Cards',
