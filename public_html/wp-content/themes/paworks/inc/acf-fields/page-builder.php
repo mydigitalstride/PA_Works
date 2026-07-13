@@ -69,6 +69,9 @@ add_action( 'acf/init', function() {
                             array( 'key' => 'field_pb_hero_btn_text',   'label' => 'Button Text',       'name' => 'button_text',      'type' => 'text' ),
                             array( 'key' => 'field_pb_hero_btn_url',    'label' => 'Button URL',        'name' => 'button_url',       'type' => 'url' ),
                             array( 'key' => 'field_pb_hero_btn_target', 'label' => 'Open in New Tab',   'name' => 'button_target',    'type' => 'true_false', 'default_value' => 0, 'ui' => 1 ),
+                            array( 'key' => 'field_pb_hero_btn2_text',   'label' => 'Secondary Button Text',     'name' => 'button2_text',   'type' => 'text', 'instructions' => 'Optional. Displayed as an outlined button next to the primary button.' ),
+                            array( 'key' => 'field_pb_hero_btn2_url',    'label' => 'Secondary Button URL',      'name' => 'button2_url',    'type' => 'url' ),
+                            array( 'key' => 'field_pb_hero_btn2_target', 'label' => 'Secondary Open in New Tab', 'name' => 'button2_target', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1 ),
                         ),
                     ),
 

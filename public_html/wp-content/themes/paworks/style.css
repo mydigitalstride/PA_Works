@@ -825,6 +825,30 @@ h2::after {
     margin-top: 8px;
 }
 
+.pw-hero__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.pw-btn--hero-secondary {
+    background-color: transparent;
+    color: var(--pw-white);
+    border: 2px solid var(--pw-gold);
+    box-shadow: 0 0 8px rgba(249, 173, 50, 0.6);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.pw-btn--hero-secondary:hover {
+    background-color: var(--pw-gold);
+    color: var(--pw-navy);
+    border-color: var(--pw-gold);
+    box-shadow: var(--pw-shadow-md);
+    text-shadow: none;
+    transform: translateY(-2px);
+}
+
 @media (max-width: 768px) {
     .pw-hero {
         min-height: 480px;
