@@ -335,6 +335,9 @@ add_action( 'acf/init', function() {
                             array( 'key' => 'field_pb_wfs_header',    'label' => 'Header',           'name' => 'header',      'type' => 'text',    'default_value' => "PA'S LOCAL WORKFORCE SYSTEM" ),
                             array( 'key' => 'field_pb_wfs_map',       'label' => 'Map / Hero Image', 'name' => 'map_image',   'type' => 'image',   'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Large map or infographic.' ),
                             array( 'key' => 'field_pb_wfs_body',      'label' => 'Body Content',     'name' => 'body_content','type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'full', 'media_upload' => 1 ),
+                            array( 'key' => 'field_pb_wfs_btn_text',   'label' => 'Button Text',     'name' => 'button_text',   'type' => 'text', 'instructions' => 'Optional. Displayed below the content.' ),
+                            array( 'key' => 'field_pb_wfs_btn_url',    'label' => 'Button URL',      'name' => 'button_url',    'type' => 'url' ),
+                            array( 'key' => 'field_pb_wfs_btn_target', 'label' => 'Open in New Tab', 'name' => 'button_target', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1 ),
                         ),
                     ),
 

@@ -1935,6 +1935,11 @@ h2::after {
     margin-bottom: 12px;
 }
 
+.pw-workforce-system__btn {
+    margin-top: 8px;
+    margin-bottom: 32px;
+}
+
 /* ==========================================================================
    Strategies Section (Advocacy Page)
    ========================================================================== */

@@ -13,6 +13,10 @@ $sub_header   = get_sub_field( 'sub_header' );
 $header       = get_sub_field( 'header' );
 $map_image    = get_sub_field( 'map_image' );
 $body_content = get_sub_field( 'body_content' );
+$btn_text     = get_sub_field( 'button_text' );
+$btn_url      = get_sub_field( 'button_url' );
+$btn_target   = get_sub_field( 'button_target' );
+$target_attr  = $btn_target ? ' target="_blank" rel="noopener noreferrer"' : '';
 ?>
 
 <section class="pw-workforce-system pw-section">
@@ -29,6 +33,12 @@ $body_content = get_sub_field( 'body_content' );
             <div class="pw-workforce-system__body">
                 <?php echo wp_kses_post( $body_content ); ?>
             </div>
+        <?php endif; ?>
+
+        <?php if ( $btn_text && $btn_url ) : ?>
+            <a href="<?php echo esc_url( $btn_url ); ?>" class="pw-btn pw-btn--primary pw-workforce-system__btn"<?php echo $target_attr; ?>>
+                <?php echo esc_html( $btn_text ); ?>
+            </a>
         <?php endif; ?>
 
         <?php if ( $map_image ) : ?>
