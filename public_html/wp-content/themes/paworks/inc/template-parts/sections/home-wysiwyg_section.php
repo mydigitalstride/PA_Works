@@ -12,13 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-$header  = get_sub_field( 'header' );
-$content = get_sub_field( 'content' );
-$blocks  = get_sub_field( 'blocks' );
-
-if ( empty( $blocks ) && ( $header || $content ) ) {
-    $blocks = array( array( 'header' => $header, 'content' => $content, 'button_text' => '', 'button_url' => '', 'button_target' => 0 ) );
-}
+$blocks = get_sub_field( 'blocks' );
 
 if ( empty( $blocks ) ) {
     return;
