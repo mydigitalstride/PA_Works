@@ -12,14 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $sub_header = get_sub_field( 'sub_header' );
 $header     = get_sub_field( 'header' );
 $body_text  = get_sub_field( 'body_text' );
-$btn_text   = get_sub_field( 'button_text' );
-$btn_url    = get_sub_field( 'button_url' );
 $buttons    = get_sub_field( 'buttons' );
 $bg_style   = get_sub_field( 'bg_style' );
-
-if ( empty( $buttons ) && $btn_text && $btn_url ) {
-    $buttons = array( array( 'button_text' => $btn_text, 'button_url' => $btn_url, 'button_target' => 0, 'hide_on_mobile' => 0 ) );
-}
 
 $section_classes = 'pw-cta pw-section';
 switch ( $bg_style ) {

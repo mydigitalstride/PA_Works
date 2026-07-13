@@ -9,13 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-$btn_text = get_sub_field( 'button_text' );
-$btn_url  = get_sub_field( 'button_url' );
-$buttons  = get_sub_field( 'buttons' );
-
-if ( empty( $buttons ) && $btn_text && $btn_url ) {
-    $buttons = array( array( 'button_text' => $btn_text, 'button_url' => $btn_url, 'button_target' => 0, 'hide_on_mobile' => 0 ) );
-}
+$buttons = get_sub_field( 'buttons' );
 ?>
 
 <?php if ( ! empty( $buttons ) ) : ?>

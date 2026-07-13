@@ -353,8 +353,6 @@ add_action( 'acf/init', function() {
                             array( 'key' => 'field_pb_cta_subheader', 'label' => 'Sub Header',      'name' => 'sub_header',  'type' => 'text' ),
                             array( 'key' => 'field_pb_cta_header',    'label' => 'Header',          'name' => 'header',      'type' => 'text' ),
                             array( 'key' => 'field_pb_cta_body',      'label' => 'Body Text',       'name' => 'body_text',   'type' => 'textarea', 'rows' => 2, 'new_lines' => 'br' ),
-                            array( 'key' => 'field_pb_cta_btn_text',  'label' => 'Button Text',     'name' => 'button_text', 'type' => 'text', 'instructions' => 'Legacy single-button field, kept for existing content. Use "Buttons" below for new sections.' ),
-                            array( 'key' => 'field_pb_cta_btn_url',   'label' => 'Button URL',      'name' => 'button_url',  'type' => 'url' ),
                             array(
                                 'key'          => 'field_pb_cta_buttons',
                                 'label'        => 'Buttons',
@@ -364,7 +362,7 @@ add_action( 'acf/init', function() {
                                 'min'          => 0,
                                 'max'          => 4,
                                 'button_label' => 'Add Button',
-                                'instructions' => 'Up to 4 buttons, displayed side by side on desktop. If left empty, the legacy button above is used.',
+                                'instructions' => 'Up to 4 buttons, displayed side by side on desktop.',
                                 'sub_fields'   => array(
                                     array( 'key' => 'field_pb_cta_button_text',          'label' => 'Button Text',       'name' => 'button_text',      'type' => 'text' ),
                                     array( 'key' => 'field_pb_cta_button_url',           'label' => 'Button URL',        'name' => 'button_url',       'type' => 'url' ),
