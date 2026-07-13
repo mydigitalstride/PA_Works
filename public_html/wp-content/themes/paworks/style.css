@@ -3071,6 +3071,31 @@ h2::after {
 }
 
 /* ==========================================================================
+   WYSIWYG Section
+   ========================================================================== */
+.pw-wysiwyg__title {
+    font-family: var(--pw-font-heading);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--pw-navy);
+    margin-bottom: 24px;
+}
+
+.pw-wysiwyg__content {
+    font-size: 1rem;
+    color: var(--pw-dark-gray);
+    line-height: 1.6;
+}
+
+.pw-wysiwyg__content > :first-child {
+    margin-top: 0;
+}
+
+.pw-wysiwyg__content > :last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
    News Archive
    ========================================================================== */
 .pw-archive__list {

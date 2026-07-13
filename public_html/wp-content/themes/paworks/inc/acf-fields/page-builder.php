@@ -677,6 +677,20 @@ add_action( 'acf/init', function() {
                         ),
                     ),
 
+                    // =================================================================
+                    // WYSIWYG Section (Free-form Content)
+                    // =================================================================
+                    'layout_pb_wysiwyg' => array(
+                        'key'        => 'layout_pb_wysiwyg',
+                        'name'       => 'wysiwyg_section',
+                        'label'      => 'WYSIWYG',
+                        'display'    => 'block',
+                        'sub_fields' => array(
+                            array( 'key' => 'field_pb_wysiwyg_header',  'label' => 'Header', 'name' => 'header', 'type' => 'text', 'instructions' => 'Optional heading displayed above the content.' ),
+                            array( 'key' => 'field_pb_wysiwyg_content', 'label' => 'Content', 'name' => 'content', 'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'full', 'media_upload' => 1 ),
+                        ),
+                    ),
+
                 ), // end layouts
             ), // end field_pb_sections
         ), // end fields
