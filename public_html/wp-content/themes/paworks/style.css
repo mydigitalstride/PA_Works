@@ -823,6 +823,30 @@ h2::after {
     margin-top: 8px;
 }
 
+.pw-hero__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.pw-btn--hero-secondary {
+    background-color: transparent;
+    color: var(--pw-white);
+    border: 2px solid var(--pw-gold);
+    box-shadow: 0 0 8px rgba(249, 173, 50, 0.6);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.pw-btn--hero-secondary:hover {
+    background-color: var(--pw-gold);
+    color: var(--pw-navy);
+    border-color: var(--pw-gold);
+    box-shadow: var(--pw-shadow-md);
+    text-shadow: none;
+    transform: translateY(-2px);
+}
+
 @media (max-width: 768px) {
     .pw-hero {
         min-height: 480px;
@@ -1752,6 +1776,10 @@ h2::after {
     font-size: 0.7rem;
 }
 
+.pw-bullet-card__btn {
+    margin-top: 24px;
+}
+
 @media (max-width: 768px) {
     .pw-mission__grid {
         grid-template-columns: 1fr;
@@ -2267,6 +2295,20 @@ h2::after {
     font-size: 1rem;
     color: var(--pw-dark-gray);
     margin-bottom: 24px;
+}
+
+.pw-cta__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .pw-btn--hide-mobile {
+        display: none;
+    }
 }
 
 /* ==========================================================================
@@ -3073,6 +3115,31 @@ h2::after {
         left: 50%;
         transform: translate(-50%, -50%);
     }
+}
+
+/* ==========================================================================
+   WYSIWYG Section
+   ========================================================================== */
+.pw-wysiwyg__title {
+    font-family: var(--pw-font-heading);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--pw-navy);
+    margin-bottom: 24px;
+}
+
+.pw-wysiwyg__content {
+    font-size: 1rem;
+    color: var(--pw-dark-gray);
+    line-height: 1.6;
+}
+
+.pw-wysiwyg__content > :first-child {
+    margin-top: 0;
+}
+
+.pw-wysiwyg__content > :last-child {
+    margin-bottom: 0;
 }
 
 /* ==========================================================================

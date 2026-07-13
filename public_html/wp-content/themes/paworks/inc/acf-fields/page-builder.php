@@ -69,6 +69,9 @@ add_action( 'acf/init', function() {
                             array( 'key' => 'field_pb_hero_btn_text',   'label' => 'Button Text',       'name' => 'button_text',      'type' => 'text' ),
                             array( 'key' => 'field_pb_hero_btn_url',    'label' => 'Button URL',        'name' => 'button_url',       'type' => 'url' ),
                             array( 'key' => 'field_pb_hero_btn_target', 'label' => 'Open in New Tab',   'name' => 'button_target',    'type' => 'true_false', 'default_value' => 0, 'ui' => 1 ),
+                            array( 'key' => 'field_pb_hero_btn2_text',   'label' => 'Secondary Button Text',     'name' => 'button2_text',   'type' => 'text', 'instructions' => 'Optional. Displayed as an outlined button next to the primary button.' ),
+                            array( 'key' => 'field_pb_hero_btn2_url',    'label' => 'Secondary Button URL',      'name' => 'button2_url',    'type' => 'url' ),
+                            array( 'key' => 'field_pb_hero_btn2_target', 'label' => 'Secondary Open in New Tab', 'name' => 'button2_target', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1 ),
                         ),
                     ),
 
@@ -280,6 +283,9 @@ add_action( 'acf/init', function() {
                                         ),
                                     ),
                                     array( 'key' => 'field_pb_mbox_style', 'label' => 'Box Style', 'name' => 'box_style', 'type' => 'select', 'choices' => array( 'yellow' => 'Yellow / Gold', 'blue' => 'Blue / Teal', 'navy' => 'Navy', 'orange' => 'Orange' ), 'default_value' => 'yellow' ),
+                                    array( 'key' => 'field_pb_mbox_btn_text',   'label' => 'Button Text',     'name' => 'button_text',   'type' => 'text', 'instructions' => 'Optional. Displayed at the bottom of the info box.' ),
+                                    array( 'key' => 'field_pb_mbox_btn_url',    'label' => 'Button URL',      'name' => 'button_url',    'type' => 'url' ),
+                                    array( 'key' => 'field_pb_mbox_btn_target', 'label' => 'Open in New Tab', 'name' => 'button_target', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1 ),
                                 ),
                             ),
                         ),
@@ -344,8 +350,25 @@ add_action( 'acf/init', function() {
                             array( 'key' => 'field_pb_cta_subheader', 'label' => 'Sub Header',      'name' => 'sub_header',  'type' => 'text' ),
                             array( 'key' => 'field_pb_cta_header',    'label' => 'Header',          'name' => 'header',      'type' => 'text' ),
                             array( 'key' => 'field_pb_cta_body',      'label' => 'Body Text',       'name' => 'body_text',   'type' => 'textarea', 'rows' => 2, 'new_lines' => 'br' ),
-                            array( 'key' => 'field_pb_cta_btn_text',  'label' => 'Button Text',     'name' => 'button_text', 'type' => 'text' ),
+                            array( 'key' => 'field_pb_cta_btn_text',  'label' => 'Button Text',     'name' => 'button_text', 'type' => 'text', 'instructions' => 'Legacy single-button field, kept for existing content. Use "Buttons" below for new sections.' ),
                             array( 'key' => 'field_pb_cta_btn_url',   'label' => 'Button URL',      'name' => 'button_url',  'type' => 'url' ),
+                            array(
+                                'key'          => 'field_pb_cta_buttons',
+                                'label'        => 'Buttons',
+                                'name'         => 'buttons',
+                                'type'         => 'repeater',
+                                'layout'       => 'block',
+                                'min'          => 0,
+                                'max'          => 4,
+                                'button_label' => 'Add Button',
+                                'instructions' => 'Up to 4 buttons, displayed side by side on desktop. If left empty, the legacy button above is used.',
+                                'sub_fields'   => array(
+                                    array( 'key' => 'field_pb_cta_button_text',          'label' => 'Button Text',       'name' => 'button_text',      'type' => 'text' ),
+                                    array( 'key' => 'field_pb_cta_button_url',           'label' => 'Button URL',        'name' => 'button_url',       'type' => 'url' ),
+                                    array( 'key' => 'field_pb_cta_button_target',        'label' => 'Open in New Tab',   'name' => 'button_target',    'type' => 'true_false', 'default_value' => 0, 'ui' => 1 ),
+                                    array( 'key' => 'field_pb_cta_button_hide_mobile',   'label' => 'Hide on Mobile',    'name' => 'hide_on_mobile',   'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Hide this button on mobile screens.' ),
+                                ),
+                            ),
                             array( 'key' => 'field_pb_cta_bg_style',  'label' => 'Background Style','name' => 'bg_style',    'type' => 'select', 'choices' => array( 'light' => 'Light (Off-White)', 'sky' => 'Sky Blue (#9bd3dd)', 'blue' => 'Blue Gradient', 'navy' => 'Navy', 'yellow' => 'Yellow Accent' ), 'default_value' => 'light' ),
                         ),
                     ),
@@ -674,6 +697,20 @@ add_action( 'acf/init', function() {
                             array( 'key' => 'field_pb_quote_name', 'label' => 'Attribution Name', 'name' => 'quote_name', 'type' => 'text', 'instructions' => 'Name shown below the quote.' ),
                             array( 'key' => 'field_pb_quote_role', 'label' => 'Attribution Role / Organization', 'name' => 'quote_role', 'type' => 'text', 'instructions' => 'Optional title or organization shown under the name.' ),
                             array( 'key' => 'field_pb_quote_avatar', 'label' => 'Avatar Image', 'name' => 'quote_avatar', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'thumbnail', 'instructions' => 'Optional circular photo/icon shown overlapping the top-left corner of the quote box.' ),
+                        ),
+                    ),
+
+                    // =================================================================
+                    // WYSIWYG Section (Free-form Content)
+                    // =================================================================
+                    'layout_pb_wysiwyg' => array(
+                        'key'        => 'layout_pb_wysiwyg',
+                        'name'       => 'wysiwyg_section',
+                        'label'      => 'WYSIWYG',
+                        'display'    => 'block',
+                        'sub_fields' => array(
+                            array( 'key' => 'field_pb_wysiwyg_header',  'label' => 'Header', 'name' => 'header', 'type' => 'text', 'instructions' => 'Optional heading displayed above the content.' ),
+                            array( 'key' => 'field_pb_wysiwyg_content', 'label' => 'Content', 'name' => 'content', 'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'full', 'media_upload' => 1 ),
                         ),
                     ),
 
