@@ -14,7 +14,12 @@ $header     = get_sub_field( 'header' );
 $body_text  = get_sub_field( 'body_text' );
 $btn_text   = get_sub_field( 'button_text' );
 $btn_url    = get_sub_field( 'button_url' );
+$buttons    = get_sub_field( 'buttons' );
 $bg_style   = get_sub_field( 'bg_style' );
+
+if ( empty( $buttons ) && $btn_text && $btn_url ) {
+    $buttons = array( array( 'button_text' => $btn_text, 'button_url' => $btn_url, 'button_target' => 0, 'hide_on_mobile' => 0 ) );
+}
 
 $section_classes = 'pw-cta pw-section';
 switch ( $bg_style ) {
@@ -50,10 +55,23 @@ switch ( $bg_style ) {
             <p class="pw-cta__body"><?php echo wp_kses_post( $body_text ); ?></p>
         <?php endif; ?>
 
-        <?php if ( $btn_text && $btn_url ) : ?>
-            <a href="<?php echo esc_url( $btn_url ); ?>" class="pw-btn pw-btn--orange">
-                <?php echo esc_html( $btn_text ); ?>
-            </a>
+        <?php if ( ! empty( $buttons ) ) : ?>
+            <div class="pw-cta__buttons">
+                <?php foreach ( $buttons as $button ) :
+                    if ( empty( $button['button_text'] ) || empty( $button['button_url'] ) ) {
+                        continue;
+                    }
+                    $btn_classes = 'pw-btn pw-btn--orange';
+                    if ( ! empty( $button['hide_on_mobile'] ) ) {
+                        $btn_classes .= ' pw-btn--hide-mobile';
+                    }
+                    $btn_target_attr = ! empty( $button['button_target'] ) ? ' target="_blank" rel="noopener noreferrer"' : '';
+                ?>
+                    <a href="<?php echo esc_url( $button['button_url'] ); ?>" class="<?php echo esc_attr( $btn_classes ); ?>"<?php echo $btn_target_attr; ?>>
+                        <?php echo esc_html( $button['button_text'] ); ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
         <?php endif; ?>
     </div>
 </section>

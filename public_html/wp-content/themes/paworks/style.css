@@ -2292,6 +2292,20 @@ h2::after {
     margin-bottom: 24px;
 }
 
+.pw-cta__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .pw-btn--hide-mobile {
+        display: none;
+    }
+}
+
 /* ==========================================================================
    WIOA Section (Advocacy Page)
    ========================================================================== */
