@@ -896,7 +896,7 @@ h2::after {
 }
 
 .pw-card__content {
-    padding: 24px;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -969,6 +969,10 @@ h2::after {
 
     .pw-card__image {
         height: 200px;
+    }
+
+    .pw-card__content {
+        padding: 24px;
     }
 }
 
