@@ -235,8 +235,8 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--pw-navy);
 }
 
-h1 { font-size: 3rem; text-transform: uppercase; text-align: left; }
-h2 { font-size: 2.25rem; text-transform: uppercase; text-align: left; }
+h1 { font-size: 3rem; text-transform: uppercase; text-align: center; }
+h2 { font-size: 2.25rem; text-transform: uppercase; text-align: center; }
 h3 { font-size: 1.5rem; }
 h4 { font-size: 1.25rem; }
 
@@ -246,19 +246,17 @@ h2::after {
     display: block;
     width: 13rem;
     height: 6px;
+    margin: 16px auto 0;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
-    margin-top: 16px;
 }
 
 .pw-hero__title::after {
     display: none;
 }
 
-@media (max-width: 768px) {
-    h1::after,
-    h2::after {
-        justify-self: center;
-    }
+.pw-hero__title,
+.pw-hero__subheader {
+    text-align: left;
 }
 
 /* ==========================================================================
@@ -845,8 +843,6 @@ h2::after {
    Cards Section (Events/News)
    ========================================================================== */
 .pw-cards {
-    padding: var(--pw-section-padding);
-    padding-top: 0;
     background: transparent;
     position: relative;
     z-index: 2;
@@ -1144,6 +1140,7 @@ h2::after {
     letter-spacing: 2px;
     color: rgba(255,255,255,0.8);
     margin-bottom: 8px;
+    text-align: center;
 }
 
 .pw-whatwedo__title {
@@ -2171,6 +2168,10 @@ h2::after {
     color: var(--pw-dark-gray);
 }
 
+.pw-engage__content li span {
+    text-align: left;
+}
+
 .pw-engage__content p {
     margin-bottom: 16px;
 }
@@ -2314,7 +2315,7 @@ h2::after {
 .pw-wioa__image {
     width: 100%;
     line-height: 0;
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 .pw-wioa__image img {
