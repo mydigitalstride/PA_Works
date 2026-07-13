@@ -9,16 +9,27 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-$cards = get_sub_field( 'cards' );
+$cards               = get_sub_field( 'cards' );
+$section_title       = get_sub_field( 'section_title' );
+$disable_neg_margin  = get_sub_field( 'disable_negative_margin' );
 if ( ! $cards ) {
     return;
 }
+
+$section_class = 'pw-cards';
+if ( $disable_neg_margin ) {
+    $section_class .= ' pw-cards--no-negative-margin';
+}
 ?>
 
-<section class="pw-cards">
+<section class="<?php echo esc_attr( $section_class ); ?>">
+    <?php if ( ! empty( $section_title ) ) : ?>
+        <h2 class="pw-cards__section-title"><?php echo esc_html( $section_title ); ?></h2>
+    <?php endif; ?>
+
     <div class="pw-cards__grid">
         <?php foreach ( $cards as $card ) : ?>
-            <div class="pw-card">
+            <div class="pw-card<?php echo empty( $card['image'] ) ? ' pw-card--no-image' : ''; ?>">
                 <div class="pw-card__content">
                     <?php if ( ! empty( $card['label'] ) ) : ?>
                         <span class="pw-card__label"><?php echo esc_html( $card['label'] ); ?></span>
