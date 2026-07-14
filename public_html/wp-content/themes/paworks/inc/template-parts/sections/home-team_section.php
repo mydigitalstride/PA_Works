@@ -61,6 +61,10 @@ $btn_url       = get_sub_field( 'button_url' );
                                 <?php if ( ! empty( $member['role'] ) ) : ?>
                                     <p class="pw-team__role"><?php echo esc_html( $member['role'] ); ?></p>
                                 <?php endif; ?>
+
+                                <?php if ( ! empty( $member['email'] ) ) : ?>
+                                    <p class="pw-team__email"><a href="mailto:<?php echo esc_attr( $member['email'] ); ?>"><?php echo esc_html( $member['email'] ); ?></a></p>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
