@@ -891,7 +891,7 @@ h2::after {
     font-size: 2rem;
     font-weight: 700;
     color: var(--pw-navy);
-    text-align: center;
+    text-align: left;
     max-width: var(--pw-container-width);
     margin: 0 auto 32px;
     padding: var(--pw-container-padding);
