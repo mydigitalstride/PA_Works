@@ -28,8 +28,17 @@ $members    = get_sub_field( 'members' );
             <div class="pw-board__grid">
                 <?php foreach ( $members as $member ) :
                     $highlighted_class = ! empty( $member['highlighted'] ) ? ' pw-board__member--highlighted' : '';
+                    $link_url          = $member['link_url'] ?? '';
+                    $tag               = $link_url ? 'a' : 'div';
+                    $link_attrs        = '';
+                    if ( $link_url ) {
+                        $link_attrs = ' href="' . esc_url( $link_url ) . '"';
+                        if ( ! empty( $member['link_target'] ) ) {
+                            $link_attrs .= ' target="_blank" rel="noopener"';
+                        }
+                    }
                 ?>
-                    <div class="pw-board__member<?php echo esc_attr( $highlighted_class ); ?>">
+                    <<?php echo $tag; ?> class="pw-board__member<?php echo esc_attr( $highlighted_class ); ?>"<?php echo $link_attrs; ?>>
                         <?php if ( ! empty( $member['photo'] ) ) : ?>
                             <div class="pw-board__photo">
                                 <img src="<?php echo esc_url( $member['photo']['sizes']['pw-team'] ?? $member['photo']['url'] ); ?>"
@@ -48,7 +57,7 @@ $members    = get_sub_field( 'members' );
                         <?php if ( ! empty( $member['position'] ) ) : ?>
                             <p class="pw-board__position"><?php echo esc_html( $member['position'] ); ?></p>
                         <?php endif; ?>
-                    </div>
+                    </<?php echo $tag; ?>>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>

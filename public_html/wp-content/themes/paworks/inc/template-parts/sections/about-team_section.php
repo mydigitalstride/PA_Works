@@ -48,6 +48,10 @@ $bg_style = $bg_image ? 'background-image: url(' . esc_url( $bg_image['url'] ) .
                         <?php if ( ! empty( $member['role'] ) ) : ?>
                             <p class="pw-team__role"><?php echo esc_html( $member['role'] ); ?></p>
                         <?php endif; ?>
+
+                        <?php if ( ! empty( $member['email'] ) ) : ?>
+                            <p class="pw-team__email"><a href="mailto:<?php echo esc_attr( $member['email'] ); ?>"><?php echo esc_html( $member['email'] ); ?></a></p>
+                        <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
             </div>
