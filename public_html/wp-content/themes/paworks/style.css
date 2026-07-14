@@ -54,7 +54,7 @@ Text Domain: paworks
 
     /* Spacing */
     --pw-section-padding: 40px 0;
-    --pw-container-width: 1200px;
+    --pw-container-width: 80vw;
     --pw-container-padding: 0 24px;
 
     /* Border Radius */
@@ -71,7 +71,7 @@ Text Domain: paworks
 
 @media (min-width: 769px) {
     :root {
-        --pw-container-width: 85vw;
+        --pw-container-width: 80vw;
     }
 }
 
