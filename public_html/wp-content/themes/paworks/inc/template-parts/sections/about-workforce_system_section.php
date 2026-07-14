@@ -9,14 +9,17 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-$sub_header   = get_sub_field( 'sub_header' );
-$header       = get_sub_field( 'header' );
-$map_image    = get_sub_field( 'map_image' );
-$body_content = get_sub_field( 'body_content' );
-$btn_text     = get_sub_field( 'button_text' );
-$btn_url      = get_sub_field( 'button_url' );
-$btn_target   = get_sub_field( 'button_target' );
-$target_attr  = $btn_target ? ' target="_blank" rel="noopener noreferrer"' : '';
+$sub_header    = get_sub_field( 'sub_header' );
+$header        = get_sub_field( 'header' );
+$map_image     = get_sub_field( 'map_image' );
+$map_width     = get_sub_field( 'map_width' );
+$map_alignment = get_sub_field( 'map_alignment' ) ?: 'left';
+$body_content  = get_sub_field( 'body_content' );
+$btn_text      = get_sub_field( 'button_text' );
+$btn_url       = get_sub_field( 'button_url' );
+$btn_target    = get_sub_field( 'button_target' );
+$target_attr   = $btn_target ? ' target="_blank" rel="noopener noreferrer"' : '';
+$map_style     = $map_width ? ' style="max-width: ' . esc_attr( $map_width ) . ';"' : '';
 ?>
 
 <section class="pw-workforce-system pw-section">
@@ -42,7 +45,7 @@ $target_attr  = $btn_target ? ' target="_blank" rel="noopener noreferrer"' : '';
         <?php endif; ?>
 
         <?php if ( $map_image ) : ?>
-            <div class="pw-workforce-system__map">
+            <div class="pw-workforce-system__map pw-workforce-system__map--<?php echo esc_attr( $map_alignment ); ?>"<?php echo $map_style; ?>>
                 <img src="<?php echo esc_url( $map_image['url'] ); ?>"
                      alt="<?php echo esc_attr( $map_image['alt'] ); ?>">
             </div>

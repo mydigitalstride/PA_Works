@@ -446,6 +446,22 @@ add_action( 'acf/init', function() {
                                 'instructions'  => 'Large map or infographic image displayed prominently.',
                             ),
                             array(
+                                'key'          => 'field_about_wfs_map_width',
+                                'label'        => 'Image Width',
+                                'name'         => 'map_width',
+                                'type'         => 'text',
+                                'instructions' => 'Optional. Any CSS width value, e.g. "600px" or "60%". Leave blank for full width.',
+                            ),
+                            array(
+                                'key'           => 'field_about_wfs_map_align',
+                                'label'         => 'Image Alignment',
+                                'name'          => 'map_alignment',
+                                'type'          => 'select',
+                                'choices'       => array( 'left' => 'Left', 'center' => 'Center', 'right' => 'Right' ),
+                                'default_value' => 'left',
+                                'allow_null'    => 0,
+                            ),
+                            array(
                                 'key'        => 'field_about_wfs_body',
                                 'label'      => 'Body Content',
                                 'name'       => 'body_content',

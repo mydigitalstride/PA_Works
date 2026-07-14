@@ -110,6 +110,10 @@ body {
     overflow-x: hidden;
 }
 
+p {
+    font-size: 1.1rem;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -816,7 +820,7 @@ h2::after {
 
 .pw-hero__body {
     color: rgba(255,255,255,0.9);
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 28px;
     max-width: 33vw;
@@ -956,7 +960,7 @@ h2::after {
 }
 
 .pw-card__body {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--pw-dark-gray);
     margin-bottom: 16px;
     line-height: 1.5;
@@ -1059,7 +1063,7 @@ h2::after {
 }
 
 .pw-about__body {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     color: var(--pw-dark-gray);
     margin-bottom: 28px;
@@ -1203,7 +1207,7 @@ h2::after {
 }
 
 .pw-whatwedo__body {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     color: rgba(255,255,255,0.85);
     margin-bottom: 28px;
@@ -1952,11 +1956,26 @@ h2::after {
 }
 
 .pw-workforce-system__map {
-    margin-bottom: 40px;
+    margin: 40px 0;
     border-radius: var(--pw-radius-lg);
     overflow: hidden;
     box-shadow: none;
     text-align: left;
+}
+
+.pw-workforce-system__map--left {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.pw-workforce-system__map--center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pw-workforce-system__map--right {
+    margin-left: auto;
+    margin-right: 0;
 }
 
 .pw-workforce-system__map img {
@@ -1972,7 +1991,7 @@ h2::after {
 }
 
 .pw-workforce-system__body {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     color: var(--pw-dark-gray);
     max-width: 900px;
@@ -2019,7 +2038,7 @@ h2::after {
 }
 
 .pw-strategies__body {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     color: var(--pw-dark-gray);
     margin-bottom: 24px;
@@ -2352,7 +2371,7 @@ h2::after {
 }
 
 .pw-cta__body {
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: var(--pw-dark-gray);
     margin-bottom: 24px;
 }
@@ -2401,7 +2420,7 @@ h2::after {
 }
 
 .pw-wioa__body {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     color: var(--pw-dark-gray);
 }
@@ -2501,7 +2520,7 @@ h2::after {
 }
 
 .pw-fellowship-intro__body {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     color: var(--pw-dark-gray);
     margin-bottom: 28px;
@@ -2573,7 +2592,7 @@ h2::after {
 }
 
 .pw-program__body {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     color: var(--pw-dark-gray);
     margin-bottom: 32px;
@@ -2776,7 +2795,7 @@ h2::after {
 }
 
 .pw-meet-fellows__body {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     color: var(--pw-dark-gray);
 }
