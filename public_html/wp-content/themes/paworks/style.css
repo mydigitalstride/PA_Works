@@ -1956,11 +1956,26 @@ h2::after {
 }
 
 .pw-workforce-system__map {
-    margin-bottom: 40px;
+    margin: 40px 0;
     border-radius: var(--pw-radius-lg);
     overflow: hidden;
     box-shadow: none;
     text-align: left;
+}
+
+.pw-workforce-system__map--left {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.pw-workforce-system__map--center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pw-workforce-system__map--right {
+    margin-left: auto;
+    margin-right: 0;
 }
 
 .pw-workforce-system__map img {
