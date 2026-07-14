@@ -910,6 +910,10 @@ h2::after {
     .pw-cards__grid {
         width: 95vw;
     }
+
+    .pw-cards__section-title {
+        text-align: center;
+    }
 }
 
 .pw-card {
@@ -1119,6 +1123,15 @@ h2::after {
     .pw-about__image img {
         max-height: 200px;
     }
+
+    .pw-about__title {
+        text-align: center;
+    }
+
+    .pw-about__title::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 /* ==========================================================================
@@ -1290,6 +1303,15 @@ h2::after {
     .pw-whatwedo__inner {
         grid-template-columns: 1fr;
         gap: 32px;
+    }
+
+    .pw-whatwedo__title {
+        text-align: center;
+    }
+
+    .pw-whatwedo__title::after {
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
