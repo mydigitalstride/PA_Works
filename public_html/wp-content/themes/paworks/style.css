@@ -2352,7 +2352,7 @@ h2::after {
 }
 
 .pw-cta__body {
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: var(--pw-dark-gray);
     margin-bottom: 24px;
 }
