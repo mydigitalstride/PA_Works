@@ -818,7 +818,7 @@ h2::after {
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 28px;
-    max-width: 50vw;
+    max-width: 33vw;
 }
 
 .pw-hero .pw-btn {
@@ -849,6 +849,12 @@ h2::after {
     transform: translateY(-2px);
 }
 
+@media (min-width: 769px) and (max-width: 1199px) {
+    .pw-hero__body {
+        max-width: 50vw;
+    }
+}
+
 @media (max-width: 768px) {
     .pw-hero {
         min-height: 480px;
@@ -861,7 +867,7 @@ h2::after {
     }
 
     .pw-hero__body {
-        max-width: 85vw;
+        max-width: 100vw;
     }
 }
 
@@ -1178,6 +1184,11 @@ h2::after {
     font-size: 2.25rem;
     color: var(--pw-white);
     margin-bottom: 28px;
+    text-align: left;
+}
+
+.pw-whatwedo__title::after {
+    margin: 16px 0 16px 0;
 }
 
 .pw-whatwedo__body {
