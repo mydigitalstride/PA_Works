@@ -889,7 +889,7 @@ h2::after {
 .pw-cards__section-title {
     font-family: var(--pw-font-heading);
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 800;
     color: var(--pw-navy);
     text-align: center;
     max-width: var(--pw-container-width);
