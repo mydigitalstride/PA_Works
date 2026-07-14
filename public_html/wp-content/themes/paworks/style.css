@@ -891,7 +891,7 @@ h2::after {
     font-size: 2rem;
     font-weight: 700;
     color: var(--pw-navy);
-    text-align: left;
+    text-align: center;
     max-width: var(--pw-container-width);
     margin: 0 auto 32px;
     padding: var(--pw-container-padding);
@@ -909,10 +909,6 @@ h2::after {
 @media (max-width: 768px) {
     .pw-cards__grid {
         width: 95vw;
-    }
-
-    .pw-cards__section-title {
-        text-align: center;
     }
 }
 
@@ -1661,6 +1657,7 @@ h2::after {
     font-size: 2.25rem;
     margin-bottom: 40px;
     position: relative;
+    text-align: center;
 }
 
 .pw-mission__title::after {
@@ -1670,6 +1667,8 @@ h2::after {
     height: 6px;
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
     margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .pw-mission__grid {
