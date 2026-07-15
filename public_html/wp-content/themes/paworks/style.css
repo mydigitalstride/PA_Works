@@ -357,10 +357,11 @@ h2::after {
 }
 
 .pw-header__inner {
+    --pw-container-width: 85vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 24px;
+    padding: 24px;
     max-width: var(--pw-container-width);
     margin: 0 auto;
 }
