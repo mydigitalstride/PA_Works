@@ -314,9 +314,11 @@ add_action( 'acf/init', function() {
                                 'button_label' => 'Add Board Member',
                                 'sub_fields'   => array(
                                     array( 'key' => 'field_pb_board_photo',       'label' => 'Photo',         'name' => 'photo',        'type' => 'image',    'return_format' => 'array', 'preview_size' => 'thumbnail', 'instructions' => 'Headshot or org logo.' ),
-                                    array( 'key' => 'field_pb_board_name',        'label' => 'Name',          'name' => 'name',         'type' => 'text' ),
-                                    array( 'key' => 'field_pb_board_position',    'label' => 'Position',      'name' => 'position',     'type' => 'text',     'instructions' => 'e.g. "CEO", "Director"' ),
-                                    array( 'key' => 'field_pb_board_org',         'label' => 'Organization',  'name' => 'organization', 'type' => 'text' ),
+                                    // Field names below are kept as-is so existing content stays put; only the
+                                    // labels rotated (organization -> Name, name -> Position, position -> Organization).
+                                    array( 'key' => 'field_pb_board_org',         'label' => 'Name',          'name' => 'organization', 'type' => 'text' ),
+                                    array( 'key' => 'field_pb_board_name',        'label' => 'Position',      'name' => 'name',         'type' => 'text',     'instructions' => 'e.g. "CEO", "Director"' ),
+                                    array( 'key' => 'field_pb_board_position',    'label' => 'Organization',  'name' => 'position',     'type' => 'text' ),
                                     array( 'key' => 'field_pb_board_highlighted', 'label' => 'Highlighted',   'name' => 'highlighted',  'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Visually highlights this member with a different background.' ),
                                     array( 'key' => 'field_pb_board_link_url',    'label' => 'Link URL',      'name' => 'link_url',     'type' => 'url',      'instructions' => 'Optional. If set, the entire card links here (e.g. org website or bio page).' ),
                                     array( 'key' => 'field_pb_board_link_target', 'label' => 'Open in New Tab', 'name' => 'link_target', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1 ),

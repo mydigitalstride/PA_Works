@@ -160,15 +160,6 @@ add_action( 'acf/init', function() {
                 'type'          => 'text',
                 'default_value' => 'Privacy Policy',
             ),
-            // Search toggle
-            array(
-                'key'           => 'field_footer_show_search',
-                'label'         => 'Show Search Box',
-                'name'          => 'footer_show_search',
-                'type'          => 'true_false',
-                'default_value' => 1,
-                'ui'            => 1,
-            ),
         ),
         'location' => array(
             array(
