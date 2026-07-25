@@ -19,7 +19,6 @@ $footer_youtube     = get_field( 'footer_youtube', 'option' );
 $footer_copyright   = get_field( 'footer_copyright', 'option' );
 $footer_privacy_url = get_field( 'footer_privacy_url', 'option' );
 $footer_privacy_text = get_field( 'footer_privacy_text', 'option' );
-$footer_show_search = get_field( 'footer_show_search', 'option' );
 
 // Replace [year] placeholder in copyright text
 $copyright_text = str_replace( '[year]', date( 'Y' ), $footer_copyright ?: 'All rights reserved. Copyright ' . date( 'Y' ) );
@@ -83,15 +82,6 @@ $copyright_text = str_replace( '[year]', date( 'Y' ), $footer_copyright ?: 'All 
                         </a>
                     <?php endif; ?>
                 </div>
-            <?php endif; ?>
-
-            <?php if ( $footer_show_search ) : ?>
-                <form class="pw-footer__search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                    <input type="search" name="s" placeholder="Search ..." value="<?php echo get_search_query(); ?>">
-                    <button type="submit" aria-label="Search">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    </button>
-                </form>
             <?php endif; ?>
         </div>
     </div>

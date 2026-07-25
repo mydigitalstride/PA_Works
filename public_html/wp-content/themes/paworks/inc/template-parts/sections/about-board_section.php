@@ -27,6 +27,11 @@ $members    = get_sub_field( 'members' );
         <?php if ( $members ) : ?>
             <div class="pw-board__grid">
                 <?php foreach ( $members as $member ) :
+                    // Stored field names are legacy; the labels were rotated so that
+                    // organization = Name, name = Position, position = Organization.
+                    $member_name       = $member['organization'] ?? '';
+                    $member_position   = $member['name'] ?? '';
+                    $member_org        = $member['position'] ?? '';
                     $highlighted_class = ! empty( $member['highlighted'] ) ? ' pw-board__member--highlighted' : '';
                     $link_url          = $member['link_url'] ?? '';
                     $tag               = $link_url ? 'a' : 'div';
@@ -42,20 +47,20 @@ $members    = get_sub_field( 'members' );
                         <?php if ( ! empty( $member['photo'] ) ) : ?>
                             <div class="pw-board__photo">
                                 <img src="<?php echo esc_url( $member['photo']['sizes']['pw-team'] ?? $member['photo']['url'] ); ?>"
-                                     alt="<?php echo esc_attr( $member['photo']['alt'] ?: $member['name'] ); ?>">
+                                     alt="<?php echo esc_attr( $member['photo']['alt'] ?: $member_name ); ?>">
                             </div>
                         <?php endif; ?>
 
-                        <?php if ( ! empty( $member['organization'] ) ) : ?>
-                            <h3 class="pw-board__org"><?php echo esc_html( $member['organization'] ); ?></h3>
+                        <?php if ( $member_name ) : ?>
+                            <h3 class="pw-board__name"><?php echo esc_html( $member_name ); ?></h3>
                         <?php endif; ?>
 
-                        <?php if ( ! empty( $member['name'] ) ) : ?>
-                            <p class="pw-board__name"><?php echo esc_html( $member['name'] ); ?></p>
+                        <?php if ( $member_position ) : ?>
+                            <p class="pw-board__position"><?php echo esc_html( $member_position ); ?></p>
                         <?php endif; ?>
 
-                        <?php if ( ! empty( $member['position'] ) ) : ?>
-                            <p class="pw-board__position"><?php echo esc_html( $member['position'] ); ?></p>
+                        <?php if ( $member_org ) : ?>
+                            <p class="pw-board__org"><?php echo esc_html( $member_org ); ?></p>
                         <?php endif; ?>
                     </<?php echo $tag; ?>>
                 <?php endforeach; ?>
