@@ -319,6 +319,51 @@
         color: var(--pw-light-blue);
     }
 }
+
+/* ======================================================================
+   OVERRIDE GUARD — only needed when the host platform injects its own CSS
+   ----------------------------------------------------------------------
+   On GrowthZone the platform's stylesheets load after this block. If any
+   of them carries an !important rule touching .sub-menu (or a selector
+   more specific than ours), the dropdowns are forced open and the header
+   renders as a wall of permanently-expanded lists.
+
+   Normal cascade rules cannot beat an !important from a later sheet, so
+   these repeat the critical declarations with element+class selectors and
+   !important of their own. Keep this LAST in the stylesheet. Drop it if
+   the header already behaves — it is defensive, not required.
+   ====================================================================== */
+nav.pw-header__nav ul.menu ul.sub-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    list-style: none !important;
+}
+
+nav.pw-header__nav ul.menu li.menu-item-has-children:hover > ul.sub-menu,
+nav.pw-header__nav ul.menu li.menu-item-has-children:focus-within > ul.sub-menu {
+    display: block !important;
+}
+
+nav.pw-header__nav ul.menu > li:nth-last-child(-n+2) ul.sub-menu {
+    left: auto !important;
+    right: 0 !important;
+}
+
+@media (max-width: 768px) {
+    /* Touch: hover must never reveal; the toggle button owns expansion */
+    nav.pw-header__nav ul.menu ul.sub-menu,
+    nav.pw-header__nav ul.menu li.menu-item-has-children:hover > ul.sub-menu,
+    nav.pw-header__nav ul.menu li.menu-item-has-children:focus-within > ul.sub-menu {
+        display: none !important;
+        position: static !important;
+    }
+
+    nav.pw-header__nav ul.menu li.menu-item-has-children.is-open > ul.sub-menu {
+        display: block !important;
+    }
+}
 </style>
 
 
