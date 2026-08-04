@@ -134,7 +134,37 @@
             font-family: var(--pw-font-heading); font-size: 1rem; font-weight: 600;
             color: var(--pw-white); padding: 8px 12px; display: block; white-space: nowrap; transition: color 0.3s ease;
         }
-        .pw-header__nav .menu > li > a:hover, .pw-header__nav .menu > li.current-menu-item > a { color: var(--pw-light-blue); }
+        .pw-header__nav .menu > li > a:hover,
+        .pw-header__nav .menu > li.current-menu-item > a,
+        .pw-header__nav .menu > li.current-menu-ancestor > a { color: var(--pw-light-blue); }
+
+        /* Dropdown arrow indicator (desktop) */
+        .pw-header__nav .menu-item-has-children > a::after { content: " \25BE"; font-size: 0.7rem; }
+
+        /* The in-markup submenu toggle button is mobile-only */
+        .pw-header__submenu-toggle { display: none; }
+
+        /* Dropdown sub-menus — hidden until hover/focus */
+        .pw-header__nav .sub-menu {
+            display: none;
+            position: absolute; top: 100%; left: 0;
+            background: var(--pw-white); min-width: 200px;
+            border-radius: var(--pw-radius-md); box-shadow: var(--pw-shadow-md);
+            list-style: none; margin: 0; padding: 8px 0; z-index: 100;
+        }
+        .pw-header__nav .menu-item-has-children:hover > .sub-menu,
+        .pw-header__nav .menu-item-has-children:focus-within > .sub-menu { display: block; }
+
+        .pw-header__nav .sub-menu li a {
+            display: block; padding: 10px 20px;
+            font-family: var(--pw-font-heading); font-size: 1rem; font-weight: 600;
+            color: var(--pw-charcoal); white-space: nowrap;
+            transition: background 0.2s, color 0.2s;
+        }
+        .pw-header__nav .sub-menu li a:hover { background: var(--pw-light-gray); color: var(--pw-navy); }
+
+        /* Keep the right-most dropdowns inside the viewport */
+        .pw-header__nav .menu > li:nth-last-child(-n+2) .sub-menu { left: auto; right: 0; }
 
         .pw-header__signin {
             padding: 10px 24px; background-color: var(--pw-light-blue); color: var(--pw-white) !important;
@@ -574,6 +604,35 @@
             }
             .pw-header__nav.is-open { display: flex; }
             .pw-header__nav .menu { flex-direction: column; align-items: flex-start; width: 100%; gap: 4px; }
+            .pw-header__nav .menu > li { width: 100%; }
+            .pw-header__nav .menu > li > a { color: var(--pw-white); padding: 10px 0; }
+
+            .pw-header__nav .menu > li.menu-item-has-children {
+                display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+            }
+            .pw-header__nav .menu > li.menu-item-has-children > a { flex: 1; }
+            .pw-header__nav .menu-item-has-children > a::after { display: none; }
+
+            .pw-header__submenu-toggle {
+                display: flex; align-items: center; justify-content: center;
+                background: none; border: none; color: var(--pw-white);
+                font-size: 1.75rem; line-height: 1; padding: 4px 12px; cursor: pointer;
+            }
+
+            /* Hover must not open sub-menus on touch — the toggle button drives it */
+            .pw-header__nav .sub-menu,
+            .pw-header__nav .menu-item-has-children:hover > .sub-menu,
+            .pw-header__nav .menu-item-has-children:focus-within > .sub-menu { display: none; }
+
+            .pw-header__nav .sub-menu {
+                flex: 0 0 100%; position: static;
+                background: rgba(255, 255, 255, 0.1);
+                box-shadow: none; border-radius: 0; padding: 0 0 0 16px;
+            }
+            .pw-header__nav .menu-item-has-children.is-open > .sub-menu { display: block; }
+            .pw-header__nav .menu-item-has-children.is-open > .pw-header__submenu-toggle { transform: rotate(180deg); }
+            .pw-header__nav .sub-menu li a { color: var(--pw-white); padding: 8px 0; }
+            .pw-header__nav .sub-menu li a:hover { background: transparent; color: var(--pw-light-blue); }
 
             .pw-hero { min-height: auto; padding: 40px 0; }
             .pw-hero__title { font-size: 2.25rem; }
@@ -612,14 +671,40 @@
             </button>
 
             <nav class="pw-header__nav" role="navigation" aria-label="Primary Navigation">
-                <ul class="menu">
-                    <li><a href="https://www.pawork.org/about/">About Us</a></li>
-                    <li><a href="https://www.pawork.org/what-we-do/">What We Do</a></li>
-                    <li class="current-menu-item"><a href="https://members.pawork.org/events">Events</a></li>
-                    <li><a href="https://www.pawork.org/news/">News</a></li>
-                    <li><a href="https://members.pawork.org/contact">Contact Us</a></li>
+                <ul id="menu-primary-navigation" class="menu">
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home"><a href="https://pawork.org/">Home</a></li>
+
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="https://pawork.org/about/">About PWDA</a><button type="button" class="pw-header__submenu-toggle" aria-label="Toggle submenu"><span aria-hidden="true">&#9662;</span></button>
+                        <ul class="sub-menu">
+                            <li class="menu-item"><a href="https://pawork.org/about/">About PWDA</a></li>
+                            <li class="menu-item"><a href="https://pawork.org/about/our-staff/">Our Staff</a></li>
+                            <li class="menu-item"><a href="https://pawork.org/about/board-of-directors/">Board of Directors</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="https://pawork.org/advocacy/">Policy &amp; Advocacy</a><button type="button" class="pw-header__submenu-toggle" aria-label="Toggle submenu"><span aria-hidden="true">&#9662;</span></button>
+                        <ul class="sub-menu">
+                            <li class="menu-item"><a href="https://pawork.org/policypriorities/">Policy and Priorities</a></li>
+                            <li class="menu-item"><a href="https://pawork.org/fellowship/">Policy &amp; Advocacy Fellowship Program</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="https://pawork.org/news/">News</a><button type="button" class="pw-header__submenu-toggle" aria-label="Toggle submenu"><span aria-hidden="true">&#9662;</span></button>
+                        <ul class="sub-menu">
+                            <li class="menu-item"><a href="https://members.pawork.org/jobs">Jobs</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children current-menu-item"><a href="https://members.pawork.org/events">Events</a><button type="button" class="pw-header__submenu-toggle" aria-label="Toggle submenu"><span aria-hidden="true">&#9662;</span></button>
+                        <ul class="sub-menu">
+                            <li class="menu-item"><a href="https://members.pawork.org/events">Other Events</a></li>
+                            <li class="menu-item"><a href="https://pawork.org/annual-conference/">Annual Conference</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://members.pawork.org/contact">Contact</a></li>
                 </ul>
-                <a href="https://members.pawork.org/MIC/login" class="pw-header__signin">Sign in</a>
+                <a href="https://members.pawork.org/MIC/login" class="pw-header__signin">Members Only</a>
             </nav>
         </div>
     </header>
@@ -698,16 +783,52 @@
 
     <script>
         (function () {
-            var toggle = document.querySelector('.pw-header__toggle');
-            var nav = document.querySelector('.pw-header__nav');
-            if (toggle && nav) {
-                toggle.addEventListener('click', function () {
-                    var open = nav.classList.toggle('is-open');
-                    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-                });
-            }
+            'use strict';
+
             var year = document.getElementById('pw-year');
             if (year) { year.textContent = new Date().getFullYear(); }
+
+            var headerToggle = document.querySelector('.pw-header__toggle');
+            var headerNav = document.querySelector('.pw-header__nav');
+            if (!headerToggle || !headerNav) return;
+
+            headerToggle.addEventListener('click', function () {
+                var open = headerNav.classList.toggle('is-open');
+                headerToggle.classList.toggle('is-active', open);
+                headerToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!headerToggle.contains(e.target) && !headerNav.contains(e.target)) {
+                    headerNav.classList.remove('is-open');
+                    headerToggle.classList.remove('is-active');
+                    headerToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    headerNav.classList.remove('is-open');
+                    headerToggle.classList.remove('is-active');
+                    headerToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Mobile sub-menu accordion. The toggle buttons are already in the
+            // markup, so we only bind them; parent links still navigate.
+            var navParents = headerNav.querySelectorAll('.menu-item-has-children');
+            Array.prototype.forEach.call(navParents, function (item) {
+                var toggle = item.querySelector(':scope > .pw-header__submenu-toggle');
+                if (!toggle) return;
+
+                toggle.addEventListener('click', function () {
+                    var isOpen = item.classList.contains('is-open');
+                    Array.prototype.forEach.call(navParents, function (sib) {
+                        sib.classList.remove('is-open');
+                    });
+                    if (!isOpen) { item.classList.add('is-open'); }
+                });
+            });
         })();
     </script>
 
