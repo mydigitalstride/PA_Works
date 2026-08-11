@@ -6,93 +6,362 @@
     <title>Events &amp; Calendar - Pennsylvania Workforce Development Association</title>
 
     <!-- ====================================================================
-         PA Works — GrowthZone EVENTS / CALENDAR page template
+         PA Works — GrowthZone page template
          --------------------------------------------------------------------
-         Wraps the GrowthZone events calendar module (#growthzone_content#) in
-         the current theme chrome plus an events hero, a navy "calendar shell"
-         card, a featured-event card style, and a membership CTA.
+         GrowthZone replaces these tokens at render time:
+           #GROWTHZONE_HEADING#  -> the page title
+           #growthzone_content#  -> the module markup
 
-         GrowthZone tokens replaced at render time:
-           #GROWTHZONE_HEADING#  -> page title (not shown here; hero is fixed)
-           #growthzone_content#  -> the events list / month calendar markup
+         READ BEFORE EDITING — two things here are deliberate:
 
-         CALENDAR GRID NOTE: GrowthZone renders its own calendar table inside
-         #growthzone_content#. The calendar rules below target BOTH the generic
-         table structure inside .pw-calendar-shell AND GrowthZone's common
-         calendar classes (.mn-*). Paste the rendered Events page HTML to me to
-         pin the exact grid classes if anything needs fine-tuning.
+         1. The page stylesheet is placed in the BODY, not the document HEAD.
+            GrowthZone builds its own document head and keeps only the body of
+            a custom template, so a stylesheet in the head is silently
+            discarded. A style element in the body is valid HTML and always
+            applies.
+
+         2. The stylesheet is complete and self-contained — tokens, base,
+            header, page and footer rules all live in this one file. Styling
+            set once "across all pages" did not reach every page reliably,
+            so each template now carries its own full copy. The shared parts
+            are identical in every template; when you change one, change all.
+
+         (Deliberately no literal tag names in this comment: tooling that
+         locates the body by string search would otherwise match here.)
          ==================================================================== -->
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
 
-    <style>
-        /* ============================================================
-           Design Tokens (mirrors the WordPress theme)
-           ============================================================ */
-        :root {
-            --pw-navy: #252b5d;
-            --pw-header-navy: #0c335a;
-            --pw-blue: #2b3279;
-            --pw-light-blue: #407ec9;
-            --pw-sky: #9bd3dd;
+<body>
 
-            --pw-gold: #f9ad32;
-            --pw-orange: #E8913A;
+<style>
+/* ==========================================================================
+   1. Design tokens  —  ONE :root block only
+   --------------------------------------------------------------------------
+   A bare `--foo: value;` outside a selector is NOT a declaration at stylesheet
+   level: the parser folds it into the next selector's prelude and then drops
+   that whole rule. Every custom property must live inside this block.
+   ========================================================================== */
+:root {
+    --pw-navy: #252b5d;
+    --pw-header-navy: #0c335a;
+    --pw-blue: #2b3279;
+    --pw-light-blue: #407ec9;
+    --pw-sky: #9bd3dd;
 
-            --pw-gradient-lightblue-navy: linear-gradient(135deg, var(--pw-light-blue) 0%, var(--pw-navy) 100%);
-            --pw-gradient-calendar: linear-gradient(160deg, #1d4e86 0%, #0c2c54 100%);
+    --pw-gold: #f9ad32;
+    --pw-orange: #E8913A;
 
-            --pw-white: #FFFFFF;
-            --pw-off-white: #F5F7FA;
-            --pw-light-gray: #E5E7EB;
-            --pw-gray: #9CA3AF;
-            --pw-dark-gray: #4B5563;
-            --pw-charcoal: #1F2937;
+    --pw-gradient-lightblue-navy: linear-gradient(135deg, var(--pw-light-blue) 0%, var(--pw-navy) 100%);
+    --pw-gradient-calendar: linear-gradient(160deg, #1d4e86 0%, #0c2c54 100%);
 
-            --pw-font-heading: 'Poppins', sans-serif;
-            --pw-font-body: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+    --pw-white: #FFFFFF;
+    --pw-off-white: #F5F7FA;
+    --pw-light-gray: #E5E7EB;
+    --pw-gray: #9CA3AF;
+    --pw-dark-gray: #4B5563;
+    --pw-charcoal: #1F2937;
 
-            --pw-container-width: 1200px;
+    --pw-font-heading: 'Poppins', sans-serif;
+    --pw-font-body: 'Source Sans 3', 'Source Sans Pro', sans-serif;
 
-            --pw-radius-sm: 4px;
-            --pw-radius-md: 8px;
-            --pw-radius-lg: 16px;
-            --pw-radius-xl: 24px;
+    --pw-container-width: 80vw;
 
-            --pw-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --pw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --pw-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
+    --pw-radius: 8px;          /* legacy alias used by the header sub-menu */
+    --pw-radius-sm: 4px;
+    --pw-radius-md: 8px;
+    --pw-radius-lg: 16px;
+    --pw-radius-xl: 24px;
 
-        @media (min-width: 769px) {
-            :root { --pw-container-width: 85vw; }
-        }
+    --pw-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --pw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --pw-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
 
-        /* ============================================================
-           Base
-           ============================================================ */
-        *, *::before, *::after { box-sizing: border-box; }
+@media (max-width: 768px) {
+    :root { --pw-container-width: 90vw; }
+}
 
-        html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+/* ==========================================================================
+   2. Base
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
 
-        body {
-            margin: 0;
-            font-family: var(--pw-font-body);
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--pw-charcoal);
-            background: var(--pw-white);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-        img { max-width: 100%; height: auto; }
-        a { color: var(--pw-blue); text-decoration: none; transition: color 0.3s ease; }
-        a:hover { color: var(--pw-navy); }
+body {
+    margin: 0;
+    font-family: var(--pw-font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--pw-charcoal);
+    background: var(--pw-white);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
-        .pw-btn {
+img { max-width: 100%; height: auto; }
+a { color: var(--pw-blue); text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: var(--pw-navy); }
+
+/* ==========================================================================
+   3. Header / navigation  (canonical copy — mirrors growthzone-header-nav-snippet.html)
+   ========================================================================== */
+.pw-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--pw-header-navy);
+    box-shadow: var(--pw-shadow-sm);
+}
+
+.pw-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    max-width: var(--pw-container-width);
+    margin: 0 auto;
+    position: relative;
+}
+
+.pw-header__logo img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.pw-header__nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.pw-header__nav a {
+    font-family: var(--pw-font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--pw-off-white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.pw-header__nav a:hover,
+.pw-header__nav a.active {
+    color: var(--pw-light-blue);
+}
+
+.pw-header__nav .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.pw-header__nav .menu > li {
+    position: relative;
+}
+
+.pw-header__nav .menu > li > a {
+    font-family: var(--pw-font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--pw-white);
+    text-decoration: none;
+    padding: 8px 12px;
+    display: block;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.pw-header__nav .menu > li > a:hover,
+.pw-header__nav .menu > li.current-menu-item > a,
+.pw-header__nav .menu > li.current-menu-ancestor > a {
+    color: var(--pw-light-blue);
+}
+
+.pw-header__nav .menu-item-has-children > a::after {
+    content: " \25BE";
+    font-size: 0.7rem;
+}
+
+.pw-header__submenu-toggle {
+    display: none;
+}
+
+.pw-header__nav .sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--pw-white);
+    min-width: 200px;
+    border-radius: var(--pw-radius);
+    box-shadow: var(--pw-shadow-md);
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    z-index: 100;
+}
+
+.pw-header__nav .menu-item-has-children:hover > .sub-menu,
+.pw-header__nav .menu-item-has-children:focus-within > .sub-menu {
+    display: block;
+}
+
+.pw-header__nav .sub-menu li a {
+    display: block;
+    padding: 10px 20px;
+    font-family: var(--pw-font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--pw-charcoal);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.pw-header__nav .sub-menu li a:hover {
+    background: var(--pw-light-gray);
+    color: var(--pw-navy);
+}
+
+.pw-header__nav .menu > li:nth-last-child(-n+2) .sub-menu {
+    left: auto;
+    right: 0;
+}
+
+.pw-header__signin {
+    padding: 10px 24px;
+    background-color: var(--pw-light-blue);
+    color: var(--pw-white) !important;
+    border-radius: var(--pw-radius-xl);
+    font-size: 1rem;
+    font-family: var(--pw-font-heading);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+.pw-header__signin:hover {
+    background-color: var(--pw-gold);
+    color: var(--pw-white) !important;
+}
+
+.pw-header__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.pw-header__toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--pw-white);
+    margin: 6px 0;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+.pw-header__toggle {
+        display: block;
+    }
+.pw-header__nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--pw-header-navy);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+        box-shadow: var(--pw-shadow-md);
+        gap: 16px;
+    }
+.pw-header__nav.is-open {
+        display: flex;
+    }
+.pw-header__nav .menu {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 4px;
+    }
+.pw-header__nav .menu > li {
+        width: 100%;
+    }
+.pw-header__nav .menu > li > a {
+        color: var(--pw-white);
+        padding: 10px 0;
+    }
+.pw-header__nav .menu > li.menu-item-has-children {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+.pw-header__nav .menu > li.menu-item-has-children > a {
+        flex: 1;
+    }
+.pw-header__nav .menu-item-has-children > a::after {
+        display: none;
+    }
+.pw-header__submenu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        color: var(--pw-white);
+        font-size: 1.75rem;
+        line-height: 1;
+        padding: 4px 12px;
+        cursor: pointer;
+    }
+.pw-header__nav .sub-menu,
+    .pw-header__nav .menu-item-has-children:hover > .sub-menu,
+    .pw-header__nav .menu-item-has-children:focus-within > .sub-menu {
+        display: none;
+    }
+.pw-header__nav .sub-menu {
+        flex: 0 0 100%;
+        position: static;
+        background: rgba(255,255,255,0.1);
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0 0 0 16px;
+    }
+.pw-header__nav .menu-item-has-children.is-open > .sub-menu {
+        display: block;
+    }
+.pw-header__nav .menu-item-has-children.is-open > .pw-header__submenu-toggle {
+        transform: rotate(180deg);
+    }
+.pw-header__nav .sub-menu li a {
+        color: var(--pw-white);
+        padding: 8px 0;
+    }
+.pw-header__nav .sub-menu li a:hover {
+        background: transparent;
+        color: var(--pw-light-blue);
+    }
+}
+
+/* ==========================================================================
+   4. Page content — Events
+   ========================================================================== */
+.pw-btn {
             display: inline-block;
             padding: 14px 32px;
             font-family: var(--pw-font-heading);
@@ -108,77 +377,14 @@
             transition: all 0.3s ease;
         }
 
-        .pw-btn:hover {
+.pw-btn:hover {
             color: var(--pw-white);
             background-color: var(--pw-navy);
             transform: translateY(-2px);
             box-shadow: var(--pw-shadow-md);
         }
 
-        /* ============================================================
-           Header / Nav
-           ============================================================ */
-        .pw-header { position: sticky; top: 0; z-index: 1000; background-color: var(--pw-header-navy); box-shadow: var(--pw-shadow-sm); }
-
-        .pw-header__inner {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 16px 24px; max-width: var(--pw-container-width); margin: 0 auto;
-        }
-
-        .pw-header__logo img { height: 50px; width: auto; display: block; }
-
-        .pw-header__nav { display: flex; align-items: center; gap: 32px; }
-        .pw-header__nav .menu { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 4px; }
-        .pw-header__nav .menu > li { position: relative; }
-        .pw-header__nav .menu > li > a {
-            font-family: var(--pw-font-heading); font-size: 1rem; font-weight: 600;
-            color: var(--pw-white); padding: 8px 12px; display: block; white-space: nowrap; transition: color 0.3s ease;
-        }
-        .pw-header__nav .menu > li > a:hover,
-        .pw-header__nav .menu > li.current-menu-item > a,
-        .pw-header__nav .menu > li.current-menu-ancestor > a { color: var(--pw-light-blue); }
-
-        /* Dropdown arrow indicator (desktop) */
-        .pw-header__nav .menu-item-has-children > a::after { content: " \25BE"; font-size: 0.7rem; }
-
-        /* The in-markup submenu toggle button is mobile-only */
-        .pw-header__submenu-toggle { display: none; }
-
-        /* Dropdown sub-menus — hidden until hover/focus */
-        .pw-header__nav .sub-menu {
-            display: none;
-            position: absolute; top: 100%; left: 0;
-            background: var(--pw-white); min-width: 200px;
-            border-radius: var(--pw-radius-md); box-shadow: var(--pw-shadow-md);
-            list-style: none; margin: 0; padding: 8px 0; z-index: 100;
-        }
-        .pw-header__nav .menu-item-has-children:hover > .sub-menu,
-        .pw-header__nav .menu-item-has-children:focus-within > .sub-menu { display: block; }
-
-        .pw-header__nav .sub-menu li a {
-            display: block; padding: 10px 20px;
-            font-family: var(--pw-font-heading); font-size: 1rem; font-weight: 600;
-            color: var(--pw-charcoal); white-space: nowrap;
-            transition: background 0.2s, color 0.2s;
-        }
-        .pw-header__nav .sub-menu li a:hover { background: var(--pw-light-gray); color: var(--pw-navy); }
-
-        /* Keep the right-most dropdowns inside the viewport */
-        .pw-header__nav .menu > li:nth-last-child(-n+2) .sub-menu { left: auto; right: 0; }
-
-        .pw-header__signin {
-            padding: 10px 24px; background-color: var(--pw-light-blue); color: var(--pw-white) !important;
-            border-radius: var(--pw-radius-xl); font-size: 1rem; font-family: var(--pw-font-heading); font-weight: 600;
-        }
-        .pw-header__signin:hover { background-color: var(--pw-gold); }
-
-        .pw-header__toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-        .pw-header__toggle span { display: block; width: 24px; height: 2px; background-color: var(--pw-white); margin: 6px 0; transition: all 0.3s ease; }
-
-        /* ============================================================
-           Events Hero
-           ============================================================ */
-        .pw-hero {
+.pw-hero {
             position: relative;
             min-height: 650px;
             display: flex;
@@ -191,7 +397,7 @@
             overflow: hidden;
         }
 
-        .pw-hero::before {
+.pw-hero::before {
             content: '';
             position: absolute;
             inset: 0;
@@ -199,7 +405,7 @@
             z-index: 1;
         }
 
-        .pw-hero__content {
+.pw-hero__content {
             position: relative;
             z-index: 2;
             width: 100%;
@@ -208,7 +414,7 @@
             padding: 0 24px;
         }
 
-        .pw-hero__label {
+.pw-hero__label {
             font-family: var(--pw-font-heading);
             font-size: 1rem;
             font-weight: 600;
@@ -218,7 +424,7 @@
             margin-bottom: 12px;
         }
 
-        .pw-hero__title {
+.pw-hero__title {
             font-family: var(--pw-font-heading);
             font-weight: 700;
             font-size: 3rem;
@@ -228,15 +434,13 @@
             margin: 0 0 16px;
         }
 
-        .pw-hero__body { color: rgba(255, 255, 255, 0.9); font-size: 1rem; line-height: 1.6; margin-bottom: 28px; max-width: 460px; }
+.pw-hero__body { color: rgba(255, 255, 255, 0.9); font-size: 1rem; line-height: 1.6; margin-bottom: 28px; max-width: 460px; }
 
-        /* ============================================================
-           Section heading
-           ============================================================ */
-        .pw-section { padding: 48px 0; background: var(--pw-off-white); }
-        .pw-section__inner { max-width: var(--pw-container-width); margin: 0 auto; padding: 0 24px; }
+.pw-section { padding: 48px 0; background: var(--pw-off-white); }
 
-        .pw-section__label {
+.pw-section__inner { max-width: var(--pw-container-width); margin: 0 auto; padding: 0 24px; }
+
+.pw-section__label {
             font-family: var(--pw-font-heading);
             font-size: 1rem;
             font-weight: 600;
@@ -246,7 +450,7 @@
             margin-bottom: 8px;
         }
 
-        .pw-section__title {
+.pw-section__title {
             font-family: var(--pw-font-heading);
             font-weight: 700;
             font-size: 2.25rem;
@@ -256,7 +460,7 @@
             margin: 0 0 8px;
         }
 
-        .pw-section__title::after {
+.pw-section__title::after {
             content: '';
             display: block;
             width: 8rem;
@@ -265,10 +469,7 @@
             background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
         }
 
-        /* ============================================================
-           Calendar shell (navy gradient card)
-           ============================================================ */
-        .pw-calendar-shell {
+.pw-calendar-shell {
             margin-top: 32px;
             background: var(--pw-gradient-calendar);
             border-radius: var(--pw-radius-lg);
@@ -277,15 +478,14 @@
             color: var(--pw-white);
         }
 
-        /* Top control row (search + view toggle), if present in the module */
-        .pw-calendar-shell .mn-search,
+.pw-calendar-shell .mn-search,
         .pw-calendar-shell .mn-event-search,
         .pw-calendar-shell .mn-calendar-toolbar {
             color: var(--pw-white);
             margin-bottom: 20px;
         }
 
-        .pw-calendar-shell input[type="text"],
+.pw-calendar-shell input[type="text"],
         .pw-calendar-shell input[type="search"] {
             background: rgba(255, 255, 255, 0.12);
             border: 1px solid rgba(255, 255, 255, 0.25);
@@ -295,13 +495,14 @@
             font-family: var(--pw-font-body);
             font-size: 0.95rem;
         }
-        .pw-calendar-shell input::placeholder { color: rgba(255, 255, 255, 0.7); }
 
-        .pw-calendar-shell a { color: var(--pw-white); }
-        .pw-calendar-shell a:hover { color: var(--pw-gold); }
+.pw-calendar-shell input::placeholder { color: rgba(255, 255, 255, 0.7); }
 
-        /* The white calendar card — wraps GrowthZone's calendar table */
-        .pw-calendar-shell .mn-calendar,
+.pw-calendar-shell a { color: var(--pw-white); }
+
+.pw-calendar-shell a:hover { color: var(--pw-gold); }
+
+.pw-calendar-shell .mn-calendar,
         .pw-calendar-shell .mn-events-calendar,
         .pw-calendar-shell .gz-calendar {
             background: var(--pw-white);
@@ -310,8 +511,7 @@
             color: var(--pw-charcoal);
         }
 
-        /* Month / year title */
-        .pw-calendar-shell .mn-calendar-title,
+.pw-calendar-shell .mn-calendar-title,
         .pw-calendar-shell caption {
             font-family: var(--pw-font-heading);
             font-weight: 700;
@@ -321,15 +521,13 @@
             margin-bottom: 16px;
         }
 
-        /* Calendar table — generic styling so it works regardless of class names */
-        .pw-calendar-shell table {
+.pw-calendar-shell table {
             width: 100%;
             border-collapse: collapse;
             table-layout: fixed;
         }
 
-        /* Weekday header row (Sun–Sat) */
-        .pw-calendar-shell table th {
+.pw-calendar-shell table th {
             background: var(--pw-light-blue);
             color: var(--pw-white);
             font-family: var(--pw-font-heading);
@@ -340,8 +538,7 @@
             border: 1px solid var(--pw-light-blue);
         }
 
-        /* Day cells */
-        .pw-calendar-shell table td {
+.pw-calendar-shell table td {
             vertical-align: top;
             height: 110px;
             padding: 8px 10px;
@@ -351,15 +548,13 @@
             background: var(--pw-white);
         }
 
-        /* Day number */
-        .pw-calendar-shell table td .mn-calendar-day-number,
+.pw-calendar-shell table td .mn-calendar-day-number,
         .pw-calendar-shell table td .gz-day-number {
             font-weight: 600;
             color: var(--pw-charcoal);
         }
 
-        /* Event links inside day cells */
-        .pw-calendar-shell table td a {
+.pw-calendar-shell table td a {
             display: block;
             margin-top: 6px;
             font-size: 0.8rem;
@@ -367,53 +562,44 @@
             color: var(--pw-light-blue);
             font-weight: 600;
         }
-        .pw-calendar-shell table td a:hover { color: var(--pw-gold); }
 
-        /* Today / highlighted day */
-        .pw-calendar-shell table td.mn-today,
+.pw-calendar-shell table td a:hover { color: var(--pw-gold); }
+
+.pw-calendar-shell table td.mn-today,
         .pw-calendar-shell table td.today,
         .pw-calendar-shell table td.gz-today { background: rgba(64, 126, 201, 0.08); }
 
-        /* ============================================================
-           GrowthZone events module — LIST & GRID card views
-           --------------------------------------------------------
-           Real GrowthZone markup uses .gz-* (Bootstrap) classes. Every
-           rule is prefixed with .pw-calendar-shell so it outranks the
-           GrowthZone core CSS that loads later in the <head>. The shell
-           sets light text for the navy background, so cards must reset to
-           dark text for contrast.
-           ============================================================ */
-
-        /* Toolbar / search / results (sit on the navy shell — keep light) */
-        .pw-calendar-shell .gz-pagetitle,
+.pw-calendar-shell .gz-pagetitle,
         .pw-calendar-shell .gz-subtitle { color: var(--pw-white); font-family: var(--pw-font-heading); }
-        .pw-calendar-shell .gz-subtitle { font-weight: 700; }
 
-        .pw-calendar-shell .form-control,
+.pw-calendar-shell .gz-subtitle { font-weight: 700; }
+
+.pw-calendar-shell .form-control,
         .pw-calendar-shell .gz-search-keyword,
         .pw-calendar-shell .custom-select { color: var(--pw-charcoal); }
 
-        .pw-calendar-shell .gz-search-btn {
+.pw-calendar-shell .gz-search-btn {
             background: var(--pw-gold);
             color: var(--pw-navy);
             border: none;
             font-family: var(--pw-font-heading);
             font-weight: 700;
         }
-        .pw-calendar-shell .gz-search-btn:hover { background: var(--pw-navy); color: var(--pw-white); }
 
-        .pw-calendar-shell .gz-view-btn { color: rgba(255, 255, 255, 0.7); }
-        .pw-calendar-shell .gz-view-btn:hover,
+.pw-calendar-shell .gz-search-btn:hover { background: var(--pw-navy); color: var(--pw-white); }
+
+.pw-calendar-shell .gz-view-btn { color: rgba(255, 255, 255, 0.7); }
+
+.pw-calendar-shell .gz-view-btn:hover,
         .pw-calendar-shell .gz-view-btn.active { color: var(--pw-gold); }
 
-        .pw-calendar-shell .gz-search-pill {
+.pw-calendar-shell .gz-search-pill {
             background: var(--pw-white);
             color: var(--pw-navy) !important;
             font-weight: 600;
         }
 
-        /* Card shell */
-        .pw-calendar-shell .gz-events-card {
+.pw-calendar-shell .gz-events-card {
             background: var(--pw-white);
             border: 1px solid var(--pw-light-gray);
             border-radius: var(--pw-radius-md);
@@ -422,51 +608,52 @@
             box-shadow: var(--pw-shadow-sm);
         }
 
-        /* Reset the white text the shell passes down into cards */
-        .pw-calendar-shell .gz-events-card,
+.pw-calendar-shell .gz-events-card,
         .pw-calendar-shell .gz-events-card p,
         .pw-calendar-shell .gz-events-card h5,
         .pw-calendar-shell .gz-events-card-body { color: var(--pw-charcoal); }
 
-        /* Date header: navy weekday strip + dark date text on white */
-        .pw-calendar-shell .gz-events-card .card-header { background: var(--pw-white); border: none; }
-        .pw-calendar-shell .gz-card-wkday-wrap { background: var(--pw-header-navy); }
-        .pw-calendar-shell .gz-card-wkday { color: var(--pw-white); font-family: var(--pw-font-heading); font-weight: 700; }
-        .pw-calendar-shell .gz-card-month span { color: var(--pw-dark-gray); }
-        .pw-calendar-shell .gz-card-dday span {
+.pw-calendar-shell .gz-events-card .card-header { background: var(--pw-white); border: none; }
+
+.pw-calendar-shell .gz-card-wkday-wrap { background: var(--pw-header-navy); }
+
+.pw-calendar-shell .gz-card-wkday { color: var(--pw-white); font-family: var(--pw-font-heading); font-weight: 700; }
+
+.pw-calendar-shell .gz-card-month span { color: var(--pw-dark-gray); }
+
+.pw-calendar-shell .gz-card-dday span {
             color: var(--pw-navy);
             font-family: var(--pw-font-heading);
             font-weight: 700;
         }
 
-        /* Event image */
-        .pw-calendar-shell .gz-card-head-img img { display: block; }
+.pw-calendar-shell .gz-card-head-img img { display: block; }
 
-        /* Title / time / description */
-        .pw-calendar-shell .gz-card-title,
+.pw-calendar-shell .gz-card-title,
         .pw-calendar-shell .gz-event-card-title {
             color: var(--pw-navy) !important;
             font-family: var(--pw-font-heading);
             font-weight: 700;
         }
-        .pw-calendar-shell .gz-card-title:hover,
+
+.pw-calendar-shell .gz-card-title:hover,
         .pw-calendar-shell .gz-event-card-title:hover { color: var(--pw-light-blue) !important; }
 
-        .pw-calendar-shell .gz-event-card-time {
+.pw-calendar-shell .gz-event-card-time {
             color: var(--pw-light-blue);
             font-family: var(--pw-font-heading);
             font-weight: 600;
         }
 
-        .pw-calendar-shell .gz-description,
+.pw-calendar-shell .gz-description,
         .pw-calendar-shell .gz-events-description { color: var(--pw-dark-gray); }
 
-        /* Footer + Register button */
-        .pw-calendar-shell .gz-events-card .card-footer {
+.pw-calendar-shell .gz-events-card .card-footer {
             background: var(--pw-white);
             border-top: 1px solid var(--pw-light-gray);
         }
-        .pw-calendar-shell .gz-register-btn {
+
+.pw-calendar-shell .gz-register-btn {
             background: var(--pw-gold);
             color: var(--pw-navy) !important;
             border: none;
@@ -476,36 +663,38 @@
             padding: 12px 20px;
             transition: all 0.3s ease;
         }
-        .pw-calendar-shell .gz-register-btn:hover {
+
+.pw-calendar-shell .gz-register-btn:hover {
             background: var(--pw-navy);
             color: var(--pw-white) !important;
         }
-        .pw-calendar-shell .gz-register-btn.disabled {
+
+.pw-calendar-shell .gz-register-btn.disabled {
             background: var(--pw-light-gray);
             color: var(--pw-dark-gray) !important;
         }
 
-        /* ============================================================
-           GrowthZone CALENDAR view (.gz-calendar divs)
-           ============================================================ */
-        .pw-calendar-shell .gz-calendar-month .gz-heading,
+.pw-calendar-shell .gz-calendar-month .gz-heading,
         .pw-calendar-shell .gz-calendar-month-text { color: var(--pw-white); font-family: var(--pw-font-heading); }
 
-        .pw-calendar-shell #gz-calendar {
+.pw-calendar-shell #gz-calendar {
             background: var(--pw-white);
             border-radius: var(--pw-radius-md);
             padding: 16px;
             color: var(--pw-charcoal);
         }
-        .pw-calendar-shell .gz-week { display: flex; }
-        .pw-calendar-shell .gz-week.gz-names .gz-day {
+
+.pw-calendar-shell .gz-week { display: flex; }
+
+.pw-calendar-shell .gz-week.gz-names .gz-day {
             background: var(--pw-light-blue);
             color: var(--pw-white);
             font-family: var(--pw-font-heading);
             font-weight: 600;
             text-align: center;
         }
-        .pw-calendar-shell .gz-day {
+
+.pw-calendar-shell .gz-day {
             flex: 1 1 0;
             min-height: 96px;
             padding: 6px 8px;
@@ -513,23 +702,22 @@
             color: var(--pw-charcoal);
             font-size: 0.9rem;
         }
-        .pw-calendar-shell .gz-names .gz-day { min-height: 0; }
-        .pw-calendar-shell .gz-event-link a,
+
+.pw-calendar-shell .gz-names .gz-day { min-height: 0; }
+
+.pw-calendar-shell .gz-event-link a,
         .pw-calendar-shell .gz-day-link {
             color: var(--pw-light-blue);
             font-weight: 600;
             font-size: 0.8rem;
         }
-        .pw-calendar-shell .gz-event-link a:hover,
+
+.pw-calendar-shell .gz-event-link a:hover,
         .pw-calendar-shell .gz-day-link:hover { color: var(--pw-gold); }
 
-        /* Powered-by line */
-        .pw-calendar-shell .gz-powered-by { color: rgba(255, 255, 255, 0.7); font-size: 0.8rem; }
+.pw-calendar-shell .gz-powered-by { color: rgba(255, 255, 255, 0.7); font-size: 0.8rem; }
 
-        /* ============================================================
-           Featured event card
-           ============================================================ */
-        .pw-event-feature {
+.pw-event-feature {
             margin-top: 28px;
             background: var(--pw-white);
             border-radius: var(--pw-radius-md);
@@ -538,7 +726,7 @@
             box-shadow: var(--pw-shadow-md);
         }
 
-        .pw-event-feature__title {
+.pw-event-feature__title {
             font-family: var(--pw-font-heading);
             font-weight: 700;
             font-size: 1.4rem;
@@ -547,116 +735,150 @@
             margin: 0 0 10px;
         }
 
-        .pw-event-feature__meta { font-weight: 700; color: var(--pw-charcoal); margin: 0 0 8px; }
-        .pw-event-feature__presenter { margin: 0 0 14px; color: var(--pw-dark-gray); }
-        .pw-event-feature__body { margin: 0 0 20px; color: var(--pw-charcoal); }
-        .pw-event-feature .pw-btn { display: block; width: max-content; margin: 0 auto; }
+.pw-event-feature__meta { font-weight: 700; color: var(--pw-charcoal); margin: 0 0 8px; }
 
-        /* ============================================================
-           Membership CTA
-           ============================================================ */
-        .pw-cta { background: var(--pw-off-white); padding: 8px 0 56px; text-align: center; }
-        .pw-cta .pw-btn { padding: 16px 40px; }
+.pw-event-feature__presenter { margin: 0 0 14px; color: var(--pw-dark-gray); }
 
-        /* ============================================================
-           Footer
-           ============================================================ */
-        .pw-footer { position: relative; background: var(--pw-header-navy); color: var(--pw-white); padding: 48px 0 32px; flex-shrink: 0; }
+.pw-event-feature__body { margin: 0 0 20px; color: var(--pw-charcoal); }
 
-        .pw-footer__inner {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
-            max-width: var(--pw-container-width); margin: 0 auto; padding: 0 24px;
-        }
+.pw-event-feature .pw-btn { display: block; width: max-content; margin: 0 auto; }
 
-        .pw-footer__logo img { height: 60px; width: auto; margin-bottom: 20px; display: block; }
-        .pw-footer__contact { display: flex; flex-direction: column; gap: 8px; font-size: 1rem; }
-        .pw-footer__contact a { color: var(--pw-white); }
-        .pw-footer__contact a:hover { color: var(--pw-gold); }
-        .pw-footer__contact svg { display: inline-block; vertical-align: middle; margin-right: 6px; }
+.pw-cta { background: var(--pw-off-white); padding: 8px 0 56px; text-align: center; }
 
-        .pw-footer__right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
-        .pw-footer__social { display: flex; gap: 12px; }
-        .pw-footer__social a {
-            display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;
-            background-color: rgba(255, 255, 255, 0.15); border-radius: var(--pw-radius-md);
-            color: var(--pw-white); transition: background-color 0.3s ease;
-        }
-        .pw-footer__social a:hover { background-color: var(--pw-gold); color: var(--pw-navy); }
-        .pw-footer__social a svg { width: 20px; height: 20px; }
+.pw-cta .pw-btn { padding: 16px 40px; }
 
-        .pw-footer__bottom {
-            display: flex; justify-content: space-between; align-items: center;
-            max-width: var(--pw-container-width); margin: 32px auto 0; padding: 16px 24px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.8rem; color: rgba(255, 255, 255, 0.7);
-        }
-        .pw-footer__bottom a { color: rgba(255, 255, 255, 0.7); }
-        .pw-footer__bottom a:hover { color: var(--pw-gold); }
-
-        /* ============================================================
-           Responsive
-           ============================================================ */
-        @media (max-width: 768px) {
-            .pw-header__toggle { display: block; }
-            .pw-header__nav {
-                display: none; position: absolute; top: 100%; left: 0; right: 0;
-                background: var(--pw-header-navy); flex-direction: column; align-items: flex-start;
-                padding: 24px; box-shadow: var(--pw-shadow-md); gap: 16px;
-            }
-            .pw-header__nav.is-open { display: flex; }
-            .pw-header__nav .menu { flex-direction: column; align-items: flex-start; width: 100%; gap: 4px; }
-            .pw-header__nav .menu > li { width: 100%; }
-            .pw-header__nav .menu > li > a { color: var(--pw-white); padding: 10px 0; }
-
-            .pw-header__nav .menu > li.menu-item-has-children {
-                display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-            }
-            .pw-header__nav .menu > li.menu-item-has-children > a { flex: 1; }
-            .pw-header__nav .menu-item-has-children > a::after { display: none; }
-
-            .pw-header__submenu-toggle {
-                display: flex; align-items: center; justify-content: center;
-                background: none; border: none; color: var(--pw-white);
-                font-size: 1.75rem; line-height: 1; padding: 4px 12px; cursor: pointer;
-            }
-
-            /* Hover must not open sub-menus on touch — the toggle button drives it */
-            .pw-header__nav .sub-menu,
-            .pw-header__nav .menu-item-has-children:hover > .sub-menu,
-            .pw-header__nav .menu-item-has-children:focus-within > .sub-menu { display: none; }
-
-            .pw-header__nav .sub-menu {
-                flex: 0 0 100%; position: static;
-                background: rgba(255, 255, 255, 0.1);
-                box-shadow: none; border-radius: 0; padding: 0 0 0 16px;
-            }
-            .pw-header__nav .menu-item-has-children.is-open > .sub-menu { display: block; }
-            .pw-header__nav .menu-item-has-children.is-open > .pw-header__submenu-toggle { transform: rotate(180deg); }
-            .pw-header__nav .sub-menu li a { color: var(--pw-white); padding: 8px 0; }
-            .pw-header__nav .sub-menu li a:hover { background: transparent; color: var(--pw-light-blue); }
-
-            .pw-hero { min-height: auto; padding: 40px 0; }
-            .pw-hero__title { font-size: 2.25rem; }
-            .pw-hero__body { max-width: 100%; }
-
-            .pw-section__title { font-size: 1.75rem; }
-            .pw-calendar-shell { padding: 20px; }
-
-            /* Stack the month grid on small screens so cells stay legible */
-            .pw-calendar-shell table,
+@media (max-width: 768px) {
+.pw-hero { min-height: auto; padding: 40px 0; }
+.pw-hero__title { font-size: 2.25rem; }
+.pw-hero__body { max-width: 100%; }
+.pw-section__title { font-size: 1.75rem; }
+.pw-calendar-shell { padding: 20px; }
+.pw-calendar-shell table,
             .pw-calendar-shell table tbody,
             .pw-calendar-shell table tr { display: block; width: 100%; }
-            .pw-calendar-shell table thead { display: none; }
-            .pw-calendar-shell table td { height: auto; display: block; width: 100%; border-top: none; }
-            .pw-calendar-shell table tr { margin-bottom: 8px; border: 1px solid var(--pw-light-gray); }
+.pw-calendar-shell table thead { display: none; }
+.pw-calendar-shell table td { height: auto; display: block; width: 100%; border-top: none; }
+.pw-calendar-shell table tr { margin-bottom: 8px; border: 1px solid var(--pw-light-gray); }
+}
 
-            .pw-footer__inner { grid-template-columns: 1fr; }
-            .pw-footer__right { text-align: left; align-items: flex-start; }
-            .pw-footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+/* ==========================================================================
+   5. Footer
+   ========================================================================== */
+.pw-footer {
+            position: relative;
+            background: var(--pw-header-navy);
+            color: var(--pw-white);
+            padding: 48px 0 32px;
+            flex-shrink: 0;
         }
-    </style>
-</head>
 
-<body>
+.pw-footer__inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: var(--pw-container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+.pw-footer__logo img { height: 60px; width: auto; margin-bottom: 20px; display: block; }
+
+.pw-footer__contact { display: flex; flex-direction: column; gap: 8px; font-size: 1rem; }
+
+.pw-footer__contact a { color: var(--pw-white); }
+
+.pw-footer__contact a:hover { color: var(--pw-gold); }
+
+.pw-footer__contact svg { display: inline-block; vertical-align: middle; margin-right: 6px; }
+
+.pw-footer__right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 16px;
+        }
+
+.pw-footer__social { display: flex; gap: 12px; }
+
+.pw-footer__social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: var(--pw-radius-md);
+            color: var(--pw-white);
+            transition: background-color 0.3s ease;
+        }
+
+.pw-footer__social a:hover { background-color: var(--pw-gold); color: var(--pw-navy); }
+
+.pw-footer__social a svg { width: 20px; height: 20px; }
+
+.pw-footer__bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--pw-container-width);
+            margin: 32px auto 0;
+            padding: 16px 24px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+.pw-footer__bottom a { color: rgba(255, 255, 255, 0.7); }
+
+.pw-footer__bottom a:hover { color: var(--pw-gold); }
+
+@media (max-width: 768px) {
+.pw-footer__inner { grid-template-columns: 1fr; }
+.pw-footer__right { text-align: left; align-items: flex-start; }
+.pw-footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+/* ==========================================================================
+   6. Header override guard — KEEP LAST
+   --------------------------------------------------------------------------
+   GrowthZone's own stylesheets load after this block. If any of them carries
+   an !important rule touching .sub-menu, normal cascade cannot win and every
+   dropdown is forced open. These repeat the critical declarations with
+   element+class selectors and !important of their own.
+   ========================================================================== */
+nav.pw-header__nav ul.menu ul.sub-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    list-style: none !important;
+}
+
+nav.pw-header__nav ul.menu li.menu-item-has-children:hover > ul.sub-menu,
+nav.pw-header__nav ul.menu li.menu-item-has-children:focus-within > ul.sub-menu {
+    display: block !important;
+}
+
+nav.pw-header__nav ul.menu > li:nth-last-child(-n+2) ul.sub-menu {
+    left: auto !important;
+    right: 0 !important;
+}
+
+@media (max-width: 768px) {
+    nav.pw-header__nav ul.menu ul.sub-menu,
+    nav.pw-header__nav ul.menu li.menu-item-has-children:hover > ul.sub-menu,
+    nav.pw-header__nav ul.menu li.menu-item-has-children:focus-within > ul.sub-menu {
+        display: none !important;
+        position: static !important;
+    }
+
+    nav.pw-header__nav ul.menu li.menu-item-has-children.is-open > ul.sub-menu {
+        display: block !important;
+    }
+}
+</style>
+
 
     <!-- ================= Header ================= -->
     <header class="pw-header" role="banner">

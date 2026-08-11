@@ -6,15 +6,362 @@
     <title>Membership - Pennsylvania Workforce Development Association</title>
 
     <!-- ====================================================================
-         PA Works — GrowthZone Membership page template
+         PA Works — GrowthZone page template
          --------------------------------------------------------------------
          GrowthZone replaces these tokens at render time:
            #GROWTHZONE_HEADING#  -> the page title
-           #growthzone_content#  -> the membership application markup
+           #growthzone_content#  -> the module markup
 
-         READ BEFORE EDITING — two things about this file are deliberate:
+         READ BEFORE EDITING — two things here are deliberate:
 
-         1. The <style> block lives inside <body>, not in <head>.
+         1. The page stylesheet is placed in the BODY, not the document HEAD.
+            GrowthZone builds its own document head and keeps only the body of
+            a custom template, so a stylesheet in the head is silently
+            discarded. A style element in the body is valid HTML and always
+            applies.
+
+         2. The stylesheet is complete and self-contained — tokens, base,
+            header, page and footer rules all live in this one file. Styling
+            set once "across all pages" did not reach every page reliably,
+            so each template now carries its own full copy. The shared parts
+            are identical in every template; when you change one, change all.
+
+         (Deliberately no literal tag names in this comment: tooling that
+         locates the body by string search would otherwise match here.)
+         ==================================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<style>
+/* ==========================================================================
+   1. Design tokens  —  ONE :root block only
+   --------------------------------------------------------------------------
+   A bare `--foo: value;` outside a selector is NOT a declaration at stylesheet
+   level: the parser folds it into the next selector's prelude and then drops
+   that whole rule. Every custom property must live inside this block.
+   ========================================================================== */
+:root {
+    --pw-navy: #252b5d;
+    --pw-header-navy: #0c335a;
+    --pw-blue: #2b3279;
+    --pw-light-blue: #407ec9;
+    --pw-sky: #9bd3dd;
+
+    --pw-gold: #f9ad32;
+    --pw-orange: #E8913A;
+
+    --pw-gradient-lightblue-navy: linear-gradient(135deg, var(--pw-light-blue) 0%, var(--pw-navy) 100%);
+    --pw-gradient-calendar: linear-gradient(160deg, #1d4e86 0%, #0c2c54 100%);
+
+    --pw-white: #FFFFFF;
+    --pw-off-white: #F5F7FA;
+    --pw-light-gray: #E5E7EB;
+    --pw-gray: #9CA3AF;
+    --pw-dark-gray: #4B5563;
+    --pw-charcoal: #1F2937;
+
+    --pw-font-heading: 'Poppins', sans-serif;
+    --pw-font-body: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+
+    --pw-container-width: 80vw;
+
+    --pw-radius: 8px;          /* legacy alias used by the header sub-menu */
+    --pw-radius-sm: 4px;
+    --pw-radius-md: 8px;
+    --pw-radius-lg: 16px;
+    --pw-radius-xl: 24px;
+
+    --pw-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --pw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --pw-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    :root { --pw-container-width: 90vw; }
+}
+
+/* ==========================================================================
+   2. Base
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+body {
+    margin: 0;
+    font-family: var(--pw-font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--pw-charcoal);
+    background: var(--pw-white);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+img { max-width: 100%; height: auto; }
+a { color: var(--pw-blue); text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: var(--pw-navy); }
+
+/* ==========================================================================
+   3. Header / navigation  (canonical copy — mirrors growthzone-header-nav-snippet.html)
+   ========================================================================== */
+.pw-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--pw-header-navy);
+    box-shadow: var(--pw-shadow-sm);
+}
+
+.pw-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    max-width: var(--pw-container-width);
+    margin: 0 auto;
+    position: relative;
+}
+
+.pw-header__logo img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.pw-header__nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.pw-header__nav a {
+    font-family: var(--pw-font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--pw-off-white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.pw-header__nav a:hover,
+.pw-header__nav a.active {
+    color: var(--pw-light-blue);
+}
+
+.pw-header__nav .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.pw-header__nav .menu > li {
+    position: relative;
+}
+
+.pw-header__nav .menu > li > a {
+    font-family: var(--pw-font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--pw-white);
+    text-decoration: none;
+    padding: 8px 12px;
+    display: block;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.pw-header__nav .menu > li > a:hover,
+.pw-header__nav .menu > li.current-menu-item > a,
+.pw-header__nav .menu > li.current-menu-ancestor > a {
+    color: var(--pw-light-blue);
+}
+
+.pw-header__nav .menu-item-has-children > a::after {
+    content: " \25BE";
+    font-size: 0.7rem;
+}
+
+.pw-header__submenu-toggle {
+    display: none;
+}
+
+.pw-header__nav .sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--pw-white);
+    min-width: 200px;
+    border-radius: var(--pw-radius);
+    box-shadow: var(--pw-shadow-md);
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    z-index: 100;
+}
+
+.pw-header__nav .menu-item-has-children:hover > .sub-menu,
+.pw-header__nav .menu-item-has-children:focus-within > .sub-menu {
+    display: block;
+}
+
+.pw-header__nav .sub-menu li a {
+    display: block;
+    padding: 10px 20px;
+    font-family: var(--pw-font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--pw-charcoal);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.pw-header__nav .sub-menu li a:hover {
+    background: var(--pw-light-gray);
+    color: var(--pw-navy);
+}
+
+.pw-header__nav .menu > li:nth-last-child(-n+2) .sub-menu {
+    left: auto;
+    right: 0;
+}
+
+.pw-header__signin {
+    padding: 10px 24px;
+    background-color: var(--pw-light-blue);
+    color: var(--pw-white) !important;
+    border-radius: var(--pw-radius-xl);
+    font-size: 1rem;
+    font-family: var(--pw-font-heading);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+.pw-header__signin:hover {
+    background-color: var(--pw-gold);
+    color: var(--pw-white) !important;
+}
+
+.pw-header__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.pw-header__toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--pw-white);
+    margin: 6px 0;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+.pw-header__toggle {
+        display: block;
+    }
+.pw-header__nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--pw-header-navy);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+        box-shadow: var(--pw-shadow-md);
+        gap: 16px;
+    }
+.pw-header__nav.is-open {
+        display: flex;
+    }
+.pw-header__nav .menu {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 4px;
+    }
+.pw-header__nav .menu > li {
+        width: 100%;
+    }
+.pw-header__nav .menu > li > a {
+        color: var(--pw-white);
+        padding: 10px 0;
+    }
+.pw-header__nav .menu > li.menu-item-has-children {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+.pw-header__nav .menu > li.menu-item-has-children > a {
+        flex: 1;
+    }
+.pw-header__nav .menu-item-has-children > a::after {
+        display: none;
+    }
+.pw-header__submenu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        color: var(--pw-white);
+        font-size: 1.75rem;
+        line-height: 1;
+        padding: 4px 12px;
+        cursor: pointer;
+    }
+.pw-header__nav .sub-menu,
+    .pw-header__nav .menu-item-has-children:hover > .sub-menu,
+    .pw-header__nav .menu-item-has-children:focus-within > .sub-menu {
+        display: none;
+    }
+.pw-header__nav .sub-menu {
+        flex: 0 0 100%;
+        position: static;
+        background: rgba(255,255,255,0.1);
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0 0 0 16px;
+    }
+.pw-header__nav .menu-item-has-children.is-open > .sub-menu {
+        display: block;
+    }
+.pw-header__nav .menu-item-has-children.is-open > .pw-header__submenu-toggle {
+        transform: rotate(180deg);
+    }
+.pw-header__nav .sub-menu li a {
+        color: var(--pw-white);
+        padding: 8px 0;
+    }
+.pw-header__nav .sub-menu li a:hover {
+        background: transparent;
+        color: var(--pw-light-blue);
+    }
+}
+
+/* ==========================================================================
+   4. Page content — Membership
+   ========================================================================== */
+block lives inside <body>, not in <head>.
             GrowthZone builds its own <head> and keeps only the <body> of a
             custom template, so a <style> in <head> is silently thrown away.
             (That is why this page lost its band and content-shell styling:
@@ -38,13 +385,7 @@
 <body>
 
 <style>
-/* ============================================================
-   Design tokens (mirrors the WordPress theme)
-   NOTE: these must live inside a :root {} block. A bare
-   `--pw-foo: value;` at the top of a stylesheet is not a rule —
-   the parser swallows it into the next selector and drops that
-   entire rule. That bug is what killed #mn-content here before.
-   ============================================================ */
+
 :root {
     --pw-navy: #252b5d;
     --pw-header-navy: #0c335a;
@@ -79,17 +420,9 @@
     --pw-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Border-box everywhere this template owns. Bootstrap already assumes it, and
-   without it a width:100% input adds its 28px padding on top of the column
-   width and overhangs the card edge. Declared here rather than relying on the
-   site-wide reset so the page is correct on its own. */
 .pw-page-head, .pw-page-head *,
 .pw-main, .pw-main * { box-sizing: border-box; }
 
-/* ============================================================
-   Page-title band (uses #GROWTHZONE_HEADING#)
-   Matches the Contact and Jobs templates.
-   ============================================================ */
 .pw-page-head {
     position: relative;
     color: var(--pw-white);
@@ -159,9 +492,6 @@
     max-width: 560px;
 }
 
-/* ============================================================
-   Main content shell
-   ============================================================ */
 .pw-main { flex: 1 0 auto; }
 
 .pw-content {
@@ -170,9 +500,6 @@
     padding: 48px 24px;
 }
 
-/* ============================================================
-   GrowthZone module content (.mn-*)
-   ============================================================ */
 #mn-content {
     font-family: var(--pw-font-body);
     color: var(--pw-charcoal);
@@ -186,6 +513,7 @@
 #mn-content .mn-container { width: 100%; margin: 0 auto; }
 
 #mn-content a { color: var(--pw-blue); }
+
 #mn-content a:hover { color: var(--pw-navy); }
 
 #mn-content h1, #mn-content h2, #mn-content h3, #mn-content h4 {
@@ -195,19 +523,13 @@
     color: var(--pw-navy);
 }
 
-/* The band above already shows the page name; hide the module's duplicate. */
 #mn-content .mn-page-heading { display: none; }
 
-/* The membership application is a single form — a wide measure reads badly,
-   so hold it to a comfortable column inside the 80vw content shell. */
 #mn-content .mn-application {
     max-width: 900px;
     margin: 0 auto;
 }
 
-/* Rows are laid out per-context below. The site-wide stylesheet makes every
-   .mn-row a 40px-gap flex row, which is right for Contact's .mn-col-1-2
-   columns but shreds the Bootstrap grid this module renders. Reset first. */
 #mn-content .mn-row {
     display: block;
     gap: 0;
@@ -218,22 +540,12 @@
 
 #mn-content .mn-block { margin-bottom: 24px; }
 
-/* ============================================================
-   Membership module — Bootstrap markup inside #gzns
-   --------------------------------------------------------------
-   Unlike Contact and Jobs, this module renders Bootstrap panels,
-   .row wrappers and floated .col-* columns (namespaced under
-   #gzns). The rules below contain the floats, cancel the .row
-   negative margins, and dress the panels in theme styling.
-   ============================================================ */
 #mn-content #gzns {
     font-family: var(--pw-font-body);
     font-size: 1rem;
     color: var(--pw-charcoal);
 }
 
-/* .panel.row is a 15px-padded card carrying -15px row margins; cancel them
-   so panel content does not bleed past the card edge. */
 #mn-content #gzns .panel.row { margin-left: 0; margin-right: 0; }
 
 #mn-content #gzns .panel {
@@ -261,12 +573,8 @@
     color: var(--pw-navy);
 }
 
-/* flow-root contains the floated Bootstrap columns without a clearfix div. */
 #mn-content #gzns .panel-body { padding: 24px; display: flow-root; }
 
-/* --- Logo panel -------------------------------------------------------- */
-/* The 50px top margin and 25px padding are inline on the element, so these
-   need !important to win. */
 #mn-content #gzns > .row.panel {
     margin-top: 0 !important;
     padding: 24px !important;
@@ -282,9 +590,6 @@
 
 #mn-content #gzns .EventRegistration-logo img { margin: 0 auto; }
 
-/* Rows that carry nothing but an (empty) validation message collapse instead
-   of leaving a 24px hole. GrowthZone also puts 10px of padding on every
-   .mn-row; the rules below set their own spacing, so clear it. */
 #mn-content #gzns .panel-body > .mn-row { padding-bottom: 0; }
 
 #mn-content #gzns .panel-body > .mn-row:not(:has(input[type="radio"])):not(:has(.mn-label)) {
@@ -292,7 +597,6 @@
     padding: 0;
 }
 
-/* --- Membership option cards ------------------------------------------- */
 #mn-content #gzns .panel-body > .mn-row:has(input[type="radio"]) {
     display: flow-root;
     margin: 0 0 12px;
@@ -308,8 +612,6 @@
     box-shadow: var(--pw-shadow-sm);
 }
 
-/* The option name, price and description are all .col-md-12; unfloat them and
-   cancel the inline `left: 13px` nudge on the description. */
 #mn-content #gzns .mn-row:has(input[type="radio"]) .col-md-12 {
     float: none;
     width: 100%;
@@ -327,10 +629,6 @@
     line-height: 1.6;
 }
 
-/* --- Contact information fields ---------------------------------------- */
-/* Two-up on desktop. #organization-text-box is excluded because GrowthZone
-   toggles its `display` between none/block to show or hide the business-name
-   field; setting display here would out-specify that and pin it open. */
 #mn-content #gzns .input-contact-info > .mn-row:not(#organization-text-box) {
     display: flex;
     flex-wrap: wrap;
@@ -347,15 +645,11 @@
     min-width: 240px;
 }
 
-/* Columns holding only a validation message take their own row and collapse
-   to zero height while empty. */
 #mn-content #gzns .input-contact-info > .mn-row > [class*="col-sm-"]:not(:has(.mn-label)) {
     flex: 1 1 100%;
     min-width: 0;
 }
 
-/* The business-name row keeps its block display (see above) — just make its
-   single visible column full width. */
 #mn-content #gzns .input-contact-info > #organization-text-box > [class*="col-sm-"] {
     float: none;
     width: 100%;
@@ -363,7 +657,6 @@
     padding: 0;
 }
 
-/* Terms link, reCAPTCHA and submit rows */
 #mn-content #gzns .input-contact-info > .col-sm-12 {
     float: none;
     width: 100%;
@@ -379,7 +672,6 @@
     padding: 0;
 }
 
-/* --- Fields ------------------------------------------------------------ */
 #mn-content .mn-label { display: block; width: 100%; margin-bottom: 0; }
 
 #mn-content .mn-field-label,
@@ -399,7 +691,7 @@
 #mn-content .mn-field select {
     display: block;
     width: 100%;
-    height: auto; /* Bootstrap .form-control pins this to 34px */
+    height: auto; 
     padding: 12px 14px;
     font-family: var(--pw-font-body);
     font-size: 1rem;
@@ -421,8 +713,6 @@
 
 #mn-content .mn-field textarea { min-height: 120px; resize: vertical; }
 
-/* Select2 (Designations) — GrowthZone indents it 15px; align it to the grid
-   and match the field border. */
 #mn-content #gzns .select2 { margin-left: 0; width: 100% !important; }
 
 #mn-content #gzns .select2-selection {
@@ -432,13 +722,10 @@
     border-radius: var(--pw-radius-sm);
 }
 
-/* One required marker, in theme orange. The site-wide stylesheet adds an
-   asterisk on .mn-required and GrowthZone adds another on its inner label,
-   which renders "First Name* *". Suppress the outer, keep and restyle GZ's. */
 #mn-content .mn-required:after { content: none; }
+
 #mn-content .mn-required label:after { content: ' *'; color: var(--pw-orange); }
 
-/* --- Validation -------------------------------------------------------- */
 #mn-content .mn-label.mn-error input,
 #mn-content .mn-label.mn-error textarea,
 #mn-content .mn-label.mn-error select { border-color: #d9342b; }
@@ -462,9 +749,6 @@
 
 #mn-content .help-block { color: var(--pw-dark-gray); font-size: 0.9rem; }
 
-/* --- Buttons ----------------------------------------------------------- */
-/* The submit button carries .form-control.btn.btn-warning, so height, width,
-   background-image and box-shadow all have to be reset explicitly. */
 #mn-content .mn-button,
 #mn-content .mn-submit,
 #mn-content button.mn-submit,
@@ -498,7 +782,6 @@
     box-shadow: var(--pw-shadow-md);
 }
 
-/* --- Powered by -------------------------------------------------------- */
 #mn-content .mn-powered-by {
     margin-top: 24px;
     text-align: center;
@@ -508,32 +791,140 @@
 
 #mn-content .mn-powered-by a { color: var(--pw-dark-gray); font-weight: 600; }
 
-/* ============================================================
-   Responsive
-   ============================================================ */
 @media (max-width: 768px) {
-    :root { --pw-container-width: 90vw; }
-
-    .pw-page-head { min-height: auto; padding: 48px 0; }
-    .pw-page-head h1 { font-size: 2.25rem; }
-
-    .pw-content { padding: 32px 20px; }
-
-    #mn-content #gzns .panel-heading { padding: 14px 18px; }
-    #mn-content #gzns .panel-body { padding: 18px; }
-
-    /* Single column — and drop the 240px basis so fields cannot overflow. */
-    #mn-content #gzns .input-contact-info > .mn-row { gap: 12px; }
-    #mn-content #gzns .input-contact-info > .mn-row > [class*="col-sm-"] {
+.pw-page-head { min-height: auto; padding: 48px 0; }
+.pw-page-head h1 { font-size: 2.25rem; }
+.pw-content { padding: 32px 20px; }
+#mn-content #gzns .panel-heading { padding: 14px 18px; }
+#mn-content #gzns .panel-body { padding: 18px; }
+#mn-content #gzns .input-contact-info > .mn-row { gap: 12px; }
+#mn-content #gzns .input-contact-info > .mn-row > [class*="col-sm-"] {
         flex: 1 1 100%;
         min-width: 0;
     }
+#mn-content #gzns button.mn-button { width: 100%; }
+}
 
-    #mn-content #gzns button.mn-button { width: 100%; }
+/* ==========================================================================
+   5. Footer
+   ========================================================================== */
+.pw-footer {
+            position: relative;
+            background: var(--pw-header-navy);
+            color: var(--pw-white);
+            padding: 48px 0 32px;
+            flex-shrink: 0;
+        }
+
+.pw-footer__inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: var(--pw-container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+.pw-footer__logo img { height: 60px; width: auto; margin-bottom: 20px; display: block; }
+
+.pw-footer__contact { display: flex; flex-direction: column; gap: 8px; font-size: 1rem; }
+
+.pw-footer__contact a { color: var(--pw-white); }
+
+.pw-footer__contact a:hover { color: var(--pw-gold); }
+
+.pw-footer__contact svg { display: inline-block; vertical-align: middle; margin-right: 6px; }
+
+.pw-footer__right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 16px;
+        }
+
+.pw-footer__social { display: flex; gap: 12px; }
+
+.pw-footer__social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: var(--pw-radius-md);
+            color: var(--pw-white);
+            transition: background-color 0.3s ease;
+        }
+
+.pw-footer__social a:hover { background-color: var(--pw-gold); color: var(--pw-navy); }
+
+.pw-footer__social a svg { width: 20px; height: 20px; }
+
+.pw-footer__bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--pw-container-width);
+            margin: 32px auto 0;
+            padding: 16px 24px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+.pw-footer__bottom a { color: rgba(255, 255, 255, 0.7); }
+
+.pw-footer__bottom a:hover { color: var(--pw-gold); }
+
+@media (max-width: 768px) {
+.pw-footer__inner { grid-template-columns: 1fr; }
+.pw-footer__right { text-align: left; align-items: flex-start; }
+.pw-footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+/* ==========================================================================
+   6. Header override guard — KEEP LAST
+   --------------------------------------------------------------------------
+   GrowthZone's own stylesheets load after this block. If any of them carries
+   an !important rule touching .sub-menu, normal cascade cannot win and every
+   dropdown is forced open. These repeat the critical declarations with
+   element+class selectors and !important of their own.
+   ========================================================================== */
+nav.pw-header__nav ul.menu ul.sub-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    list-style: none !important;
+}
+
+nav.pw-header__nav ul.menu li.menu-item-has-children:hover > ul.sub-menu,
+nav.pw-header__nav ul.menu li.menu-item-has-children:focus-within > ul.sub-menu {
+    display: block !important;
+}
+
+nav.pw-header__nav ul.menu > li:nth-last-child(-n+2) ul.sub-menu {
+    left: auto !important;
+    right: 0 !important;
+}
+
+@media (max-width: 768px) {
+    nav.pw-header__nav ul.menu ul.sub-menu,
+    nav.pw-header__nav ul.menu li.menu-item-has-children:hover > ul.sub-menu,
+    nav.pw-header__nav ul.menu li.menu-item-has-children:focus-within > ul.sub-menu {
+        display: none !important;
+        position: static !important;
+    }
+
+    nav.pw-header__nav ul.menu li.menu-item-has-children.is-open > ul.sub-menu {
+        display: block !important;
+    }
 }
 </style>
 
-    <!-- ================= Page title band ================= -->
+
+<!-- ================= Page title band ================= -->
     <div class="pw-page-head">
         <div class="pw-page-head__inner">
             <p class="pw-page-head__label">Join Today!</p>
