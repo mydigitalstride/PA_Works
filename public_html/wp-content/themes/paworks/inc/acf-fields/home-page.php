@@ -46,6 +46,15 @@ add_action( 'acf/init', function() {
                                 'instructions'  => 'Recommended size: 1920x800px. This image appears behind the hero content.',
                             ),
                             array(
+                                'key'           => 'field_home_hero_logo',
+                                'label'         => 'Hero Logo',
+                                'name'          => 'hero_logo',
+                                'type'          => 'image',
+                                'return_format' => 'array',
+                                'preview_size'  => 'medium',
+                                'instructions'  => 'Optional. Displayed above the sub header. Transparent PNG or SVG works best.',
+                            ),
+                            array(
                                 'key'   => 'field_home_hero_subheader',
                                 'label' => 'Sub Header',
                                 'name'  => 'sub_header',
