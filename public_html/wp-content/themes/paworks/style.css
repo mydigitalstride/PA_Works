@@ -768,6 +768,15 @@ h2::after {
     max-width: var(--pw-container-width);
 }
 
+.pw-hero__logo {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 280px;
+    max-height: 120px;
+    margin-bottom: 20px;
+}
+
 .pw-hero__subheader {
     font-family: var(--pw-font-heading);
     font-size: 1rem;
@@ -837,6 +846,11 @@ h2::after {
     .pw-hero__title {
         font-size: 2rem;
         max-width: 85vw;
+    }
+
+    .pw-hero__logo {
+        max-width: 200px;
+        max-height: 80px;
     }
 
     .pw-hero__body {

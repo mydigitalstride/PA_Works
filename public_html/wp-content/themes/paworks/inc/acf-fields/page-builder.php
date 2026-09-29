@@ -63,6 +63,7 @@ add_action( 'acf/init', function() {
                         'display'    => 'block',
                         'sub_fields' => array(
                             array( 'key' => 'field_pb_hero_bg_image',   'label' => 'Background Image',  'name' => 'background_image', 'type' => 'image',    'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Recommended: 1920×800px.' ),
+                            array( 'key' => 'field_pb_hero_logo',       'label' => 'Hero Logo',         'name' => 'hero_logo',        'type' => 'image',    'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Optional. Displayed above the sub header. Transparent PNG or SVG works best.' ),
                             array( 'key' => 'field_pb_hero_subheader',  'label' => 'Sub Header',        'name' => 'sub_header',       'type' => 'text',     'instructions' => 'Small label above the heading.' ),
                             array( 'key' => 'field_pb_hero_header',     'label' => 'Header',            'name' => 'header',           'type' => 'text' ),
                             array( 'key' => 'field_pb_hero_body',       'label' => 'Body Text',         'name' => 'body_text',        'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'basic', 'media_upload' => 0 ),

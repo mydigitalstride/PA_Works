@@ -45,6 +45,15 @@ add_action( 'acf/init', function() {
                                 'preview_size'  => 'medium',
                             ),
                             array(
+                                'key'           => 'field_events_hero_logo',
+                                'label'         => 'Hero Logo',
+                                'name'          => 'hero_logo',
+                                'type'          => 'image',
+                                'return_format' => 'array',
+                                'preview_size'  => 'medium',
+                                'instructions'  => 'Optional. Displayed above the sub header. Transparent PNG or SVG works best.',
+                            ),
+                            array(
                                 'key'   => 'field_events_hero_subheader',
                                 'label' => 'Sub Header',
                                 'name'  => 'sub_header',

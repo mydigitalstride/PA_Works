@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $bg_image     = get_sub_field( 'background_image' );
+$hero_logo   = get_sub_field( 'hero_logo' );
 $sub_header   = get_sub_field( 'sub_header' );
 $header       = get_sub_field( 'header' );
 $body_text    = get_sub_field( 'body_text' );
@@ -27,6 +28,9 @@ $target2_attr  = $btn2_target ? ' target="_blank" rel="noopener noreferrer"' : '
 
 <section class="pw-hero" style="<?php echo esc_attr( $bg_style ); ?>">
     <div class="pw-hero__content">
+        <?php if ( $hero_logo ) : ?>
+            <img class="pw-hero__logo" src="<?php echo esc_url( $hero_logo['url'] ); ?>" alt="<?php echo esc_attr( $hero_logo['alt'] ); ?>"<?php if ( ! empty( $hero_logo['width'] ) ) : ?> width="<?php echo esc_attr( $hero_logo['width'] ); ?>" height="<?php echo esc_attr( $hero_logo['height'] ); ?>"<?php endif; ?>>
+        <?php endif; ?>
         <?php if ( $sub_header ) : ?>
             <p class="pw-hero__subheader"><?php echo esc_html( $sub_header ); ?></p>
         <?php endif; ?>
