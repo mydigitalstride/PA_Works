@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'PAWORKS_VERSION', '1.0.0' );
+define( 'PAWORKS_VERSION', '1.0.1' );
 define( 'PAWORKS_DIR', get_template_directory() );
 define( 'PAWORKS_URI', get_template_directory_uri() );
 

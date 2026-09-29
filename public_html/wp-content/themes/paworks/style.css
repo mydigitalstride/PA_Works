@@ -772,9 +772,9 @@ h2::after {
     display: block;
     width: auto;
     height: auto;
-    max-width: 280px;
-    max-height: 120px;
-    margin-bottom: 20px;
+    max-width: 400px;
+    max-height: 300px;
+    margin-bottom: 48px;
 }
 
 .pw-hero__subheader {
@@ -849,8 +849,9 @@ h2::after {
     }
 
     .pw-hero__logo {
-        max-width: 200px;
-        max-height: 80px;
+        max-width: 260px;
+        max-height: 200px;
+        margin-bottom: 32px;
     }
 
     .pw-hero__body {
