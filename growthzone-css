@@ -1,23 +1,26 @@
 /* ==========================================================================
-   PA Works — GrowthZone page styles
+   PA Works — GrowthZone universal stylesheet
    --------------------------------------------------------------------------
-   Cleaned, deduplicated stylesheet for the hard-coded GrowthZone templates.
-   Paste the whole file inside the template's <style> block.
+   Site-wide CSS for every GrowthZone page. Paste into GrowthZone's global
+   custom CSS. It owns everything shared:
 
-   Consolidated from a paste that had the header stylesheet appended to the
-   page stylesheet, which left two :root blocks and four copies of most nav
-   rules fighting each other. Notes on what changed are inline.
+     tokens, base, buttons, header/nav, page-title band, content shell,
+     shared GrowthZone module (.mn-*) styles, footer, responsive rules,
+     and the header/footer override guard.
+
+   Page-specific rules (hero image, events calendar, contact form layout,
+   membership application) live in each page template's own style block,
+   which loads after this file and only ADDS to it. Do not copy tokens,
+   header or footer rules into the page templates — that is what caused the
+   mismatched widths and duplicate rules before.
+
+   Companion files:
+     growthzone-custom-header  -> global header HTML (fonts, markup, script)
+     growthzone-custom-footer  -> global footer HTML (markup, year script)
    ========================================================================== */
 
 /* ==========================================================================
    Design tokens — ONE :root only
-   --------------------------------------------------------------------------
-   The previous version declared :root four times. Because every :root has
-   identical specificity, the LAST declaration won, so --pw-container-width
-   resolved to 80vw / 90vw and the earlier 1200px and 85vw were dead code.
-   That silent 80vw is kept here (it matches the WordPress theme). To go back
-   to the original page width, set --pw-container-width: 1200px below and
-   change the 80vw/90vw media rules to 85vw/90vw.
    ========================================================================== */
 :root {
     --pw-navy: #252b5d;
@@ -31,6 +34,7 @@
 
     --pw-gradient-lightblue-navy: linear-gradient(135deg, var(--pw-light-blue) 0%, var(--pw-navy) 100%);
     --pw-gradient-calendar: linear-gradient(160deg, #1d4e86 0%, #0c2c54 100%);
+    --pw-overlay-hero: linear-gradient(120deg, rgba(12, 44, 84, 0.92) 0%, rgba(12, 44, 84, 0.70) 55%, rgba(12, 44, 84, 0.45) 100%);
 
     --pw-white: #FFFFFF;
     --pw-off-white: #F5F7FA;
@@ -38,6 +42,7 @@
     --pw-gray: #9CA3AF;
     --pw-dark-gray: #4B5563;
     --pw-charcoal: #1F2937;
+    --pw-error: #d9342b;
 
     --pw-font-heading: 'Poppins', sans-serif;
     --pw-font-body: 'Source Sans 3', 'Source Sans Pro', sans-serif;
@@ -72,6 +77,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 img { max-width: 100%; height: auto; }
@@ -102,7 +108,7 @@ a:hover { color: var(--pw-navy); }
 }
 
 /* ==========================================================================
-   Header / Nav — single copy
+   Header / Nav
    ========================================================================== */
 .pw-header {
     position: sticky;
@@ -186,29 +192,37 @@ a:hover { color: var(--pw-navy); }
 }
 
 /* ==========================================================================
-   Hero
+   Page-title band (Jobs, Membership, Contact) and hero (Events)
+   --------------------------------------------------------------------------
+   Layout is shared. Each page template sets only its own background-image
+   (and min-height/padding if it differs).
    ========================================================================== */
+.pw-page-head,
 .pw-hero {
     position: relative;
-    min-height: 650px;
     display: flex;
     align-items: center;
-    padding: 60px 0 140px;
-    background-image: url('https://pawork.org/wp-content/uploads/2026/06/Capital-Building-interior.png');
+    color: var(--pw-white);
+    background-color: var(--pw-header-navy);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
 }
 
+.pw-page-head { min-height: 400px; padding: 100px 0; }
+.pw-hero { min-height: 650px; padding: 60px 0 140px; }
+
+.pw-page-head::before,
 .pw-hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, rgba(12, 44, 84, 0.92) 0%, rgba(12, 44, 84, 0.70) 55%, rgba(12, 44, 84, 0.45) 100%);
+    background: var(--pw-overlay-hero);
     z-index: 1;
 }
 
+.pw-page-head__inner,
 .pw-hero__content {
     position: relative;
     z-index: 2;
@@ -218,12 +232,35 @@ a:hover { color: var(--pw-navy); }
     padding: 0 24px;
 }
 
+.pw-page-head__label,
 .pw-hero__label {
     font-family: var(--pw-font-heading);
     font-size: 1rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 2px;
-    color: var(--pw-white); margin-bottom: 12px;
+    color: var(--pw-white); margin: 0 0 12px;
 }
+
+.pw-page-head h1 {
+    margin: 0;
+    font-family: var(--pw-font-heading);
+    font-weight: 700; font-size: 3rem; line-height: 1.2;
+    text-transform: uppercase; color: var(--pw-white);
+}
+
+.pw-page-head h1::after {
+    content: '';
+    display: block; width: 13rem; max-width: 100%; height: 6px; margin-top: 16px;
+    background: var(--pw-gold);
+}
+
+.pw-page-head__body { color: rgba(255, 255, 255, 0.9); font-size: 1rem; line-height: 1.6; margin: 20px 0 0; max-width: 560px; }
+
+.pw-page-head__link {
+    display: inline-block; margin: 16px 0 0;
+    font-family: var(--pw-font-body); font-size: 1rem; font-weight: 600;
+    color: var(--pw-gold); text-decoration: underline;
+}
+.pw-page-head__link:hover { color: var(--pw-white); }
 
 .pw-hero__title {
     font-family: var(--pw-font-heading);
@@ -231,11 +268,19 @@ a:hover { color: var(--pw-navy); }
     text-transform: uppercase; color: var(--pw-white); margin: 0 0 16px;
 }
 
-.pw-hero__body { color: rgba(255, 255, 255, 0.9); font-size: 1rem; line-height: 1.6; margin-bottom: 28px; max-width: 460px; }
+.pw-hero__body { color: rgba(255, 255, 255, 0.9); font-size: 1rem; line-height: 1.6; margin: 0 0 28px; max-width: 460px; }
 
 /* ==========================================================================
-   Section heading
+   Content shell
    ========================================================================== */
+.pw-main { flex: 1 0 auto; }
+
+.pw-content {
+    max-width: var(--pw-container-width);
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+
 .pw-section { padding: 48px 0; background: var(--pw-off-white); }
 .pw-section__inner { max-width: var(--pw-container-width); margin: 0 auto; padding: 0 24px; }
 
@@ -243,7 +288,7 @@ a:hover { color: var(--pw-navy); }
     font-family: var(--pw-font-heading);
     font-size: 1rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 2px;
-    color: var(--pw-light-blue); margin-bottom: 8px;
+    color: var(--pw-light-blue); margin: 0 0 8px;
 }
 
 .pw-section__title {
@@ -258,241 +303,11 @@ a:hover { color: var(--pw-navy); }
     background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
 }
 
-/* ==========================================================================
-   Calendar shell (navy gradient card)
-   ========================================================================== */
-.pw-calendar-shell {
-    margin-top: 32px;
-    background: var(--pw-gradient-calendar);
-    border-radius: var(--pw-radius-lg);
-    padding: 32px;
-    box-shadow: var(--pw-shadow-lg);
-    color: var(--pw-white);
-}
-
-.pw-calendar-shell .mn-search,
-.pw-calendar-shell .mn-event-search,
-.pw-calendar-shell .mn-calendar-toolbar { color: var(--pw-white); margin-bottom: 20px; }
-
-.pw-calendar-shell input[type="text"],
-.pw-calendar-shell input[type="search"] {
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: var(--pw-radius-xl);
-    color: var(--pw-white);
-    padding: 10px 16px;
-    font-family: var(--pw-font-body);
-    font-size: 0.95rem;
-}
-.pw-calendar-shell input::placeholder { color: rgba(255, 255, 255, 0.7); }
-
-.pw-calendar-shell a { color: var(--pw-white); }
-.pw-calendar-shell a:hover { color: var(--pw-gold); }
-
-.pw-calendar-shell .mn-calendar,
-.pw-calendar-shell .mn-events-calendar,
-.pw-calendar-shell .gz-calendar {
-    background: var(--pw-white);
-    border-radius: var(--pw-radius-md);
-    padding: 24px;
-    color: var(--pw-charcoal);
-}
-
-.pw-calendar-shell .mn-calendar-title,
-.pw-calendar-shell caption {
-    font-family: var(--pw-font-heading);
-    font-weight: 700; font-size: 1.75rem;
-    color: var(--pw-light-blue); text-align: center; margin-bottom: 16px;
-}
-
-.pw-calendar-shell table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-
-.pw-calendar-shell table th {
-    background: var(--pw-light-blue);
-    color: var(--pw-white);
-    font-family: var(--pw-font-heading);
-    font-weight: 600; font-size: 0.95rem;
-    text-align: center; padding: 12px 8px;
-    border: 1px solid var(--pw-light-blue);
-}
-
-.pw-calendar-shell table td {
-    vertical-align: top;
-    height: 110px;
-    padding: 8px 10px;
-    border: 1px solid var(--pw-light-gray);
-    font-size: 0.9rem;
-    color: var(--pw-charcoal);
-    background: var(--pw-white);
-}
-
-.pw-calendar-shell table td .mn-calendar-day-number,
-.pw-calendar-shell table td .gz-day-number { font-weight: 600; color: var(--pw-charcoal); }
-
-.pw-calendar-shell table td a {
-    display: block; margin-top: 6px;
-    font-size: 0.8rem; line-height: 1.3;
-    color: var(--pw-light-blue); font-weight: 600;
-}
-.pw-calendar-shell table td a:hover { color: var(--pw-gold); }
-
-.pw-calendar-shell table td.mn-today,
-.pw-calendar-shell table td.today,
-.pw-calendar-shell table td.gz-today { background: rgba(64, 126, 201, 0.08); }
-
-/* ==========================================================================
-   GrowthZone events module — list & grid card views (.gz-*)
-   ========================================================================== */
-.pw-calendar-shell .gz-pagetitle,
-.pw-calendar-shell .gz-subtitle { color: var(--pw-white); font-family: var(--pw-font-heading); }
-.pw-calendar-shell .gz-subtitle { font-weight: 700; }
-
-.pw-calendar-shell .form-control,
-.pw-calendar-shell .gz-search-keyword,
-.pw-calendar-shell .custom-select { color: var(--pw-charcoal); }
-
-.pw-calendar-shell .gz-search-btn {
-    background: var(--pw-gold); color: var(--pw-navy); border: none;
-    font-family: var(--pw-font-heading); font-weight: 700;
-}
-.pw-calendar-shell .gz-search-btn:hover { background: var(--pw-navy); color: var(--pw-white); }
-
-.pw-calendar-shell .gz-view-btn { color: rgba(255, 255, 255, 0.7); }
-.pw-calendar-shell .gz-view-btn:hover,
-.pw-calendar-shell .gz-view-btn.active { color: var(--pw-gold); }
-
-.pw-calendar-shell .gz-search-pill { background: var(--pw-white); color: var(--pw-navy) !important; font-weight: 600; }
-
-.pw-calendar-shell .gz-events-card {
-    background: var(--pw-white);
-    border: 1px solid var(--pw-light-gray);
-    border-radius: var(--pw-radius-md);
-    overflow: hidden;
-    color: var(--pw-charcoal);
-    box-shadow: var(--pw-shadow-sm);
-}
-
-.pw-calendar-shell .gz-events-card,
-.pw-calendar-shell .gz-events-card p,
-.pw-calendar-shell .gz-events-card h5,
-.pw-calendar-shell .gz-events-card-body { color: var(--pw-charcoal); }
-
-.pw-calendar-shell .gz-events-card .card-header { background: var(--pw-white); border: none; }
-.pw-calendar-shell .gz-card-wkday-wrap { background: var(--pw-header-navy); }
-.pw-calendar-shell .gz-card-wkday { color: var(--pw-white); font-family: var(--pw-font-heading); font-weight: 700; }
-.pw-calendar-shell .gz-card-month span { color: var(--pw-dark-gray); }
-.pw-calendar-shell .gz-card-dday span { color: var(--pw-navy); font-family: var(--pw-font-heading); font-weight: 700; }
-
-.pw-calendar-shell .gz-card-head-img img { display: block; }
-
-.card-body .gz-card-datetime {
-color: var(--pw-dark-gray);
-
-.pw-calendar-shell .gz-card-title,
-.pw-calendar-shell .gz-event-card-title {
-    color: var(--pw-navy) !important;
-    font-family: var(--pw-font-heading);
-    font-weight: 700;
-}
-
-.gz-event-card-title {
-    color: var(--pw-navy) !important;
-    font-family: var(--pw-font-heading);
-    font-weight: 700;
-}
-
-.pw-calendar-shell .gz-card-title:hover,
-.pw-calendar-shell .gz-event-card-title:hover { color: var(--pw-light-blue) !important; }
-
-.pw-calendar-shell .gz-event-card-time { color: var(--pw-light-blue); font-family: var(--pw-font-heading); font-weight: 600; }
-
-.pw-calendar-shell .gz-description,
-.pw-calendar-shell .gz-events-description { color: var(--pw-dark-gray); }
-
-.pw-calendar-shell .gz-events-card .card-footer { background: var(--pw-white); border-top: 1px solid var(--pw-light-gray); }
-
-.pw-calendar-shell .gz-register-btn {
-    background: var(--pw-gold);
-    color: var(--pw-navy) !important;
-    border: none;
-    border-radius: var(--pw-radius-sm);
-    font-family: var(--pw-font-heading);
-    font-weight: 700;
-    padding: 12px 20px;
-    transition: all 0.3s ease;
-}
-.pw-calendar-shell .gz-register-btn:hover { background: var(--pw-navy); color: var(--pw-white) !important; }
-.pw-calendar-shell .gz-register-btn.disabled { background: var(--pw-light-gray); color: var(--pw-dark-gray) !important; }
-
-.btn .btn-block .gz-register-btn {
-background: var(--pw-blue) !important; }
-.gz-register-btn {
-background: var(--pw-blue) !important; }
-/* GrowthZone calendar view (.gz-calendar divs) */
-.pw-calendar-shell .gz-calendar-month .gz-heading,
-.pw-calendar-shell .gz-calendar-month-text { color: var(--pw-white); font-family: var(--pw-font-heading); }
-
-.pw-calendar-shell #gz-calendar {
-    background: var(--pw-white);
-    border-radius: var(--pw-radius-md);
-    padding: 16px;
-    color: var(--pw-charcoal);
-}
-.pw-calendar-shell .gz-week { display: flex; }
-.pw-calendar-shell .gz-week.gz-names .gz-day {
-    background: var(--pw-light-blue);
-    color: var(--pw-white);
-    font-family: var(--pw-font-heading);
-    font-weight: 600;
-    text-align: center;
-}
-.pw-calendar-shell .gz-day {
-    flex: 1 1 0;
-    min-height: 96px;
-    padding: 6px 8px;
-    border: 1px solid var(--pw-light-gray);
-    color: var(--pw-charcoal);
-    font-size: 0.9rem;
-}
-.pw-calendar-shell .gz-names .gz-day { min-height: 0; }
-.pw-calendar-shell .gz-event-link a,
-.pw-calendar-shell .gz-day-link { color: var(--pw-light-blue); font-weight: 600; font-size: 0.8rem; }
-.pw-calendar-shell .gz-event-link a:hover,
-.pw-calendar-shell .gz-day-link:hover { color: var(--pw-gold); }
-
-.pw-calendar-shell .gz-powered-by { color: rgba(255, 255, 255, 0.7); font-size: 0.8rem; }
-
-/* ==========================================================================
-   Featured event card
-   ========================================================================== */
-.pw-event-feature {
-    margin-top: 28px;
-    background: var(--pw-white);
-    border-radius: var(--pw-radius-md);
-    padding: 28px 32px;
-    color: var(--pw-charcoal);
-    box-shadow: var(--pw-shadow-md);
-}
-
-.pw-event-feature__title {
-    font-family: var(--pw-font-heading);
-    font-weight: 700; font-size: 1.4rem; line-height: 1.3;
-    color: var(--pw-light-blue); margin: 0 0 10px;
-}
-
-.pw-event-feature__meta { font-weight: 700; color: var(--pw-charcoal); margin: 0 0 8px; }
-.pw-event-feature__presenter { margin: 0 0 14px; color: var(--pw-dark-gray); }
-.pw-event-feature__body { margin: 0 0 20px; color: var(--pw-charcoal); }
-.pw-event-feature .pw-btn { display: block; width: max-content; margin: 0 auto; }
-
-/* ==========================================================================
-   Membership CTA
-   ========================================================================== */
 .pw-cta { background: var(--pw-off-white); padding: 8px 0 56px; text-align: center; }
 .pw-cta .pw-btn { padding: 16px 40px; }
 
 /* ==========================================================================
-   GrowthZone module content (.mn-*)
+   GrowthZone module content (.mn-*) — shared by Jobs, Membership, Contact
    ========================================================================== */
 #mn-content { font-family: var(--pw-font-body); color: var(--pw-charcoal); max-width: 100%; }
 
@@ -512,9 +327,10 @@ background: var(--pw-blue) !important; }
     color: var(--pw-navy);
 }
 
-/* The page-title band above already shows the page name, so hide the
-   module's duplicate heading. Remove this rule to show it instead. */
+/* The page-title band already shows the page name, so hide the module's
+   duplicate heading. Remove this rule to show it instead. */
 #mn-content .mn-page-heading { display: none; }
+#mn-content .mn-text > title { display: none; }
 
 #mn-content .mn-intro .mn-text {
     font-size: 1.125rem;
@@ -525,7 +341,7 @@ background: var(--pw-blue) !important; }
 #mn-content .mn-intro .mn-text p { margin: 0 0 16px; }
 
 /* Rows & columns. gap must match the amount subtracted in the column
-   flex-basis below, or the two columns leave a dead strip at the row end. */
+   flex-basis below. */
 #mn-content .mn-row {
     display: flex;
     flex-wrap: wrap;
@@ -538,16 +354,7 @@ background: var(--pw-blue) !important; }
 
 #mn-content .mn-block { margin-bottom: 24px; }
 
-/* Form */
-#mn-content .mn-contact-form {
-    min-height: 100%;
-    background: var(--pw-off-white);
-    border: 1px solid var(--pw-light-gray);
-    border-radius: var(--pw-radius-lg);
-    padding: 32px;
-    box-shadow: var(--pw-shadow-sm);
-}
-
+/* Fields */
 #mn-content .mn-label { display: block; width: 100%; margin-bottom: 18px; }
 
 #mn-content .mn-field-label,
@@ -565,6 +372,7 @@ background: var(--pw-blue) !important; }
 #mn-content .mn-field select {
     display: block;
     width: 100%;
+    height: auto;
     padding: 12px 14px;
     font-family: var(--pw-font-body);
     font-size: 1rem;
@@ -572,6 +380,7 @@ background: var(--pw-blue) !important; }
     background: var(--pw-white);
     border: 1px solid var(--pw-light-gray);
     border-radius: var(--pw-radius-sm);
+    box-shadow: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -589,18 +398,23 @@ background: var(--pw-blue) !important; }
 
 #mn-content .mn-label.mn-error input,
 #mn-content .mn-label.mn-error textarea,
-#mn-content .mn-label.mn-error select { border-color: #d9342b; }
+#mn-content .mn-label.mn-error select { border-color: var(--pw-error); }
 
-#mn-content .mn-label.mn-error .mn-field-name { color: #d9342b; }
+#mn-content .mn-label.mn-error .mn-field-name { color: var(--pw-error); }
 
 #mn-content .validation-summary-errors ul li,
-#mn-content .recaptcha-error { color: #d9342b; }
+#mn-content .field-validation-error,
+#mn-content .recaptcha-error { color: var(--pw-error); }
+
+#mn-content .help-block { color: var(--pw-dark-gray); font-size: 0.9rem; }
 
 /* Buttons — matched to .pw-btn so both button styles on a page agree */
 #mn-content .mn-button,
 #mn-content .mn-submit,
 #mn-content button.mn-submit {
     display: inline-block;
+    width: auto;
+    height: auto;
     padding: 14px 32px;
     font-family: var(--pw-font-heading);
     font-size: 1rem;
@@ -609,8 +423,10 @@ background: var(--pw-blue) !important; }
     letter-spacing: 0.3px;
     color: var(--pw-navy);
     background-color: var(--pw-gold);
+    background-image: none;
     border: none;
     border-radius: var(--pw-radius-sm);
+    box-shadow: none;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -623,43 +439,6 @@ background: var(--pw-blue) !important; }
     transform: translateY(-2px);
     box-shadow: var(--pw-shadow-md);
 }
-
-#mn-content .mn-contact-map iframe {
-    display: block;
-    width: 100%;
-    border: 0;
-    border-radius: var(--pw-radius-md);
-    box-shadow: var(--pw-shadow-sm);
-}
-
-#mn-content .mn-contact-info {
-    background: var(--pw-gradient-lightblue-navy);
-    color: var(--pw-white);
-    border-radius: var(--pw-radius-lg);
-    padding: 32px;
-    box-shadow: var(--pw-shadow-md);
-}
-
-#mn-content .mn-contact-info .mn-section-head { margin-bottom: 16px; }
-
-#mn-content .mn-contact-info .mn-section-head-text {
-    font-family: var(--pw-font-heading);
-    font-size: 1.25rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    line-height: 1.3;
-    color: var(--pw-white);
-}
-
-#mn-content .mn-contact-info .mn-section-body { font-size: 1rem; line-height: 1.7; }
-
-#mn-content .mn-contact-info .mn-street,
-#mn-content .mn-contact-info .mn-po-box,
-#mn-content .mn-contact-info .mn-city-state-zip,
-#mn-content .mn-contact-info .mn-phone { color: var(--pw-white); }
-
-#mn-content .mn-contact-info a { color: var(--pw-gold); font-weight: 600; }
-#mn-content .mn-contact-info a:hover { color: var(--pw-white); text-decoration: underline; }
 
 #mn-content .mn-powered-by {
     margin-top: 24px;
@@ -681,28 +460,29 @@ background: var(--pw-blue) !important; }
 }
 
 .pw-footer__logo img { height: 60px; width: auto; margin-bottom: 20px; display: block; }
+
 .pw-footer__contact { display: flex; flex-direction: column; gap: 8px; font-size: 1rem; }
 .pw-footer__contact a { color: var(--pw-white); }
 .pw-footer__contact a:hover { color: var(--pw-gold); }
-.pw-footer__contact svg { display: inline-block; vertical-align: middle; margin-right: 6px; }
+.pw-footer__contact svg {
+    display: inline-block; vertical-align: middle; margin-right: 6px;
+    width: 16px; height: 16px; flex-shrink: 0;
+}
 
 .pw-footer__right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
-.pw-footer__social { 
 
-display: flex; gap: 12px; 
-}
-.pw-footer__social {
-    display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+/* Social icons: the wrapper is the row, each LINK is the 40px tile and the
+   SVG inside is fixed at 20px. (The old rule sized the wrapper instead of
+   the links, so the unsized SVGs grew to fill the footer.) */
+.pw-footer__social { display: flex; align-items: center; gap: 12px; }
+.pw-footer__social a {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; flex: 0 0 40px;
     background-color: rgba(255, 255, 255, 0.15); border-radius: var(--pw-radius-md);
-    color: var(--pw-white); transition: background-color 0.3s ease;
+    color: var(--pw-white); transition: background-color 0.3s ease, color 0.3s ease;
 }
 .pw-footer__social a:hover { background-color: var(--pw-gold); color: var(--pw-navy); }
-.pw-footer__social a svg { max-width: 20px; max-height: 20px; }
-
-.pw-footer__search { display: flex; align-items: center; background: var(--pw-white); border-radius: var(--pw-radius-sm); overflow: hidden; }
-.pw-footer__search input { background: transparent; border: none; color: var(--pw-navy); padding: 8px 12px; font-size: 1rem; outline: none; }
-.pw-footer__search input::placeholder { color: var(--pw-dark-gray); }
-.pw-footer__search button { background: var(--pw-white); border: none; padding: 8px 12px; cursor: pointer; color: var(--pw-light-blue); display: flex; align-items: center; }
+.pw-footer__social a svg { display: block; width: 20px; height: 20px; flex-shrink: 0; }
 
 .pw-footer__bottom {
     display: flex; justify-content: space-between; align-items: center;
@@ -749,29 +529,24 @@ display: flex; gap: 12px;
     .pw-header__nav .menu-item-has-children:focus-within > .sub-menu { display: none; }
 
     .pw-header__nav .sub-menu {
-        flex: 0 0 100%; position: static;
+        flex: 0 0 100%; position: static; min-width: 0;
         background: rgba(255, 255, 255, 0.1);
         box-shadow: none; border-radius: 0; padding: 0 0 0 16px;
     }
     .pw-header__nav .menu-item-has-children.is-open > .sub-menu { display: block; }
     .pw-header__nav .menu-item-has-children.is-open > .pw-header__submenu-toggle { transform: rotate(180deg); }
-    .pw-header__nav .sub-menu li a { color: var(--pw-white); padding: 8px 0; }
+    .pw-header__nav .sub-menu li a { color: var(--pw-white); padding: 8px 0; white-space: normal; }
     .pw-header__nav .sub-menu li a:hover { background: transparent; color: var(--pw-light-blue); }
 
-    .pw-hero { min-height: auto; padding: 40px 0; }
+    .pw-page-head { min-height: auto; padding: 48px 0; }
+    .pw-page-head h1 { font-size: 2.25rem; }
+
+    .pw-hero { min-height: auto; padding: 48px 0; }
     .pw-hero__title { font-size: 2.25rem; }
     .pw-hero__body { max-width: 100%; }
 
+    .pw-content { padding: 32px 20px; }
     .pw-section__title { font-size: 1.75rem; }
-    .pw-calendar-shell { padding: 20px; }
-
-    /* Stack the month grid on small screens so cells stay legible */
-    .pw-calendar-shell table,
-    .pw-calendar-shell table tbody,
-    .pw-calendar-shell table tr { display: block; width: 100%; }
-    .pw-calendar-shell table thead { display: none; }
-    .pw-calendar-shell table td { height: auto; display: block; width: 100%; border-top: none; }
-    .pw-calendar-shell table tr { margin-bottom: 8px; border: 1px solid var(--pw-light-gray); }
 
     #mn-content .mn-row { gap: 24px; }
     #mn-content .mn-col-1-2 { flex: 1 1 100%; }
@@ -784,11 +559,10 @@ display: flex; gap: 12px;
 /* ==========================================================================
    OVERRIDE GUARD — keep LAST
    --------------------------------------------------------------------------
-   GrowthZone's own stylesheets load after this block. If any of them carries
-   an !important rule touching .sub-menu, normal cascade rules cannot win and
-   every dropdown is forced open. These repeat the critical declarations with
-   element+class selectors and !important of their own. Drop this section if
-   the header already behaves — it is defensive, not required.
+   GrowthZone's own stylesheets (Bootstrap etc.) can load after this file.
+   These repeat the critical header-dropdown and footer-icon declarations
+   with higher specificity and !important so GrowthZone cannot force every
+   dropdown open or blow the social icons up to full width.
    ========================================================================== */
 nav.pw-header__nav ul.menu ul.sub-menu {
     display: none !important;
@@ -807,6 +581,20 @@ nav.pw-header__nav ul.menu > li:nth-last-child(-n+2) ul.sub-menu {
     left: auto !important;
     right: 0 !important;
 }
+
+footer.pw-footer .pw-footer__social a {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+footer.pw-footer .pw-footer__social a svg,
+footer.pw-footer .pw-footer__contact svg {
+    max-width: none !important;
+    max-height: none !important;
+}
+
+footer.pw-footer .pw-footer__social a svg { width: 20px !important; height: 20px !important; }
+footer.pw-footer .pw-footer__contact svg { width: 16px !important; height: 16px !important; }
 
 @media (max-width: 768px) {
     nav.pw-header__nav ul.menu ul.sub-menu,
