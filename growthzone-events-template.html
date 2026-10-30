@@ -894,6 +894,155 @@ nav.pw-header__nav ul.menu > li:nth-last-child(-n+2) ul.sub-menu {
         display: block !important;
     }
 }
+
+/* ==========================================================================
+   7. Footer override guard — KEEP LAST
+   --------------------------------------------------------------------------
+   GrowthZone's stylesheets also restyle generic links, images and svg icons,
+   which breaks the footer (social buttons lose their square tiles, icons
+   resize or lose their fill). These repeat the footer's critical
+   declarations with element+class selectors and !important of their own.
+   ========================================================================== */
+footer.pw-footer {
+    background: var(--pw-header-navy) !important;
+    color: var(--pw-white) !important;
+    padding: 48px 0 32px !important;
+}
+
+footer.pw-footer .pw-footer__inner {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 40px !important;
+    max-width: var(--pw-container-width) !important;
+    margin: 0 auto !important;
+    padding: 0 24px !important;
+}
+
+footer.pw-footer .pw-footer__logo img {
+    height: 60px !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 0 20px !important;
+    display: block !important;
+}
+
+footer.pw-footer .pw-footer__contact {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    font-size: 1rem !important;
+    color: var(--pw-white) !important;
+}
+
+footer.pw-footer .pw-footer__contact a {
+    color: var(--pw-white) !important;
+    text-decoration: none !important;
+}
+
+footer.pw-footer .pw-footer__contact a:hover { color: var(--pw-gold) !important; }
+
+footer.pw-footer .pw-footer__contact svg {
+    display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    vertical-align: middle !important;
+    margin-right: 6px !important;
+    fill: none !important;
+    stroke: currentColor !important;
+}
+
+footer.pw-footer .pw-footer__right {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    text-align: right !important;
+    gap: 16px !important;
+}
+
+footer.pw-footer .pw-footer__social {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+footer.pw-footer .pw-footer__social a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border: 0 !important;
+    border-radius: var(--pw-radius-md) !important;
+    color: var(--pw-white) !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+    transition: background-color 0.3s ease !important;
+}
+
+footer.pw-footer .pw-footer__social a:hover,
+footer.pw-footer .pw-footer__social a:focus {
+    background-color: var(--pw-gold) !important;
+    color: var(--pw-navy) !important;
+}
+
+footer.pw-footer .pw-footer__social a svg {
+    display: block !important;
+    width: 20px !important;
+    height: 20px !important;
+    max-width: none !important;
+    margin: 0 !important;
+}
+
+footer.pw-footer .pw-footer__social a svg[fill="currentColor"],
+footer.pw-footer .pw-footer__social a svg[fill="currentColor"] path {
+    fill: currentColor !important;
+    stroke: none !important;
+}
+
+footer.pw-footer .pw-footer__social a svg[fill="none"],
+footer.pw-footer .pw-footer__social a svg[fill="none"] rect,
+footer.pw-footer .pw-footer__social a svg[fill="none"] circle {
+    fill: none !important;
+    stroke: currentColor !important;
+}
+
+footer.pw-footer .pw-footer__social a svg[fill="none"] circle[fill="currentColor"] {
+    fill: currentColor !important;
+    stroke: none !important;
+}
+
+footer.pw-footer .pw-footer__bottom {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    max-width: var(--pw-container-width) !important;
+    margin: 32px auto 0 !important;
+    padding: 16px 24px 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    font-size: 0.8rem !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+footer.pw-footer .pw-footer__bottom a {
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-decoration: none !important;
+}
+
+footer.pw-footer .pw-footer__bottom a:hover { color: var(--pw-gold) !important; }
+
+@media (max-width: 768px) {
+    footer.pw-footer .pw-footer__inner { grid-template-columns: 1fr !important; }
+    footer.pw-footer .pw-footer__right { text-align: left !important; align-items: flex-start !important; }
+    footer.pw-footer .pw-footer__bottom { flex-direction: column !important; gap: 8px !important; text-align: center !important; }
+}
 </style>
 
 
