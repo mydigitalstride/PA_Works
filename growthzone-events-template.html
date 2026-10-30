@@ -6,835 +6,308 @@
     <title>Events &amp; Calendar - Pennsylvania Workforce Development Association</title>
 
     <!-- ====================================================================
-         PA Works — GrowthZone page template
+         PA Works — GrowthZone page template: EVENTS
          --------------------------------------------------------------------
-         GrowthZone replaces these tokens at render time:
-           #GROWTHZONE_HEADING#  -> the page title
-           #growthzone_content#  -> the module markup
+         GrowthZone replaces this token at render time:
+           #growthzone_content#  -> the calendar / event module markup
 
-         READ BEFORE EDITING — two things here are deliberate:
+         Site chrome is NOT in this file:
+           header  -> growthzone-custom-header  (global)
+           footer  -> growthzone-custom-footer  (global)
+           shared CSS (tokens, header, footer, hero/band layout, .mn-*)
+                   -> growthzone-css            (global)
 
-         1. The page stylesheet is placed in the BODY, not the document HEAD.
-            GrowthZone builds its own document head and keeps only the body of
-            a custom template, so a stylesheet in the head is silently
-            discarded. A style element in the body is valid HTML and always
-            applies.
-
-         2. The stylesheet is complete and self-contained — tokens, base,
-            header, page and footer rules all live in this one file. Styling
-            set once "across all pages" did not reach every page reliably,
-            so each template now carries its own full copy. The shared parts
-            are identical in every template; when you change one, change all.
-
-         (Deliberately no literal tag names in this comment: tooling that
-         locates the body by string search would otherwise match here.)
+         The style block below holds only rules unique to this page. It sits
+         in the body because GrowthZone keeps only the body of a custom
+         template and discards anything placed in the head.
          ==================================================================== -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <style>
 /* ==========================================================================
-   1. Design tokens  —  ONE :root block only
-   --------------------------------------------------------------------------
-   A bare `--foo: value;` outside a selector is NOT a declaration at stylesheet
-   level: the parser folds it into the next selector's prelude and then drops
-   that whole rule. Every custom property must live inside this block.
+   Events page — page-specific styles only
    ========================================================================== */
-:root {
-    --pw-navy: #252b5d;
-    --pw-header-navy: #0c335a;
-    --pw-blue: #2b3279;
-    --pw-light-blue: #407ec9;
-    --pw-sky: #9bd3dd;
 
-    --pw-gold: #f9ad32;
-    --pw-orange: #E8913A;
-
-    --pw-gradient-lightblue-navy: linear-gradient(135deg, var(--pw-light-blue) 0%, var(--pw-navy) 100%);
-    --pw-gradient-calendar: linear-gradient(160deg, #1d4e86 0%, #0c2c54 100%);
-
-    --pw-white: #FFFFFF;
-    --pw-off-white: #F5F7FA;
-    --pw-light-gray: #E5E7EB;
-    --pw-gray: #9CA3AF;
-    --pw-dark-gray: #4B5563;
-    --pw-charcoal: #1F2937;
-
-    --pw-font-heading: 'Poppins', sans-serif;
-    --pw-font-body: 'Source Sans 3', 'Source Sans Pro', sans-serif;
-
-    --pw-container-width: 80vw;
-
-    --pw-radius: 8px;          /* legacy alias used by the header sub-menu */
-    --pw-radius-sm: 4px;
-    --pw-radius-md: 8px;
-    --pw-radius-lg: 16px;
-    --pw-radius-xl: 24px;
-
-    --pw-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --pw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --pw-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-@media (max-width: 768px) {
-    :root { --pw-container-width: 90vw; }
-}
-
-/* ==========================================================================
-   2. Base
-   ========================================================================== */
-*, *::before, *::after { box-sizing: border-box; }
-
-html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-
-body {
-    margin: 0;
-    font-family: var(--pw-font-body);
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--pw-charcoal);
-    background: var(--pw-white);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-img { max-width: 100%; height: auto; }
-a { color: var(--pw-blue); text-decoration: none; transition: color 0.3s ease; }
-a:hover { color: var(--pw-navy); }
-
-/* ==========================================================================
-   3. Header / navigation  (canonical copy — mirrors growthzone-header-nav-snippet.html)
-   ========================================================================== */
-.pw-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: var(--pw-header-navy);
-    box-shadow: var(--pw-shadow-sm);
-}
-
-.pw-header__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 24px;
-    max-width: var(--pw-container-width);
-    margin: 0 auto;
-    position: relative;
-}
-
-.pw-header__logo img {
-    height: 50px;
-    width: auto;
-    display: block;
-}
-
-.pw-header__nav {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-}
-
-.pw-header__nav a {
-    font-family: var(--pw-font-heading);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--pw-off-white);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.pw-header__nav a:hover,
-.pw-header__nav a.active {
-    color: var(--pw-light-blue);
-}
-
-.pw-header__nav .menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.pw-header__nav .menu > li {
-    position: relative;
-}
-
-.pw-header__nav .menu > li > a {
-    font-family: var(--pw-font-heading);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--pw-white);
-    text-decoration: none;
-    padding: 8px 12px;
-    display: block;
-    transition: color 0.3s ease;
-    white-space: nowrap;
-}
-
-.pw-header__nav .menu > li > a:hover,
-.pw-header__nav .menu > li.current-menu-item > a,
-.pw-header__nav .menu > li.current-menu-ancestor > a {
-    color: var(--pw-light-blue);
-}
-
-.pw-header__nav .menu-item-has-children > a::after {
-    content: " \25BE";
-    font-size: 0.7rem;
-}
-
-.pw-header__submenu-toggle {
-    display: none;
-}
-
-.pw-header__nav .sub-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--pw-white);
-    min-width: 200px;
-    border-radius: var(--pw-radius);
-    box-shadow: var(--pw-shadow-md);
-    list-style: none;
-    margin: 0;
-    padding: 8px 0;
-    z-index: 100;
-}
-
-.pw-header__nav .menu-item-has-children:hover > .sub-menu,
-.pw-header__nav .menu-item-has-children:focus-within > .sub-menu {
-    display: block;
-}
-
-.pw-header__nav .sub-menu li a {
-    display: block;
-    padding: 10px 20px;
-    font-family: var(--pw-font-heading);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--pw-charcoal);
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-    white-space: nowrap;
-}
-
-.pw-header__nav .sub-menu li a:hover {
-    background: var(--pw-light-gray);
-    color: var(--pw-navy);
-}
-
-.pw-header__nav .menu > li:nth-last-child(-n+2) .sub-menu {
-    left: auto;
-    right: 0;
-}
-
-.pw-header__signin {
-    padding: 10px 24px;
-    background-color: var(--pw-light-blue);
-    color: var(--pw-white) !important;
-    border-radius: var(--pw-radius-xl);
-    font-size: 1rem;
-    font-family: var(--pw-font-heading);
-    font-weight: 600;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background-color 0.3s ease;
-}
-
-.pw-header__signin:hover {
-    background-color: var(--pw-gold);
-    color: var(--pw-white) !important;
-}
-
-.pw-header__toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-}
-
-.pw-header__toggle span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background-color: var(--pw-white);
-    margin: 6px 0;
-    transition: all 0.3s ease;
-}
-
-@media (max-width: 768px) {
-.pw-header__toggle {
-        display: block;
-    }
-.pw-header__nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--pw-header-navy);
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 24px;
-        box-shadow: var(--pw-shadow-md);
-        gap: 16px;
-    }
-.pw-header__nav.is-open {
-        display: flex;
-    }
-.pw-header__nav .menu {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        gap: 4px;
-    }
-.pw-header__nav .menu > li {
-        width: 100%;
-    }
-.pw-header__nav .menu > li > a {
-        color: var(--pw-white);
-        padding: 10px 0;
-    }
-.pw-header__nav .menu > li.menu-item-has-children {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-    }
-.pw-header__nav .menu > li.menu-item-has-children > a {
-        flex: 1;
-    }
-.pw-header__nav .menu-item-has-children > a::after {
-        display: none;
-    }
-.pw-header__submenu-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: none;
-        border: none;
-        color: var(--pw-white);
-        font-size: 1.75rem;
-        line-height: 1;
-        padding: 4px 12px;
-        cursor: pointer;
-    }
-.pw-header__nav .sub-menu,
-    .pw-header__nav .menu-item-has-children:hover > .sub-menu,
-    .pw-header__nav .menu-item-has-children:focus-within > .sub-menu {
-        display: none;
-    }
-.pw-header__nav .sub-menu {
-        flex: 0 0 100%;
-        position: static;
-        background: rgba(255,255,255,0.1);
-        box-shadow: none;
-        border-radius: 0;
-        padding: 0 0 0 16px;
-    }
-.pw-header__nav .menu-item-has-children.is-open > .sub-menu {
-        display: block;
-    }
-.pw-header__nav .menu-item-has-children.is-open > .pw-header__submenu-toggle {
-        transform: rotate(180deg);
-    }
-.pw-header__nav .sub-menu li a {
-        color: var(--pw-white);
-        padding: 8px 0;
-    }
-.pw-header__nav .sub-menu li a:hover {
-        background: transparent;
-        color: var(--pw-light-blue);
-    }
-}
-
-/* ==========================================================================
-   4. Page content — Events
-   ========================================================================== */
-.pw-btn {
-            display: inline-block;
-            padding: 14px 32px;
-            font-family: var(--pw-font-heading);
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: none;
-            letter-spacing: 0.3px;
-            color: var(--pw-navy);
-            background-color: var(--pw-gold);
-            border: none;
-            border-radius: var(--pw-radius-sm);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-.pw-btn:hover {
-            color: var(--pw-white);
-            background-color: var(--pw-navy);
-            transform: translateY(-2px);
-            box-shadow: var(--pw-shadow-md);
-        }
-
+/* Hero image (layout comes from .pw-hero in growthzone-css) */
 .pw-hero {
-            position: relative;
-            min-height: 650px;
-            display: flex;
-            align-items: center;
-            padding: 60px 0 140px;
-            background-image: url('http://digitalstrideg3.sg-host.com/wp-content/uploads/2026/06/Capital-Building-interior.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            overflow: hidden;
-        }
+    background-image: url('https://pawork.org/wp-content/uploads/2026/06/05-02-24-PWDA-40th-Annual-Conference-Day-2-30-2-2048x1363-1.jpg');
+}
 
-.pw-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg, rgba(12, 44, 84, 0.92) 0%, rgba(12, 44, 84, 0.70) 55%, rgba(12, 44, 84, 0.45) 100%);
-            z-index: 1;
-        }
-
-.pw-hero__content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: var(--pw-container-width);
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-.pw-hero__label {
-            font-family: var(--pw-font-heading);
-            font-size: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--pw-white);
-            margin-bottom: 12px;
-        }
-
-.pw-hero__title {
-            font-family: var(--pw-font-heading);
-            font-weight: 700;
-            font-size: 3rem;
-            line-height: 1.1;
-            text-transform: uppercase;
-            color: var(--pw-white);
-            margin: 0 0 16px;
-        }
-
-.pw-hero__body { color: rgba(255, 255, 255, 0.9); font-size: 1rem; line-height: 1.6; margin-bottom: 28px; max-width: 460px; }
-
-.pw-section { padding: 48px 0; background: var(--pw-off-white); }
-
-.pw-section__inner { max-width: var(--pw-container-width); margin: 0 auto; padding: 0 24px; }
-
-.pw-section__label {
-            font-family: var(--pw-font-heading);
-            font-size: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--pw-light-blue);
-            margin-bottom: 8px;
-        }
-
-.pw-section__title {
-            font-family: var(--pw-font-heading);
-            font-weight: 700;
-            font-size: 2.25rem;
-            line-height: 1.2;
-            text-transform: uppercase;
-            color: var(--pw-navy);
-            margin: 0 0 8px;
-        }
-
-.pw-section__title::after {
-            content: '';
-            display: block;
-            width: 8rem;
-            height: 5px;
-            margin-top: 14px;
-            background: linear-gradient(to right, var(--pw-navy), var(--pw-light-blue));
-        }
-
+/* --------------------------------------------------------------------------
+   Calendar shell (navy gradient card wrapping the GrowthZone module)
+   -------------------------------------------------------------------------- */
 .pw-calendar-shell {
-            margin-top: 32px;
-            background: var(--pw-gradient-calendar);
-            border-radius: var(--pw-radius-lg);
-            padding: 32px;
-            box-shadow: var(--pw-shadow-lg);
-            color: var(--pw-white);
-        }
+    margin-top: 32px;
+    background: var(--pw-gradient-calendar);
+    border-radius: var(--pw-radius-lg);
+    padding: 32px;
+    box-shadow: var(--pw-shadow-lg);
+    color: var(--pw-white);
+}
 
 .pw-calendar-shell .mn-search,
-        .pw-calendar-shell .mn-event-search,
-        .pw-calendar-shell .mn-calendar-toolbar {
-            color: var(--pw-white);
-            margin-bottom: 20px;
-        }
+.pw-calendar-shell .mn-event-search,
+.pw-calendar-shell .mn-calendar-toolbar { color: var(--pw-white); margin-bottom: 20px; }
 
 .pw-calendar-shell input[type="text"],
-        .pw-calendar-shell input[type="search"] {
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: var(--pw-radius-xl);
-            color: var(--pw-white);
-            padding: 10px 16px;
-            font-family: var(--pw-font-body);
-            font-size: 0.95rem;
-        }
-
+.pw-calendar-shell input[type="search"] {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--pw-radius-xl);
+    color: var(--pw-white);
+    padding: 10px 16px;
+    font-family: var(--pw-font-body);
+    font-size: 0.95rem;
+}
 .pw-calendar-shell input::placeholder { color: rgba(255, 255, 255, 0.7); }
 
 .pw-calendar-shell a { color: var(--pw-white); }
-
 .pw-calendar-shell a:hover { color: var(--pw-gold); }
 
+/* Month grid (table markup) */
 .pw-calendar-shell .mn-calendar,
-        .pw-calendar-shell .mn-events-calendar,
-        .pw-calendar-shell .gz-calendar {
-            background: var(--pw-white);
-            border-radius: var(--pw-radius-md);
-            padding: 24px;
-            color: var(--pw-charcoal);
-        }
+.pw-calendar-shell .mn-events-calendar,
+.pw-calendar-shell .gz-calendar {
+    background: var(--pw-white);
+    border-radius: var(--pw-radius-md);
+    padding: 24px;
+    color: var(--pw-charcoal);
+}
 
 .pw-calendar-shell .mn-calendar-title,
-        .pw-calendar-shell caption {
-            font-family: var(--pw-font-heading);
-            font-weight: 700;
-            font-size: 1.75rem;
-            color: var(--pw-light-blue);
-            text-align: center;
-            margin-bottom: 16px;
-        }
+.pw-calendar-shell caption {
+    font-family: var(--pw-font-heading);
+    font-weight: 700; font-size: 1.75rem;
+    color: var(--pw-light-blue); text-align: center; margin-bottom: 16px;
+}
 
-.pw-calendar-shell table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-        }
+.pw-calendar-shell table { width: 100%; border-collapse: collapse; table-layout: fixed; }
 
 .pw-calendar-shell table th {
-            background: var(--pw-light-blue);
-            color: var(--pw-white);
-            font-family: var(--pw-font-heading);
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-align: center;
-            padding: 12px 8px;
-            border: 1px solid var(--pw-light-blue);
-        }
+    background: var(--pw-light-blue);
+    color: var(--pw-white);
+    font-family: var(--pw-font-heading);
+    font-weight: 600; font-size: 0.95rem;
+    text-align: center; padding: 12px 8px;
+    border: 1px solid var(--pw-light-blue);
+}
 
 .pw-calendar-shell table td {
-            vertical-align: top;
-            height: 110px;
-            padding: 8px 10px;
-            border: 1px solid var(--pw-light-gray);
-            font-size: 0.9rem;
-            color: var(--pw-charcoal);
-            background: var(--pw-white);
-        }
+    vertical-align: top;
+    height: 110px;
+    padding: 8px 10px;
+    border: 1px solid var(--pw-light-gray);
+    font-size: 0.9rem;
+    color: var(--pw-charcoal);
+    background: var(--pw-white);
+}
 
 .pw-calendar-shell table td .mn-calendar-day-number,
-        .pw-calendar-shell table td .gz-day-number {
-            font-weight: 600;
-            color: var(--pw-charcoal);
-        }
+.pw-calendar-shell table td .gz-day-number { font-weight: 600; color: var(--pw-charcoal); }
 
 .pw-calendar-shell table td a {
-            display: block;
-            margin-top: 6px;
-            font-size: 0.8rem;
-            line-height: 1.3;
-            color: var(--pw-light-blue);
-            font-weight: 600;
-        }
-
+    display: block; margin-top: 6px;
+    font-size: 0.8rem; line-height: 1.3;
+    color: var(--pw-light-blue); font-weight: 600;
+}
 .pw-calendar-shell table td a:hover { color: var(--pw-gold); }
 
 .pw-calendar-shell table td.mn-today,
-        .pw-calendar-shell table td.today,
-        .pw-calendar-shell table td.gz-today { background: rgba(64, 126, 201, 0.08); }
+.pw-calendar-shell table td.today,
+.pw-calendar-shell table td.gz-today { background: rgba(64, 126, 201, 0.08); }
 
+/* --------------------------------------------------------------------------
+   GrowthZone events module — list & grid card views (.gz-*)
+   -------------------------------------------------------------------------- */
 .pw-calendar-shell .gz-pagetitle,
-        .pw-calendar-shell .gz-subtitle { color: var(--pw-white); font-family: var(--pw-font-heading); }
-
+.pw-calendar-shell .gz-subtitle { color: var(--pw-white); font-family: var(--pw-font-heading); }
 .pw-calendar-shell .gz-subtitle { font-weight: 700; }
 
 .pw-calendar-shell .form-control,
-        .pw-calendar-shell .gz-search-keyword,
-        .pw-calendar-shell .custom-select { color: var(--pw-charcoal); }
+.pw-calendar-shell .gz-search-keyword,
+.pw-calendar-shell .custom-select { color: var(--pw-charcoal); }
 
 .pw-calendar-shell .gz-search-btn {
-            background: var(--pw-gold);
-            color: var(--pw-navy);
-            border: none;
-            font-family: var(--pw-font-heading);
-            font-weight: 700;
-        }
-
+    background: var(--pw-gold); color: var(--pw-navy); border: none;
+    font-family: var(--pw-font-heading); font-weight: 700;
+}
 .pw-calendar-shell .gz-search-btn:hover { background: var(--pw-navy); color: var(--pw-white); }
 
 .pw-calendar-shell .gz-view-btn { color: rgba(255, 255, 255, 0.7); }
-
 .pw-calendar-shell .gz-view-btn:hover,
-        .pw-calendar-shell .gz-view-btn.active { color: var(--pw-gold); }
+.pw-calendar-shell .gz-view-btn.active { color: var(--pw-gold); }
 
-.pw-calendar-shell .gz-search-pill {
-            background: var(--pw-white);
-            color: var(--pw-navy) !important;
-            font-weight: 600;
-        }
+.pw-calendar-shell .gz-search-pill { background: var(--pw-white); color: var(--pw-navy) !important; font-weight: 600; }
 
 .pw-calendar-shell .gz-events-card {
-            background: var(--pw-white);
-            border: 1px solid var(--pw-light-gray);
-            border-radius: var(--pw-radius-md);
-            overflow: hidden;
-            color: var(--pw-charcoal);
-            box-shadow: var(--pw-shadow-sm);
-        }
+    background: var(--pw-white);
+    border: 1px solid var(--pw-light-gray);
+    border-radius: var(--pw-radius-md);
+    overflow: hidden;
+    box-shadow: var(--pw-shadow-sm);
+}
 
 .pw-calendar-shell .gz-events-card,
-        .pw-calendar-shell .gz-events-card p,
-        .pw-calendar-shell .gz-events-card h5,
-        .pw-calendar-shell .gz-events-card-body { color: var(--pw-charcoal); }
+.pw-calendar-shell .gz-events-card p,
+.pw-calendar-shell .gz-events-card h5,
+.pw-calendar-shell .gz-events-card-body { color: var(--pw-charcoal); }
 
 .pw-calendar-shell .gz-events-card .card-header { background: var(--pw-white); border: none; }
-
 .pw-calendar-shell .gz-card-wkday-wrap { background: var(--pw-header-navy); }
-
 .pw-calendar-shell .gz-card-wkday { color: var(--pw-white); font-family: var(--pw-font-heading); font-weight: 700; }
-
 .pw-calendar-shell .gz-card-month span { color: var(--pw-dark-gray); }
-
-.pw-calendar-shell .gz-card-dday span {
-            color: var(--pw-navy);
-            font-family: var(--pw-font-heading);
-            font-weight: 700;
-        }
+.pw-calendar-shell .gz-card-dday span { color: var(--pw-navy); font-family: var(--pw-font-heading); font-weight: 700; }
+.pw-calendar-shell .gz-card-datetime { color: var(--pw-dark-gray); }
 
 .pw-calendar-shell .gz-card-head-img img { display: block; }
 
 .pw-calendar-shell .gz-card-title,
-        .pw-calendar-shell .gz-event-card-title {
-            color: var(--pw-navy) !important;
-            font-family: var(--pw-font-heading);
-            font-weight: 700;
-        }
-
+.pw-calendar-shell .gz-event-card-title {
+    color: var(--pw-navy) !important;
+    font-family: var(--pw-font-heading);
+    font-weight: 700;
+}
 .pw-calendar-shell .gz-card-title:hover,
-        .pw-calendar-shell .gz-event-card-title:hover { color: var(--pw-light-blue) !important; }
+.pw-calendar-shell .gz-event-card-title:hover { color: var(--pw-light-blue) !important; }
 
-.pw-calendar-shell .gz-event-card-time {
-            color: var(--pw-light-blue);
-            font-family: var(--pw-font-heading);
-            font-weight: 600;
-        }
+.pw-calendar-shell .gz-event-card-time { color: var(--pw-light-blue); font-family: var(--pw-font-heading); font-weight: 600; }
 
 .pw-calendar-shell .gz-description,
-        .pw-calendar-shell .gz-events-description { color: var(--pw-dark-gray); }
+.pw-calendar-shell .gz-events-description { color: var(--pw-dark-gray); }
 
-.pw-calendar-shell .gz-events-card .card-footer {
-            background: var(--pw-white);
-            border-top: 1px solid var(--pw-light-gray);
-        }
+.pw-calendar-shell .gz-events-card .card-footer { background: var(--pw-white); border-top: 1px solid var(--pw-light-gray); }
 
+/* Register button: blue with white text, gold on hover. (Previously a
+   gold rule and an unscoped blue !important rule fought each other and
+   left navy text on a blue button.) */
 .pw-calendar-shell .gz-register-btn {
-            background: var(--pw-gold);
-            color: var(--pw-navy) !important;
-            border: none;
-            border-radius: var(--pw-radius-sm);
-            font-family: var(--pw-font-heading);
-            font-weight: 700;
-            padding: 12px 20px;
-            transition: all 0.3s ease;
-        }
+    background: var(--pw-blue) !important;
+    color: var(--pw-white) !important;
+    border: none;
+    border-radius: var(--pw-radius-sm);
+    font-family: var(--pw-font-heading);
+    font-weight: 700;
+    padding: 12px 20px;
+    transition: all 0.3s ease;
+}
+.pw-calendar-shell .gz-register-btn:hover { background: var(--pw-gold) !important; color: var(--pw-navy) !important; }
+.pw-calendar-shell .gz-register-btn.disabled { background: var(--pw-light-gray) !important; color: var(--pw-dark-gray) !important; }
 
-.pw-calendar-shell .gz-register-btn:hover {
-            background: var(--pw-navy);
-            color: var(--pw-white) !important;
-        }
-
-.pw-calendar-shell .gz-register-btn.disabled {
-            background: var(--pw-light-gray);
-            color: var(--pw-dark-gray) !important;
-        }
-
+/* GrowthZone calendar view (.gz-calendar divs) */
 .pw-calendar-shell .gz-calendar-month .gz-heading,
-        .pw-calendar-shell .gz-calendar-month-text { color: var(--pw-white); font-family: var(--pw-font-heading); }
+.pw-calendar-shell .gz-calendar-month-text { color: var(--pw-white); font-family: var(--pw-font-heading); }
 
 .pw-calendar-shell #gz-calendar {
-            background: var(--pw-white);
-            border-radius: var(--pw-radius-md);
-            padding: 16px;
-            color: var(--pw-charcoal);
-        }
-
+    background: var(--pw-white);
+    border-radius: var(--pw-radius-md);
+    padding: 16px;
+    color: var(--pw-charcoal);
+}
 .pw-calendar-shell .gz-week { display: flex; }
-
 .pw-calendar-shell .gz-week.gz-names .gz-day {
-            background: var(--pw-light-blue);
-            color: var(--pw-white);
-            font-family: var(--pw-font-heading);
-            font-weight: 600;
-            text-align: center;
-        }
-
+    background: var(--pw-light-blue);
+    color: var(--pw-white);
+    font-family: var(--pw-font-heading);
+    font-weight: 600;
+    text-align: center;
+}
 .pw-calendar-shell .gz-day {
-            flex: 1 1 0;
-            min-height: 96px;
-            padding: 6px 8px;
-            border: 1px solid var(--pw-light-gray);
-            color: var(--pw-charcoal);
-            font-size: 0.9rem;
-        }
-
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 96px;
+    padding: 6px 8px;
+    border: 1px solid var(--pw-light-gray);
+    color: var(--pw-charcoal);
+    font-size: 0.9rem;
+}
 .pw-calendar-shell .gz-names .gz-day { min-height: 0; }
-
 .pw-calendar-shell .gz-event-link a,
-        .pw-calendar-shell .gz-day-link {
-            color: var(--pw-light-blue);
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
-
+.pw-calendar-shell .gz-day-link { color: var(--pw-light-blue); font-weight: 600; font-size: 0.8rem; }
 .pw-calendar-shell .gz-event-link a:hover,
-        .pw-calendar-shell .gz-day-link:hover { color: var(--pw-gold); }
+.pw-calendar-shell .gz-day-link:hover { color: var(--pw-gold); }
 
 .pw-calendar-shell .gz-powered-by { color: rgba(255, 255, 255, 0.7); font-size: 0.8rem; }
 
 /* Event detail sidebar (white box with map, date, location, contact) —
    otherwise inherits the shell's white text and disappears. */
 .pw-calendar-shell .card:not(.gz-events-card),
-        .pw-calendar-shell .card:not(.gz-events-card) *,
-        .pw-calendar-shell .gz-details-sidebar,
-        .pw-calendar-shell .gz-details-sidebar *,
-        .pw-calendar-shell .gz-event-details-sidebar,
-        .pw-calendar-shell .gz-event-details-sidebar * { color: var(--pw-charcoal); }
+.pw-calendar-shell .card:not(.gz-events-card) *,
+.pw-calendar-shell .gz-details-sidebar,
+.pw-calendar-shell .gz-details-sidebar *,
+.pw-calendar-shell .gz-event-details-sidebar,
+.pw-calendar-shell .gz-event-details-sidebar * { color: var(--pw-charcoal); }
 
 .pw-calendar-shell .card:not(.gz-events-card) a,
-        .pw-calendar-shell .gz-details-sidebar a,
-        .pw-calendar-shell .gz-event-details-sidebar a { color: var(--pw-light-blue); }
+.pw-calendar-shell .gz-details-sidebar a,
+.pw-calendar-shell .gz-event-details-sidebar a { color: var(--pw-light-blue); }
 
 .pw-calendar-shell .card:not(.gz-events-card) a:hover,
-        .pw-calendar-shell .gz-details-sidebar a:hover,
-        .pw-calendar-shell .gz-event-details-sidebar a:hover { color: var(--pw-navy); }
+.pw-calendar-shell .gz-details-sidebar a:hover,
+.pw-calendar-shell .gz-event-details-sidebar a:hover { color: var(--pw-navy); }
 
+/* Re-assert the register button inside the sidebar card, which the
+   catch-all colour rule above would otherwise turn charcoal-on-blue. */
+.pw-calendar-shell .card .gz-register-btn,
+.pw-calendar-shell .card .gz-register-btn * { color: var(--pw-white) !important; }
+.pw-calendar-shell .card .gz-register-btn:hover,
+.pw-calendar-shell .card .gz-register-btn:hover * { color: var(--pw-navy) !important; }
+
+/* --------------------------------------------------------------------------
+   Featured event card
+   -------------------------------------------------------------------------- */
 .pw-event-feature {
-            margin-top: 28px;
-            background: var(--pw-white);
-            border-radius: var(--pw-radius-md);
-            padding: 28px 32px;
-            color: var(--pw-charcoal);
-            box-shadow: var(--pw-shadow-md);
-        }
-
+    margin-top: 28px;
+    background: var(--pw-white);
+    border-radius: var(--pw-radius-md);
+    padding: 28px 32px;
+    color: var(--pw-charcoal);
+    box-shadow: var(--pw-shadow-md);
+}
 .pw-event-feature__title {
-            font-family: var(--pw-font-heading);
-            font-weight: 700;
-            font-size: 1.4rem;
-            line-height: 1.3;
-            color: var(--pw-light-blue);
-            margin: 0 0 10px;
-        }
-
+    font-family: var(--pw-font-heading);
+    font-weight: 700; font-size: 1.4rem; line-height: 1.3;
+    color: var(--pw-light-blue); margin: 0 0 10px;
+}
 .pw-event-feature__meta { font-weight: 700; color: var(--pw-charcoal); margin: 0 0 8px; }
-
 .pw-event-feature__presenter { margin: 0 0 14px; color: var(--pw-dark-gray); }
-
 .pw-event-feature__body { margin: 0 0 20px; color: var(--pw-charcoal); }
-
 .pw-event-feature .pw-btn { display: block; width: max-content; margin: 0 auto; }
 
-.pw-cta { background: var(--pw-off-white); padding: 8px 0 56px; text-align: center; }
-
-.pw-cta .pw-btn { padding: 16px 40px; }
-
+/* --------------------------------------------------------------------------
+   Mobile
+   -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-.pw-hero { min-height: auto; padding: 40px 0; }
-.pw-hero__title { font-size: 2.25rem; }
-.pw-hero__body { max-width: 100%; }
-.pw-section__title { font-size: 1.75rem; }
-.pw-calendar-shell { padding: 20px; }
-.pw-calendar-shell table,
-            .pw-calendar-shell table tbody,
-            .pw-calendar-shell table tr { display: block; width: 100%; }
-.pw-calendar-shell table thead { display: none; }
-.pw-calendar-shell table td { height: auto; display: block; width: 100%; border-top: none; }
-.pw-calendar-shell table tr { margin-bottom: 8px; border: 1px solid var(--pw-light-gray); }
-}
+    .pw-calendar-shell { padding: 20px; }
 
-/* ==========================================================================
-   6. Header override guard — KEEP LAST
-   --------------------------------------------------------------------------
-   GrowthZone's own stylesheets load after this block. If any of them carries
-   an !important rule touching .sub-menu, normal cascade cannot win and every
-   dropdown is forced open. These repeat the critical declarations with
-   element+class selectors and !important of their own.
-   ========================================================================== */
-nav.pw-header__nav ul.menu ul.sub-menu {
-    display: none !important;
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    list-style: none !important;
-}
+    /* Stack the month grid on small screens so cells stay legible */
+    .pw-calendar-shell table,
+    .pw-calendar-shell table tbody,
+    .pw-calendar-shell table tr { display: block; width: 100%; }
+    .pw-calendar-shell table thead { display: none; }
+    .pw-calendar-shell table td { height: auto; display: block; width: 100%; border-top: none; }
+    .pw-calendar-shell table tr { margin-bottom: 8px; border: 1px solid var(--pw-light-gray); }
 
-nav.pw-header__nav ul.menu li.menu-item-has-children:hover > ul.sub-menu,
-nav.pw-header__nav ul.menu li.menu-item-has-children:focus-within > ul.sub-menu {
-    display: block !important;
-}
-
-nav.pw-header__nav ul.menu > li:nth-last-child(-n+2) ul.sub-menu {
-    left: auto !important;
-    right: 0 !important;
-}
-
-@media (max-width: 768px) {
-    nav.pw-header__nav ul.menu ul.sub-menu,
-    nav.pw-header__nav ul.menu li.menu-item-has-children:hover > ul.sub-menu,
-    nav.pw-header__nav ul.menu li.menu-item-has-children:focus-within > ul.sub-menu {
-        display: none !important;
-        position: static !important;
-    }
-
-    nav.pw-header__nav ul.menu li.menu-item-has-children.is-open > ul.sub-menu {
-        display: block !important;
-    }
+    .pw-event-feature { padding: 20px; }
 }
 </style>
 
+<!-- ================= Events Hero ================= -->
+<section class="pw-hero">
+    <div class="pw-hero__content">
+        <p class="pw-hero__label">Upcoming</p>
+        <h1 class="pw-hero__title">Events</h1>
+        <p class="pw-hero__body">
+            Sign up for a PWDA Membership to be the first to get alerts on upcoming events,
+            as well as discounted or free entry.
+        </p>
+        <a href="https://members.pawork.org/member-application" class="pw-btn">Partner with PWDA</a>
+    </div>
+</section>
 
-    
-
-    <!-- ================= Events Hero ================= -->
-    <section class="pw-hero" role="banner">
-        <div class="pw-hero__content">
-            <p class="pw-hero__label">Upcoming</p>
-            <h1 class="pw-hero__title">Events</h1>
-            <p class="pw-hero__body">
-                Sign up for a PWDA Membership to be the first to get alerts on upcoming events,
-                as well as discounted or free entry.
-            </p>
-            <a href="https://members.pawork.org/member-application" class="pw-btn">Partner with PWDA</a>
-        </div>
-    </section>
-
-    <!-- ================= Upcoming Events + Calendar ================= -->
+<!-- ================= Upcoming Events + Calendar ================= -->
+<main class="pw-main" role="main">
     <section class="pw-section">
         <div class="pw-section__inner">
             <p class="pw-section__label">What's Happening</p>
@@ -851,57 +324,7 @@ nav.pw-header__nav ul.menu > li:nth-last-child(-n+2) ul.sub-menu {
     <section class="pw-cta">
         <a href="https://members.pawork.org/member-application" class="pw-btn">Sign up for Membership</a>
     </section>
-
-    <script>
-        (function () {
-            'use strict';
-
-            var year = document.getElementById('pw-year');
-            if (year) { year.textContent = new Date().getFullYear(); }
-
-            var headerToggle = document.querySelector('.pw-header__toggle');
-            var headerNav = document.querySelector('.pw-header__nav');
-            if (!headerToggle || !headerNav) return;
-
-            headerToggle.addEventListener('click', function () {
-                var open = headerNav.classList.toggle('is-open');
-                headerToggle.classList.toggle('is-active', open);
-                headerToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-            });
-
-            document.addEventListener('click', function (e) {
-                if (!headerToggle.contains(e.target) && !headerNav.contains(e.target)) {
-                    headerNav.classList.remove('is-open');
-                    headerToggle.classList.remove('is-active');
-                    headerToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') {
-                    headerNav.classList.remove('is-open');
-                    headerToggle.classList.remove('is-active');
-                    headerToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Mobile sub-menu accordion. The toggle buttons are already in the
-            // markup, so we only bind them; parent links still navigate.
-            var navParents = headerNav.querySelectorAll('.menu-item-has-children');
-            Array.prototype.forEach.call(navParents, function (item) {
-                var toggle = item.querySelector(':scope > .pw-header__submenu-toggle');
-                if (!toggle) return;
-
-                toggle.addEventListener('click', function () {
-                    var isOpen = item.classList.contains('is-open');
-                    Array.prototype.forEach.call(navParents, function (sib) {
-                        sib.classList.remove('is-open');
-                    });
-                    if (!isOpen) { item.classList.add('is-open'); }
-                });
-            });
-        })();
-    </script>
+</main>
 
 </body>
 </html>

@@ -5,529 +5,143 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>#GROWTHZONE_HEADING# - Pennsylvania Workforce Development Association</title>
 
-    <style>
-        /* ============================================================
-           Design Tokens (mirrors the WordPress theme)
-           ============================================================ */
-        :root {
-            --pw-navy: #252b5d;
-            --pw-header-navy: #0c335a;
-            --pw-blue: #2b3279;
-            --pw-light-blue: #407ec9;
-            --pw-sky: #9bd3dd;
-
-            --pw-gold: #f9ad32;
-            --pw-orange: #E8913A;
-            --pw-teal: #2A9D8F;
-
-            --pw-gradient-lightblue-navy: linear-gradient(135deg, var(--pw-light-blue) 0%, var(--pw-navy) 100%);
-
-            --pw-white: #FFFFFF;
-            --pw-off-white: #F5F7FA;
-            --pw-light-gray: #E5E7EB;
-            --pw-gray: #9CA3AF;
-            --pw-dark-gray: #4B5563;
-            --pw-charcoal: #1F2937;
-
-            --pw-font-heading: 'Poppins', sans-serif;
-            --pw-font-body: 'Source Sans 3', 'Source Sans Pro', sans-serif;
-
-            --pw-container-width: 1200px;
-
-            --pw-radius-sm: 4px;
-            --pw-radius-md: 8px;
-            --pw-radius-lg: 16px;
-            --pw-radius-xl: 24px;
-
-            --pw-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --pw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --pw-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        @media (min-width: 769px) {
-            :root { --pw-container-width: 85vw; }
-        }
-
-        /* ============================================================
-           Base
-           ============================================================ */
-        *, *::before, *::after { box-sizing: border-box; }
-
-        html {
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            margin: 0;
-            font-family: var(--pw-font-body);
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--pw-charcoal);
-            background: var(--pw-white);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        img { max-width: 100%; height: auto; }
-
-        a { color: var(--pw-blue); text-decoration: none; transition: color 0.3s ease; }
-        a:hover { color: var(--pw-navy); }
-
-        /* ============================================================
-           Header / Nav
-           ============================================================ */
-        .pw-header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: var(--pw-header-navy);
-            box-shadow: var(--pw-shadow-sm);
-        }
-
-        .pw-header__inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 24px;
-            max-width: var(--pw-container-width);
-            margin: 0 auto;
-        }
-
-        .pw-header__logo img { height: 50px; width: auto; display: block; }
-
-        .pw-header__nav { display: flex; align-items: center; gap: 32px; }
-
-        .pw-header__nav .menu {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .pw-header__nav .menu > li { position: relative; }
-
-        .pw-header__nav .menu > li > a {
-            font-family: var(--pw-font-heading);
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--pw-white);
-            padding: 8px 12px;
-            display: block;
-            white-space: nowrap;
-            transition: color 0.3s ease;
-        }
-
-        .pw-header__nav .menu > li > a:hover,
-        .pw-header__nav .menu > li.current-menu-item > a {
-            color: var(--pw-light-blue);
-        }
-
-        .pw-header__nav .menu-item-has-children > a::after {
-            content: " \25BE";
-            font-size: 0.7rem;
-        }
-
-        .pw-header__nav .sub-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--pw-white);
-            min-width: 220px;
-            border-radius: var(--pw-radius-md);
-            box-shadow: var(--pw-shadow-md);
-            list-style: none;
-            margin: 0;
-            padding: 8px 0;
-            z-index: 100;
-        }
-
-        .pw-header__nav .menu-item-has-children:hover > .sub-menu { display: block; }
-
-        .pw-header__nav .sub-menu li a {
-            display: block;
-            padding: 10px 20px;
-            font-family: var(--pw-font-heading);
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--pw-charcoal);
-            white-space: nowrap;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .pw-header__nav .sub-menu li a:hover {
-            background: var(--pw-light-gray);
-            color: var(--pw-navy);
-        }
-
-        .pw-header__signin {
-            padding: 10px 24px;
-            background-color: var(--pw-light-blue);
-            color: var(--pw-white) !important;
-            border-radius: var(--pw-radius-xl);
-            font-size: 1rem;
-            font-family: var(--pw-font-heading);
-            font-weight: 600;
-        }
-
-        .pw-header__signin:hover { background-color: var(--pw-gold); }
-
-        .pw-header__toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .pw-header__toggle span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background-color: var(--pw-white);
-            margin: 6px 0;
-            transition: all 0.3s ease;
-        }
-
-        /* ============================================================
-           Page-title band (uses #GROWTHZONE_HEADING#)
-           ============================================================ */
-        .pw-page-head {
-            position: relative;
-            color: var(--pw-white);
-            min-height: 680px;
-            display: flex;
-            align-items: center;
-            padding: 60px 0 140px;
-            background-image: url('http://pawork.org/wp-content/uploads/2026/06/Hand-shake-contact-form.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            overflow: hidden;
-        }
-
-        .pw-page-head::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg, rgba(12, 44, 84, 0.92) 0%, rgba(12, 44, 84, 0.70) 55%, rgba(12, 44, 84, 0.45) 100%);
-            z-index: 1;
-        }
-
-        .pw-page-head__inner {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: var(--pw-container-width);
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .pw-page-head h1 {
-            margin: 0;
-            font-family: var(--pw-font-heading);
-            font-weight: 700;
-            font-size: 3rem;
-            line-height: 1.2;
-            text-transform: uppercase;
-            color: var(--pw-white);
-        }
-
-        .pw-page-head h1::after {
-            content: '';
-            display: block;
-            width: 13rem;
-            max-width: 100%;
-            height: 6px;
-            margin-top: 16px;
-            background: var(--pw-gold);
-        }
-
-        .pw-page-head__label {
-            font-family: var(--pw-font-heading);
-            font-size: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--pw-white);
-            margin: 0 0 12px;
-        }
-
-        .pw-page-head__body {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin: 20px 0 0;
-            max-width: 560px;
-        }
-
-        /* ============================================================
-           Main content shell
-           ============================================================ */
-        .pw-main { flex: 1 0 auto; }
-
-        .pw-content {
-            max-width: var(--pw-container-width);
-            margin: 0 auto;
-            padding: 48px 24px;
-        }
-
-        /* ============================================================
-           GrowthZone module content (.mn-*)
-           ============================================================ */
-        #mn-content { font-family: var(--pw-font-body); color: var(--pw-charcoal); max-width: 100%; }
-
-        #mn-content img,
-        #mn-content table,
-        #mn-content iframe { max-width: 100%; height: auto; }
-
-        #mn-content .mn-container { width: 100%; margin: 0 auto; }
-
-        #mn-content a { color: var(--pw-blue); }
-        #mn-content a:hover { color: var(--pw-navy); }
-
-        #mn-content h1, #mn-content h2, #mn-content h3, #mn-content h4 {
-            font-family: var(--pw-font-heading);
-            font-weight: 700;
-            line-height: 1.2;
-            color: var(--pw-navy);
-        }
-
-        #mn-content .mn-page-heading { display: none; }
-        #mn-content .mn-text > title { display: none; }
-
-        #mn-content .mn-intro .mn-text {
-            font-size: 1.125rem;
-            color: var(--pw-dark-gray);
-            margin-bottom: 8px;
-        }
-
-        #mn-content .mn-intro .mn-text p { margin: 0 0 16px; }
-
-        /* Rows & columns */
-        #mn-content .mn-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0;
-            margin-bottom: 24px;
-        }
-
-        #mn-content .mn-col-1 { flex: 1 1 100%; min-width: 0; }
-        #mn-content .mn-col-1-2 { flex: 1 1 calc(50% - 20px); min-width: 0; }
-
-        #mn-content .mn-block { margin-bottom: 24px; }
-
-        /* Form */
-        #mn-content .mn-contact-form {
-            min-height: 100%;
-            background: var(--pw-off-white);
-            border: 1px solid var(--pw-light-gray);
-            border-radius: var(--pw-radius-lg);
-            padding: 32px;
-            box-shadow: var(--pw-shadow-sm);
-        }
-
-        #mn-content form {
-            display: flex;
-            flex-wrap: wrap;
-            column-gap: 24px;
-            row-gap: 12px;
-            align-items: flex-start;
-        }
-
-        #mn-content .mn-label {
-            display: block;
-            flex: 1 1 calc(50% - 12px);
-            min-width: 240px;
-            margin-bottom: 0;
-        }
-
-        #mn-content form > div,
-        #mn-content form > .mn-section-head,
-        #mn-content form > .mn-block,
-        #mn-content form > h2,
-        #mn-content form > h3 { flex: 1 1 100%; }
-
-        #mn-content .mn-label:has(textarea) { flex: 1 1 100%; }
-
-        #mn-content .mn-field-label,
-        #mn-content .mn-field-name {
-            display: block;
-            font-family: var(--pw-font-heading);
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--pw-navy);
-            margin-bottom: 6px;
-        }
-
-        #mn-content .mn-field input,
-        #mn-content .mn-field textarea,
-        #mn-content .mn-field select {
-            display: block;
-            width: 100%;
-            padding: 12px 14px;
-            font-family: var(--pw-font-body);
-            font-size: 1rem;
-            color: var(--pw-charcoal);
-            background: var(--pw-white);
-            border: 1px solid var(--pw-light-gray);
-            border-radius: var(--pw-radius-sm);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        #mn-content .mn-field input:focus,
-        #mn-content .mn-field textarea:focus,
-        #mn-content .mn-field select:focus {
-            outline: none;
-            border-color: var(--pw-light-blue);
-            box-shadow: 0 0 0 3px rgba(64, 126, 201, 0.15);
-        }
-
-        #mn-content .mn-field textarea { min-height: 120px; resize: vertical; }
-        #mn-content .mn-required:after { content: none; }
-
-        #mn-content .mn-label.mn-error input,
-        #mn-content .mn-label.mn-error textarea,
-        #mn-content .mn-label.mn-error select { border-color: #d9342b; }
-
-        #mn-content .mn-label.mn-error .mn-field-name { color: #d9342b; }
-
-        #mn-content .validation-summary-errors ul li,
-        #mn-content .recaptcha-error { color: #d9342b; }
-
-        /* Buttons */
-        #mn-content .mn-button,
-        #mn-content .mn-submit,
-        #mn-content button.mn-submit {
-            display: inline-block;
-            padding: 14px 32px;
-            font-family: var(--pw-font-heading);
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--pw-navy);
-            background-color: var(--pw-gold);
-            border: none;
-            border-radius: var(--pw-radius-sm);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        #mn-content .mn-button:hover,
-        #mn-content .mn-submit:hover,
-        #mn-content button.mn-submit:hover {
-            color: var(--pw-white);
-            background-color: var(--pw-navy);
-            transform: translateY(-2px);
-            box-shadow: var(--pw-shadow-md);
-        }
-
-        /* Map */
-        #mn-content .mn-contact-map iframe {
-            display: block;
-            width: 100%;
-            border: 0;
-            border-radius: var(--pw-radius-md);
-            box-shadow: var(--pw-shadow-sm);
-        }
-
-        /* Contact info card */
-        #mn-content .mn-contact-info {
-            background: var(--pw-gradient-lightblue-navy);
-            color: var(--pw-white) !important;
-            border-radius: var(--pw-radius-lg);
-            padding: 32px;
-            box-shadow: var(--pw-shadow-md);
-        }
-
-        #mn-content .mn-contact-info .mn-section-head,
-        #mn-content div.mn-contact-info .mn-section-head {
-            margin-bottom: 16px !important;
-            font-family: var(--pw-font-heading) !important;
-            font-size: 1.25rem !important;
-            font-weight: 700 !important;
-            text-transform: uppercase !important;
-            line-height: 1.3 !important;
-            color: var(--pw-white) !important;
-        }
-
-        #mn-content .mn-contact-info .mn-section-head-text,
-        #mn-content div.mn-contact-info .mn-section-head-text {
-            font-family: var(--pw-font-heading) !important;
-            font-size: 1.25rem !important;
-            font-weight: 700 !important;
-            text-transform: uppercase !important;
-            line-height: 1.3 !important;
-            color: var(--pw-white) !important;
-        }
-
-        #mn-content .mn-contact-info .mn-section-body { font-size: 1rem; line-height: 1.7; }
-
-        #mn-content .mn-contact-info .mn-street,
-        #mn-content .mn-contact-info .mn-po-box,
-        #mn-content .mn-contact-info .mn-city-state-zip,
-        #mn-content .mn-contact-info .mn-phone { color: var(--pw-white); }
-
-        #mn-content .mn-contact-info a { color: var(--pw-gold); font-weight: 600; }
-        #mn-content .mn-contact-info a:hover { color: var(--pw-white); text-decoration: underline; }
-
-        #mn-content .mn-powered-by {
-            margin-top: 24px;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--pw-gray);
-        }
-
-        #mn-content .mn-powered-by a { color: var(--pw-dark-gray); font-weight: 600; }
-
-        /* ============================================================
-           FIX: Replace broken WordPress wrapper footer logo via CSS
-           ============================================================ */
-        footer img[src*="digitalstrideg3"],
-        footer img[alt*="PA Workforce Development"],
-        footer img[alt*="Pennsylvania Workforce Development"] {
-            content: url("https://pawork.org/wp-content/uploads/2026/04/Workforce_Logo-solo-White-e1775329133106.png") !important;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .pw-header__toggle { display: block; }
-            .pw-page-head { min-height: auto; padding: 40px 0; }
-            .pw-page-head h1 { font-size: 2.25rem; }
-            .pw-content { padding: 32px 20px; }
-            #mn-content .mn-row { gap: 24px; }
-            #mn-content .mn-col-1-2 { flex: 1 1 100%; }
-            #mn-content form { column-gap: 0; }
-            #mn-content .mn-label { flex: 1 1 100%; min-width: 0; }
-            #mn-content .col-sm-7 { flex: 0 0 100%; max-width: 100%; width: 100%; }
-        }
-    </style>
+    <!-- ====================================================================
+         PA Works — GrowthZone page template: CONTACT US
+         --------------------------------------------------------------------
+         GrowthZone replaces these tokens at render time:
+           #GROWTHZONE_HEADING#  -> the page title
+           #growthzone_content#  -> the contact module markup
+
+         Site chrome is NOT in this file:
+           header  -> growthzone-custom-header  (global)
+           footer  -> growthzone-custom-footer  (global)
+           shared CSS (tokens, header, footer, title band, .mn-*)
+                   -> growthzone-css            (global)
+
+         The style block below holds only rules unique to this page. It sits
+         in the body because GrowthZone keeps only the body of a custom
+         template and discards anything placed in the head.
+         ==================================================================== -->
 </head>
 
 <body>
 
-    <!-- ================= Page title band ================= -->
-    <div class="pw-page-head">
-        <div class="pw-page-head__inner">
-            <p class="pw-page-head__label">Reach out</p>
-            <h1>#GROWTHZONE_HEADING#</h1>
-            <p class="pw-page-head__body">Connect with the Pennsylvania Workforce Development Association (PWDA) and begin driving workforce change</p>
-        </div>
-    </div>
+<style>
+/* ==========================================================================
+   Contact page — page-specific styles only
+   ========================================================================== */
 
-    <!-- ================= GrowthZone content ================= -->
-    <main class="pw-main" role="main">
-        <div class="pw-content">
-            #growthzone_content#
-        </div>
-    </main>
+/* Title band image + taller band (layout from .pw-page-head in growthzone-css) */
+.pw-page-head {
+    min-height: 680px;
+    padding: 60px 0 140px;
+    background-image: url('https://pawork.org/wp-content/uploads/2026/06/Hand-shake-contact-form.png');
+}
+
+/* Form card */
+#mn-content .mn-contact-form {
+    min-height: 100%;
+    background: var(--pw-off-white);
+    border: 1px solid var(--pw-light-gray);
+    border-radius: var(--pw-radius-lg);
+    padding: 32px;
+    box-shadow: var(--pw-shadow-sm);
+}
+
+/* Two-up field layout inside the form */
+#mn-content form {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 24px;
+    row-gap: 12px;
+    align-items: flex-start;
+}
+
+#mn-content form .mn-label {
+    flex: 1 1 calc(50% - 12px);
+    width: auto;
+    min-width: 240px;
+    margin-bottom: 0;
+}
+
+#mn-content form > div,
+#mn-content form > .mn-section-head,
+#mn-content form > .mn-block,
+#mn-content form > h2,
+#mn-content form > h3,
+#mn-content form .mn-label:has(textarea) { flex: 1 1 100%; }
+
+/* No asterisks on this short form */
+#mn-content .mn-required:after { content: none; }
+
+/* Map */
+#mn-content .mn-contact-map iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: var(--pw-radius-md);
+    box-shadow: var(--pw-shadow-sm);
+}
+
+/* Contact info card */
+#mn-content .mn-contact-info {
+    background: var(--pw-gradient-lightblue-navy);
+    color: var(--pw-white) !important;
+    border-radius: var(--pw-radius-lg);
+    padding: 32px;
+    box-shadow: var(--pw-shadow-md);
+}
+
+/* GrowthZone styles these headings with !important, so match it */
+#mn-content .mn-contact-info .mn-section-head { margin-bottom: 16px !important; }
+
+#mn-content .mn-contact-info .mn-section-head,
+#mn-content .mn-contact-info .mn-section-head-text {
+    font-family: var(--pw-font-heading) !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    line-height: 1.3 !important;
+    color: var(--pw-white) !important;
+}
+
+#mn-content .mn-contact-info .mn-section-body { font-size: 1rem; line-height: 1.7; }
+
+#mn-content .mn-contact-info .mn-street,
+#mn-content .mn-contact-info .mn-po-box,
+#mn-content .mn-contact-info .mn-city-state-zip,
+#mn-content .mn-contact-info .mn-phone { color: var(--pw-white); }
+
+#mn-content .mn-contact-info a { color: var(--pw-gold); font-weight: 600; }
+#mn-content .mn-contact-info a:hover { color: var(--pw-white); text-decoration: underline; }
+
+@media (max-width: 768px) {
+    .pw-page-head { min-height: auto; padding: 48px 0; }
+
+    #mn-content .mn-contact-form,
+    #mn-content .mn-contact-info { padding: 24px; }
+
+    #mn-content form { column-gap: 0; }
+    #mn-content form .mn-label { flex: 1 1 100%; min-width: 0; }
+    #mn-content .col-sm-7 { flex: 0 0 100%; max-width: 100%; width: 100%; }
+}
+</style>
+
+<!-- ================= Page title band ================= -->
+<div class="pw-page-head">
+    <div class="pw-page-head__inner">
+        <p class="pw-page-head__label">Reach out</p>
+        <h1>#GROWTHZONE_HEADING#</h1>
+        <p class="pw-page-head__body">Connect with the Pennsylvania Workforce Development Association (PWDA) and begin driving workforce change.</p>
+    </div>
+</div>
+
+<!-- ================= GrowthZone content ================= -->
+<main class="pw-main" role="main">
+    <div class="pw-content">
+        #growthzone_content#
+    </div>
+</main>
 
 </body>
 </html>
