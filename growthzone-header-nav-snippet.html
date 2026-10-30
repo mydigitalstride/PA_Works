@@ -335,7 +335,7 @@
         </button>
 
         <nav class="pw-header__nav" role="navigation" aria-label="Primary Navigation">
-            <ul id="menu-primary-navigation" class="menu"><li id="menu-item-114" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-8 current_page_item menu-item-114"><a href="https://pawork.org/" aria-current="page">Home</a></li>
+            <ul id="menu-primary-navigation" class="menu"><li id="menu-item-114" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-114"><a href="https://pawork.org/">Home</a></li>
 <li id="menu-item-2150" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2150"><a href="#">About PWDA</a><button type="button" class="pw-header__submenu-toggle" aria-label="Toggle submenu"><span aria-hidden="true">&#9662;</span></button>
 <ul class="sub-menu">
 	<li id="menu-item-2149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2149"><a href="https://pawork.org/about/">About PWDA</a></li>
@@ -418,5 +418,41 @@
             }
         });
     });
+
+    // Highlight the menu item for the current page. The markup is hard-coded
+    // and shared across pages, so match the page URL against each link
+    // (longest match wins; e.g. /events/details/... -> Events).
+    var normalize = function (url) {
+        var a = document.createElement('a');
+        a.href = url;
+        return (a.hostname.replace(/^www\./, '') + a.pathname.replace(/\/+$/, '')).toLowerCase();
+    };
+    var here = normalize(window.location.href);
+    var best = null;
+    var bestLen = 0;
+    Array.prototype.forEach.call(headerNav.querySelectorAll('.menu a[href]'), function (link) {
+        var href = link.getAttribute('href');
+        if (!href || href.charAt(0) === '#') return;
+        var target = normalize(link.href);
+        var isRoot = target.indexOf('/') === -1;
+        var match = here === target || (!isRoot && here.indexOf(target + '/') === 0);
+        if (match && target.length > bestLen) {
+            best = link;
+            bestLen = target.length;
+        }
+    });
+    if (best) {
+        Array.prototype.forEach.call(headerNav.querySelectorAll('.current-menu-item, .current-menu-ancestor'), function (li) {
+            li.classList.remove('current-menu-item', 'current-menu-ancestor');
+        });
+        var li = best.closest('li');
+        li.classList.add('current-menu-item');
+        best.setAttribute('aria-current', 'page');
+        var parent = li.parentElement.closest('li');
+        while (parent) {
+            parent.classList.add('current-menu-ancestor');
+            parent = parent.parentElement.closest('li');
+        }
+    }
 })();
 </script>

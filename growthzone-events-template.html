@@ -717,6 +717,23 @@ a:hover { color: var(--pw-navy); }
 
 .pw-calendar-shell .gz-powered-by { color: rgba(255, 255, 255, 0.7); font-size: 0.8rem; }
 
+/* Event detail sidebar (white box with map, date, location, contact) —
+   otherwise inherits the shell's white text and disappears. */
+.pw-calendar-shell .card:not(.gz-events-card),
+        .pw-calendar-shell .card:not(.gz-events-card) *,
+        .pw-calendar-shell .gz-details-sidebar,
+        .pw-calendar-shell .gz-details-sidebar *,
+        .pw-calendar-shell .gz-event-details-sidebar,
+        .pw-calendar-shell .gz-event-details-sidebar * { color: var(--pw-charcoal); }
+
+.pw-calendar-shell .card:not(.gz-events-card) a,
+        .pw-calendar-shell .gz-details-sidebar a,
+        .pw-calendar-shell .gz-event-details-sidebar a { color: var(--pw-light-blue); }
+
+.pw-calendar-shell .card:not(.gz-events-card) a:hover,
+        .pw-calendar-shell .gz-details-sidebar a:hover,
+        .pw-calendar-shell .gz-event-details-sidebar a:hover { color: var(--pw-navy); }
+
 .pw-event-feature {
             margin-top: 28px;
             background: var(--pw-white);
